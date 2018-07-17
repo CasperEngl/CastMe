@@ -8,16 +8,16 @@
       <?php echo $pageTitle?? "CastMe"; ?>
   </title>
 
-  <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}">
 
 </head>
 
 <body>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+<script src="http://unpkg.com/jquery/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="https://tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 <script src="{{ asset('js/admin.js') }}"></script>
 
 <header class="secondHeader">
