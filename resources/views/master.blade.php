@@ -21,47 +21,49 @@
 
 <header>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="/">
-      <img src="{{ asset('img/logo.png') }}" alt="castme logo">
-    </a>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a href="/profile/id" class="nav-link">
-          <i class="material-icons">person</i> Name | Role
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a href="#!" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <i class="material-icons">notifications</i>
-          <span class="badge">2</span>
-        </a>
-        <div class="dropdown-menu">
-          <a href="#!" class="dropdown-item">
-            <i class="material-icons green lighten-1">local_offer</i> New Post
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="{{ asset('img/logo.png') }}" alt="castme logo">
+      </a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="/profile/id" class="nav-link">
+            <i class="material-icons">person</i> Name | Role
           </a>
-          <a href="#!" class="dropdown-item">
-            <i class="material-icons blue lighten-1">question_answer</i> New Message
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#!" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons">notifications</i>
+            <span class="badge">2</span>
           </a>
-          <a href="#!" class="dropdown-item">
-            <i class="material-icons red lighten-1">message</i> Messages <span class="badge">2</span>
+          <div class="dropdown-menu">
+            <a href="#!" class="dropdown-item">
+              <i class="material-icons green lighten-1">local_offer</i> New Post
+            </a>
+            <a href="#!" class="dropdown-item">
+              <i class="material-icons blue lighten-1">question_answer</i> New Message
+            </a>
+            <a href="#!" class="dropdown-item">
+              <i class="material-icons red lighten-1">message</i> Messages <span class="badge">2</span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/overview">Overview</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">
+            Logout <i class="material-icons">exit_to_app</i>
           </a>
-        </div>
-      </li>
-    </ul>
-  
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/overview">Overview</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/posts">Posts</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">
-          Logout <i class="material-icons">exit_to_app</i>
-        </a>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
   </nav>
 </header>
 
