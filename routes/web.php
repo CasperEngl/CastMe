@@ -18,6 +18,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/overview', function () {
         return view('overview');
     });
+    Route::get('/posts', function () {
+        return view('posts');
+    });
     Route::get('/', function () {
         return view('overview');
     });
