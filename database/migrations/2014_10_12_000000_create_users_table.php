@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->string('lang')->nullable();
-            $table->enum('role', ['free', 'paid', 'Scout', 'Owner', 'Admin'])->nullable();
+            $table->enum('role', ['Free', 'Paid', 'Scout', 'Moderator', 'Admin'])->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
