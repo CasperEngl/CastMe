@@ -1,22 +1,43 @@
 @extends('master')
 @section('content')
-  <div class="container">
+  <main class="container">
     <div class="row">
 
-      <div class="col s4">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Post Title</span>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur magnam exercitationem officiis ipsam asperiores impedit accusamus minima quam. Excepturi labore deleniti modi, minima blanditiis libero recusandae magni mollitia veritatis dolores fuga magnam soluta a ex? Voluptatibus ducimus hic expedita eaque fuga molestias magnam impedit est? Voluptatibus harum dolores ullam nisi?
-            </p>
-          </div>
-          <div class="card-action">
-            <a href="#">Contact Scout</a>
+      <?php
+      
+      for ($i = 0; $i < 5; $i++) {
+        ?>
+        <div class="col-md-4">
+          <div class="card post-card">
+            <figure class="card-img-top">
+              <img src="{{ asset('img/placeholder-wallpaper.jpg') }}" alt="">
+            </figure>
+            <div class="card-body">
+              <div class="card-gallery">
+                <?php
+                  
+                for ($j = 0; $j < 3; $j++) {
+                  ?>
+                  <div class="card-gallery-image">
+                    <img src="{{ asset('img/placeholder-wallpaper-2.jpg') }}" alt="">
+                  </div>
+                  <?php
+                }
+
+                ?>
+              </div>
+              <h5 class="card-title">{{ title_case('Card title') }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Written by John Doe</h6>
+              <p class="card-text">{{ str_limit(str_random(50 * $i + 50), 50, ' (...)') }}</p>
+              <a href="/contact/123" class="card-link">Contact Scout</a>
+            </div>
           </div>
         </div>
-      </div>
+        <?php
+      }
+
+      ?>
 
     </div>
-  </div>
+  </main>
 @endsection
