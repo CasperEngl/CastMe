@@ -10,12 +10,12 @@ class Reply extends Model
         return $this->belongsTo('App\Message');
     }
 
-    public function from()
+    public function sender()
     {
         return $this->hasOne('App\User', 'sender');
     }
 
-    public function to()
+    public function receiver()
     {
         return $this->hasOne('App\User', 'receiver');
     }

@@ -12,8 +12,7 @@
     @endif
 
     <form action="/send" method="post">
-      <input type="hidden" name="from" value="{{ Auth::user()->id }}">
-      <input type="hidden" name="to" value="{{ old('to') }}">
+      <input type="hidden" name="receiver" value="{{ old('to') }}">
       <label>Title
         <input type="text" name="title" value="{{ old('title') }}">
       </label>

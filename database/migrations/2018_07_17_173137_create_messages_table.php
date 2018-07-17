@@ -19,7 +19,7 @@ class CreateMessagesTable extends Migration
             $table->integer('receiver');
             $table->string('title');
             $table->text('content');
-            $table->boolean('seen');
+            $table->boolean('read');
             $table->timestamps();
         });
     }
