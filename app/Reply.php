@@ -12,11 +12,11 @@ class Reply extends Model
 
     public function from()
     {
-        return $this->hasOne('App\User', 'from');
+        return $this->hasOne('App\User', 'sender');
     }
 
     public function to()
     {
-        return $this->hasOne('App\User', 'to');
+        return $this->hasOne('App\User', 'receiver');
     }
 }

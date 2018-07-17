@@ -16,10 +16,10 @@ class CreateRepliesTable extends Migration
         Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('message_id');
-            $table->integer('from');
-            $table->integer('to');
+            $table->integer('sender');
+            $table->integer('receiver');
             $table->text('content');
-            $table->boolean('read');
+            $table->boolean('seen');
             $table->timestamps();
         });
     }
