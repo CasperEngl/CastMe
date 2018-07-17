@@ -38,6 +38,11 @@ Route::get('/logout', function (){
     return redirect()->intended('/login');
 });
 
+Route::post('/send', 'MessagesController@send');
+
+Route::get('/form', function () {
+    return view('form');
+});
 
 Route::get('/test', function () {
 
