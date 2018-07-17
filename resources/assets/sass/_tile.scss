@@ -1,0 +1,18 @@
+$tile-font-size: 1.5rem;
+
+.btn.tile {
+  width: 100%;
+  height: 10rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  font-size: $tile-font-size;
+
+  .material-icons {
+    width: 100%;
+    font-size: #{$tile-font-size * 2.5};
+  }
+}
