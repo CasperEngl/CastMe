@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,16 +26,35 @@ class MessagesController extends Controller
         if (!in_array(Auth::user()->role, ['Scout', 'Moderator', 'Admin']))
             return redirect('/home')->with('error', __('Permission denied'));
 
-        $validatedData = $request->validate([
+        $request->validate([
             'title' => 'required|min:3|max:255',
             'content' => 'required',
+            'receiver' => 'required',
         ]);
 
-        return "WORKED";
+        Message::create([
+            'sender' => Auth::id(),
+            'receiver' => $request->input('receiver'),
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'read' => 0,
+        ]);
+
+        return redirect('/messages')->with('success', __('Message Sent'));
     }
 
     public function read($id)
     {
-        //show message
+        $message = Message::find($id);
+
+        if (!in_array(Auth::id(), [$message->sender->id, $message->receiver->id]))
+            return redirect('/messages')->with('error', __('Permission denied'));
+
+        if (Auth::id() == $message->receiver->id)
+            $message->seen = 1;
+
+        $message->save();
+
+        return view('message', ['message' => $message]);
     }
 }
