@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
 use QuickPay\QuickPay;
 
 //User has to be logged in to access these
@@ -25,6 +26,13 @@ Route::group(['middleware' => ['auth']], function() {
         return view('overview');
     });
     Route::get('/abonnement', 'AbonnementController@index');
+});
+
+Route::get('/logout', function (){
+    if( Auth::check() )
+        Auth::logout();
+
+    return redirect()->intended('/login');
 });
 
 
