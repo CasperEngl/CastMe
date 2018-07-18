@@ -160,6 +160,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Lorem Ipsum generator
+         */
+        Magyarjeti\LaravelLipsum\LipsumServiceProvider::class
     ],
 
     /*
@@ -208,6 +212,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Lipsum' => Magyarjeti\LaravelLipsum\LipsumFacade::class,
 
     ],
 
