@@ -671,7 +671,7 @@
                 '    </div>\n' +
                 '</div>';
             tClose = $h.closeButton('fileinput-remove');
-            tFileIcon = '<i class="glyphicon glyphicon-file"></i>';
+            tFileIcon = '<i class="fas fa-file"></i>';
             // noinspection HtmlUnknownAttribute
             tCaption = '<div class="file-caption form-control {class}" tabindex="500">\n' +
                 '  <span class="file-caption-icon"></span>\n' +
@@ -691,7 +691,7 @@
                 '    <div class="modal-header">\n' +
                 '      <h5 class="modal-title">{heading}</h5>\n' +
                 '      <span class="kv-zoom-title"></span>\n' +
-                '      <div class="kv-zoom-actions">{toggleheader}{fullscreen}{borderless}{close}</div>\n' +
+                '      <div class="kv-zoom-actions">{toggleheader}{fullscreen}{close}</div>\n' +
                 '    </div>\n' +
                 '    <div class="modal-body">\n' +
                 '      <div class="floating-buttons"></div>\n' +
@@ -730,7 +730,7 @@
             tActionZoom = '<button type="button" class="kv-file-zoom {zoomClass}" ' +
                 'title="{zoomTitle}">{zoomIcon}</button>';
             tActionDrag = '<span class="file-drag-handle {dragClass}" title="{dragTitle}">{dragIcon}</span>';
-            tIndicator = '<div class="file-upload-indicator" title="{indicatorTitle}">{indicator}</div>';
+            tIndicator = '<div class="file-upload-indicator" title="{indicatorTitle}"></div>';
             tTagBef = '<div class="file-preview-frame {frameClass}" id="{previewId}" data-fileindex="{fileindex}"' +
                 ' data-template="{template}"';
             tTagBef1 = tTagBef + '><div class="kv-file-content">\n';
@@ -894,29 +894,29 @@
                     showDownload: true,
                     showZoom: true,
                     showDrag: true,
-                    removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
+                    removeIcon: '<i class="fas fa-trash"></i>',
                     removeClass: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
                     removeErrorClass: 'btn btn-sm btn-kv btn-danger',
                     removeTitle: 'Remove file',
-                    uploadIcon: '<i class="glyphicon glyphicon-upload"></i>',
+                    uploadIcon: '<i class="fas fa-file-upload"></i>',
                     uploadClass: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
                     uploadTitle: 'Upload file',
-                    uploadRetryIcon: '<i class="glyphicon glyphicon-repeat"></i>',
+                    uploadRetryIcon: '<i class="fas fa-redo"></i>',
                     uploadRetryTitle: 'Retry upload',
-                    downloadIcon: '<i class="glyphicon glyphicon-download"></i>',
+                    downloadIcon: '<i class="fas fa-file-download"></i>',
                     downloadClass: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
                     downloadTitle: 'Download file',
-                    zoomIcon: '<i class="glyphicon glyphicon-zoom-in"></i>',
+                    zoomIcon: '<i class="fas fa-search-plus"></i>',
                     zoomClass: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
                     zoomTitle: 'View Details',
-                    dragIcon: '<i class="glyphicon glyphicon-move"></i>',
+                    dragIcon: '<i class="fas fa-arrows-alt"></i>',
                     dragClass: 'text-info',
                     dragTitle: 'Move / Rearrange',
                     dragSettings: {},
-                    indicatorNew: '<i class="glyphicon glyphicon-plus-sign text-warning"></i>',
-                    indicatorSuccess: '<i class="glyphicon glyphicon-ok-sign text-success"></i>',
-                    indicatorError: '<i class="glyphicon glyphicon-exclamation-sign text-danger"></i>',
-                    indicatorLoading: '<i class="glyphicon glyphicon-hourglass text-muted"></i>',
+                    indicatorNew: '<i class="fas fa-plus text-warning"></i>',
+                    indicatorSuccess: '<i class="fas fa-check-circle text-success"></i>',
+                    indicatorError: '<i class="fas fa-exclamation text-danger"></i>',
+                    indicatorLoading: '<i class="fas fa-hourglass-half text-muted"></i>',
                     indicatorNewTitle: 'Not uploaded yet',
                     indicatorSuccessTitle: 'Uploaded',
                     indicatorErrorTitle: 'Upload Error',
@@ -4295,12 +4295,12 @@
         deleteExtraData: {},
         overwriteInitial: true,
         previewZoomButtonIcons: {
-            prev: '<i class="glyphicon glyphicon-triangle-left"></i>',
-            next: '<i class="glyphicon glyphicon-triangle-right"></i>',
-            toggleheader: '<i class="glyphicon glyphicon-resize-vertical"></i>',
-            fullscreen: '<i class="glyphicon glyphicon-fullscreen"></i>',
-            borderless: '<i class="glyphicon glyphicon-resize-full"></i>',
-            close: '<i class="glyphicon glyphicon-remove"></i>'
+            prev: '<i class="fas fa-chevron-left"></i>',
+            next: '<i class="fas fa-chevron-right"></i>',
+            toggleheader: '<i class="fas fa-arrows-alt-v"></i>',
+            fullscreen: '<i class="fas fa-expand"></i>',
+            borderless: '<i class="fas fa-times"></i>',
+            close: '<i class="fas fa-times"></i>'
         },
         previewZoomButtonClasses: {
             prev: 'btn btn-navigate',
@@ -4319,18 +4319,18 @@
         defaultPreviewContent: null,
         customLayoutTags: {},
         customPreviewTags: {},
-        previewFileIcon: '<i class="glyphicon glyphicon-file"></i>',
+        previewFileIcon: '<i class="fas fa-file"></i>',
         previewFileIconClass: 'file-other-icon',
         previewFileIconSettings: {},
         previewFileExtSettings: {},
         buttonLabelClass: 'hidden-xs',
-        browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>&nbsp;',
+        browseIcon: '<i class="fas fa-folder-open"></i>&nbsp;',
         browseClass: 'btn btn-primary',
-        removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
+        removeIcon: '<i class="fas fa-trash"></i>',
         removeClass: 'btn btn-default btn-secondary',
-        cancelIcon: '<i class="glyphicon glyphicon-ban-circle"></i>',
+        cancelIcon: '<i class="fas fa-ban"></i>',
         cancelClass: 'btn btn-default btn-secondary',
-        uploadIcon: '<i class="glyphicon glyphicon-upload"></i>',
+        uploadIcon: '<i class="fas fa-file-upload"></i>',
         uploadClass: 'btn btn-default btn-secondary',
         uploadUrl: null,
         uploadUrlThumb: null,
@@ -4353,7 +4353,7 @@
         maxFileCount: 0,
         validateInitialCount: false,
         msgValidationErrorClass: 'text-danger',
-        msgValidationErrorIcon: '<i class="glyphicon glyphicon-exclamation-sign"></i> ',
+        msgValidationErrorIcon: '<i class="fa fas-exclamation"></i> ',
         msgErrorClass: 'file-error-message',
         progressThumbClass: "progress-bar bg-success progress-bar-success progress-bar-striped active",
         progressClass: "progress-bar bg-success progress-bar-success progress-bar-striped active",
