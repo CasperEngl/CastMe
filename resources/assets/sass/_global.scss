@@ -13,3 +13,19 @@ main.container {
 .page-header {
   @extend .pb-2, .mt-4, .mb-5, .border-bottom;
 }
+
+.hide {
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
