@@ -8,7 +8,7 @@
       <div class="col-12 col-sm-4">
         <div class="card">
           <div class="card-body">
-            <h3 class="card-title">'Aktivt' : 'Inaktivt'</h3>
+            <h3 class="card-title">@if(\Illuminate\Support\Facades\Auth::user()->activeSub()) Aktivt @else Inaktivt @endif</h3>
             <pre class="card-text"><?php print_r($_POST); ?></pre>
           </div>
         </div>
@@ -18,7 +18,7 @@
           <div class="card-body">
             <form action="https://payment.quickpay.net" method="post">
               <h3 class="page-header">Betalingsoplysninger</h3>
-    
+
               <div class="row">
                 <div class="col s6">
                   <div class="form-group">
@@ -33,7 +33,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="row">
                 <div class="col s12">
                   <div class="form-group">
@@ -42,7 +42,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="row">
                 <div class="col s12">
                   <div class="form-group">
@@ -57,7 +57,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="row">
                 <div class="col s12">
                   <div class="form-group">
@@ -66,7 +66,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="row">
                 <div class="col s12">
                   <div class="form-group">
@@ -75,7 +75,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="row">
                 <div class="col s6">
                   <div class="form-group">
@@ -90,7 +90,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="row">
                 <div class="col s12">
                   <div class="form-group">
@@ -99,7 +99,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="row">
                 <div class="col s12">
                   <div class="form-group">
@@ -108,7 +108,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="row">
                 <div class="col s6">
                   <p>
@@ -143,7 +143,7 @@
                   </label>
                 </div>
               </div>
-    
+
             </form>
           </div>
         </div>

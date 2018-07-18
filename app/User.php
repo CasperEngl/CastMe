@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\QuickPay\Subscription;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -50,5 +51,17 @@ class User extends Authenticatable
     public function receivedMessages()
     {
         return $this->hasMany('App\Message', 'to');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany('App\Payment');
+    }
+
+    public function activeSub()
+    {
+        $sub = new Subscription($this);
+
+        return $sub->verifySubscription();
     }
 }

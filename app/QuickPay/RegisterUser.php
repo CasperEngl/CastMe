@@ -24,7 +24,7 @@ class RegisterUser
         $client = $this->con->client;
 
         $orderId = $this->generateOrderId();
-        $response = $client->request->post('/subscriptions', ['order_id' => $orderId, 'currency' => 'DKK', 'description' => 'CastMe.dk Subscription']);
+        $response = $client->request->post('/subscriptions', ['order_id' => $orderId, 'currency' => 'DKK', 'description' => 'CastMe.dk Subscription', 'text_on_statement' => 'CASTME DK']);
         $response = $response->asArray();
 
         $order = new Orders;
