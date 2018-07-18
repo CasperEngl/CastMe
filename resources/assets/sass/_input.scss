@@ -6,5 +6,9 @@ input, button, select, optgroup, textarea {
     border-radius: 0;
     background: #FFF !important;
     color: $dark;
+    
+    &:focus {
+      box-shadow: none;
+    }
   }
 }
