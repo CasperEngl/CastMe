@@ -37,15 +37,9 @@
               <span class="badge badge-danger">2</span>
             </a>
             <div class="dropdown-menu">
-              <a href="#!" class="dropdown-item">
-                New Post
-              </a>
-              <a href="#!" class="dropdown-item">
-                New Message
-              </a>
-              <a href="#!" class="dropdown-item">
-                Messages <span class="badge badge-danger">2</span>
-              </a>
+              <a href="#!" class="dropdown-item">New Post</a>
+              <a href="#!" class="dropdown-item">New Message</a>
+              <a href="#!" class="dropdown-item">Messages <span class="badge badge-danger">2</span></a>
             </div>
           </li>
         </ul>
