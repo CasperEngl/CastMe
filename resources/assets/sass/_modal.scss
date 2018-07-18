@@ -1,3 +1,12 @@
 .modal-header {
   align-items: center;
 }
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+
+  .modal-link:first-of-type {
+    @extend .mt-5;
+  }
+}
