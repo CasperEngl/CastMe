@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('./file-input/fileinput');
 
 window.readURL = (input) => {
   if (input.files && input.files[0]) {
