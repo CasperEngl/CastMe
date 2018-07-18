@@ -8,16 +8,11 @@
       <?php echo $pageTitle?? "Cast Me"; ?>
   </title>
 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 
 </head>
 
 <body>
-<script src="http://unpkg.com/jquery/dist/jquery.min.js"></script>
-<script src="https://tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-<script src="{{ asset('js/admin.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
 
 <header>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -38,18 +33,18 @@
           </li>
           <li class="nav-item dropdown">
             <a href="#!" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <i class="material-icons">notifications</i>
-              <span class="badge">2</span>
+              <i class="fas fa-bell"></i>
+              <span class="badge badge-danger">2</span>
             </a>
             <div class="dropdown-menu">
               <a href="#!" class="dropdown-item">
-                <i class="material-icons green lighten-1">local_offer</i> New Post
+                New Post
               </a>
               <a href="#!" class="dropdown-item">
-                <i class="material-icons blue lighten-1">question_answer</i> New Message
+                New Message
               </a>
               <a href="#!" class="dropdown-item">
-                <i class="material-icons red lighten-1">message</i> Messages <span class="badge">2</span>
+                Messages <span class="badge badge-danger">2</span>
               </a>
             </div>
           </li>
@@ -63,9 +58,7 @@
             <a class="nav-link" href="/posts">Posts</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout">
-              Logout <i class="material-icons">exit_to_app</i>
-            </a>
+            <a class="nav-link" href="/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
           </li>
         </ul>
       </div>
@@ -76,6 +69,9 @@
 <div id="wrapper">
   @yield('content')
 </div>
+
+<script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 
 </html>
