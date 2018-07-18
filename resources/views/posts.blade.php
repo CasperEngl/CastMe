@@ -5,33 +5,21 @@
 
       <?php
       
-      for ($i = 0; $i < 5; $i++) {
+      for ($i = 0; $i < 8; $i++) {
         ?>
         <div class="col-md-4">
-          <div class="card post-card">
+          <article class="card post-card">
             <figure class="card-img-top">
               <img src="{{ asset('img/placeholder-wallpaper.jpg') }}" alt="">
             </figure>
-            <div class="card-body">
-              <div class="card-gallery">
-                <?php
-                  
-                for ($j = 0; $j < 3; $j++) {
-                  ?>
-                  <div class="card-gallery-image">
-                    <img src="{{ asset('img/placeholder-wallpaper-2.jpg') }}" alt="">
-                  </div>
-                  <?php
-                }
-
-                ?>
-              </div>
-              <h5 class="card-title">{{ title_case('Card title') }}</h5>
+            <section class="card-body">
+              <h4 class="card-title">{{ title_case('Post Title') }}</h4>
               <h6 class="card-subtitle mb-2 text-muted">Written by John Doe</h6>
-              <p class="card-text">{{ str_limit(str_random(50 * $i + 50), 50, ' (...)') }}</p>
-              <a href="/contact/123" class="card-link">Contact Scout</a>
-            </div>
-          </div>
+              <p class="card-text">{{ str_limit(Lipsum::short()->text(3), 150, '...') }}</p>
+              <a href="/contact/123" class="card-link font-weight-bold">Contact Scout</a>
+              <a href="/post/1123" class="card-link">Read more</a>
+            </section>
+          </article>
         </div>
         <?php
       }
