@@ -3,29 +3,56 @@
   <main class="container">
     <h2 class="page-header">Profiloplysninger</h2>
 
-    <div class="card">
-      <div class="card-body">
-        <div class="card-title">Upload profile picture</div>
-        <div class="file-upload">
-          <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
-        
-          <div class="image-upload-wrap">
-            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
-            <div class="drag-text">
-              <h3>Drag and drop a file or select add Image</h3>
+    <input id="input-b1" name="input-b1" type="file" class="file">
+
+    <div class="card-heading">
+      <i class="material-icons">arrow_back</i> Profile Settings
+    </div>
+    <div class="card profile-card">
+      <form method="POST">
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="username" class="text-muted">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Name yourself">
+              </div>
             </div>
           </div>
-          <div class="file-upload-content">
-            <img class="file-upload-image" src="#" alt="your image" />
-            <div class="image-title-wrap">
-              <span class="image-title">Uploaded Image</span>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="username" class="text-muted">First name</label>
+                <input type="text" class="form-control" id="username" placeholder="John/Jane">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="username" class="text-muted">Last name</label>
+                <input type="text" class="form-control" id="username" placeholder="Doe">
+              </div>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="email" class="text-muted">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        
-
-      </div>
+      <button class="card-footer btn btn-primary" type="submit">
+        Save Changes
+      </button>
+      </form>
+      
     </div>
+
   </main>
 @endsection
