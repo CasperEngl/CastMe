@@ -16,19 +16,18 @@ use QuickPay\QuickPay;
 
 //User has to be logged in to access these
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/overview', function () {
-        return view('overview');
-    });
-    Route::get('/posts', function () {
-        return view('posts');
-    });
-    Route::get('/profile', function () {
-        return view('profile');
-    });
-    Route::get('/', function () {
-        return view('overview');
-    });
+    Route::get('/', 'PagesController@overview');
+    Route::get('/overview', 'PagesController@overview');
+
+    //Post
+    Route::get('/posts', 'PostController@list');
+
+    //Profile
+    Route::get('/profile', 'ProfileController@index');
+
+    //subscription
     Route::get('/abonnement', 'AbonnementController@index');
+    Route::post('/abonnement/subscribe', 'AbonnementController@subscribe');
 });
 
 Route::get('/logout', function (){
@@ -38,30 +37,40 @@ Route::get('/logout', function (){
     return redirect()->intended('/login');
 });
 
-Route::post('/send', 'MessagesController@send');
+Route::post('/message/send', 'MessagesController@send');
 
 Route::get('/form', function () {
     return view('form');
 });
 
 Route::get('/test', function () {
-
-    $api_key = 'API_KEY';
+    $api_key = '5256684d74e913d6085cc4c1d839a7c4b8245907b84f31b43462bc1b72179598';
     $client = new QuickPay(":$api_key");
 
-    $response = $client->request->get('/subscriptions?order_id=9909');
+    $response = $client->request->get('/subscriptions?order_id=1606356494519986');
 
-    $json = json_encode($response->asObject());
+    $json = $response->asArray();
 
-    return json_decode($json);
+    return $json;
 });
 
+Route::get('/lirik', function () {
+    $api_key = '5256684d74e913d6085cc4c1d839a7c4b8245907b84f31b43462bc1b72179598';
+    $client = new QuickPay(":$api_key");
+
+    $response = $client->request->put('/subscriptions/119900685/link', ['amount' => 200]);
+
+    $json = $response->asArray();
+
+    return $json;
+});
+
+
 Route::any('dump', function(){
-   dd( Request::all());
+    $order = Auth::user()->order()->first();
+    dd(strtotime($order->date) < strtotime('-30 day'));
+
+
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
