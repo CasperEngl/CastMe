@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Orders extends Model
 {
     protected $fillable = [
-        'user_id'
+        'sender',
+        'receiver',
+        'title',
+        'content',
+        'read',
     ];
+
     //
     public function user()
     {

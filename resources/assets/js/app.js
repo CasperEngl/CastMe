@@ -7,16 +7,41 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+window.readURL = (input) => {
+  if (input.files && input.files[0]) {
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+    var reader = new FileReader();
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+    reader.onload = function(e) {
+      $('.image-upload-wrap').hide();
 
-const app = new Vue({
-    el: '#app'
+      $('.file-upload-image').attr('src', e.target.result);
+      $('.file-upload-content').show();
+
+      $('.image-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+window.removeUpload = (input) => {
+  input.innerHTML = input.innerHTML;
+}
+
+function removeUpload() {
+  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+  $('.file-upload-content').hide();
+  $('.image-upload-wrap').show();
+}
+
+$('.image-upload-wrap').bind('dragover', function () {
+  $('.image-upload-wrap').addClass('image-dropping');
+});
+
+$('.image-upload-wrap').bind('dragleave', function () {
+  $('.image-upload-wrap').removeClass('image-dropping');
 });

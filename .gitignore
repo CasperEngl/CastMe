@@ -11,5 +11,6 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
-package-lock.json
-phpinfo.php
+package-lock\.json
+/public/css/app.css
+/public/js/app.js

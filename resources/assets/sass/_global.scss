@@ -1,0 +1,15 @@
+img {
+  width: 100%;
+}
+
+.material-icons {
+  font-size: 1rem;
+}
+
+main.container {
+  margin: 5rem auto;
+}
+
+.page-header {
+  @extend .pb-2, .mt-4, .mb-2, .border-bottom;
+}
