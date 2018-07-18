@@ -2,6 +2,14 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600');
 
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Font Awesome
+@import 'font-awesome/regular';
+@import 'font-awesome/solid';
+@import 'font-awesome/fontawesome';
+
 // Variables
 @import 'variables';
 
@@ -13,7 +21,6 @@
 @import 'postcards';
 @import 'tile';
 @import 'upload';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
+@import 'profile';
+@import 'input';
+@import 'card';
