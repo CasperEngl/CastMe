@@ -13,3 +13,8 @@ require('bootstrap/dist/js/bootstrap.min');
 require('tinymce/tinymce.min');
 
 require('./file-input/fileinput-custom');
+
+$(document).on('click', '.page-link', (e) => {
+	$('.page-item').removeClass('active');
+	$(e.target).parent().addClass('active');
+});
