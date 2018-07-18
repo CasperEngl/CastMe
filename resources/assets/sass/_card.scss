@@ -1,0 +1,12 @@
+$card-heading-font-size: 2rem;
+
+.card-heading {
+  display: flex;
+  align-items: center;
+  font-size: $card-heading-font-size;
+
+  .material-icons {
+    margin-right: .625em;
+    font-size: #{$card-heading-font-size * 1.5};
+  }
+}
