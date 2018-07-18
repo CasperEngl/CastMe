@@ -15,10 +15,11 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uid');
             $table->timestamp('date')->useCurrent();
             $table->boolean('status')->default(0);
             $table->integer('user_id');
-            $table->integer('quickpay_id')->default(0);
+            $table->string('quickpay_id')->default(0);
             $table->timestamps();
         });
     }
