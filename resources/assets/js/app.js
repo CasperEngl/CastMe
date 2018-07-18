@@ -5,44 +5,11 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-require('./file-input/fileinput');
+global.$ = global.jQuery = require('jquery');
 
-window.readURL = (input) => {
-  if (input.files && input.files[0]) {
+require('popper.js/dist/popper.min');
+require('bootstrap/dist/js/bootstrap.min');
 
-    var reader = new FileReader();
+require('tinymce/tinymce.min');
 
-    reader.onload = function(e) {
-      $('.image-upload-wrap').hide();
-
-      $('.file-upload-image').attr('src', e.target.result);
-      $('.file-upload-content').show();
-
-      $('.image-title').html(input.files[0].name);
-    };
-
-    reader.readAsDataURL(input.files[0]);
-
-  } else {
-    removeUpload();
-  }
-}
-
-window.removeUpload = (input) => {
-  input.innerHTML = input.innerHTML;
-}
-
-function removeUpload() {
-  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-  $('.file-upload-content').hide();
-  $('.image-upload-wrap').show();
-}
-
-$('.image-upload-wrap').bind('dragover', function () {
-  $('.image-upload-wrap').addClass('image-dropping');
-});
-
-$('.image-upload-wrap').bind('dragleave', function () {
-  $('.image-upload-wrap').removeClass('image-dropping');
-});
+require('./file-input/fileinput-custom');
