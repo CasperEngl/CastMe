@@ -1,12 +1,7 @@
-$card-heading-font-size: 2rem;
+.card-footer.btn {
+  width: 100%;
 
-.card-heading {
-  display: flex;
-  align-items: center;
-  font-size: $card-heading-font-size;
-
-  .material-icons {
-    margin-right: .625em;
-    font-size: #{$card-heading-font-size * 1.5};
+  &.btn-primary {
+    background: var(--primary);
   }
 }
