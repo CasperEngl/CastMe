@@ -1,0 +1,10 @@
+input, button, select, optgroup, textarea {
+  &.form-control {
+    padding-left: 0;
+    border: none;
+    border-bottom: 1px solid $border-color;
+    border-radius: 0;
+    background: #FFF !important;
+    color: $dark;
+  }
+}
