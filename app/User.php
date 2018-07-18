@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany('App\Posts');
+        return $this->hasMany('App\Post');
     }
 
     public function sentMessages()
