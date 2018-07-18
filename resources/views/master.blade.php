@@ -27,7 +27,7 @@
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="/profile/id" class="nav-link">
+            <a href="/profile/{{ Auth::User()->id }}" class="nav-link">
               {{ Auth::User()->name }} | {{ Auth::User()->role }}
             </a>
           </li>
