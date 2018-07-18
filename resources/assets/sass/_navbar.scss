@@ -8,19 +8,23 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.nav-link {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+a[class='nav-link'] {
+  .fa,
+  .fas,
+  .far {
+    margin-left: .5rem;
+  }
 }
 
 .dropdown-toggle {
-  .material-icons + .badge {
-    position: absolute;
-    top: .1rem;
-    left: 1rem;
-    background: red;
-    border-radius: 50%;
-    color: white;
+  .fa, 
+  .fas, 
+  .far {
+    + .badge {
+      position: absolute;
+      top: .1rem;
+      left: .95rem;
+      border-radius: 50%;
+    }
   }
 }
