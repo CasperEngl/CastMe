@@ -34,10 +34,15 @@
                 </div>
           
                 <div class="modal-body">
-                  <h6 class="mb-2 text-muted">Written by John Doe</h6>
+                  <h5 class="mb-2 text-muted">Written by John Doe</h5>
+
                   <?php echo $string ?>
+
+                  <a href="https://i.imgur.com/rh5O7wN.jpg" class="modal-link" target="_blank">imgur.com</a>
+                  <a href="https://i.imgur.com/nScazCd.jpg" class="modal-link" target="_blank">imgur.com</a>
+                  <a href="https://i.imgur.com/avnhoaZ.jpg" class="modal-link" target="_blank">imgur.com</a>
                 </div>
-          
+                
                 <!-- Modal footer -->
                 <div class="modal-footer">
                   <a href="/message/{{ $i }}" class="btn btn-primary">Contact Scout</a>
