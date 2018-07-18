@@ -13,9 +13,14 @@
           <i class="material-icons">person</i> Min profil
         </a>
       </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <a href="/posts" class="btn btn-primary tile">
+          <i class="material-icons">local_offer</i> Posts
+        </a>
+      </div>
     </div>
-    {{--Paying only--}}
-    @if(in_array(Auth::user()->role, ['Paid', 'Scout', 'Moderator', 'Admin']))
+    {{--Admin only--}}
+    @if(in_array(Auth::user()->role, ['Scout', 'Moderator', 'Admin']))
       <h2 class="page-header">Admin</h2>
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
