@@ -8,7 +8,6 @@ $(document).on('click', '.page-link', (e) => {
 	}
 
 	if (hiddenInput === 'checkbox') {
-		console.log($(e.target).parent().hasClass('active'));
 		if ($(e.target).parent().hasClass('active')) {
 			$(e.target).parent().removeClass('active');
 		} else {
