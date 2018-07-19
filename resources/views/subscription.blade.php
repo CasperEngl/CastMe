@@ -10,9 +10,9 @@
           <div class="card-body">
             <h3 class="card-title">
               @if(\Illuminate\Support\Facades\Auth::user()->activeSub()) 
-                Aktivt 
+                {{ __('Active') }}
               @else
-                Inaktivt 
+                {{ __('Inactive') }}
               @endif
               </h3>
             <pre class="card-text"><?php print_r($_POST); ?></pre>
