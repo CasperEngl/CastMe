@@ -65,7 +65,7 @@ class Subscription
         $order = $this->client->request->get('/subscriptions/' . $this->order->quickpay_id);
 //        dd($order);
         $order = $order->asArray();
-        $orderId = '#' . uniqid();
+        $orderId = 'sub' . uniqid();
 
         dump($orderId);
 
@@ -78,8 +78,6 @@ class Subscription
             ]
         );
         $response = $response->asArray();
-
-        dd($response);
 
         if ($response['state'] == "false" || $response['state'] == false)
             $response['state'] = 0;
