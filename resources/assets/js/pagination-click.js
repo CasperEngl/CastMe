@@ -1,13 +1,13 @@
 $(document).on('click', '.page-link', (e) => {
 	const forId = $(e.target).attr('for');
-	const hiddenInput = $('#' + forId).attr('type');
+	const input = $('#' + forId).attr('type');
 
-	if (hiddenInput === 'radio') {
+	if (input === 'radio') {
 		$(e.target).parent().siblings().removeClass('active');
 		$(e.target).parent().addClass('active');
 	}
 
-	if (hiddenInput === 'checkbox') {
+	if (input === 'checkbox') {
 		if ($(e.target).parent().hasClass('active')) {
 			$(e.target).parent().removeClass('active');
 		} else {
