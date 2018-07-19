@@ -113,14 +113,14 @@
                     <p class="text-muted">{{ __('Select multiple if applicable') }}</p>
                     <ul class="pagination">
                       <div class="display-none">
-                        <input type="checkbox" name="profile_type" value="1" id="profile_type-actor">
-                        <input type="checkbox" name="profile_type" value="2" id="profile_type-dancer">
-                        <input type="checkbox" name="profile_type" value="3" id="profile_type-entertainer">
-                        <input type="checkbox" name="profile_type" value="4" id="profile_type-event_staff">
-                        <input type="checkbox" name="profile_type" value="5" id="profile_type-extra">
-                        <input type="checkbox" name="profile_type" value="6" id="profile_type-model">
-                        <input type="checkbox" name="profile_type" value="7" id="profile_type-musician">
-                        <input type="checkbox" name="profile_type" value="8" id="profile_type-other">
+                        <input type="checkbox" name="profile_type[]" value="1" id="profile_type-actor">
+                        <input type="checkbox" name="profile_type[]" value="2" id="profile_type-dancer">
+                        <input type="checkbox" name="profile_type[]" value="3" id="profile_type-entertainer">
+                        <input type="checkbox" name="profile_type[]" value="4" id="profile_type-event_staff">
+                        <input type="checkbox" name="profile_type[]" value="5" id="profile_type-extra">
+                        <input type="checkbox" name="profile_type[]" value="6" id="profile_type-model">
+                        <input type="checkbox" name="profile_type[]" value="7" id="profile_type-musician">
+                        <input type="checkbox" name="profile_type[]" value="8" id="profile_type-other">
                       </div>
                       <li class="page-item">
                         <label for="profile_type-actor" class="page-link" href="#">{{ title_case(__('Actor')) }}</label>
