@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use QuickPay\QuickPay;
 
 //User has to be logged in to access these
@@ -25,7 +26,7 @@ Route::group(['middleware' => ['auth']], function() {
     //Profile
     Route::get('/profile', 'ProfileController@index');
     Route::post('/profile/dump', function (Request $request) {
-        dd($request);
+        dd($request->all());
     });
 
     //subscription
