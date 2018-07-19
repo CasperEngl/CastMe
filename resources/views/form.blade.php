@@ -17,11 +17,12 @@
         <input type="text" name="title" value="{{ old('title') }}">
       </label>
 
-      <label>Content
+      <label>{{ title_case(__('Content')) }}
         <textarea name="content" id="" cols="30" rows="10">{{ old('content') }}</textarea>
       </label>
-      {{ csrf_field() }}
       <input type="submit">
+
+      {{ csrf_field() }}
     </form>
   </main>
 @endsection

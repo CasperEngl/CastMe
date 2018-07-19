@@ -10,7 +10,7 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">{{ title_case(__('Dashboard')) }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -19,7 +19,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    {{ title_case(__('You are logged in!')) }}
                 </div>
             </div>
         </div>

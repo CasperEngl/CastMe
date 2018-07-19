@@ -12,10 +12,10 @@
             </figure>
             <section class="card-body">
               <h4 class="card-title">{{ title_case($post->title) }}</h4>
-              <h6 class="card-subtitle mb-2 text-muted">Written by {{ $post->owner->name }}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{ title_case(__('Written by')) }} {{ $post->owner->name }}</h6>
               <p class="card-text">{{ str_limit(strip_tags($post->content), 150, '...') }}</p>
-              <a href="/message/{{ $post->id }}" class="card-link">Contact Scout</a>
-              <a href="#!" class="card-link" data-toggle="modal" data-target="#post-{{ $post->id }}">Read more</a>
+              <a href="/message/{{ $post->id }}" class="card-link">{{ title_case(__('Contact scout')) }}</a>
+              <a href="#!" class="card-link" data-toggle="modal" data-target="#post-{{ $post->id }}">{{ title_case(__('Read more')) }}</a>
             </section>
           </article>
 
@@ -30,7 +30,7 @@
                 </div>
           
                 <div class="modal-body">
-                  <h5 class="mb-2 text-muted">Written by {{ $post->owner->name }}</h5>
+                  <h5 class="mb-2 text-muted">{{ title_case(__('Written by')) }} {{ $post->owner->name }}</h5>
 
                   {{ $post->content }}
 

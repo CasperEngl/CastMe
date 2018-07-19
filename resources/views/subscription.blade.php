@@ -10,9 +10,9 @@
           <div class="card-body">
             <h3 class="card-title">
               @if(\Illuminate\Support\Facades\Auth::user()->activeSub()) 
-                {{ __('Active') }}
+                {{ title_case(__('Active')) }}
               @else
-                {{ __('Inactive') }}
+                {{ title_case(__('Inactive')) }}
               @endif
               </h3>
             <pre class="card-text"><?php print_r($_POST); ?></pre>
@@ -55,7 +55,7 @@
                     <div class="dropdown">
                       <button class="btn btn-default dropdown-toggle" type="button" id="countrySelect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ title_case(__('Country')) }}</button>
                       <div class="dropdown-menu" aria-labelledby="countrySelect">
-                        <a class="dropdown-item" href="#">{{ __('Denmark') }}</a>
+                        <a class="dropdown-item" href="#">{{ title_case(__('Denmark')) }}</a>
                       </div>
                     </div>
                   </div>
@@ -118,12 +118,12 @@
                 <div class="col s6">
                   <p>
                     <input type="radio" name="product" class="filled-in" id="product1">
-                    <label for="product1">1 {{ __('month') }} = 89 kr</label>
+                    <label for="product1">1 {{ title_case(__('month')) }} = 89 kr</label>
                   </p>
                 </div>
                 <div class="col s6">
                   <input type="checkbox" name="accepth" class="filled-in" id="accepth">
-                  <label for="accepth">{{ __('Jeg accepterer') }} <a href="https://castme.dk/handelsbetingelser/" target="blank">{{ __('handelsbetingelserne') }}.</a></label>
+                  <label for="accepth">{{ title_case(__('Jeg accepterer')) }} <a href="https://castme.dk/handelsbetingelser/" target="blank">{{ title_case(__('handelsbetingelserne')) }}.</a></label>
 
                   <input type="hidden" name="amount" value="100">
                   <input type="submit" class="btn btn-primary" value="Subscribe">
