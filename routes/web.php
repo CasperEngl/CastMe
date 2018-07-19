@@ -26,9 +26,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/profile', 'ProfileController@index');
 
     //subscription
-    Route::get('/abonnement', 'AbonnementController@index');
-    Route::get('/abonnement/verify', 'AbonnementController@verifyPayment');
-    Route::post('/abonnement/subscribe', 'AbonnementController@subscribe');
+    Route::get('/subscription', 'SubscriptionController@index');
+    Route::get('/subscription/verify', 'SubscriptionController@verifyPayment');
+    Route::post('/subscription/subscribe', 'SubscriptionController@subscribe');
 });
 
 Route::get('/logout', function (){

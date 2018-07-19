@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use QuickPay\QuickPay;
 
-class AbonnementController extends Controller
+class SubscriptionController extends Controller
 {
     public function index()
     {
-        return view('abonnement');
+        return view('Subscription');
     }
 
     public function subscribe(Request $request)
@@ -32,6 +32,6 @@ class AbonnementController extends Controller
 
         $sub->withdraw();
 
-        return redirect('/abonnement');
+        return redirect('/Subscription');
     }
 }

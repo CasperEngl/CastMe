@@ -22,7 +22,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        return view('abonnement');
+        return view('Subscription');
     }
 
     public function new()

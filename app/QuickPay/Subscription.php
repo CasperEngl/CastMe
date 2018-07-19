@@ -26,7 +26,7 @@ class Subscription
         $response = $this->client->request->put("/subscriptions/{$this->order->quickpay_id}/link",
             [
                 'amount' => $amount,
-                'continue_url' => 'http://castme2.test/abonnement/verify'
+                'continue_url' => 'http://castme2.test/Subscription/verify'
             ]
         );
         $response = $response->asArray();

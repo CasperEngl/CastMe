@@ -4,7 +4,7 @@
     <h2 class="page-header">Options</h2>
     <div class="row">
       <div class="col-12 col-sm-6 col-md-3">
-        <a href="/abonnement" class="btn btn-primary tile">
+        <a href="/Subscription" class="btn btn-primary tile">
           <i class="fas fa-grin"></i> My subscription
         </a>
       </div>
