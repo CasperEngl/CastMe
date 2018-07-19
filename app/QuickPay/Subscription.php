@@ -26,7 +26,7 @@ class Subscription
         $response = $this->client->request->put("/subscriptions/{$this->order->quickpay_id}/link",
             [
                 'amount' => $amount,
-                'continue_url' => 'http://castme.dk/payment/verify'
+                'continue_url' => 'http://castme2.test/abonnement/verify'
             ]
         );
         $response = $response->asArray();
@@ -62,11 +62,14 @@ class Subscription
 
     public function withdraw()
     {
-        $order = $this->client->request->get('/subscription/' . $this->order->quickpay_id);
+        $order = $this->client->request->get('/subscriptions/' . $this->order->quickpay_id);
+//        dd($order);
         $order = $order->asArray();
-        $orderId = 'sub#' . uniqid();
+        $orderId = '#' . uniqid();
 
-        $response = $this->client->request->put("/subscriptions/{$this->order->quickpay_id}/recurring",
+        dump($orderId);
+
+        $response = $this->client->request->post("/subscriptions/{$this->order->quickpay_id}/recurring",
             [
                 'order_id' => $orderId,
                 'amount' => $order['link']['amount'],
@@ -74,6 +77,9 @@ class Subscription
                 'text_on_statement' => 'CASTME DK'
             ]
         );
+        $response = $response->asArray();
+
+        dd($response);
 
         if ($response['state'] == "false" || $response['state'] == false)
             $response['state'] = 0;

@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     //subscription
     Route::get('/abonnement', 'AbonnementController@index');
+    Route::get('/abonnement/verify', 'AbonnementController@verifyPayment');
     Route::post('/abonnement/subscribe', 'AbonnementController@subscribe');
 });
 
@@ -47,7 +48,7 @@ Route::get('/test', function () {
     $api_key = '5256684d74e913d6085cc4c1d839a7c4b8245907b84f31b43462bc1b72179598';
     $client = new QuickPay(":$api_key");
 
-    $response = $client->request->get('/subscriptions?order_id=1606356494519986');
+    $response = $client->request->get('/subscriptions/120004902');
 
     $json = $response->asArray();
 

@@ -26,4 +26,12 @@ class AbonnementController extends Controller
 
         return redirect($link);
     }
+
+    public function verifyPayment(){
+        $sub = new Subscription(Auth::user());
+
+        $sub->withdraw();
+
+        return redirect('/abonnement');
+    }
 }

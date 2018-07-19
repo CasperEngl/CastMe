@@ -8,7 +8,8 @@
       <div class="col-12 col-sm-4">
         <div class="card">
           <div class="card-body">
-            <h3 class="card-title">@if(\Illuminate\Support\Facades\Auth::user()->activeSub()) Aktivt @else Inaktivt @endif</h3>
+            <h3 class="card-title">@if(\Illuminate\Support\Facades\Auth::user()->activeSub()) Aktivt @else
+                Inaktivt @endif</h3>
             <pre class="card-text"><?php print_r($_POST); ?></pre>
           </div>
         </div>
@@ -16,7 +17,7 @@
       <div class="col-12 col-sm-8">
         <div class="card">
           <div class="card-body">
-            <form action="https://payment.quickpay.net" method="post">
+            <form action="/abonnement/subscribe" method="post">
               <h3 class="page-header">Betalingsoplysninger</h3>
 
               <div class="row">
@@ -47,7 +48,8 @@
                 <div class="col s12">
                   <div class="form-group">
                     <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="countrySelect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-default dropdown-toggle" type="button" id="countrySelect"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Land
                       </button>
                       <div class="dropdown-menu" aria-labelledby="countrySelect">
@@ -109,6 +111,7 @@
                 </div>
               </div>
 
+
               <div class="row">
                 <div class="col s6">
                   <p>
@@ -139,8 +142,13 @@
                 <div class="col s6">
                   <input type="checkbox" name="accepth" class="filled-in" id="accepth">
                   <label for="accepth">
-                    Jeg accepter <a href="https://castme.dk/handelsbetingelser/" target="blank">handelsbetingelserne.</a>
+                    Jeg accepter <a href="https://castme.dk/handelsbetingelser/"
+                                    target="blank">handelsbetingelserne.</a>
                   </label>
+
+                  <input type="hidden" name="amount" value="100">
+                  <input type="submit" class="btn btn-primary" value="Subscribe">
+                  {{ csrf_field() }}
                 </div>
               </div>
 
