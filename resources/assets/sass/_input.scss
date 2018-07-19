@@ -12,3 +12,11 @@ input, button, select, optgroup, textarea {
     }
   }
 }
+
+.pagination {
+  flex-wrap: wrap;
+  
+  label.page-link {
+    margin-bottom: 0;
+  }
+}
