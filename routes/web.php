@@ -24,6 +24,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     //Profile
     Route::get('/profile', 'ProfileController@index');
+    Route::post('/profile/dump', function (Request $request) {
+        dd($request);
+    });
 
     //subscription
     Route::get('/subscription', 'SubscriptionController@index');

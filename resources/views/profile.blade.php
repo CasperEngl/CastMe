@@ -12,7 +12,7 @@
     </div>
     <div class="col-lg-8">
       <div class="card">
-        <form action="/profile" method="POST">
+        <form action="/profile/dump" method="POST">
           <div class="card-body">
 
             <?php
