@@ -8,11 +8,12 @@
   <div class="row">
 
     <div class="col-lg-4">
+      <img src="https://www.gravatar.com/avatar/<?php echo md5(trim(strtolower(Auth::User()->email))) ?>" alt="" style="margin: 1rem 0; max-width: 80px;">
       <input name="profile-picture-upload" type="file" class="file">
     </div>
     <div class="col-lg-8">
-      <div class="card">
-        <form action="/profile/dump" method="POST">
+      <form action="/profile/dump" method="POST">
+        <div class="card">
           <div class="card-body">
 
             <?php
@@ -346,11 +347,11 @@
           </div>
 
           <button class="card-footer btn btn-primary" type="submit">{{ title_case(__('Save Changes')) }}</button>
+        </div>
+        
+        {{ csrf_field() }}
+      </form>
 
-          {{ csrf_field() }}
-        </form>
-
-      </div>
     </div>
 
   </div>
