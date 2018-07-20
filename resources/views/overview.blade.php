@@ -5,12 +5,12 @@
     <div class="row">
       <div class="col-12 col-sm-6 col-md-3">
         <a href="/subscription" class="btn btn-primary tile">
-          <i class="fas fa-grin"></i> {{ title_case(__('My subscription')) }}
+          <i class="fas fa-grin"></i> {{ title_case(__('Subscription')) }}
         </a>
       </div>
       <div class="col-12 col-sm-6 col-md-3">
         <a href="/profile" class="btn btn-primary tile">
-          <i class="fas fa-user"></i> {{ title_case(__('My profile')) }}
+          <i class="fas fa-user"></i> {{ title_case(__('Profile')) }}
         </a>
       </div>
       <div class="col-12 col-sm-6 col-md-3">
