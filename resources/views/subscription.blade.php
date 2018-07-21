@@ -129,7 +129,13 @@
               </div>
             </div>
 
-            <button class="card-footer btn btn-primary" type="submit">{{ title_case(__('Subscribe')) }}</button>
+            <button class="card-footer btn btn-primary" type="submit">
+              @if(\Illuminate\Support\Facades\Auth::user()->activeSub())
+                {{ title_case(__('Update info')) }}
+              @else
+                {{ title_case(__('Subscribe')) }}
+              @endif
+            </button>
           </div>
 
           {{ csrf_field() }}
