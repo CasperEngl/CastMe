@@ -11,7 +11,8 @@ main.container {
 }
 
 .page-header {
-  @extend .pb-2, .mt-4, .mb-5, .border-bottom;
+  @extend .pb-2, .mt-4, .mb-5;
+  border-bottom: 1px solid $input-border-color;
 }
 
 .hide {
