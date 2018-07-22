@@ -28,7 +28,7 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <a href="/profile/{{ Auth::User()->id }}" class="nav-link">
-              {{ Auth::User()->name }} | {{ Auth::User()->role }}
+              {{ Auth::User()->name }} {{ Auth::User()->last_name }} | {{ Auth::User()->role }}
             </a>
           </li>
           <li class="nav-item dropdown">
