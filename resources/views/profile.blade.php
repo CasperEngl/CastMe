@@ -155,7 +155,7 @@
                       <input type="radio" name="hair_length" value="Bald" id="hair_length-bald" {{ (Auth::User()->details->hair_length == 'Bald') ? 'checked' : '' }}>
                       <input type="radio" name="hair_length" value="Balding" id="hair_length-balding" {{ (Auth::User()->details->hair_length == 'Balding') ? 'checked' : '' }}>
                       <input type="radio" name="hair_length" value="Short" id="hair_length-short" {{ (Auth::User()->details->hair_length == 'Short') ? 'checked' : '' }}>
-                      <input type="radio" name="hair_length" value="Medium" id="hair_length-medium" checked {{ (Auth::User()->details->hair_length == 'Medium') ? 'checked' : '' }}>
+                      <input type="radio" name="hair_length" value="Medium" id="hair_length-medium" {{ (Auth::User()->details->hair_length == 'Medium') ? 'checked' : '' }}>
                       <input type="radio" name="hair_length" value="Long" id="hair_length-long" {{ (Auth::User()->details->hair_length == 'Long') ? 'checked' : '' }}>
                       <input type="radio" name="hair_length" value="Super Long" id="hair_length-super_long" {{ (Auth::User()->details->hair_length == 'Super Long') ? 'checked' : '' }}>
                     </div>
@@ -189,7 +189,7 @@
                   <ul class="pagination">
                     <div class="display-none">
                       <input type="radio" name="hair_color" value="Black" id="hair_color-black" {{ (Auth::User()->details->hair_color == 'Black') ? 'checked' : '' }}>
-                      <input type="radio" name="hair_color" value="Brown" id="hair_color-brown" checked {{ (Auth::User()->details->hair_color == 'Brown') ? 'checked' : '' }}>
+                      <input type="radio" name="hair_color" value="Brown" id="hair_color-brown" {{ (Auth::User()->details->hair_color == 'Brown') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Dark brown" id="hair_color-dark_brown" {{ (Auth::User()->details->hair_color == 'Dark Brown') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Blond" id="hair_color-blond" {{ (Auth::User()->details->hair_color == 'Blond') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Dirty blonde" id="hair_color-dirty_blonde" {{ (Auth::User()->details->hair_color == 'Dirty Blonde') ? 'checked' : '' }}>
