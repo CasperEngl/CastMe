@@ -32,6 +32,6 @@ class SubscriptionController extends Controller
 
         $sub->withdraw();
 
-        return redirect('/Subscription');
+        return redirect('/subscription');
     }
 }

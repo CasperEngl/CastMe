@@ -9,6 +9,6 @@ class PostController extends Controller
 {
     public function list()
     {
-        return view('posts')->with('posts', Post::all());
+        return view('posts')->with('posts', Post::orderBy('id', 'desc')->get());
     }
 }

@@ -117,7 +117,7 @@
               <div class="row">
                 <div class="col s6">
                   <p>
-                    <input type="radio" name="product" class="filled-in" id="product1">
+                    <input type="radio" name="amount" value="89000" class="filled-in" id="product1">
                     <label for="product1">1 {{ __('month') }} = 89 kr</label>
                   </p>
                 </div>
@@ -129,7 +129,13 @@
               </div>
             </div>
 
-            <button class="card-footer btn btn-primary" type="submit">{{ title_case(__('Subscribe')) }}</button>
+            <button class="card-footer btn btn-primary" type="submit">
+              @if(\Illuminate\Support\Facades\Auth::user()->activeSub())
+                {{ title_case(__('Update info')) }}
+              @else
+                {{ title_case(__('Subscribe')) }}
+              @endif
+            </button>
           </div>
 
           {{ csrf_field() }}

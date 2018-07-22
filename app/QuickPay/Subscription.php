@@ -26,7 +26,7 @@ class Subscription
         $response = $this->client->request->put("/subscriptions/{$this->order->quickpay_id}/link",
             [
                 'amount' => $amount,
-                'continue_url' => 'http://castme2.test/Subscription/verify'
+                'continue_url' => 'http://castme2.test/subscription/verify'
             ]
         );
         $response = $response->asArray();
@@ -36,11 +36,15 @@ class Subscription
 
     public function verifySubscription()
     {
-        if($this->user->payments()->latest()->first() == null)
+        $payment = $this->user->payments()->latest()->first();
+        if($payment == null)
             return false;
 
-        if (strtotime($this->user->payments()->latest()->first()->created_at) < strtotime('-30 day'))
+        if (strtotime($payment->created_at) < strtotime('-30 day'))
             return false; //expired
+
+        if ($payment->accepted == 0)
+            return false; //not accepted
 
         return true;
     }
@@ -79,11 +83,11 @@ class Subscription
         );
         $response = $response->asArray();
 
-        if ($response['state'] == "false" || $response['state'] == false)
-            $response['state'] = 0;
+        if ($response['accepted'] == "false" || $response['accepted'] == false)
+            $response['accepted'] = 0;
 
-        if ($response['state'] == "true" || $response['state'] == true)
-            $response['state'] = 1;
+        if ($response['accepted'] == "true" || $response['accepted'] == true)
+            $response['accepted'] = 1;
 
         $payment = new Payment;
 
