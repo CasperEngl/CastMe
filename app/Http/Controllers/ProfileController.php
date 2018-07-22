@@ -38,31 +38,50 @@ class ProfileController extends Controller
         if ($details->experience != $request->input('experience'))
             $details->experience = $request->input('experience');
 
-        if ($details->pant_size != $request->input('pant-size'))
-            $details->pant_size = $request->input('pant-size');
+        if ($details->pant_size != $request->input('pant_size'))
+            $details->pant_size = $request->input('pant_size');
 
         if ($details->shoe_size != $request->input('shoe_size'))
             $details->shoe_size = $request->input('shoe_size');
 
-        if ($details->shirt_size !=$request->input('shirt_size'))
+        if ($details->shirt_size != $request->input('shirt_size'))
             $details->shirt_size = $request->input('shirt_size');
+
+        if ($details->description != $request->input('description'))
+            $details->description = $request->input('description');
 
         if ($request->input('actor'))
             $details->actor = $request->input('actor');
+        else
+            $details->actor = 0;
         if ($request->input('dancer'))
             $details->dancer = $request->input('dancer');
+        else
+            $details->dancer = 0;
         if ($request->input('entertainer'))
             $details->entertainer = $request->input('entertainer');
-        if ($request->input('staff'))
-            $details->event_staff = $request->input('event-staff');
+        else
+            $details->entertainer = 0;
+        if ($request->input('event_staff'))
+            $details->event_staff = $request->input('event_staff');
+        else
+            $details->event_staff = 0;
         if ($request->input('extra'))
             $details->extra = $request->input('extra');
+        else
+            $details->extra = 0;
         if ($request->input('model'))
             $details->model = $request->input('model');
+        else
+            $details->model = 0;
         if ($request->input('musician'))
             $details->musician = $request->input('musician');
+        else
+            $details->musician = 0;
         if ($request->input('other'))
             $details->other = $request->input('other');
+        else
+            $details->other = 0;
 
         if ($details->hair_length != $request->input('hair_length'))
             $details->hair_length = $request->input('hair_length');
