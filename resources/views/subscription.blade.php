@@ -14,7 +14,7 @@ use \Illuminate\Support\Facades\Auth;
       <div class="col-12 col-sm-4">
         <div class="card">
           <div class="card-body">
-            <h3 class="card-title">
+            <h3 class="card-title mb-0">
               @if (Auth::user()->activeSub()) 
                 {{ title_case(__('Active')) }}
               @else
