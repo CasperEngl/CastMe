@@ -1,11 +1,11 @@
 input, button, select, optgroup, textarea {
-  &.form-control {
+  &.form-control:not(.bootstrap) {
     padding-left: 0;
     border: none;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $input-border-color;
     border-radius: 0;
     background: #FFF !important;
-    color: $dark;
+    color: $black;
     
     &:focus {
       box-shadow: none;
