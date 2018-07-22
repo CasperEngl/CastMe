@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     //Profile
     Route::get('/profile', 'ProfileController@index');
+    Route::post('/profile/update', 'ProfileController@update');
     Route::post('/profile/dump', function (Request $request) {
         dd($request->all());
     });

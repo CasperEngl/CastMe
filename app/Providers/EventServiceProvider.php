@@ -15,6 +15,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'Illuminate\Auth\Events\Registered' => [
             'App\Listeners\RegisterQuickPaySubscription',
+            'App\Listeners\CreateProfileDetails',
         ],
     ];
 

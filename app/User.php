@@ -64,4 +64,9 @@ class User extends Authenticatable
 
         return $sub->verifySubscription();
     }
+
+    public function details()
+    {
+        return $this->hasOne('App\profileDetails', 'user_id');
+    }
 }
