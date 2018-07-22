@@ -17,83 +17,31 @@ class ProfileController extends Controller
         $user = Auth::user();
         $details = $user->details;
 
-        if ($user->name != $request->input('first_name'))
-            $user->name = $request->input('first_name');
+        $user->name             = $request->input('first_name')     ? $request->input('first_name')     : $user->name;
+        $user->last_name        = $request->input('last_name')      ? $request->input('last_name')      : $user->last_name;
+        $user->email            = $request->input('email')          ? $request->input('email')          : $user->email;
+        $details->age           = $request->input('age')            ? $request->input('age')            : $details->age;
+        $details->height        = $request->input('height')         ? $request->input('height')         : $details->height;
+        $details->weight        = $request->input('weight')         ? $request->input('weight')         : $details->weight;
+        $details->experience    = $request->input('experience')     ? $request->input('experience')     : $details->experience;
+        $details->pant_size     = $request->input('pant_size')      ? $request->input('pant_size')      : $details->pant_size;
+        $details->shoe_size     = $request->input('shoe_size')      ? $request->input('shoe_size')      : $details->shoe_size;
+        $details->shirt_size    = $request->input('shirt_size')     ? $request->input('shirt_size')     : $details->shirt_size;
+        $details->description   = $request->input('description')    ? strip_tags($request->input('description')) : $details->description;
 
-        if ($user->last_name != $request->input('last_name'))
-            $user->last_name = $request->input('last_name');
+        $details->actor         = $request->input('actor')          ? $request->input('actor')          : 0;
+        $details->dancer        = $request->input('dancer')         ? $request->input('dancer')         : 0;
+        $details->entertainer   = $request->input('entertainer')    ? $request->input('entertainer')    : 0;
+        $details->event_staff   = $request->input('event_staff')    ? $request->input('event_staff')    : 0;
+        $details->extra         = $request->input('extra')          ? $request->input('extra')          : 0;
+        $details->model         = $request->input('model')          ? $request->input('model')          : 0;
+        $details->musician      = $request->input('musician')       ? $request->input('musician')       : 0;
+        $details->other         = $request->input('other')          ? $request->input('other')          : 0;
 
-        if ($user->email != $request->input('email'))
-            $user->email = $request->input('email');
-
-        if ($details->age != $request->input('age'))
-            $details->age = $request->input('age');
-
-        if ($details->height != $request->input('height'))
-            $details->height = $request->input('height');
-
-        if ($details->weight != $request->input('weight'))
-            $details->weight = $request->input('weight');
-
-        if ($details->experience != $request->input('experience'))
-            $details->experience = $request->input('experience');
-
-        if ($details->pant_size != $request->input('pant_size'))
-            $details->pant_size = $request->input('pant_size');
-
-        if ($details->shoe_size != $request->input('shoe_size'))
-            $details->shoe_size = $request->input('shoe_size');
-
-        if ($details->shirt_size != $request->input('shirt_size'))
-            $details->shirt_size = $request->input('shirt_size');
-
-        if ($details->description != $request->input('description'))
-            $details->description = $request->input('description');
-
-        if ($request->input('actor'))
-            $details->actor = $request->input('actor');
-        else
-            $details->actor = 0;
-        if ($request->input('dancer'))
-            $details->dancer = $request->input('dancer');
-        else
-            $details->dancer = 0;
-        if ($request->input('entertainer'))
-            $details->entertainer = $request->input('entertainer');
-        else
-            $details->entertainer = 0;
-        if ($request->input('event_staff'))
-            $details->event_staff = $request->input('event_staff');
-        else
-            $details->event_staff = 0;
-        if ($request->input('extra'))
-            $details->extra = $request->input('extra');
-        else
-            $details->extra = 0;
-        if ($request->input('model'))
-            $details->model = $request->input('model');
-        else
-            $details->model = 0;
-        if ($request->input('musician'))
-            $details->musician = $request->input('musician');
-        else
-            $details->musician = 0;
-        if ($request->input('other'))
-            $details->other = $request->input('other');
-        else
-            $details->other = 0;
-
-        if ($details->hair_length != $request->input('hair_length'))
-            $details->hair_length = $request->input('hair_length');
-
-        if ($details->eye_color != $request->input('eye_color'))
-            $details->eye_color = $request->input('eye_color');
-
-        if ($details->hair_color != $request->input('hair_color'))
-            $details->hair_color = $request->input('hair_color');
-
-        if ($details->ethnicity != $request->input('ethnicity'))
-            $details->ethnicity = $request->input('ethnicity');
+        $details->hair_length   = $request->input('hair_length')    ? $request->input('hair_length')    : $details->hair_length;
+        $details->eye_color     = $request->input('eye_color')      ? $request->input('eye_color')      : $details->eye_color;
+        $details->hair_color    = $request->input('hair_color')     ? $request->input('hair_color')     : $details->hair_color;
+        $details->ethnicity     = $request->input('ethnicity')      ? $request->input('ethnicity')      : $details->ethnicity;
 
         $details->save();
         $user->save();
