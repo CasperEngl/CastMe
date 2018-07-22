@@ -26,14 +26,14 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="first-name" class="text-muted">{{ title_case(__('First name')) }}</label>
-                  <input type="text" name="first_name" class="form-control" id="first-name" placeholder="John/Jane" value="{{ Auth::User()->name ?? '' }}">
+                  <label for="first_name" class="text-muted">{{ title_case(__('First name')) }}</label>
+                  <input type="text" name="first_name" class="form-control" id="first_name" placeholder="John/Jane" value="{{ Auth::User()->name ?? '' }}">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="last-name" class="text-muted">{{ title_case(__('Last name')) }}</label>
-                  <input type="text" name="last_name" class="form-control" id="last-name" placeholder="Doe" value="{{ Auth::User()->last_name ?? '' }}">
+                  <label for="last_name" class="text-muted">{{ title_case(__('Last name')) }}</label>
+                  <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Doe" value="{{ Auth::User()->last_name ?? '' }}">
                 </div>
               </div>
             </div>
@@ -80,14 +80,14 @@
             <div class="row">
               <div class="col-12 col-sm">
                 <div class="form-group">
-                  <label for="pant-size" class="text-muted">{{ title_case(__('Pants size')) }}</label>
-                  <input type="number" name="pant-size" class="form-control" id="pant-size" placeholder="30" value="{{ Auth::User()->details->pant_size ?? '' }}">
+                  <label for="pant_size" class="text-muted">{{ title_case(__('Pants size')) }}</label>
+                  <input type="number" name="pant_size" class="form-control" id="pant_size" placeholder="30" value="{{ Auth::User()->details->pant_size ?? '' }}">
                 </div>
               </div>
               <div class="col-12 col-sm">
                 <div class="form-group">
                   <label for="shoe_size" class="text-muted">{{ title_case(__('Shoe size')) }}</label>
-                  <input type="number" name="shoe_size" class="form-control" id="shoe_size" placeholder="42" value="42">
+                  <input type="number" name="shoe_size" class="form-control" id="shoe_size" placeholder="42" value="{{ Auth::User()->details->shoe_size ?? '' }}">
                 </div>
               </div>
               <div class="col-12 col-sm">
@@ -97,6 +97,9 @@
                 </div>
               </div>
             </div>
+
+            <h5 class="text-muted">{{ title_case(__('Profile Description')) }}</h5>
+            <textarea name="description" class="tinymce">{{ Auth::User()->details->description ?? '' }}</textarea>
 
             <div class="row">
                 <div class="col">
@@ -187,9 +190,9 @@
                     <div class="display-none">
                       <input type="radio" name="hair_color" value="Black" id="hair_color-black" {{ (Auth::User()->details->hair_color == 'Black') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Brown" id="hair_color-brown" checked {{ (Auth::User()->details->hair_color == 'Brown') ? 'checked' : '' }}>
-                      <input type="radio" name="hair_color" value="Dark brown" id="hair_color-dark_brown" {{ (Auth::User()->details->hair_color == 'Dark brown') ? 'checked' : '' }}>
+                      <input type="radio" name="hair_color" value="Dark brown" id="hair_color-dark_brown" {{ (Auth::User()->details->hair_color == 'Dark Brown') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Blond" id="hair_color-blond" {{ (Auth::User()->details->hair_color == 'Blond') ? 'checked' : '' }}>
-                      <input type="radio" name="hair_color" value="Dirty blonde" id="hair_color-dirty_blonde" {{ (Auth::User()->details->hair_color == 'Dirty blonde') ? 'checked' : '' }}>
+                      <input type="radio" name="hair_color" value="Dirty blonde" id="hair_color-dirty_blonde" {{ (Auth::User()->details->hair_color == 'Dirty Blonde') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Auburn" id="hair_color-auburn" {{ (Auth::User()->details->hair_color == 'Auburn') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Red" id="hair_color-red" {{ (Auth::User()->details->hair_color == 'Red') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Ginger" id="hair_color-ginger" {{ (Auth::User()->details->hair_color == 'Ginger') ? 'checked' : '' }}>
@@ -239,16 +242,17 @@
               <div class="col">
                 <div class="form-group">
                   <h5 class="text-muted">{{ title_case(__('Ethnicity')) }}</h5>
+                  {{ Auth::User()->details->ethnicity }}
                   <ul class="pagination">
                     <div class="display-none">
                       <input type="radio" name="ethnicity" value="African" id="african" {{ (Auth::User()->details->ethnicity == 'African') ? 'checked' : '' }}>
-                      <input type="radio" name="ethnicity" value="Afro american" id="afro_american" {{ (Auth::User()->details->ethnicity == 'Afro american') ? 'checked' : '' }}>
+                      <input type="radio" name="ethnicity" value="Afro american" id="afro_american" {{ (Auth::User()->details->ethnicity == 'Afro American') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Asian" id="asian" {{ (Auth::User()->details->ethnicity == 'Asian') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Caucasian" id="caucasian" {{ (Auth::User()->details->ethnicity == 'Caucasian') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Indian" id="indian" {{ (Auth::User()->details->ethnicity == 'Indian') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Latino" id="latino" {{ (Auth::User()->details->ethnicity == 'Latino') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Mediterranean" id="mediterranean" {{ (Auth::User()->details->ethnicity == 'Mediterranean') ? 'checked' : '' }}>
-                      <input type="radio" name="ethnicity" value="Middle eastern" id="middle_eastern" {{ (Auth::User()->details->ethnicity == 'Middle eastern') ? 'checked' : '' }}>
+                      <input type="radio" name="ethnicity" value="Middle eastern" id="middle_eastern" {{ (Auth::User()->details->ethnicity == 'Middle Eastern') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Pakistanis" id="pakistanis" {{ (Auth::User()->details->ethnicity == 'Pakistanis') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Skandinavian" id="skandinavian" {{ (Auth::User()->details->ethnicity == 'Skandinavian') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Spanish" id="spanish" {{ (Auth::User()->details->ethnicity == 'Spanish') ? 'checked' : '' }}>
