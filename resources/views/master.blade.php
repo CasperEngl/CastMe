@@ -34,12 +34,12 @@
           <li class="nav-item dropdown">
             <a href="#!" class="nav-link dropdown-toggle" data-toggle="dropdown">
               <i class="fas fa-bell"></i>
-              <span class="badge badge-danger">2</span>
+              <span class="badge badge-danger">7</span>
             </a>
             <div class="dropdown-menu">
               <a href="#!" class="dropdown-item">{{ title_case(__('New post')) }}</a>
               <a href="#!" class="dropdown-item">{{ title_case(__('New message')) }}</a>
-              <a href="#!" class="dropdown-item">{{ title_case(__('Messages')) }} <span class="badge badge-danger">2</span></a>
+              <a href="/conversations" class="dropdown-item">{{ title_case(__('Conversations')) }} <span class="badge badge-danger">7</span></a>
             </div>
           </li>
         </ul>
