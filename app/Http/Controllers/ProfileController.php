@@ -12,7 +12,22 @@ class ProfileController extends Controller {
   }
 
   public function user($id) {
-    return view('user')->with('user', User::find($id));
+    $user = User::find($id);
+    $gravatarHash = md5(trim(strtolower(Auth::User()->email))) . '?s=200';
+
+    !$user->details->actor ?: $profile_types[] = title_case('Actor');
+    !$user->details->dancer ?: $profile_types[] = title_case('Dancer');
+    !$user->details->entertainer ?: $profile_types[] = title_case('Entertainer');
+    !$user->details->event_staff ?: $profile_types[] = title_case('Event Staff');
+    !$user->details->extra ?: $profile_types[] = title_case('Extra');
+    !$user->details->model ?: $profile_types[] = title_case('Model');
+    !$user->details->musician ?: $profile_types[] = title_case('Musician');
+
+    return view('user')->with([
+        'user' => $user,
+        'gravatar' => $gravatarHash,
+        'profile_types' => $profile_types
+    ]);
   }
 
   public function update(Request $request) {
