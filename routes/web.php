@@ -33,6 +33,19 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/subscription', 'SubscriptionController@index');
     Route::get('/subscription/verify', 'SubscriptionController@verifyPayment');
     Route::post('/subscription/subscribe', 'SubscriptionController@subscribe');
+
+    // Conversations (List)
+    Route::get('/conversations', function () {
+        return view('conversations');
+    });
+
+    // Conversation (Singular)
+    Route::get('/conversation', function () {
+        return view('conversation');
+    });
+    Route::post('/conversation/send', function (Request $request) {
+        dd($request->all());
+    });
 });
 
 Route::get('/logout', function (){
