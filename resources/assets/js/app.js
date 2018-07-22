@@ -7,10 +7,12 @@
 
 // Add jQuery to global scope
 global.$ = global.jQuery = require('jquery');
+window.Tether = require('tether');
+window.tinymce = require('tinymce');
 
 require('popper.js/dist/popper.min');
 require('bootstrap/dist/js/bootstrap.min');
-require('tinymce/tinymce.min');
 
+require('./editor');
 require('./file-input/fileinput-custom');
 require('./pagination-click');
