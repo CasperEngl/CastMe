@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PagesController extends Controller
-{
-    public function overview()
-    {
-        return view('overview');
-    }
+class PagesController extends Controller {
+  public function overview() {
+    return view('overview');
+  }
 }
