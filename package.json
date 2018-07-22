@@ -15,9 +15,10 @@
         "laravel-mix": "^2.0"
     },
     "dependencies": {
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^4.1.2",
         "jquery": "^3.2",
         "popper.js": "^1.12",
+        "tether": "^1.4.4",
         "tinymce": "^4.8.0"
     }
 }
