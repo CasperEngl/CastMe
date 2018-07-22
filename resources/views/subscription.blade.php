@@ -1,3 +1,9 @@
+<?php
+
+use \Illuminate\Support\Facades\Auth;
+
+?>
+
 @extends('master')
 @section('content')
   <main class="container">
@@ -9,13 +15,12 @@
         <div class="card">
           <div class="card-body">
             <h3 class="card-title">
-              @if(\Illuminate\Support\Facades\Auth::user()->activeSub()) 
+              @if (Auth::user()->activeSub()) 
                 {{ title_case(__('Active')) }}
               @else
                 {{ title_case(__('Inactive')) }}
               @endif
-              </h3>
-            <pre class="card-text"><?php print_r($_POST); ?></pre>
+            </h3>
           </div>
         </div>
       </div>
