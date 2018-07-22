@@ -4,6 +4,7 @@ tinymce.init({
 
   theme: "modern",
   skin: "lightgray",
+  branding: false,
 
   width: "100%",
   height: 300,
@@ -23,6 +24,7 @@ tinymce.init({
 
   theme: "modern",
   skin: "lightgray",
+  branding: false,
 
   width: "100%",
   height: 300,
