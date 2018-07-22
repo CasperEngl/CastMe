@@ -18,6 +18,11 @@
           <i class="fas fa-bookmark"></i> {{ title_case(__('Posts')) }}
         </a>
       </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <a href="/conversations" class="btn btn-primary tile">
+          <i class="fas fa-comments"></i> {{ title_case(__('Conversations')) }}
+        </a>
+      </div>
     </div>
     {{--Admin only--}}
     @if(in_array(Auth::user()->role, ['Scout', 'Moderator', 'Admin']))
