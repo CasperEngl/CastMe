@@ -9,29 +9,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use QuickPay\QuickPay;
 
-class SubscriptionController extends Controller
-{
-    public function index()
-    {
-        return view('Subscription');
-    }
+class SubscriptionController extends Controller {
+  public function index() {
+    return view('Subscription');
+  }
 
-    public function subscribe(Request $request)
-    {
-        $amount = $request->input('amount');
+  public function subscribe(Request $request) {
+    $amount = $request->input('amount');
 
-        $sub = new Subscription(Auth::user());
+    $sub = new Subscription(Auth::user());
 
-        $link = $sub->generateLink($amount);
+    $link = $sub->generateLink($amount);
 
-        return redirect($link);
-    }
+    return redirect($link);
+  }
 
-    public function verifyPayment(){
-        $sub = new Subscription(Auth::user());
+  public function verifyPayment() {
+    $sub = new Subscription(Auth::user());
 
-        $sub->withdraw();
+    $sub->withdraw();
 
-        return redirect('/subscription');
-    }
+    return redirect('/subscription');
+  }
 }
