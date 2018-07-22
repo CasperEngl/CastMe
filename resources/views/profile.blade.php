@@ -242,7 +242,6 @@
               <div class="col">
                 <div class="form-group">
                   <h5 class="text-muted">{{ title_case(__('Ethnicity')) }}</h5>
-                  {{ Auth::User()->details->ethnicity }}
                   <ul class="pagination">
                     <div class="display-none">
                       <input type="radio" name="ethnicity" value="African" id="african" {{ (Auth::User()->details->ethnicity == 'African') ? 'checked' : '' }}>
