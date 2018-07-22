@@ -23,6 +23,7 @@ class CreateProfileDetailsTable extends Migration
             $table->integer('pant_size')->nullable();
             $table->integer('shoe_size')->nullable();
             $table->integer('shirt_size')->nullable();
+            $table->text('description')->nullable();
             $table->enum('hair_length', ['Bald', 'Balding', 'Short', 'Medium', 'Long', 'Super Long'])->nullable();
             $table->enum('hair_color', ['Black', 'Brown', 'Dark Brown', 'Blond', 'Dirty Blonde', 'Auburn', 'Red', 'Ginger', 'Platinum', 'White', 'Grey'])->nullable();
             $table->enum('ethnicity', ['African', 'Afro American', 'Asian', 'Caucasian', 'Indian', 'Latino', 'Mediterranean', 'Middle Eastern', 'Pakistanis', 'Skandinavian', 'Spanish', 'Mix'])->nullable();
