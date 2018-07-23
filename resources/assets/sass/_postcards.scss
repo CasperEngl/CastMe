@@ -1,42 +1,14 @@
 .post-card {
-  margin: 1rem 0;
+  margin: $post-card-margin;
 }
 
 .card {
   &-img-top {
     margin: 0;
-    max-height: 200px;
     display: flex;
 
     img {
       object-fit: cover;
-    }
-  }
-
-  &-gallery {
-    margin: 0 0 1.25rem;
-    display: flex;
-    flex-wrap: wrap;
-
-    &-image {
-      overflow: hidden;
-      margin: 0 0.25rem;
-      width: 5rem;
-      max-height: 5rem;
-      display: flex;
-      justify-content: center;
-
-      &:first-of-type {
-        margin-left: 0;
-      }
-
-      &:last-of-type {
-        margin-right: 0;
-      }
-
-      img {
-        object-fit: cover;
-      }
     }
   }
 }

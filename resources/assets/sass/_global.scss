@@ -1,17 +1,19 @@
-img {
+body {
+  background: $body-bg;
+}
+
+img.responsive {
   width: 100%;
 }
 
-.material-icons {
-  font-size: 1rem;
-}
-
 main.container {
-  margin: 5rem auto;
+  margin: $main-margin;
 }
 
 .page-header {
   @extend .pb-2, .mt-4, .mb-5;
+  font-weight: $font-weight-bold;
+  color: var(--gray-dark);
   border-bottom: 1px solid $input-border-color;
 }
 
