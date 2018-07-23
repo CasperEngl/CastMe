@@ -11,7 +11,7 @@ use QuickPay\QuickPay;
 
 class SubscriptionController extends Controller {
   public function index() {
-    return view('Subscription');
+    return view('subscription');
   }
 
   public function subscribe(Request $request) {
