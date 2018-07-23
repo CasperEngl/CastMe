@@ -7,9 +7,6 @@
 
         <div class="col-md-4">
           <article class="card post-card">
-            <figure class="card-img-top">
-              <img src="{{ asset('img/placeholder-wallpaper.jpg') }}" alt="">
-            </figure>
             <section class="card-body">
               <h4 class="card-title">{{ title_case($post->title) }}</h4>
               <h6 class="card-subtitle mb-2 text-muted">{{ title_case(__('Written by')) }} {{ $post->owner->name }}</h6>
