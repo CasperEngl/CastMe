@@ -3,8 +3,6 @@
 <main class="container">
   <h2 class="page-header">{{ title_case(__('Profile information')) }}</h2>
 
-  <?php print_r($_POST); ?>
-
   <div class="row">
 
     <div class="col-lg-4">
