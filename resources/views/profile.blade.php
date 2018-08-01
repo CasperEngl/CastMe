@@ -14,13 +14,6 @@
         <div class="card">
           <div class="card-body">
 
-            <?php
-              $splitName = explode(' ', Auth::User()->name);
-
-              $first_name = $splitName[0];
-              $last_name = !empty(end($splitName)) && end($splitName) !== $first_name ? end($splitName) : '';
-            ?>
-
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
