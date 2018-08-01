@@ -20,8 +20,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/', 'PagesController@overview');
     Route::get('/overview', 'PagesController@overview');
 
-    //Post
+    // Posts
     Route::get('/posts', 'PostController@list');
+
+    // New post
+    Route::get('/post/new', 'PostController@new');
+    Route::get('/post/send', 'PostController@send');
 
     //Profile
     Route::get('/profile', 'ProfileController@index');
