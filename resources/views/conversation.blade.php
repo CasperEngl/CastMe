@@ -3,7 +3,7 @@
   <main class="container">
     <h2 class="page-header">{{ title_case(__('Conversation')) }}</h2>
       
-    <div class="card" style="width: 100%;">
+    <div class="card">
       <div class="card-header">Mike Weiner</div>
       <div class="card-block">
         <p>
@@ -20,7 +20,7 @@
 
     <form action="/conversation/send" method="POST">
       <textarea name="message" class="tinymce"></textarea>
-      <button type="submit" class="btn btn-primary">Send</button>
+      <button type="submit" class="btn btn-primary">{{ title_case(__('Send')) }}</button>
 
       {{ csrf_field() }}
     </form>
