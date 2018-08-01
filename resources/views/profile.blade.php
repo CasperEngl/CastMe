@@ -100,49 +100,49 @@
             <textarea name="description" class="tinymce">{{ Auth::User()->details->description ?? '' }}</textarea>
 
             <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <h5 class="text-muted">{{ title_case(__('Profile type')) }}</h5>
-                    <p class="text-muted">{{ __('Select multiple if applicable') }}</p>
-                    <ul class="pagination">
-                      <div class="display-none">
-                        <input type="checkbox" name="actor" value="1" id="profile_type-actor" {{ Auth::User()->details->actor ? 'checked' : '' }}>
-                        <input type="checkbox" name="dancer" value="1" id="profile_type-dancer" {{ Auth::User()->details->dancer ? 'checked' : '' }}>
-                        <input type="checkbox" name="entertainer" value="1" id="profile_type-entertainer" {{ Auth::User()->details->entertainer ? 'checked' : '' }}>
-                        <input type="checkbox" name="event_staff" value="1" id="profile_type-event_staff" {{ Auth::User()->details->event_staff ? 'checked' : '' }}>
-                        <input type="checkbox" name="extra" value="1" id="profile_type-extra" {{ Auth::User()->details->extra ? 'checked' : '' }}>
-                        <input type="checkbox" name="model" value="1" id="profile_type-model" {{ Auth::User()->details->model ? 'checked' : '' }}>
-                        <input type="checkbox" name="musician" value="1" id="profile_type-musician" {{ Auth::User()->details->musician ? 'checked' : '' }}>
-                        <input type="checkbox" name="other" value="1" id="profile_type-other" {{ Auth::User()->details->other ? 'checked' : '' }}>
-                      </div>
-                      <li class="page-item">
-                        <label for="profile_type-actor" class="page-link" href="#">{{ title_case(__('Actor')) }}</label>
-                      </li>
-                      <li class="page-item">
-                        <label for="profile_type-dancer" class="page-link" href="#">{{ title_case(__('Dancer')) }}</label>
-                      </li>
-                      <li class="page-item">
-                        <label for="profile_type-entertainer" class="page-link" href="#">{{ title_case(__('Entertainer')) }}</label>
-                      </li>
-                      <li class="page-item">
-                        <label for="profile_type-event_staff" class="page-link" href="#">{{ title_case(__('Event staff')) }}</label>
-                      </li>
-                      <li class="page-item">
-                        <label for="profile_type-extra" class="page-link" href="#">{{ title_case(__('Extra')) }}</label>
-                      </li>
-                      <li class="page-item">
-                        <label for="profile_type-model" class="page-link" href="#">{{ title_case(__('Model')) }}</label>
-                      </li>
-                      <li class="page-item">
-                        <label for="profile_type-musician" class="page-link" href="#">{{ title_case(__('Musician')) }}</label>
-                      </li>
-                      <li class="page-item">
-                        <label for="profile_type-other" class="page-link" href="#">{{ title_case(__('Other')) }}</label>
-                      </li>
-                    </ul>
-                  </div>
+              <div class="col">
+                <div class="form-group">
+                  <h5 class="text-muted">{{ title_case(__('Profile type')) }}</h5>
+                  <p class="text-muted">{{ __('Select multiple if applicable') }}</p>
+                  <ul class="pagination">
+                    <div class="display-none">
+                      <input type="checkbox" name="actor" value="1" id="profile_type-actor" {{ Auth::User()->details->actor ? 'checked' : '' }}>
+                      <input type="checkbox" name="dancer" value="1" id="profile_type-dancer" {{ Auth::User()->details->dancer ? 'checked' : '' }}>
+                      <input type="checkbox" name="entertainer" value="1" id="profile_type-entertainer" {{ Auth::User()->details->entertainer ? 'checked' : '' }}>
+                      <input type="checkbox" name="event_staff" value="1" id="profile_type-event_staff" {{ Auth::User()->details->event_staff ? 'checked' : '' }}>
+                      <input type="checkbox" name="extra" value="1" id="profile_type-extra" {{ Auth::User()->details->extra ? 'checked' : '' }}>
+                      <input type="checkbox" name="model" value="1" id="profile_type-model" {{ Auth::User()->details->model ? 'checked' : '' }}>
+                      <input type="checkbox" name="musician" value="1" id="profile_type-musician" {{ Auth::User()->details->musician ? 'checked' : '' }}>
+                      <input type="checkbox" name="other" value="1" id="profile_type-other" {{ Auth::User()->details->other ? 'checked' : '' }}>
+                    </div>
+                    <li class="page-item">
+                      <label for="profile_type-actor" class="page-link" href="#">{{ title_case(__('Actor')) }}</label>
+                    </li>
+                    <li class="page-item">
+                      <label for="profile_type-dancer" class="page-link" href="#">{{ title_case(__('Dancer')) }}</label>
+                    </li>
+                    <li class="page-item">
+                      <label for="profile_type-entertainer" class="page-link" href="#">{{ title_case(__('Entertainer')) }}</label>
+                    </li>
+                    <li class="page-item">
+                      <label for="profile_type-event_staff" class="page-link" href="#">{{ title_case(__('Event staff')) }}</label>
+                    </li>
+                    <li class="page-item">
+                      <label for="profile_type-extra" class="page-link" href="#">{{ title_case(__('Extra')) }}</label>
+                    </li>
+                    <li class="page-item">
+                      <label for="profile_type-model" class="page-link" href="#">{{ title_case(__('Model')) }}</label>
+                    </li>
+                    <li class="page-item">
+                      <label for="profile_type-musician" class="page-link" href="#">{{ title_case(__('Musician')) }}</label>
+                    </li>
+                    <li class="page-item">
+                      <label for="profile_type-other" class="page-link" href="#">{{ title_case(__('Other')) }}</label>
+                    </li>
+                  </ul>
                 </div>
               </div>
+            </div>
 
             <div class="row">
               <div class="col">
