@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\profileDetails;
+use App\ProfileDetails;
 use App\QuickPay\RegisterUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Queue\InteractsWithQueue;
@@ -27,7 +27,7 @@ class CreateProfileDetails {
    * @return void
    */
   public function handle(Registered $event) {
-    $details          = profileDetails::create();
+    $details          = ProfileDetails::create();
     $details->user_id = $event->user->id;
     $details->save();
   }
