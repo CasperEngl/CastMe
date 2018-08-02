@@ -1,4 +1,8 @@
 .btn {
+  &:focus {
+    box-shadow: none !important;
+  }
+
   &.circle {
     border-radius: 9999rem;
   }
