@@ -61,18 +61,25 @@
 </header>
 
 <div id="wrapper">
-  @if ($errors->any())
+  @if (Session::has('success'))
     <div class="container">
-      <div class="alert alert-danger">
-        <ul>
-          @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
+      @foreach (Session::get('success') as $success)
+        <div class="alert alert-success">
+          {{ $success }}
+        </div>
+      @endforeach
     </div>
   @endif
-  
+  @if ($errors->any())
+    <div class="container">
+      @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+          {{ $error }}
+        </div>
+      @endforeach
+    </div>
+  @endif
+
   @yield('content')
 </div>
 
