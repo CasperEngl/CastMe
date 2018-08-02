@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
+use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Session;
 
 class PostController extends Controller {
   public function index() {
@@ -13,19 +15,32 @@ class PostController extends Controller {
 
   public function new() {
     return view('post')->with([
-                                'title' => __('New post'),
-                                'post'  => new Post,
-                              ]);
+      'title' => __('New post'),
+      'post' => new Post,
+      'type' => __('send')
+    ]);
   }
 
   public function edit($id) {
+    $user = Auth::user();
+    $post = Post::find($id);
+
+    if ($user->id !== $post->user_id) {
+      return redirect('overview')->withErrors([
+        'You do not own that post.',
+      ]);
+    }
+
     return view('post')->with([
-                                'title' => __('Edit post'),
-                                'post'  => Post::find($id),
-                              ]);
+      'title' => __('Edit post'),
+      'post' => $post,
+      'type' => __('update'),
+    ]);
   }
 
   public function list() {
+    Session::flash('success', 'Here is your success message');
+
     return view('posts')->with('posts', Post::orderBy('id', 'desc')->get());
   }
 
