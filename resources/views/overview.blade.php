@@ -24,8 +24,19 @@
         </a>
       </div>
     </div>
-    {{--Admin only--}}
+    {{--Scout only--}}
     @if(in_array(Auth::user()->role, ['Scout', 'Moderator', 'Admin']))
+      <h2 class="page-header">{{ title_case(__('Scout')) }}</h2>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3">
+          <a href="/post/new" class="btn btn-primary tile">
+            <i class="fas fa-plus"></i> {{ title_case(__('Add post')) }}
+          </a>
+        </div>
+      </div>
+    @endif
+    {{--Admin only--}}
+    @if(in_array(Auth::user()->role, ['Moderator', 'Admin']))
       <h2 class="page-header">{{ title_case(__('Admin')) }}</h2>
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
