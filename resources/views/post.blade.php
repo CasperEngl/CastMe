@@ -3,7 +3,7 @@
   <main class="container">
     <h2 class="page-header">{{ title_case($title) }}</h2>
 
-    <form action="/post/add" method="POST">
+    <form action="/post/{{ $type }}" method="POST">
 
       <div class="card">
         <div class="card-header">
@@ -86,7 +86,7 @@
           <textarea name="message" class="tinymce">{{ $post->content }}</textarea>
         </div>
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary">{{ title_case(__('Create')) }}</button>
+          <button type="submit" class="btn btn-primary">{{ title_case($type) }}</button>
         </div>
       </div>
 
