@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
   <main class="container">
-    <h2 class="page-header">{{ title_case(__('New Post')) }}</h2>
+    <h2 class="page-header">{{ title_case($title) }}</h2>
 
     <form action="/post/send" method="POST">
 
@@ -12,13 +12,14 @@
               <span class="h2">{{ title_case(__('Title')) }}</span>
             </div>
             <div class="col">
-              <input type="text" class="form-control bg-transparent">
+              <input type="text" class="form-control bg-transparent" value="{{ $post->title }}">
             </div>
           </div>
         </div>
         <div class="card-block">
           <div class="form-group">
             <h5 class="text-muted">{{ title_case(__('Looking for')) }}</h5>
+            <p>{{ __('Select multiple if applicable') }}</p>
             <ul class="pagination">
               <div class="display-none">
                 <input type="checkbox" name="actor" value="1" id="profile_type-actor">
@@ -55,8 +56,8 @@
         </div>
         <div class="card-block">
 
+          <h5 class="text-muted">{{ title_case(__('Images')) }}</h5>
           <div class="form-group">
-            <label for="image-1">Image 1</label>
             <div class="row">
               <div class="col">
                 <input type="url" name="image" class="form-control text-muted" id="image-1">
@@ -69,10 +70,10 @@
 
         </div>
         <div class="card-block">
-          <textarea name="message" class="tinymce"></textarea>
+          <textarea name="message" class="tinymce">{{ $post->content }}</textarea>
         </div>
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary">{{ title_case(__('Send')) }}</button>
+          <button type="submit" class="btn btn-primary">{{ title_case(__('Create')) }}</button>
         </div>
       </div>
 
