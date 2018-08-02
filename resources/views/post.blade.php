@@ -3,16 +3,16 @@
   <main class="container">
     <h2 class="page-header">{{ title_case($title) }}</h2>
 
-    <form action="/post/send" method="POST">
+    <form action="/post/dump" method="POST">
 
       <div class="card">
         <div class="card-header">
           <div class="row">
             <div class="col-auto">
-              <span class="h2">{{ title_case(__('Title')) }}</span>
+              <span class="h3">{{ title_case(__('Title')) }}</span>
             </div>
             <div class="col">
-              <input type="text" class="form-control bg-transparent" value="{{ $post->title }}">
+              <input type="text" name="title" class="form-control bg-transparent" value="{{ $post->title }}">
             </div>
           </div>
         </div>
@@ -56,14 +56,27 @@
         </div>
         <div class="card-block">
 
-          <h5 class="text-muted">{{ title_case(__('Images')) }}</h5>
+          <div class="row mb-2">
+            <div class="col-auto d-flex align-items-center">
+              <h5 class="text-muted m-0">{{ title_case(__('Images')) }}</h5>
+            </div>
+            <div class="col">
+              <a href="#" class="btn btn-primary circle duplicate-input-group-button"><i class="fas fa-plus"></i></a>
+            </div>
+          </div>
           <div class="form-group">
             <div class="row">
               <div class="col">
-                <input type="url" name="image" class="form-control text-muted" id="image-1">
+                <input type="url" name="image[]" placeholder="https://i.imgur.com/XXxXxxX.png" class="form-control text-muted" id="image-1">
+                <div class="valid-feedback feedback-icon">
+                  <i class="fa fa-check"></i>
+               </div>
+               <div class="invalid-feedback feedback-icon">
+                  <i class="fa fa-times"></i>
+               </div>
               </div>
               <div class="col-auto">
-                <button class="btn btn-primary circle"><i class="fas fa-plus"></i></button>
+                <a href="#" class="btn btn-primary circle remove-input-group-button"><i class="fas fa-minus"></i></a>
               </div>
             </div>
           </div>
