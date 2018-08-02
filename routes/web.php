@@ -27,7 +27,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/post/new', 'PostController@new');
     Route::post('/post/add', 'PostController@add');
     Route::get('/post/{id}/edit', 'PostController@edit');
-    Route::post('/post/send', 'PostController@send');
     Route::post('/post/update', 'PostController@update');
     Route::post('/post/dump', function (Request $request) {
         dd($request->all());
