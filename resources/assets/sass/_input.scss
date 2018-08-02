@@ -19,3 +19,13 @@ input, button, select, optgroup, textarea {
     margin-bottom: 0;
   }
 }
+
+.valid-feedback, .invalid-feedback {
+  &.feedback-icon {
+    position: absolute;
+    width: auto;
+    bottom: .5rem;
+    right: 1.5rem;
+    margin-top: 0;
+  }
+}
