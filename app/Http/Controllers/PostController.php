@@ -17,7 +17,7 @@ class PostController extends Controller {
     return view('post')->with([
       'title' => __('New post'),
       'post' => new Post,
-      'type' => __('send')
+      'type' => __('add')
     ]);
   }
 
@@ -39,8 +39,6 @@ class PostController extends Controller {
   }
 
   public function list() {
-    Session::flash('success', 'Here is your success message');
-
     return view('posts')->with('posts', Post::orderBy('id', 'desc')->get());
   }
 
