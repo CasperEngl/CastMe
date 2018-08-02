@@ -16,6 +16,14 @@ class CreatePostsTable extends Migration {
       $table->integer('user_id');
       $table->string('title');
       $table->text('content');
+      $table->text('images');
+      $table->boolean('actor');
+      $table->boolean('dancer');
+      $table->boolean('entertainer');
+      $table->boolean('event_staff');
+      $table->boolean('extra');
+      $table->boolean('model');
+      $table->boolean('musician');
       $table->timestamps();
     });
   }
