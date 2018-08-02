@@ -29,7 +29,7 @@
                 <div class="modal-body">
                   <h5 class="mb-2 text-muted">{{ title_case(__('Written by')) }} {{ $post->owner->name }}</h5>
 
-                  {{ $post->content }}
+                  {!! $post->content !!}
 
                   <a href="https://i.imgur.com/rh5O7wN.jpg" class="modal-link" target="_blank">imgur.com</a>
                   <a href="https://i.imgur.com/nScazCd.jpg" class="modal-link" target="_blank">imgur.com</a>
