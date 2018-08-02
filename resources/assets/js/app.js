@@ -16,3 +16,4 @@ require('bootstrap/dist/js/bootstrap.min');
 require('./editor');
 require('./file-input/fileinput-custom');
 require('./pagination-click');
+require('./duplicate-input');
