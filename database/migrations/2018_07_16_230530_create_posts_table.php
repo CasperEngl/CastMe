@@ -15,15 +15,15 @@ class CreatePostsTable extends Migration {
       $table->increments('id');
       $table->integer('user_id');
       $table->string('title');
-      $table->text('content');
+      $table->text('content')->nullable();
       $table->text('images');
-      $table->boolean('actor');
-      $table->boolean('dancer');
-      $table->boolean('entertainer');
-      $table->boolean('event_staff');
-      $table->boolean('extra');
-      $table->boolean('model');
-      $table->boolean('musician');
+      $table->boolean('actor')->default(0);
+      $table->boolean('dancer')->default(0);
+      $table->boolean('entertainer')->default(0);
+      $table->boolean('event_staff')->default(0);
+      $table->boolean('extra')->default(0);
+      $table->boolean('model')->default(0);
+      $table->boolean('musician')->default(0);
       $table->timestamps();
     });
   }
