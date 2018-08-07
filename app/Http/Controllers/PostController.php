@@ -23,6 +23,13 @@ class PostController extends Controller {
   }
 
   public function new() {
+    $user = Auth::user();
+
+    if (!in_array($user->role, ['Scout', 'Moderator', 'Admin']))
+      return redirect('overview')->withErrors([
+        'You do not have access to create posts.'
+      ]);
+
     return view('post-build')->with([
       'title' => __('new post'),
       'post' => new Post,
