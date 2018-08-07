@@ -7,7 +7,7 @@ use \Illuminate\Support\Facades\Auth;
 @extends('master')
 @section('content')
   <main class="container">
-    <h2 class="page-header">{{ title_case(__('Subscription')) }}</h2>
+    <h2 class="page-header">{{ title_case(__('subscription')) }}</h2>
 
     <div class="row">
 
@@ -16,9 +16,9 @@ use \Illuminate\Support\Facades\Auth;
           <div class="card-body">
             <h3 class="card-title mb-0">
               @if (Auth::user()->activeSub()) 
-                {{ title_case(__('Active')) }}
+                {{ title_case(__('active')) }}
               @else
-                {{ title_case(__('Inactive')) }}
+                {{ title_case(__('inactive')) }}
               @endif
             </h3>
           </div>
@@ -28,18 +28,18 @@ use \Illuminate\Support\Facades\Auth;
         <form action="/subscription/subscribe" method="post">
           <div class="card">
             <div class="card-body">
-              <h3 class="page-header">{{ title_case(__('Contact information')) }}</h3>
+              <h3 class="page-header">{{ title_case(__('contact information')) }}</h3>
 
               <div class="row">
                 <div class="col s6">
                   <div class="form-group">
-                    <label for="fname">{{ title_case(__('First name')) }}</label>
+                    <label for="fname">{{ title_case(__('first name')) }}</label>
                     <input type="text" name="fname" id="fname" class="form-control">
                   </div>
                 </div>
                 <div class="col s6">
                   <div class="form-group">
-                    <label for="lname">{{ title_case(__('Last name')) }}</label>
+                    <label for="lname">{{ title_case(__('last name')) }}</label>
                     <input type="text" name="lname" id="lname" class="form-control">
                   </div>
                 </div>
@@ -48,7 +48,7 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col s12">
                   <div class="form-group">
-                    <label for="company">{{ title_case(__('Company')) }}</label>
+                    <label for="company">{{ title_case(__('company')) }}</label>
                     <input type="text" name="company" id="company" class="form-control">
                   </div>
                 </div>
@@ -58,9 +58,9 @@ use \Illuminate\Support\Facades\Auth;
                 <div class="col s12">
                   <div class="form-group">
                     <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="countrySelect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ title_case(__('Country')) }}</button>
+                      <button class="btn btn-default dropdown-toggle" type="button" id="countrySelect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ title_case(__('country')) }}</button>
                       <div class="dropdown-menu" aria-labelledby="countrySelect">
-                        <a class="dropdown-item" href="#">{{ title_case(__('Denmark')) }}</a>
+                        <a class="dropdown-item" href="#">{{ title_case(__('denmark')) }}</a>
                       </div>
                     </div>
                   </div>
@@ -70,7 +70,7 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col s12">
                   <div class="form-group">
-                    <label for="address1">{{ title_case(__('Street and house number')) }}</label>
+                    <label for="address1">{{ title_case(__('street and house number')) }}</label>
                     <input type="text" name="address1" id="address1" class="form-control">
                   </div>
                 </div>
@@ -79,7 +79,7 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col s12">
                   <div class="form-group">
-                    <label for="address2">{{ title_case(__('Stairway, floor etc.')) }}</label>
+                    <label for="address2">{{ title_case(__('stairway, floor etc.')) }}</label>
                     <input type="text" name="address2" id="address2" class="form-control">
                   </div>
                 </div>
@@ -88,13 +88,13 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col s6">
                   <div class="form-group">
-                    <label for="zip_code">{{ title_case(__('Zip code')) }}</label>
+                    <label for="zip_code">{{ title_case(__('zip code')) }}</label>
                     <input type="text" name="zip_code" id="zip_code" class="form-control">
                   </div>
                 </div>
                 <div class="col s6">
                   <div class="form-group">
-                    <label for="city">{{ title_case(__('City')) }}</label>
+                    <label for="city">{{ title_case(__('city')) }}</label>
                     <input type="text" name="city" id="city" class="form-control">
                   </div>
                 </div>
@@ -103,7 +103,7 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col s12">
                   <div class="form-group">
-                    <label for="phone_number">{{ title_case(__('Phone number')) }}</label>
+                    <label for="phone_number">{{ title_case(__('phone number')) }}</label>
                     <input type="text" name="phone_number" id="phone_number" class="form-control">
                   </div>
                 </div>
@@ -112,7 +112,7 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col s12">
                   <div class="form-group">
-                    <label for="email">{{ title_case(__('Email address')) }}</label>
+                    <label for="email">{{ title_case(__('email address')) }}</label>
                     <input type="text" name="email" id="email" class="form-control">
                   </div>
                 </div>
@@ -136,9 +136,9 @@ use \Illuminate\Support\Facades\Auth;
 
             <button class="card-footer btn btn-primary" type="submit">
               @if(\Illuminate\Support\Facades\Auth::user()->activeSub())
-                {{ title_case(__('Update info')) }}
+                {{ title_case(__('update info')) }}
               @else
-                {{ title_case(__('Subscribe')) }}
+                {{ title_case(__('subscribe')) }}
               @endif
             </button>
           </div>

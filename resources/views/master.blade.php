@@ -15,7 +15,7 @@
 <body>
 
 <header>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
         <img src="{{ asset('img/logo.png') }}" alt="castme logo">
@@ -37,22 +37,22 @@
               <span class="badge badge-danger">7</span>
             </a>
             <div class="dropdown-menu">
-              <a href="#!" class="dropdown-item">{{ title_case(__('New post')) }}</a>
-              <a href="#!" class="dropdown-item">{{ title_case(__('New message')) }}</a>
-              <a href="/conversations" class="dropdown-item">{{ title_case(__('Conversations')) }} <span class="badge badge-danger">7</span></a>
+              <a href="#!" class="dropdown-item">{{ title_case(__('new post')) }}</a>
+              <a href="#!" class="dropdown-item">{{ title_case(__('new message')) }}</a>
+              <a href="/conversations" class="dropdown-item">{{ title_case(__('conversations')) }} <span class="badge badge-danger">7</span></a>
             </div>
           </li>
         </ul>
       
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/overview">{{ title_case(__('Overview')) }}</a>
+            <a class="nav-link" href="/overview">{{ title_case(__('overview')) }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/posts">{{ title_case(__('Posts')) }}</a>
+            <a class="nav-link" href="/posts">{{ title_case(__('posts')) }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout">{{ title_case(__('Logout')) }} <i class="fas fa-sign-out-alt"></i></a>
+            <a class="nav-link" href="/logout">{{ title_case(__('logout')) }} <i class="fas fa-sign-out-alt"></i></a>
           </li>
         </ul>
       </div>

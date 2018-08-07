@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
   <main class="container">
-    <h2 class="page-header">{{ title_case(__('Conversation')) }}</h2>
+    <h2 class="page-header">{{ title_case(__('conversation')) }}</h2>
       
     <div class="card">
       <div class="card-header">Mike Weiner</div>
@@ -20,7 +20,7 @@
 
     <form action="/conversation/send" method="POST">
       <textarea name="message" class="tinymce"></textarea>
-      <button type="submit" class="btn btn-primary">{{ title_case(__('Send')) }}</button>
+      <button type="submit" class="btn btn-primary">{{ title_case(__('send')) }}</button>
 
       {{ csrf_field() }}
     </form>

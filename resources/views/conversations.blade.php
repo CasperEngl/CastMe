@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
   <main class="container">
-    <h2 class="page-header">{{ title_case(__('Conversations')) }}</h2>
+    <h2 class="page-header">{{ title_case(__('conversations')) }}</h2>
     
     <div class="card">
       <div class="card-header">Your latest conversations</div>

@@ -17,7 +17,7 @@
         <input type="text" name="title" value="{{ old('title') }}">
       </label>
 
-      <label>{{ title_case(__('Content')) }}
+      <label>{{ title_case(__('content')) }}
         <textarea name="content" id="" cols="30" rows="10">{{ old('content') }}</textarea>
       </label>
       <input type="submit">
