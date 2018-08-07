@@ -26,6 +26,7 @@ class PostController extends Controller {
     return view('post-build')->with([
       'title' => __('new post'),
       'post' => new Post,
+      'form_url' => '/post/add',
       'type' => __('add')
     ]);
   }
@@ -43,6 +44,7 @@ class PostController extends Controller {
     return view('post-build')->with([
       'title' => __('edit post'),
       'post' => $post,
+      'form_url' => "/post/$id/update",
       'type' => __('update'),
     ]);
   }
@@ -79,8 +81,35 @@ class PostController extends Controller {
     return redirect('/posts');
   }
 
-  public function update(Request $request) {
-    Flash::push('success', 'Your post has been edited!');
+  public function update(Request $request, $id) {
+    if (!in_array(Auth::user()->role, ['Admin', 'Moderator', 'Scout']))
+      return abort(403, 'Unauthorized action.');
+
+    $request->validate([
+                         'title'   => 'required|max:255',
+                         'image.*' => 'nullable|url',
+                       ]);
+
+    $post = Post::find($id);
+
+    if ($post->user_id !== Auth::id())
+      return redirect('/overview')->with(['errors' => ['Unauthorized access']]);
+
+
+    $post->title       = $request->input('title');
+    $post->actor       = $request->input('actor', false);
+    $post->dancer      = $request->input('dancer', false);
+    $post->entertainer = $request->input('entertainer', false);
+    $post->event_staff = $request->input('event_staff', false);
+    $post->extra       = $request->input('extra', false);
+    $post->model       = $request->input('model', false);
+    $post->musician    = $request->input('musician', false);
+    $post->images      = json_encode($request->input('image.*'));
+    $post->content     = $request->input('message');
+
+    $post->save();
+
     return redirect('/posts');
+
   }
 }
