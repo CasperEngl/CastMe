@@ -6,16 +6,25 @@ use App\Post;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Session;
+use App\Helpers\Flash;
 
 class PostController extends Controller {
-  public function index() {
-    return view('post');
+  public function index($id) {
+    $post = Post::find($id);
+
+    if ($post)
+      return view('post')->with([
+        'post' => $post,
+      ]);
+    else
+      return redirect('posts')->withErrors([
+        'Sorry, that post doesn\'t exist'
+      ]);
   }
 
   public function new() {
-    return view('post')->with([
-      'title' => __('New post'),
+    return view('post-build')->with([
+      'title' => __('new post'),
       'post' => new Post,
       'type' => __('add')
     ]);
@@ -31,8 +40,8 @@ class PostController extends Controller {
       ]);
     }
 
-    return view('post')->with([
-      'title' => __('Edit post'),
+    return view('post-build')->with([
+      'title' => __('edit post'),
       'post' => $post,
       'type' => __('update'),
     ]);
@@ -66,10 +75,12 @@ class PostController extends Controller {
                      ]);
     $post->save();
 
+    Flash::push('success', 'Your post has been created!');
     return redirect('/posts');
   }
 
-  public function update() {
-
+  public function update(Request $request) {
+    Flash::push('success', 'Your post has been edited!');
+    return redirect('/posts');
   }
 }
