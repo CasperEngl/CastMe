@@ -24,15 +24,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/posts', 'PostController@list');
 
     // Post
-    Route::get('/post/{id}', 'PostController@index');
+    Route::get('/post/{id}', 'PostController@index')->where('id', '[0-9]+');
     Route::get('/post/new', 'PostController@new');
+    Route::get('/post/{id}/edit', 'PostController@edit')->where('id', '[0-9]+');
     Route::post('/post/add', 'PostController@add');
-    Route::get('/post/{id}/edit', 'PostController@edit');
-    Route::post('/post/{id}/update', 'PostController@update');
+    Route::post('/post/{id}/update', 'PostController@update')->where('id', '[0-9]+');
+    
     Route::post('/post/dump', function (Request $request) {
         dd($request->all());
     });
-
+    
     //Profile
     Route::get('/profile', 'ProfileController@index');
     Route::get('/profile/{id}', 'ProfileController@user');
