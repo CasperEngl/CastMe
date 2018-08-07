@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Helpers;
+
 use Illuminate\Support\Facades\Session;
 
 class Flash {
@@ -8,11 +10,9 @@ class Flash {
 
     if (is_array($value))
       $values = array_merge($values, $value);
-
     else
       $values[] = $value;
 
     Session::flash($key, $values);
-
   }
 }
