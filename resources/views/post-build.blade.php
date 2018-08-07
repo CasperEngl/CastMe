@@ -3,7 +3,7 @@
   <main class="container">
     <h2 class="page-header">{{ title_case($title) }}</h2>
 
-    <form action="/post/{{ $type }}" method="POST">
+    <form action="{{ $form_url }}" method="POST">
 
       <div class="card">
         <div class="card-header">
