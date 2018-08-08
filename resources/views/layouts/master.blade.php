@@ -33,7 +33,6 @@
               <span class="badge badge-danger">7</span>
             </a>
               <div class="dropdown-menu">
-                <a href="#!" class="dropdown-item">{{ title_case(__('new post')) }}</a>
                 <a href="#!" class="dropdown-item">{{ title_case(__('new message')) }}</a>
                 <a href="/conversations" class="dropdown-item">{{ title_case(__('conversations')) }} <span class="badge badge-danger">7</span></a>
               </div>
@@ -41,6 +40,12 @@
           </ul>
 
           <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href="{{ route('overview') }}" class="nav-link">{{ title_case(__('overview')) }}</>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('post.new') }}" class="nav-link">{{ title_case(__('new post')) }}</a>
+            </li>
             @guest
             <li class="nav-item">
               <a class="nav-link" href="{{ route('login') }}">{{ title_case(__('login')) }}</a>
@@ -56,7 +61,8 @@
             </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('overview') }}">{{ title_case(__('overview')) }}</a>
+                <a class="dropdown-item" href="{{ route('user.settings') }}">{{ title_case(__('profile settings')) }}</a>
+                <a class="dropdown-item" href="{{ route('user.subscription') }}">{{ title_case(__('subscription')) }}</a>
                 <a class="dropdown-item" href="{{ route('posts') }}">{{ title_case(__('posts')) }}</a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 {{ title_case(__('logout')) }} <i class="fas fa-sign-out-alt"></i>
