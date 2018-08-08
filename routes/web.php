@@ -28,38 +28,36 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Post
     Route::get('/post/{id}', 'PostController@index')->where('id', '[0-9]+');
-    Route::get('/post/new', 'PostController@new');
+    Route::get('/post/new', 'PostController@new')->name('post.new');
     Route::get('/post/{id}/edit', 'PostController@edit')->where('id', '[0-9]+');
-    Route::post('/post/add', 'PostController@add');
+    Route::post('/post/add', 'PostController@add')->name('post.add');
     Route::post('/post/{id}/update', 'PostController@update')->where('id', '[0-9]+');
     
     Route::post('/post/dump', function (Request $request) {
         dd($request->all());
     });
     
-    //Profile
-    Route::get('/profile', 'ProfileController@index');
-    Route::get('/profile/{id}', 'ProfileController@user');
-    Route::post('/profile/update', 'ProfileController@update');
-    Route::post('/profile/dump', function (Request $request) {
+    // Profile Settings
+    Route::get('/profile/settings', 'ProfileController@index')->name('profile.settings');
+    Route::post('/profile/settings/update', 'ProfileController@update');
+    Route::post('/profile/settings/dump', function (Request $request) {
         dd($request->all());
     });
 
-    //subscription
-    Route::get('/subscription', 'SubscriptionController@index');
+    // Specific Profile
+    Route::get('/profile/{id}', 'ProfileController@user');
+
+    // Subscription
+    Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
     Route::get('/subscription/verify', 'SubscriptionController@verifyPayment');
     Route::post('/subscription/subscribe', 'SubscriptionController@subscribe');
 
     // Conversations (List)
-    Route::get('/conversations', function () {
-        return view('conversations');
-    });
+    Route::get('/conversations', 'ConversationController@list')->name('conversations');
 
     // Conversation (Singular)
-    Route::get('/conversation', function () {
-        return view('conversation');
-    });
-    Route::post('/conversation/send', function (Request $request) {
+    Route::get('/conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+');
+    Route::post('/conversation/{id}/send', function (Request $request) {
         dd($request->all());
     });
 });
