@@ -4,13 +4,13 @@
     <h2 class="page-header">{{ title_case(__('options')) }}</h2>
     <div class="row">
       <div class="col-12 col-sm-6 col-md-3">
-        <a href="{{ route('subscription') }}" class="btn btn-primary tile">
+        <a href="{{ route('user.subscription') }}" class="btn btn-primary tile">
           <i class="fas fa-grin"></i> {{ title_case(__('subscription')) }}
         </a>
       </div>
       <div class="col-12 col-sm-6 col-md-3">
         <a href="{{ route('user.settings') }}" class="btn btn-primary tile">
-          <i class="fas fa-user"></i> {{ title_case(__('settings')) }}
+          <i class="fas fa-user"></i> {{ title_case(__('profile settings')) }}
         </a>
       </div>
       <div class="col-12 col-sm-6 col-md-3">

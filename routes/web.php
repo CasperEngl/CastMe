@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Post
     Route::get('/post/{id}', 'PostController@index')->where('id', '[0-9]+')->name('post');
-    Route::get('/post/new', 'PostController@new')->name('post.new')->name('post.new');
+    Route::get('/post/new', 'PostController@new')->name('post.new');
     Route::get('/post/{id}/edit', 'PostController@edit')->where('id', '[0-9]+')->name('post.edit');
     Route::post('/post/add', 'PostController@add')->name('post.add');
     Route::post('/post/{id}/update', 'PostController@update')->where('id', '[0-9]+')->name('post.update');
@@ -44,9 +44,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/profile/{id}', 'ProfileController@user')->name('profile');
 
     // Subscription
-    Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
-    Route::get('/subscription/verify', 'SubscriptionController@verifyPayment')->name('subscription.verify');
-    Route::post('/subscription/subscribe', 'SubscriptionController@subscribe')->name('subscription.subscribe');
+    Route::get('/user/subscription', 'SubscriptionController@index')->name('user.subscription');
+    Route::get('/user/subscription/verify', 'SubscriptionController@verifyPayment')->name('user.subscription.verify');
+    Route::post('/user/subscription/subscribe', 'SubscriptionController@subscribe')->name('user.subscription.subscribe');
 
     // Conversations (List)
     Route::get('/conversations', 'ConversationController@list')->name('conversations');

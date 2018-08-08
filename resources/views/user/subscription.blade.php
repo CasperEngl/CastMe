@@ -25,7 +25,7 @@ use \Illuminate\Support\Facades\Auth;
         </div>
       </div>
       <div class="col-12 col-sm-8">
-        <form action="{{ route('subscription.subscribe') }}">
+        <form action="{{ route('user.subscription.subscribe') }}">
           <div class="card">
             <div class="card-body">
               <h3 class="page-header">{{ title_case(__('contact information')) }}</h3>
