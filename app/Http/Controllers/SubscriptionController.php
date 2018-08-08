@@ -11,7 +11,7 @@ use QuickPay\QuickPay;
 
 class SubscriptionController extends Controller {
   public function index() {
-    return view('subscription');
+    return view('user.subscription');
   }
 
   public function subscribe(Request $request) {
@@ -29,6 +29,6 @@ class SubscriptionController extends Controller {
 
     $sub->withdraw();
 
-    return redirect('/subscription');
+    return redirect()->route('subscription');
   }
 }

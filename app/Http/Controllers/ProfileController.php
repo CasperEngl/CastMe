@@ -8,7 +8,7 @@ use App\User;
 
 class ProfileController extends Controller {
   public function index() {
-    return view('profile');
+    return view('user.settings');
   }
 
   public function user($id) {
@@ -23,10 +23,10 @@ class ProfileController extends Controller {
     !$user->details->model ?: $profile_types[] = title_case('Model');
     !$user->details->musician ?: $profile_types[] = title_case('Musician');
 
-    return view('user')->with([
-        'user' => $user,
-        'gravatar' => $gravatarHash,
-        'profile_types' => $profile_types
+    return view('user.profile')->with([
+      'user' => $user,
+      'gravatar' => $gravatarHash,
+      'profile_types' => $profile_types,
     ]);
   }
 
