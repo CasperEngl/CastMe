@@ -17,10 +17,10 @@ class MessagesController extends Controller {
 
   public function send(Request $request) {
     if ( !Auth::check() )
-      return redirect('/login')->with('error', ucfirst(__('login and try again')));
+      return redirect()->route('login')->with('error', ucfirst(__('login and try again')));
 
     if ( !in_array(Auth::user()->role, ['Scout', 'Moderator', 'Admin']) )
-      return redirect('/home')->with('error', ucfirst(__('permission denied')));
+      return redirect()->route('home')->with('error', ucfirst(__('permission denied')));
 
     $request->validate([
       'title'    => 'required|min:3|max:255',
@@ -36,14 +36,14 @@ class MessagesController extends Controller {
       'read'     => 0,
     ]);
 
-    return redirect('/messages')->with('success', ucfirst(__('message sent')));
+    return redirect()->route('messages')->with('success', ucfirst(__('message sent')));
   }
 
   public function read($id) {
     $message = Message::find($id);
 
     if ( !in_array(Auth::id(), [$message->sender->id, $message->receiver->id]) )
-      return redirect('/messages')->with('error', ucfirst(__('permission denied')));
+      return redirect()->route('messages')->with('error', ucfirst(__('permission denied')));
 
     if ( Auth::id() == $message->receiver->id )
       $message->seen = 1;
