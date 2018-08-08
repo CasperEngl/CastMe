@@ -3,7 +3,7 @@
   <main class="container">
     <h2 class="page-header">{{ title_case($title) }}</h2>
 
-    <form action="{{ $form_url }}" method="POST">
+    <form action="{{ $form_url }}">
 
       <div class="card">
         <div class="card-header">
@@ -90,7 +90,8 @@
         </div>
       </div>
 
-      {{ csrf_field() }}
+      @csrf
+      @method('post')
     </form>
 
   </main>

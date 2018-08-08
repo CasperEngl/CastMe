@@ -25,7 +25,7 @@ use \Illuminate\Support\Facades\Auth;
         </div>
       </div>
       <div class="col-12 col-sm-8">
-        <form action="/subscription/subscribe" method="post">
+        <form action="{{ route('subscription.subscribe') }}">
           <div class="card">
             <div class="card-body">
               <h3 class="page-header">{{ title_case(__('contact information')) }}</h3>
@@ -143,7 +143,8 @@ use \Illuminate\Support\Facades\Auth;
             </button>
           </div>
 
-          {{ csrf_field() }}
+          @csrf
+          @method('post')
         </form>
       </div>
 

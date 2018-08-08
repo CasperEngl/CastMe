@@ -8,8 +8,9 @@
                 <div class="card-header">{{ title_case(__('register')) }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" aria-label="{{ title_case(__('register')) }}">
+                    <form action="{{ route('register') }}" aria-label="{{ title_case(__('register')) }}">
                         @csrf
+                        @method('post')
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ title_case(__('name')) }}</label>

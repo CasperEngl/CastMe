@@ -62,8 +62,9 @@
                 {{ title_case(__('logout')) }} <i class="fas fa-sign-out-alt"></i>
               </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route('logout') }}" style="display: none;">
                   @csrf
+                  @method('post')
                 </form>
               </div>
             </li>

@@ -13,8 +13,9 @@
                 <div class="card-header">{{ title_case(__('login')) }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" aria-label="{{ title_case(__('login')) }}">
+                    <form action="{{ route('login') }}" aria-label="{{ title_case(__('login')) }}">
                         @csrf
+                        @method('post')
 
                         <div class="form-group row">
                             <label for="email" class="col-sm-4 col-form-label text-md-right">{{ title_case(__('e-mail address')) }}</label>

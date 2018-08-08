@@ -18,11 +18,12 @@
       </div>
     </div>
 
-    <form action="/conversation/send" method="POST">
+    <form action="{{ $form_url }}">
       <textarea name="message" class="tinymce"></textarea>
       <button type="submit" class="btn btn-primary">{{ title_case(__('send')) }}</button>
 
-      {{ csrf_field() }}
+      @csrf
+      @method('post')
     </form>
 
   </main>

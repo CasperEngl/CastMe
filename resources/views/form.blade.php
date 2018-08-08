@@ -11,7 +11,7 @@
       </div>
     @endif
 
-    <form action="/send" method="post">
+    <form action="/send">
       <input type="hidden" name="receiver" value="{{ old('to') }}">
       <label>Title
         <input type="text" name="title" value="{{ old('title') }}">
@@ -22,7 +22,8 @@
       </label>
       <input type="submit">
 
-      {{ csrf_field() }}
+      @csrf
+      @method('post')
     </form>
   </main>
 @endsection
