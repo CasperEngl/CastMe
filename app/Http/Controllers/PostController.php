@@ -118,6 +118,9 @@ class PostController extends Controller {
     $post->save();
 
     return redirect()->route('posts');
+  }
 
+  public function dump(Request $request) {
+    dd($request->all());
   }
 }
