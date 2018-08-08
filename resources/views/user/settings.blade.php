@@ -1,4 +1,4 @@
-@extends('master') 
+@extends('layouts.master') 
 @section('content')
 <main class="container">
   <h2 class="page-header">{{ title_case(__('profile information')) }}</h2>
@@ -10,7 +10,7 @@
       <input name="profile-picture-upload" type="file" class="file">
     </div>
     <div class="col-lg-8">
-      <form action="/profile/update" method="POST">
+      <form action="/settings/update" method="POST">
         <div class="card">
           <div class="card-body">
 

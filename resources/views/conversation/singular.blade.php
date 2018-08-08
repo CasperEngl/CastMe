@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('content')
   <main class="container">
     <h2 class="page-header">{{ title_case(__('conversation')) }}</h2>

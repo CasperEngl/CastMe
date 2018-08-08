@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('content')
   <main class="container">
     <h2 class="page-header">{{ title_case(__('conversations')) }}</h2>
@@ -6,26 +6,19 @@
     <div class="card">
       <div class="card-header">Your latest conversations</div>
       <div class="list-group list-group-flush">
-        <a href="/conversation" class="list-group-item">
-          Dixie Normous
+        {{-- 
+        @foreach ($conversations as $conversation)
+        <a href="/conversation/{{ $conversation->id }}" class="list-group-item">
+          {{ $conversation->peer }}
+          @if ($conversation->unread_count > 0)
+          <span class="badge badge-danger">{{ $conversation->unread_count }}</span>
+          @endif
         </a>
-        <a href="/conversation" class="list-group-item">
-          Jack Goff <span class="badge badge-danger">2</span>
-        </a>
-        <a href="/conversation" class="list-group-item">
-          Dick Pound
-        </a>
-        <a href="/conversation" class="list-group-item">
-          Heath Cockburn
-        </a>
-        <a href="/conversation" class="list-group-item">
-          Mike Weiner
-        </a>
-        <a href="/conversation" class="list-group-item">
-          Chew Kok <span class="badge badge-danger">5</span>
-        </a>
-        <a href="/conversation" class="list-group-item">
-          Robert Fagot
+        @endforeach
+        --}}
+        <a href="/conversation/1" class="list-group-item">
+          Jack Goff
+          <span class="badge badge-danger">2</span>
         </a>
       </div>
       <div class="card-footer">

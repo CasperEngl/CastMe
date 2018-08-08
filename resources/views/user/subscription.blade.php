@@ -4,7 +4,7 @@ use \Illuminate\Support\Facades\Auth;
 
 ?>
 
-@extends('master')
+@extends('layouts.master')
 @section('content')
   <main class="container">
     <h2 class="page-header">{{ title_case(__('subscription')) }}</h2>

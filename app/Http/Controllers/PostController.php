@@ -13,11 +13,11 @@ class PostController extends Controller {
     $post = Post::find($id);
 
     if ($post)
-      return view('post')->with([
+      return view('post.singular')->with([
         'post' => $post,
       ]);
     else
-      return redirect('posts')->withErrors([
+      return redirect()->route('post.list')->withErrors([
         'Sorry, that post doesn\'t exist'
       ]);
   }
@@ -26,14 +26,14 @@ class PostController extends Controller {
     $user = Auth::user();
 
     if (!in_array($user->role, ['Scout', 'Moderator', 'Admin']))
-      return redirect('overview')->withErrors([
+      return redirect()->route('overview')->withErrors([
         'You do not have access to create posts.'
       ]);
 
-    return view('post-build')->with([
+    return view('post.build')->with([
       'title' => __('new post'),
       'post' => new Post,
-      'form_url' => '/post/add',
+      'form_url' => route('post.add'),
       'type' => __('add')
     ]);
   }
@@ -42,13 +42,12 @@ class PostController extends Controller {
     $user = Auth::user();
     $post = Post::find($id);
 
-    if ($user->id !== $post->user_id) {
-      return redirect('overview')->withErrors([
+    if ($user->id !== $post->user_id)
+      return redirect()->route('overview')->withErrors([
         'You do not own that post.',
       ]);
-    }
 
-    return view('post-build')->with([
+    return view('post.build')->with([
       'title' => __('edit post'),
       'post' => $post,
       'form_url' => "/post/$id/update",
@@ -57,7 +56,7 @@ class PostController extends Controller {
   }
 
   public function list() {
-    return view('posts')->with('posts', Post::orderBy('id', 'desc')->get());
+    return view('post.list')->with('posts', Post::orderBy('id', 'desc')->get());
   }
 
   public function add(Request $request) {
@@ -65,27 +64,27 @@ class PostController extends Controller {
       return abort(403, 'Unauthorized action.');
 
     $request->validate([
-                         'title'   => 'required|max:255',
-                         'image.*' => 'nullable|url',
-                       ]);
+      'title'   => 'required|max:255',
+      'image.*' => 'nullable|url',
+    ]);
 
     $post = new Post([
-                       'title'       => $request->input('title', false),
-                       'actor'       => $request->input('actor', false),
-                       'dancer'      => $request->input('dancer', false),
-                       'entertainer' => $request->input('entertainer', false),
-                       'event_staff' => $request->input('event_staff', false),
-                       'extra'       => $request->input('extra', false),
-                       'model'       => $request->input('model', false),
-                       'musician'    => $request->input('musician', false),
-                       'images'      => json_encode($request->input('image.*')),
-                       'content'     => $request->input('message'),
-                       'user_id'     => Auth::id()
-                     ]);
+      'title'       => $request->input('title', false),
+      'actor'       => $request->input('actor', false),
+      'dancer'      => $request->input('dancer', false),
+      'entertainer' => $request->input('entertainer', false),
+      'event_staff' => $request->input('event_staff', false),
+      'extra'       => $request->input('extra', false),
+      'model'       => $request->input('model', false),
+      'musician'    => $request->input('musician', false),
+      'images'      => json_encode($request->input('image.*')),
+      'content'     => $request->input('message'),
+      'user_id'     => Auth::id()
+    ]);
     $post->save();
 
     Flash::push('success', 'Your post has been created!');
-    return redirect('/posts');
+    return redirect()->route('posts');
   }
 
   public function update(Request $request, $id) {
@@ -93,14 +92,14 @@ class PostController extends Controller {
       return abort(403, 'Unauthorized action.');
 
     $request->validate([
-                         'title'   => 'required|max:255',
-                         'image.*' => 'nullable|url',
-                       ]);
+      'title'   => 'required|max:255',
+      'image.*' => 'nullable|url',
+    ]);
 
     $post = Post::find($id);
 
     if ($post->user_id !== Auth::id())
-      return redirect('/overview')->with(['errors' => ['Unauthorized access']]);
+      return redirect()->route('overview')->with(['errors' => ['Unauthorized access']]);
 
 
     $post->title       = $request->input('title');
@@ -116,7 +115,7 @@ class PostController extends Controller {
 
     $post->save();
 
-    return redirect('/posts');
+    return redirect()->route('posts');
 
   }
 }
