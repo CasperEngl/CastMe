@@ -50,7 +50,9 @@ class PostController extends Controller {
     return view('post.build')->with([
       'title' => __('edit post'),
       'post' => $post,
-      'form_url' => "/post/$id/update",
+      'form_url' => route('post.update', [
+        'id' => $id,
+      ]),
       'type' => __('update'),
     ]);
   }
