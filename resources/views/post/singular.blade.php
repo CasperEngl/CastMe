@@ -8,10 +8,17 @@
         <div class="card-header">
           <h4>{{ title_case($post->title) }}</h4>
         </div>
+        <figure class="card-img-top" style="max-height: 200px;">
+          <img src="{{ asset('img/hero.jpg') }}" alt="Card image cap">
+        </figure>
         <div class="card-body">
-          <h5 class="text-muted">{{ title_case(__('written by')) }} {{ $post->owner->name }}</h5>
+          @if (Auth::user()->id === $post->user_id)
+            <h5 class="text-muted">{{ title_case(__('written by')) }} {{ strtoupper(__('you')) }}</h5>
+          @else
+            <h5 class="text-muted">{{ title_case(__('written by')) }} {{ $post->owner->name }}</h5>
+          @endif
 
-          <div class="mt-4 mb-4">
+          <div class="my-4">
             {!! $post->content !!}
           </div>
 
@@ -22,20 +29,44 @@
             <a href="{{ $image }}" class="image-link" target="_blank">{{ preg_replace('/https|http|(:\/\/)|www\.|\/([^\/]*).*$/', '', $image) }}</a>
           @endforeach
         </div>
+        @if (Auth::user()->id === $post->user_id)
         <div class="card-footer">
-          <div class="row justify-content-between">
-            <div class="col-auto">
-              <a href="/conversations/new/{{ $post->user_id }}" class="card-link btn btn-primary">{{ title_case(__('respond')) }}</a>
-              <a href="/poke/{{ $post->user_id }}" class="card-link">{{ title_case(__('poke')) }}</a>
-            </div>
-            @if (Auth::user()->id === $post->user_id)
-            <div class="col-auto">
+          <div class="row">
+            <div class="col-auto ml-auto">
               <a href="/post/{{ $post->id }}/edit" class="card-link btn btn-success">{{ title_case(__('edit')) }}</a>
             </div>
-            @endif
           </div>
         </div>
+        @endif
       </div>
+
+      @if (Auth::user()->id === $post->user_id)
+      <h2 class="page-header mb-0">{{ title_case(__('comments')) }}</h2>
+
+      <div class="card my-2">
+        <div class="card-header">Casper Engelmann</div>
+        <div class="card-body">
+          hello world!
+        </div>
+        <div class="card-footer">{{ Carbon\Carbon::now()->toDateTimeString() }}</div>
+      </div>
+      <div class="card my-2">
+        <div class="card-header">Jonatan Nielsen</div>
+        <div class="card-body">
+          fuck mac
+        </div>
+        <div class="card-footer">{{ Carbon\Carbon::now()->toDateTimeString() }}</div>
+      </div>
+      @else
+      <form action="">
+        <h2 class="page-header mb-0">{{ ucfirst(__('send a message')) }}</h2>
+        <textarea name="content" class="tinymce"></textarea>
+        <button class="btn btn-primary" type="submit">{{ title_case(__('message')) }}</button>
+
+        @csrf
+        @method('post')
+      </form>
+      @endif
 
     </div>
   </div>
