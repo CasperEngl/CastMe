@@ -9,7 +9,7 @@
         </a>
       </div>
       <div class="col-12 col-sm-6 col-md-3">
-        <a href="{{ route('profile.settings') }}" class="btn btn-primary tile">
+        <a href="{{ route('user.settings') }}" class="btn btn-primary tile">
           <i class="fas fa-user"></i> {{ title_case(__('settings')) }}
         </a>
       </div>
