@@ -33,7 +33,6 @@
               <span class="badge badge-danger">7</span>
             </a>
               <div class="dropdown-menu">
-                <a href="#!" class="dropdown-item">{{ title_case(__('new message')) }}</a>
                 <a href="/conversations" class="dropdown-item">{{ title_case(__('conversations')) }} <span class="badge badge-danger">7</span></a>
               </div>
             </li>
@@ -41,7 +40,7 @@
 
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="{{ route('overview') }}" class="nav-link">{{ title_case(__('overview')) }}</>
+              <a href="{{ route('overview') }}" class="nav-link">{{ title_case(__('overview')) }}</a>
             </li>
             <li class="nav-item">
               <a href="{{ route('post.new') }}" class="nav-link">{{ title_case(__('new post')) }}</a>
