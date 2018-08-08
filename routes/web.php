@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use QuickPay\QuickPay;
 
+// Homepage
+Route::get('/', 'HomeController@index')->name('home');
+
 //User has to be logged in to access these
 Route::group(['middleware' => ['auth']], function() {
-    // Homepage
-    Route::get('/', 'HomeController@index')->name('home');
-
     // Overview
     Route::get('/overview', 'PagesController@overview')->name('overview');
 
