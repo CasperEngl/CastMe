@@ -1,0 +1,7 @@
+$animation-delay-count: 30;
+
+@for $i from 1 through $animation-delay-count {
+  .delay-#{$i * 100}ms {
+    animation-delay: #{$i * 100}ms;
+  }
+}
