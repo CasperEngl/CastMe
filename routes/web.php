@@ -17,11 +17,14 @@ use QuickPay\QuickPay;
 
 //User has to be logged in to access these
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/', 'PagesController@overview');
-    Route::get('/overview', 'PagesController@overview');
+    // Homepage
+    Route::get('/', 'HomeController@index')->name('home');
+
+    // Overview
+    Route::get('/overview', 'PagesController@overview')->name('overview');
 
     // Posts
-    Route::get('/posts', 'PostController@list');
+    Route::get('/posts', 'PostController@list')->name('posts');
 
     // Post
     Route::get('/post/{id}', 'PostController@index')->where('id', '[0-9]+');
