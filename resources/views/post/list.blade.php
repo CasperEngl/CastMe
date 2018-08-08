@@ -1,6 +1,10 @@
 @extends('layouts.master')
 @section('content')
   <main class="container">
+    @if(in_array(Auth::user()->role, ['Scout', 'Moderator', 'Admin']))
+    <a href="{{ route('post.new') }}" class="btn btn-primary btn-lg mb-4" role="button">{{ ucfirst(__('new post')) }}</a>
+    @endif
+
     <div class="row">
 
       @foreach($posts as $post)
@@ -17,7 +21,7 @@
               <p class="card-text w-100">{{ str_limit(strip_tags($post->content), 150, '...') }}</p>
               <div class="row align-self-end align-items-center justify-content-between">
                 <div class="col-auto">
-                  <a href="/conversation/new/{{ $post->id }}" class="card-link">{{ title_case(__('contact scout')) }}</a>
+                  <a href="/conversation/{{ $post->id }}" class="card-link">{{ title_case(__('contact scout')) }}</a>
                   <a href="/post/{{ $post->id }}" class="card-link">{{ title_case(__('read more')) }}</a>
                 </div>
                 @if (Auth::user()->id === $post->user_id)
@@ -30,7 +34,7 @@
           </article>
         </div>
 
-        @endforeach
+      @endforeach
 
     </div>
   </main>
