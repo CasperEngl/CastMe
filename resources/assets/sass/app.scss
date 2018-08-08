@@ -5,6 +5,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Animate.css
+@import '~animate.css/animate.min.css';
+
 // Font Awesome
 @import 'font-awesome/regular';
 @import 'font-awesome/solid';
@@ -30,3 +33,6 @@
 @import 'modal';
 @import 'editor';
 @import 'buttons';
+@import 'hero';
+@import 'footer';
+@import 'animation';
