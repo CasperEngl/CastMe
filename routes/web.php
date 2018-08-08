@@ -27,39 +27,33 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/posts', 'PostController@list')->name('posts');
 
     // Post
-    Route::get('/post/{id}', 'PostController@index')->where('id', '[0-9]+');
-    Route::get('/post/new', 'PostController@new')->name('post.new');
-    Route::get('/post/{id}/edit', 'PostController@edit')->where('id', '[0-9]+');
+    Route::get('/post/{id}', 'PostController@index')->where('id', '[0-9]+')->name('post');
+    Route::get('/post/new', 'PostController@new')->name('post.new')->name('post.new');
+    Route::get('/post/{id}/edit', 'PostController@edit')->where('id', '[0-9]+')->name('post.edit');
     Route::post('/post/add', 'PostController@add')->name('post.add');
-    Route::post('/post/{id}/update', 'PostController@update')->where('id', '[0-9]+');
+    Route::post('/post/{id}/update', 'PostController@update')->where('id', '[0-9]+')->name('post.update');
     
-    Route::post('/post/dump', function (Request $request) {
-        dd($request->all());
-    });
+    Route::post('/post/dump', 'PostController@dump')->name('post.dump');
     
     // Profile Settings
-    Route::get('/profile/settings', 'ProfileController@index')->name('profile.settings');
-    Route::post('/profile/settings/update', 'ProfileController@update');
-    Route::post('/profile/settings/dump', function (Request $request) {
-        dd($request->all());
-    });
+    Route::get('/user/settings', 'ProfileController@index')->name('user.settings');
+    Route::post('/user/settings/update', 'ProfileController@update')->name('user.settings.update');
+    Route::post('/user/settings/dump', 'ProfileController@dump')->name('user.settings.dump');
 
     // Specific Profile
-    Route::get('/profile/{id}', 'ProfileController@user');
+    Route::get('/profile/{id}', 'ProfileController@user')->name('profile');
 
     // Subscription
     Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
-    Route::get('/subscription/verify', 'SubscriptionController@verifyPayment');
-    Route::post('/subscription/subscribe', 'SubscriptionController@subscribe');
+    Route::get('/subscription/verify', 'SubscriptionController@verifyPayment')->name('subscription.verify');
+    Route::post('/subscription/subscribe', 'SubscriptionController@subscribe')->name('subscription.subscribe');
 
     // Conversations (List)
     Route::get('/conversations', 'ConversationController@list')->name('conversations');
 
     // Conversation (Singular)
-    Route::get('/conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+');
-    Route::post('/conversation/{id}/send', function (Request $request) {
-        dd($request->all());
-    });
+    Route::get('/conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
+    Route::post('/conversation/{id}/send', 'ConversationController@send')->where('id', '[0-9]+')->name('conversation.send');
 });
 
 Route::get('/logout', function (){
