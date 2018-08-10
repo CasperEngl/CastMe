@@ -22,11 +22,13 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="navbar-nav">
+            @auth
             <li class="nav-item">
               <a href="/profile/{{ Auth::User()->id }}" class="nav-link">
               {{ Auth::User()->name }} {{ Auth::User()->last_name }} | {{ Auth::User()->role }}
             </a>
             </li>
+            @endauth
             <li class="nav-item dropdown">
               <a href="#!" class="nav-link dropdown-toggle" data-toggle="dropdown">
               <i class="fas fa-bell"></i>

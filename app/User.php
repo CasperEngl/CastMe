@@ -28,7 +28,7 @@ class User extends Authenticatable {
   ];
 
   public function order() {
-    return $this->hasOne('App\Orders');
+    return $this->hasOne('App\Orders', 'user_id');
   }
 
   public function comments() {

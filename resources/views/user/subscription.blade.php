@@ -34,13 +34,13 @@ use \Illuminate\Support\Facades\Auth;
                 <div class="col s6">
                   <div class="form-group">
                     <label for="fname">{{ title_case(__('first name')) }}</label>
-                    <input type="text" name="fname" id="fname" class="form-control">
+                    <input type="text" name="fname" id="fname" class="form-control" value="{{ old('fname') }}">
                   </div>
                 </div>
                 <div class="col s6">
                   <div class="form-group">
                     <label for="lname">{{ title_case(__('last name')) }}</label>
-                    <input type="text" name="lname" id="lname" class="form-control">
+                    <input type="text" name="lname" id="lname" class="form-control" value="{{ old('lname') }}">
                   </div>
                 </div>
               </div>
@@ -49,7 +49,7 @@ use \Illuminate\Support\Facades\Auth;
                 <div class="col s12">
                   <div class="form-group">
                     <label for="company">{{ title_case(__('company')) }}</label>
-                    <input type="text" name="company" id="company" class="form-control">
+                    <input type="text" name="company" id="company" class="form-control" value="{{ old('company') }}">
                   </div>
                 </div>
               </div>
@@ -104,7 +104,7 @@ use \Illuminate\Support\Facades\Auth;
                 <div class="col s12">
                   <div class="form-group">
                     <label for="phone_number">{{ title_case(__('phone number')) }}</label>
-                    <input type="text" name="phone_number" id="phone_number" class="form-control">
+                    <input type="text" name="phone_number" id="phone_number" class="form-control" value="{{ old('phone_number') }}">
                   </div>
                 </div>
               </div>
@@ -113,7 +113,7 @@ use \Illuminate\Support\Facades\Auth;
                 <div class="col s12">
                   <div class="form-group">
                     <label for="email">{{ title_case(__('email address')) }}</label>
-                    <input type="text" name="email" id="email" class="form-control">
+                    <input type="text" name="email" id="email" class="form-control" value="{{ old('email') }}">
                   </div>
                 </div>
               </div>
@@ -121,10 +121,26 @@ use \Illuminate\Support\Facades\Auth;
 
               <div class="row">
                 <div class="col s6">
-                  <p>
-                    <input type="radio" name="amount" value="89000" class="filled-in" id="product1">
-                    <label for="product1">1 {{ __('month') }} = 89 kr</label>
-                  </p>
+                  <div class="row">
+                    <div class="col s12">
+                      <p>
+                        <input type="radio" name="days" value="60" class="filled-in" id="product1">
+                        <label for="product1">60 {{ __('Days') }} = 2 179 kr</label>
+                      </p>
+                      <p>
+                        <input type="radio" name="days" value="90" class="filled-in" id="product1">
+                        <label for="product1">90 {{ __('Days') }} = 3 279 kr</label>
+                      </p>
+                      <p>
+                        <input type="radio" name="days" value="180" class="filled-in" id="product1">
+                        <label for="product1">180 {{ __('Days') }} = 6 449 kr</label>
+                      </p>
+                      <p>
+                        <input type="radio" name="days" value="365" class="filled-in" id="product1">
+                        <label for="product1">365 {{ __('Days') }} = 12 799 kr</label>
+                      </p>
+                      </div>
+                  </div>
                 </div>
                 <div class="col s6">
                   <input type="checkbox" name="accepth" class="filled-in" id="accepth">

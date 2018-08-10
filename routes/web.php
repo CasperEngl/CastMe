@@ -80,11 +80,11 @@ Route::get('/test', function () {
     return $json;
 });
 
-Route::get('/lirik', function () {
+Route::get('/lirik/{id}', function ($id) {
     $api_key = '5256684d74e913d6085cc4c1d839a7c4b8245907b84f31b43462bc1b72179598';
     $client = new QuickPay(":$api_key");
 
-    $response = $client->request->put('/subscriptions/119900685/link', ['amount' => 200]);
+    $response = $client->request->post('/subscriptions/'.$id . '/session');
 
     $json = $response->asArray();
 

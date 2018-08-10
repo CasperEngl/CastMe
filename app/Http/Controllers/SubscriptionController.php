@@ -15,11 +15,37 @@ class SubscriptionController extends Controller {
   }
 
   public function subscribe(Request $request) {
-    $amount = $request->input('amount');
+    $days = $request->input('days');
+    $user = Auth::user();
 
-    $sub = new Subscription(Auth::user());
+    switch ($days) {
+      case 60:
+        $price = 2179;
+        break;
 
-    $link = $sub->generateLink($amount);
+      case 90:
+        $price = 3279;
+        break;
+
+      case 180:
+        $price = 6449;
+        break;
+
+      case 365:
+        $price = 12799;
+        break;
+
+      default:
+        return redirect()->back()->withErrors("Invalid amount of days selected")->withInput();
+        break;
+    }
+
+    $user->order->days = $days;
+    $user->order->save();
+
+    $sub = new Subscription($user);
+
+    $link = $sub->generateLink($price * 100);
 
     return redirect($link);
   }

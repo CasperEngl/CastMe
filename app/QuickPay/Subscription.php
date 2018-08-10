@@ -5,6 +5,7 @@ namespace App\QuickPay;
 
 use App\Payment;
 use App\User;
+use Carbon\Carbon;
 
 class Subscription
 {
@@ -67,11 +68,9 @@ class Subscription
     public function withdraw()
     {
         $order = $this->client->request->get('/subscriptions/' . $this->order->quickpay_id);
-//        dd($order);
+
         $order = $order->asArray();
         $orderId = 'sub' . uniqid();
-
-        dump($orderId);
 
         $response = $this->client->request->post("/subscriptions/{$this->order->quickpay_id}/recurring",
             [
@@ -89,14 +88,22 @@ class Subscription
         if ($response['accepted'] == "true" || $response['accepted'] == true)
             $response['accepted'] = 1;
 
+        $order = $this->user->order;
         $payment = new Payment;
 
-        $payment->order_id = $orderId;
+        $payment->q_order_id = $orderId;
+        $payment->order_id = $order->id;
         $payment->user_id = $this->user->id;
         $payment->state = $response['state'];
         $payment->accepted = $response['accepted'];
         $payment->quickpay_id = $response['id'];
 
         $payment->save();
+
+      if ( $payment->accepted ) {
+        $order->from = Carbon::now();
+        $order->save();
+      }
+
     }
 }
