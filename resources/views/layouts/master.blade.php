@@ -41,12 +41,6 @@
           </ul>
 
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a href="{{ route('overview') }}" class="nav-link">{{ title_case(__('overview')) }}</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('post.new') }}" class="nav-link">{{ title_case(__('new post')) }}</a>
-            </li>
             @guest
             <li class="nav-item">
               <a class="nav-link" href="{{ route('login') }}">{{ title_case(__('login')) }}</a>
@@ -55,6 +49,12 @@
               <a class="nav-link" href="{{ route('register') }}">{{ title_case(__('register')) }}</a>
             </li>
             @else
+            <li class="nav-item">
+              <a href="{{ route('overview') }}" class="nav-link">{{ title_case(__('overview')) }}</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('post.new') }}" class="nav-link">{{ title_case(__('new post')) }}</a>
+            </li>
             <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false" v-pre>
