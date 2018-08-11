@@ -1,3 +1,9 @@
+/*
+eslint
+
+no-undef: 0,
+*/
+
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import FontAwesome from 'react-fontawesome';
@@ -5,7 +11,6 @@ import FontAwesome from 'react-fontawesome';
 import {
   Row,
   Col,
-  Input,
   Button,
 } from 'reactstrap';
 
@@ -20,46 +25,40 @@ class ImageInputs extends Component {
 
     this.state = {
       inputNumber: 0,
-      inputList: [
-        <ImageInput key={0} number={0} handleRemoveInput={this.handleRemoveInput} />
-      ],
-    }
+      inputList: [<ImageInput key={0} number={0} handleRemoveInput={this.handleRemoveInput} />],
+    };
   }
 
   handleRemoveInput(number) {
-    this.setState({
-      inputList: this.state.inputList.filter((value, index) => {
-        console.log(value.props.number);
+    const { inputList } = this.state;
 
-        return value.props.number !== number;
-      }),
+    this.setState({
+      inputList: inputList.filter(value => value.props.number !== number),
     });
   }
 
-  handleAddInput(e) {
+  handleAddInput() {
     const { inputList } = this.state;
-    const inputNumber = this.state.inputNumber + 1;
 
-    this.setState({
-      inputNumber: inputNumber,
-      inputList: inputList.concat(
-        <ImageInput   
-          key={inputNumber} 
-          number={inputNumber} 
-          handleRemoveInput={this.handleRemoveInput} />
-      ),
-    });
-
-    setTimeout(() => console.log(this.state));
-  } 
+    this.setState(prevState => ({
+      inputNumber: prevState.inputNumber + 1,
+      inputList: inputList.concat(<ImageInput
+        key={prevState.inputNumber + 1}
+        number={prevState.inputNumber + 1}
+        handleRemoveInput={this.handleRemoveInput} />),
+    }));
+  }
 
   render() {
-    console.log(this.state);
+    const { inputList } = this.state;
+
     return (
       <Fragment>
         <Row className="d-flex align-items-center mb-2">
           <Col xs="auto">
-            <h5 className="text-muted m-0">Images</h5>  
+            <h5 className="text-muted m-0">
+              Images
+            </h5>
           </Col>
           <Col xs="auto">
             <Button color="primary" className="circle" onClick={this.handleAddInput}>
@@ -67,9 +66,7 @@ class ImageInputs extends Component {
             </Button>
           </Col>
         </Row>
-        {
-          this.state.inputList
-        }
+        { inputList }
       </Fragment>
     );
   }
