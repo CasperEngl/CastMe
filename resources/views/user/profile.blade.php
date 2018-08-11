@@ -12,7 +12,7 @@
             </div>
             <div class="col">
               <div class="card-title m-0">{{ $user->name }} {{ $user->last_name }}</div>
-              <div class="card-text text-muted">{{ __('Roles') }}</div>
+              <div class="card-text text-muted">{{ ucfirst(__('roles')) }}</div>
               <div class="card-text text-muted">
                 @foreach ($profile_types as $profile_type)
                     {{ $profile_type }} @if (!$loop->last) &mdash; @endif

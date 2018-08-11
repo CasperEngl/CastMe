@@ -31,10 +31,10 @@ class PostController extends Controller {
       ]);
 
     return view('post.build')->with([
-      'title' => __('new post'),
+      'title' => ucfirst(__('new post')),
       'post' => new Post,
       'form_url' => route('post.add'),
-      'type' => __('add')
+      'type' => ucfirst(__('add'))
     ]);
   }
 
@@ -48,12 +48,12 @@ class PostController extends Controller {
       ]);
 
     return view('post.build')->with([
-      'title' => __('edit post'),
+      'title' => ucfirst(__('edit post')),
       'post' => $post,
       'form_url' => route('post.update', [
         'id' => $id,
       ]),
-      'type' => __('update'),
+      'type' => ucfirst(__('update')),
     ]);
   }
 

@@ -49,21 +49,21 @@
                 <div class="form-group">
                   <label for="height" class="text-muted">{{ title_case(__('height')) }}</label>
                   <input type="number" name="height" class="form-control" id="height" placeholder="175" value="{{ Auth::User()->details->height ?? '' }}">
-                  <small class="form-text text-muted">{{ __('Height must be in centimeters.') }}</small>
+                  <small class="form-text text-muted">{{ ucfirst(__('height must be in centimeters.')) }}</small>
                 </div>
               </div>
               <div class="col-12 col-sm">
                 <div class="form-group">
                   <label for="weight" class="text-muted">{{ title_case(__('weight')) }}</label>
                   <input type="number" name="weight" class="form-control" id="weight" placeholder="80" value="{{ Auth::User()->details->weight ?? '' }}">
-                  <small class="form-text text-muted">{{ __('We only support weight in kilos.') }}</small>
+                  <small class="form-text text-muted">{{ ucfirst(__('we only support weight in kilos.')) }}</small>
                 </div>
               </div>
               <div class="col-12 col-sm">
                 <div class="form-group">
                   <label for="experience" class="text-muted">{{ title_case(__('experience')) }}</label>
                   <input type="number" name="experience" class="form-control" id="experience" placeholder="5" value="{{ Auth::User()->details->experience ?? '' }}">
-                  <small class="form-text text-muted">{{ __('Experience is in whole years to keep it simple.') }}</small>
+                  <small class="form-text text-muted">{{ ucfirst(__('experience is in whole years to keep it simple.')) }}</small>
                 </div>
               </div>
             </div>
@@ -96,7 +96,7 @@
               <div class="col">
                 <div class="form-group">
                   <h5 class="text-muted">{{ title_case(__('profile type')) }}</h5>
-                  <p class="text-muted">{{ __('Select multiple if applicable') }}</p>
+                  <p class="text-muted">{{ ucfirst(__('select multiple if applicable')) }}</p>
                   <ul class="pagination">
                     <div class="display-none">
                       <input type="checkbox" name="actor" value="1" id="profile_type-actor" {{ Auth::User()->details->actor ? 'checked' : '' }}>
