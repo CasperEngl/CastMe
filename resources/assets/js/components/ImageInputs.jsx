@@ -36,16 +36,7 @@ class ImageInputs extends Component {
       const images = JSON.parse(data.data.images);
 
       images.map((image) => {
-        const { inputList } = this.state;
-
-        this.setState(prevState => ({
-          inputNumber: prevState.inputNumber + 1,
-          inputList: inputList.concat(<ImageInput
-            key={prevState.inputNumber + 1}
-            number={prevState.inputNumber + 1}
-            image={image}
-            handleRemoveInput={this.handleRemoveInput} />),
-        }));
+        this.handleAddInput(image);
       });
     } catch (err) {
       console.log(err);
@@ -60,7 +51,7 @@ class ImageInputs extends Component {
     });
   }
 
-  handleAddInput() {
+  handleAddInput(image) {
     const { inputList } = this.state;
 
     this.setState(prevState => ({
@@ -68,6 +59,7 @@ class ImageInputs extends Component {
       inputList: inputList.concat(<ImageInput
         key={prevState.inputNumber + 1}
         number={prevState.inputNumber + 1}
+        image={image}
         handleRemoveInput={this.handleRemoveInput} />),
     }));
   }
