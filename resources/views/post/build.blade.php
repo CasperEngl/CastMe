@@ -9,7 +9,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col-auto">
-              <span class="h3">{{ title_case(__('Title')) }}</span>
+              <span class="h3">{{ ucfirst(__('title')) }}</span>
             </div>
             <div class="col">
               <input type="text" name="title" class="form-control bg-transparent" value="{{ $post->title }}">
@@ -18,8 +18,8 @@
         </div>
         <div class="card-block">
           <div class="form-group">
-            <h5 class="text-muted">{{ title_case(__('Looking for')) }}</h5>
-            <p>{{ __('Select multiple if applicable') }}</p>
+            <h5 class="text-muted">{{ ucfirst(__('looking for')) }}</h5>
+            <p>{{ ucfirst(__('select multiple if applicable')) }}</p>
             <ul class="pagination">
               <div class="display-none">
                 <input type="checkbox" name="actor" value="1" id="profile_type-actor">
@@ -57,37 +57,12 @@
         <div class="card-block">
           <div id="ImageInputs"></div>
         </div>
-        {{-- 
         <div class="card-block">
-
-          <div class="row mb-2">
-            <div class="col-auto d-flex align-items-center">
-              <h5 class="text-muted m-0">{{ title_case(__('Images')) }}</h5>
-            </div>
-            <div class="col">
-              <a href="#" class="btn btn-primary circle duplicate-input-group-button"><i class="fas fa-plus"></i></a>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col">
-                <input type="url" name="image[]" placeholder="https://i.imgur.com/XXxXxxX.png" class="form-control text-muted" id="image-1">
-                <div class="valid-feedback feedback-icon">
-                  <i class="fa fa-check"></i>
-               </div>
-               <div class="invalid-feedback feedback-icon">
-                  <i class="fa fa-times"></i>
-               </div>
-              </div>
-              <div class="col-auto">
-                <a href="#" class="btn btn-primary circle remove-input-group-button"><i class="fas fa-minus"></i></a>
-              </div>
-            </div>
-          </div>
-
+          <h5 class="text-muted">{{ ucfirst(__('upload post banner')) }}</h5>
+          <input name="profile-picture-upload" type="file" class="file">
         </div>
-        --}}
         <div class="card-block">
+          <h5 class="text-muted">{{ ucfirst(__('write post description')) }}</h5>
           <textarea name="message" class="tinymce">{{ $post->content }}</textarea>
         </div>
         <div class="card-footer">
