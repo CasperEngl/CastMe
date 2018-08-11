@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/post/{id}', 'PostController@index')->where('id', '[0-9]+')->name('post');
     Route::get('/post/new', 'PostController@new')->name('post.new');
     Route::get('/post/{id}/edit', 'PostController@edit')->where('id', '[0-9]+')->name('post.edit');
+    Route::get('/post/{id}/data', 'PostController@data')->where('id', '[0-9]+')->name('post.data');
     Route::post('/post/add', 'PostController@add')->name('post.add');
     Route::post('/post/{id}/update', 'PostController@update')->where('id', '[0-9]+')->name('post.update');
     

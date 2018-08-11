@@ -22,6 +22,17 @@ class PostController extends Controller {
       ]);
   }
 
+  public function data($id) {
+    $post = Post::find($id);
+
+    if ($post)
+      return response()->json($post);
+    else
+      return response()->json([
+        'error' => 'Could not find any posts with that id',
+      ]);
+  }
+
   public function new() {
     $user = Auth::user();
 
