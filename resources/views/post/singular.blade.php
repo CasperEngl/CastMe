@@ -74,13 +74,13 @@
         </div>
       </div>
       @else
-      <form action="">
+      <form action="" method="POST">
         <h2 class="page-header mb-0">{{ ucfirst(__('send a message')) }}</h2>
         <textarea name="content" class="tinymce"></textarea>
         <button class="btn btn-primary" type="submit">{{ title_case(__('message')) }}</button>
 
         @csrf
-        @method('post')
+        @method('POST')
       </form>
       @endif
 

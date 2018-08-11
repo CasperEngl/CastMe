@@ -8,9 +8,9 @@
                 <div class="card-header">{{ title_case(__('reset password')) }}</div>
 
                 <div class="card-body">
-                    <form action="{{ route('password.request') }}" aria-label="{{ title_case(__('reset password')) }}">
+                    <form action="{{ route('password.request') }}" method="POST" aria-label="{{ title_case(__('reset password')) }}">
                         @csrf
-                        @method('post')
+                        @method('POST')
 
                         <input type="hidden" name="token" value="{{ $token }}">
 

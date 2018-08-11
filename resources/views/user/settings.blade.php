@@ -10,7 +10,7 @@
       <input name="profile-picture-upload" type="file" class="file">
     </div>
     <div class="col-lg-8">
-      <form action="{{ route('user.settings.update') }}">
+      <form action="{{ route('user.settings.update') }}" method="POST">
         <div class="card">
           <div class="card-body">
 
@@ -335,7 +335,7 @@
         </div>
         
         @csrf
-        @method('post')
+        @method('POST')
       </form>
 
     </div>

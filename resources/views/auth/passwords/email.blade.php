@@ -14,9 +14,9 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('password.email') }}" aria-label="{{ title_case(__('reset password')) }}">
+                    <form action="{{ route('password.email') }}" method="POST" aria-label="{{ title_case(__('reset password')) }}">
                         @csrf
-                        @method('post')
+                        @method('POST')
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ title_case(__('e-mail address')) }}</label>
