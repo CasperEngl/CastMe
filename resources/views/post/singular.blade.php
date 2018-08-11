@@ -8,7 +8,7 @@
         <div class="card-header">
           <h4>{{ title_case($post->title) }}</h4>
         </div>
-        <figure class="card-img-top" style="max-height: 200px;">
+        <figure class="card-img-top">
           <img src="{{ asset('img/hero.jpg') }}" alt="Card image cap">
         </figure>
         <div class="card-body">
@@ -43,19 +43,35 @@
       @if (Auth::user()->id === $post->user_id)
       <h2 class="page-header mb-0">{{ title_case(__('comments')) }}</h2>
 
-      <div class="card my-2">
+      <div class="card my-3">
         <div class="card-header">Casper Engelmann</div>
         <div class="card-body">
           hello world!
         </div>
-        <div class="card-footer">{{ Carbon\Carbon::now()->toDateTimeString() }}</div>
+        <div class="card-footer">
+          <div class="row align-items-center">
+            <div class="col">{{ Carbon\Carbon::now()->toDateTimeString() }}</div>
+            <div class="col-auto">
+              <a href="/conversation/1" class="btn btn-primary">{{ ucfirst(__('message')) }}</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card my-2">
+      <div class="card my-3">
         <div class="card-header">Jonatan Nielsen</div>
         <div class="card-body">
           fuck mac
         </div>
-        <div class="card-footer">{{ Carbon\Carbon::now()->toDateTimeString() }}</div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col">
+              {{ Carbon\Carbon::now()->toDateTimeString() }}
+            </div>
+            <div class="col-auto">
+              <a href="/conversation/1" class="btn btn-primary">{{ ucfirst(__('message')) }}</a>
+            </div>
+          </div>
+        </div>
       </div>
       @else
       <form action="">
