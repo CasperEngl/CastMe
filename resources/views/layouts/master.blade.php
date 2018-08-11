@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ config('app.name', 'Laravel') }}</title>
 
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ mix('/css/app.css') }}">
 </head>
 <body>
 
@@ -105,7 +105,7 @@
     @yield('content')
   </div>
 
-  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ mix('js/app.js') }}"></script>
 
 </body>
 </html>
