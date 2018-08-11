@@ -22,13 +22,13 @@
             <p>{{ ucfirst(__('select multiple if applicable')) }}</p>
             <ul class="pagination">
               <div class="display-none">
-                <input type="checkbox" name="actor" value="1" id="profile_type-actor">
-                <input type="checkbox" name="dancer" value="1" id="profile_type-dancer">
-                <input type="checkbox" name="entertainer" value="1" id="profile_type-entertainer">
-                <input type="checkbox" name="event_staff" value="1" id="profile_type-event_staff">
-                <input type="checkbox" name="extra" value="1" id="profile_type-extra">
-                <input type="checkbox" name="model" value="1" id="profile_type-model">
-                <input type="checkbox" name="musician" value="1" id="profile_type-musician">
+                <input type="checkbox" name="actor" value="1" id="profile_type-actor" {{ $post->actor ? 'checked' : '' }}>
+                <input type="checkbox" name="dancer" value="1" id="profile_type-dancer" {{ $post->dancer ? 'checked' : '' }}>
+                <input type="checkbox" name="entertainer" value="1" id="profile_type-entertainer" {{ $post->entertainer ? 'checked' : '' }}>
+                <input type="checkbox" name="event_staff" value="1" id="profile_type-event_staff" {{ $post->event_staff ? 'checked' : '' }}>
+                <input type="checkbox" name="extra" value="1" id="profile_type-extra" {{ $post->extra ? 'checked' : '' }}>
+                <input type="checkbox" name="model" value="1" id="profile_type-model" {{ $post->model ? 'checked' : '' }}>
+                <input type="checkbox" name="musician" value="1" id="profile_type-musician" {{ $post->musician ? 'checked' : '' }}>
               </div>
               <li class="page-item">
                 <label for="profile_type-actor" class="page-link" href="#">{{ title_case(__('Actor')) }}</label>
@@ -63,7 +63,7 @@
         </div>
         <div class="card-block">
           <h5 class="text-muted">{{ ucfirst(__('write post description')) }}</h5>
-          <textarea name="message" class="tinymce">{{ $post->content }}</textarea>
+          <textarea name="content" class="tinymce">{{ $post->content }}</textarea>
         </div>
         <div class="card-footer">
           <button type="submit" class="btn btn-primary">{{ title_case($type) }}</button>
