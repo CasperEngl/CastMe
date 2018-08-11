@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import FontAwesome from 'react-fontawesome';
 
@@ -19,7 +19,7 @@ class ImageInputs extends Component {
     this.handleRemoveInput = this.handleRemoveInput.bind(this);
 
     this.state = {
-      inputLength: 0,
+      inputNumber: 0,
       inputList: [
         <ImageInput key={0} number={0} handleRemoveInput={this.handleRemoveInput} />
       ],
@@ -28,20 +28,24 @@ class ImageInputs extends Component {
 
   handleRemoveInput(number) {
     this.setState({
-      inputLength: this.state.inputLength - 1,
-      inputList: this.state.inputList.filter((value, index) => index !== number),
+      inputList: this.state.inputList.filter((value, index) => {
+        console.log(value.props.number);
+
+        return value.props.number !== number;
+      }),
     });
   }
 
   handleAddInput(e) {
-    const { inputList, inputLength } = this.state;
+    const { inputList } = this.state;
+    const inputNumber = this.state.inputNumber + 1;
 
     this.setState({
-      inputLength: this.state.inputLength + 1,
+      inputNumber: inputNumber,
       inputList: inputList.concat(
         <ImageInput   
-          key={inputList.length} 
-          number={inputList.length} 
+          key={inputNumber} 
+          number={inputNumber} 
           handleRemoveInput={this.handleRemoveInput} />
       ),
     });
@@ -52,7 +56,7 @@ class ImageInputs extends Component {
   render() {
     console.log(this.state);
     return (
-      <div className="card-block">
+      <Fragment>
         <Row className="d-flex align-items-center mb-2">
           <Col xs="auto">
             <h5 className="text-muted m-0">Images</h5>  
@@ -66,7 +70,7 @@ class ImageInputs extends Component {
         {
           this.state.inputList
         }
-      </div>
+      </Fragment>
     );
   }
 }
