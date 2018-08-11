@@ -54,7 +54,10 @@
             </ul>
           </div>
         </div>
-        <div id="ImageInputs"></div>
+        <div class="card-block">
+          <div id="ImageInputs"></div>
+        </div>
+        {{-- 
         <div class="card-block">
 
           <div class="row mb-2">
@@ -83,6 +86,7 @@
           </div>
 
         </div>
+        --}}
         <div class="card-block">
           <textarea name="message" class="tinymce">{{ $post->content }}</textarea>
         </div>
