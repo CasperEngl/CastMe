@@ -80,7 +80,7 @@ class PostController extends Controller {
       'model'       => $request->input('model', false),
       'musician'    => $request->input('musician', false),
       'images'      => json_encode($request->input('image.*')),
-      'content'     => $request->input('message'),
+      'content'     => $request->input('content'),
       'user_id'     => Auth::id()
     ]);
     $post->save();
