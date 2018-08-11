@@ -14,9 +14,6 @@
 
                 <div class="card-body">
                     <form action="{{ route('login') }}" aria-label="{{ title_case(__('login')) }}">
-                        @csrf
-                        @method('post')
-
                         <div class="form-group row">
                             <label for="email" class="col-sm-4 col-form-label text-md-right">{{ title_case(__('e-mail address')) }}</label>
 
@@ -68,6 +65,9 @@
                                 </a>
                             </div>
                         </div>
+
+                        @csrf
+                        @method('post')
                     </form>
                 </div>
             </div>
