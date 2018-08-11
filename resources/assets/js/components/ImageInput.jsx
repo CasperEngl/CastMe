@@ -31,11 +31,11 @@ const ImageInput = (props) => {
       </Row>
     </FormGroup>
   );
-}
+};
 
 ImageInput.propTypes = {
   handleRemoveInput: PropTypes.func.isRequired,
   number: PropTypes.number.isRequired,
-}
+};
 
 export default ImageInput;
