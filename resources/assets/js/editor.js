@@ -1,3 +1,5 @@
+import tinymce from 'tinymce';
+
 // Simple Editor
 tinymce.init({
   selector: "textarea.tinymce",

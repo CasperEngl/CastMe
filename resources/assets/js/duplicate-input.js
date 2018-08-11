@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 $(() => {
 
   $(document).on('click', '.duplicate-input-group-button', (e) => {

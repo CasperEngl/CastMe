@@ -54,6 +54,7 @@
             </ul>
           </div>
         </div>
+        <div id="ImageInputs"></div>
         <div class="card-block">
 
           <div class="row mb-2">
