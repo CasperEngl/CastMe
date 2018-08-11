@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ config('app.name', 'Laravel') }}</title>
 
-  <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ mix('/css/app.css') }}">
 </head>
 <body>
 

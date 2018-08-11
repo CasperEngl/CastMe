@@ -14,3 +14,7 @@ let mix = require('laravel-mix');
 mix
   .react('resources/assets/js/app.jsx', 'public/js')
   .sass('resources/assets/sass/app.scss', 'public/css');
+
+if (mix.inProduction()) {
+    mix.version();
+}
