@@ -118,33 +118,32 @@ use \Illuminate\Support\Facades\Auth;
                 </div>
               </div>
 
-
               <div class="row">
                 <div class="col s6">
-                  <div class="row">
-                    <div class="col s12">
-                      <p>
-                        <input type="radio" name="days" value="60" class="filled-in" id="product1">
-                        <label for="product1">60 {{ __('Days') }} = 2 179 kr</label>
-                      </p>
-                      <p>
-                        <input type="radio" name="days" value="90" class="filled-in" id="product1">
-                        <label for="product1">90 {{ __('Days') }} = 3 279 kr</label>
-                      </p>
-                      <p>
-                        <input type="radio" name="days" value="180" class="filled-in" id="product1">
-                        <label for="product1">180 {{ __('Days') }} = 6 449 kr</label>
-                      </p>
-                      <p>
-                        <input type="radio" name="days" value="365" class="filled-in" id="product1">
-                        <label for="product1">365 {{ __('Days') }} = 12 799 kr</label>
-                      </p>
-                      </div>
-                  </div>
+                  <ul class="pagination">
+                    <div class="display-none">
+                      <input type="radio" name="days" value="60" id="60days" checked>
+                      <input type="radio" name="days" value="90" id="90days">
+                      <input type="radio" name="days" value="180" id="180days">
+                      <input type="radio" name="days" value="365" id="365days">
+                    </div>
+                    <li class="page-item w-100 d-flex justify-content-center">
+                      <label for="60days" class="page-link w-100 text-center">60 {{ __('days') }} - 179 DKK</label>
+                    </li>
+                    <li class="page-item w-100 d-flex justify-content-center">
+                      <label for="90days" class="page-link w-100 text-center">90 {{ __('days') }} - 279 DKK</label>
+                    </li>
+                    <li class="page-item w-100 d-flex justify-content-center">
+                      <label for="180days" class="page-link w-100 text-center">180 {{ __('days') }} - 449 DKK</label>
+                    </li>
+                    <li class="page-item w-100 d-flex justify-content-center">
+                      <label for="365days" class="page-link w-100 text-center">365 {{ __('days') }} - 799 DKK</label>
+                    </li>
+                  </ul>
                 </div>
                 <div class="col s6">
                   <input type="checkbox" name="accepth" class="filled-in" id="accepth">
-                  <label for="accepth">{{ __('I accept the') }} <a href="https://castme.dk/abonnementsbetingelser/" target="blank">{{ __('subscription conditions') }}.</a></label>
+                  <label for="accepth">{{ ucfirst(__('i accept the')) }} <a href="https://castme.dk/abonnementsbetingelser/" target="blank">{{ __('subscription conditions') }}.</a></label>
                 </div>
 
               </div>
