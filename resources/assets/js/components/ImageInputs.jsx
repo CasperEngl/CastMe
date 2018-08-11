@@ -7,6 +7,7 @@ no-undef: 0,
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import FontAwesome from 'react-fontawesome';
+import axios from 'axios';
 
 import {
   Row,
@@ -25,8 +26,30 @@ class ImageInputs extends Component {
 
     this.state = {
       inputNumber: 0,
-      inputList: [<ImageInput key={0} number={0} handleRemoveInput={this.handleRemoveInput} />],
+      inputList: [],
     };
+  }
+
+  async componentDidMount() {
+    try {
+      const data = await axios.get('data');
+      const images = JSON.parse(data.data.images);
+
+      images.map((image) => {
+        const { inputList } = this.state;
+
+        this.setState(prevState => ({
+          inputNumber: prevState.inputNumber + 1,
+          inputList: inputList.concat(<ImageInput
+            key={prevState.inputNumber + 1}
+            number={prevState.inputNumber + 1}
+            image={image}
+            handleRemoveInput={this.handleRemoveInput} />),
+        }));
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   handleRemoveInput(number) {

@@ -21,6 +21,7 @@ const ImageInput = (props) => {
             type="url"
             name="image[]"
             placeholder="https://i.imgur.com/XXxXxxX.png"
+            defaultValue={props.image}
           />
         </Col>
         <Col xs="auto">
@@ -33,9 +34,14 @@ const ImageInput = (props) => {
   );
 };
 
+ImageInput.defaultProps = {
+  image: '',
+}
+
 ImageInput.propTypes = {
   handleRemoveInput: PropTypes.func.isRequired,
   number: PropTypes.number.isRequired,
+  image: PropTypes.string,
 };
 
 export default ImageInput;
