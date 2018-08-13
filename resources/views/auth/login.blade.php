@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
+<main class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if( session('error') )
@@ -73,5 +73,5 @@
             </div>
         </div>
     </div>
-</div>
+</main>
 @endsection
