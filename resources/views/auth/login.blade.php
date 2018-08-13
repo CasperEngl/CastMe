@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
@@ -10,14 +10,12 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">{{ title_case(__('Login')) }}</div>
+                <div class="card-header">{{ title_case(__('login')) }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" aria-label="{{ title_case(__('Login')) }}">
-                        @csrf
-
+                    <form action="{{ route('login') }}" method="POST" aria-label="{{ title_case(__('login')) }}">
                         <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ title_case(__('E-Mail Address')) }}</label>
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ title_case(__('e-mail address')) }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
@@ -31,7 +29,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ title_case(__('Password')) }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ title_case(__('password')) }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -50,7 +48,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ title_case(__('Remember Me')) }}
+                                        {{ title_case(__('remember me')) }}
                                     </label>
                                 </div>
                             </div>
@@ -59,14 +57,17 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ title_case(__('Login')) }}
+                                    {{ title_case(__('login')) }}
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ title_case(__('Forgot Your Password?')) }}
+                                    {{ title_case(__('forgot your password?')) }}
                                 </a>
                             </div>
                         </div>
+
+                        @csrf
+                        @method('POST')
                     </form>
                 </div>
             </div>

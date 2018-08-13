@@ -1,9 +1,35 @@
+.card {
+  .card-img-top {
+    max-height: 250px;
+  }
+
+  .pagination {
+    margin: 0;
+  }
+}
+
+.card-header {
+  &:not(:first-of-type) {
+    border-top: $card-header-border;
+  }
+}
+
+.card-title {
+  font-size: $card-title-font-size;
+  font-weight: $card-title-font-weight;
+}
+
 .card-footer.btn {
   width: 100%;
 
   &.btn-primary {
     background: var(--primary);
   }
+}
+
+.card-block {
+  flex: 1 1 auto;
+  padding: 1.25rem;
 }
 
 .card-link {

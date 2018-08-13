@@ -1,8 +1,34 @@
+// Laravel
+$laravel-navbar-background: #FFF;
+$laravel-navbar-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 
 // Body
 $body-bg: #f5f8fa;
+
+$wrapper-margin: 5rem auto;
 
 // Typography
 $font-family-sans-serif: "Raleway", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+$font-weight-bold: 800;
+
+// Shadows
+$shadow-color: rgba(0, 0, 0, .1);
+
+// Cards
+$card-title-font-size: 1.25rem;
+$card-title-font-weight: $font-weight-bold;
+$card-header-border: 1px solid rgba(0, 0, 0, 0.125);
+$post-card-margin: 1rem 0;
+
+// TinyMCE
+$editor-margin: 1rem 0;
+
+// Navbar
+$navbar-brand-logo-height: 50px;
+
+// Tile buttons
+$tile-height: 10rem;
+$tile-font-size: 1.5rem;

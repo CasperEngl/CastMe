@@ -16,3 +16,7 @@ package-lock\.json
 /public/js/app.js
 
 _ide_helper\.php
+
+yarn\.lock
+
+public/mix-manifest\.json

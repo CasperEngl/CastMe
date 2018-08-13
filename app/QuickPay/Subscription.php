@@ -5,6 +5,7 @@ namespace App\QuickPay;
 
 use App\Payment;
 use App\User;
+use Carbon\Carbon;
 
 class Subscription
 {
@@ -26,7 +27,7 @@ class Subscription
         $response = $this->client->request->put("/subscriptions/{$this->order->quickpay_id}/link",
             [
                 'amount' => $amount,
-                'continue_url' => 'http://castme2.test/Subscription/verify'
+                'continue_url' => env("APP_URL") . '/subscription/verify'
             ]
         );
         $response = $response->asArray();
@@ -36,11 +37,15 @@ class Subscription
 
     public function verifySubscription()
     {
-        if($this->user->payments()->latest()->first() == null)
+        $payment = $this->user->payments()->latest()->first();
+        if($payment == null)
             return false;
 
-        if (strtotime($this->user->payments()->latest()->first()->created_at) < strtotime('-30 day'))
+        if (strtotime($payment->created_at) < strtotime('-30 day'))
             return false; //expired
+
+        if ($payment->accepted == 0)
+            return false; //not accepted
 
         return true;
     }
@@ -63,11 +68,9 @@ class Subscription
     public function withdraw()
     {
         $order = $this->client->request->get('/subscriptions/' . $this->order->quickpay_id);
-//        dd($order);
+
         $order = $order->asArray();
         $orderId = 'sub' . uniqid();
-
-        dump($orderId);
 
         $response = $this->client->request->post("/subscriptions/{$this->order->quickpay_id}/recurring",
             [
@@ -79,20 +82,28 @@ class Subscription
         );
         $response = $response->asArray();
 
-        if ($response['state'] == "false" || $response['state'] == false)
-            $response['state'] = 0;
+        if ($response['accepted'] == "false" || $response['accepted'] == false)
+            $response['accepted'] = 0;
 
-        if ($response['state'] == "true" || $response['state'] == true)
-            $response['state'] = 1;
+        if ($response['accepted'] == "true" || $response['accepted'] == true)
+            $response['accepted'] = 1;
 
+        $order = $this->user->order;
         $payment = new Payment;
 
-        $payment->order_id = $orderId;
+        $payment->q_order_id = $orderId;
+        $payment->order_id = $order->id;
         $payment->user_id = $this->user->id;
         $payment->state = $response['state'];
         $payment->accepted = $response['accepted'];
         $payment->quickpay_id = $response['id'];
 
         $payment->save();
+
+      if ( $payment->accepted ) {
+        $order->from = Carbon::now();
+        $order->save();
+      }
+
     }
 }

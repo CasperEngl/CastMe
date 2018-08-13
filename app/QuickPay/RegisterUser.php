@@ -29,7 +29,6 @@ class RegisterUser
 
         $order = new Orders;
 
-        $order->status = 0;
         $order->user_id = $this->user->id;
         $order->quickpay_id = $response['id'];
         $order->uid = $orderId;

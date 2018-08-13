@@ -1,0 +1,13 @@
+.btn {
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  &.circle {
+    border-radius: 9999rem;
+  }
+
+  &.circle-small {
+    padding: 0 0.3125rem;
+  }
+}

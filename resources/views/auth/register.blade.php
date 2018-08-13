@@ -1,18 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ title_case(__('Register')) }}</div>
+                <div class="card-header">{{ title_case(__('register')) }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" aria-label="{{ title_case(__('Register')) }}">
+                    <form action="{{ route('register') }}" method="POST" aria-label="{{ title_case(__('register')) }}">
                         @csrf
+                        @method('POST')
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ title_case(__('Name')) }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ title_case(__('name')) }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -26,7 +27,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ title_case(__('E-Mail Address')) }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ title_case(__('e-mail address')) }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
@@ -40,7 +41,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ title_case(__('Password')) }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ title_case(__('password')) }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -54,7 +55,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ title_case(__('Confirm Password')) }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ title_case(__('confirm Password')) }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -64,7 +65,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ title_case(__('Register')) }}
+                                    {{ title_case(__('register')) }}
                                 </button>
                             </div>
                         </div>

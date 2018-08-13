@@ -1,0 +1,35 @@
+.hero {
+  overflow: hidden;
+  z-index: -2;
+  position: relative;
+  height: 30rem;
+  // background: url('/img/hero.jpg') no-repeat center center;
+  // background-size: cover;
+
+  &-image {
+    z-index: -1;
+    position: absolute;
+    top: 5rem;
+    max-height: 30rem;
+    width: #{100% / 3 / 1};
+    display: flex;
+    border-radius: 10px;
+
+    img {
+      object-fit: cover;
+    }
+
+    &.left {
+      left: #{100% / 3 / 2};
+    }
+
+    &.right {
+      right: #{100% / 3 / 2};
+    }
+
+    &.middle {
+      top: 3rem;
+      left: #{100% / 3 / 1};
+    }
+  }
+}

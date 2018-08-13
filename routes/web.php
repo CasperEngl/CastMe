@@ -15,24 +15,47 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use QuickPay\QuickPay;
 
+// Homepage
+Route::get('/', 'HomeController@index')->name('home');
+
 //User has to be logged in to access these
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/', 'PagesController@overview');
-    Route::get('/overview', 'PagesController@overview');
+    // Overview
+    Route::get('/overview', 'PagesController@overview')->name('overview');
 
-    //Post
-    Route::get('/posts', 'PostController@list');
+    // Posts
+    Route::get('/posts', 'PostController@list')->name('posts');
 
-    //Profile
-    Route::get('/profile', 'ProfileController@index');
-    Route::post('/profile/dump', function (Request $request) {
-        dd($request->all());
-    });
+    // Post
+    Route::get('/post/{id}', 'PostController@index')->where('id', '[0-9]+')->name('post');
+    Route::get('/post/new', 'PostController@new')->name('post.new');
+    Route::get('/post/{id}/edit', 'PostController@edit')->where('id', '[0-9]+')->name('post.edit');
+    Route::get('/post/{id}/edit/data', 'PostController@data')->where('id', '[0-9]+');
+    Route::get('/post/{id}/data', 'PostController@data')->where('id', '[0-9]+')->name('post.data');
+    Route::post('/post/add', 'PostController@add')->name('post.add');
+    Route::post('/post/{id}/update', 'PostController@update')->where('id', '[0-9]+')->name('post.update');
+    
+    Route::post('/post/dump', 'PostController@dump')->name('post.dump');
+    
+    // Profile Settings
+    Route::get('/user/settings', 'ProfileController@index')->name('user.settings');
+    Route::post('/user/settings/update', 'ProfileController@update')->name('user.settings.update');
+    Route::post('/user/settings/dump', 'ProfileController@dump')->name('user.settings.dump');
 
-    //subscription
-    Route::get('/subscription', 'SubscriptionController@index');
-    Route::get('/subscription/verify', 'SubscriptionController@verifyPayment');
-    Route::post('/subscription/subscribe', 'SubscriptionController@subscribe');
+    // Specific Profile
+    Route::get('/profile/{id}', 'ProfileController@user')->name('profile');
+
+    // Subscription
+    Route::get('/user/subscription', 'SubscriptionController@index')->name('user.subscription');
+    Route::get('/user/subscription/verify', 'SubscriptionController@verifyPayment')->name('user.subscription.verify');
+    Route::post('/user/subscription/subscribe', 'SubscriptionController@subscribe')->name('user.subscription.subscribe');
+
+    // Conversations (List)
+    Route::get('/conversations', 'ConversationController@list')->name('conversations');
+
+    // Conversation (Singular)
+    Route::get('/conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
+    Route::post('/conversation/{id}/send', 'ConversationController@send')->where('id', '[0-9]+')->name('conversation.send');
 });
 
 Route::get('/logout', function (){
@@ -59,11 +82,11 @@ Route::get('/test', function () {
     return $json;
 });
 
-Route::get('/lirik', function () {
+Route::get('/lirik/{id}', function ($id) {
     $api_key = '5256684d74e913d6085cc4c1d839a7c4b8245907b84f31b43462bc1b72179598';
     $client = new QuickPay(":$api_key");
 
-    $response = $client->request->put('/subscriptions/119900685/link', ['amount' => 200]);
+    $response = $client->request->post('/subscriptions/'.$id . '/session');
 
     $json = $response->asArray();
 

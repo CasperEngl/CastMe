@@ -1,11 +1,11 @@
 .navbar-brand img {
-  max-height: 50px;
+  max-height: $navbar-brand-logo-height;
   width: auto;
 }
 
 .navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  background-color: $laravel-navbar-background;
+  box-shadow: $laravel-navbar-shadow;
 }
 
 a[class='nav-link'] {
