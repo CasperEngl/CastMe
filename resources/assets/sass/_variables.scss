@@ -7,15 +7,28 @@ $body-bg: #f5f8fa;
 
 $wrapper-margin: 5rem auto;
 
-// Typography
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+// Colors
+$primary-color: #5f91c3;
+$primary: $primary-color; // Reset Bootstrap primary color
 
+// Typography
+$line-height-base: 1.6;
 $font-weight-bold: 800;
 
 // Shadows
-$shadow-color: rgba(0, 0, 0, .1);
+$shdw-x: 0;
+
+$shdw-y: .5rem;
+$shdw-y-sm: .125rem;
+$shdw-y-lg: 1rem;
+
+$shdw-blur: 1rem;
+$shdw-blur-sm: .25rem;
+$shdw-blur-lg: 3rem;
+
+$shdw-color: rgba(0, 0, 0, 0.3);
+$shdw-color-sm: rgba(0, 0, 0, 0.15);
+$shdw-color-lg: rgba(0, 0, 0, 0.35);
 
 // Cards
 $card-title-font-size: 1.25rem;
