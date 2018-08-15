@@ -1,31 +1,40 @@
+$shdw:          $shdw-x $shdw-y           $shdw-blur            $shdw-color;
+$shdw-text:     $shdw-x #{$shdw-y / 2}    #{$shdw-blur / 2}     $shdw-color;
+
+$shdw-sm:       $shdw-x $shdw-y-sm        $shdw-blur-sm         $shdw-color-sm;
+$shdw-sm-text:  $shdw-x #{$shdw-y-sm / 2} #{$shdw-blur-sm / 2}  $shdw-color-sm;
+
+$shdw-lg:       $shdw-x $shdw-y-lg        $shdw-blur-lg         $shdw-color-lg;
+$shdw-lg-text:  $shdw-x #{$shdw-y-lg}     #{$shdw-blur-lg / 2}  $shdw-color-lg;
+
 .shdw-none {
   -webkit-filter: drop-shadow(none);
   filter: drop-shadow(none);
 }
 
 .shdw {
-  -webkit-filter: drop-shadow($shdw-x $shdw-y $shdw-blur $shdw-color);
-  filter: drop-shadow($shdw-x $shdw-y $shdw-blur $shdw-color);
+  -webkit-filter: drop-shadow($shdw);
+  filter: drop-shadow($shdw);
 }
 
 .shdw-text {
-  text-shadow: $shdw-x #{$shdw-y / 2} #{$shdw-blur / 2} $shdw-color;
+  text-shadow: $shdw-text;
 }
 
 .shdw-sm {
-  -webkit-filter: drop-shadow($shdw-x $shdw-y-sm $shdw-blur-sm $shdw-color-sm);
-  filter: drop-shadow($shdw-x $shdw-y-sm $shdw-blur-sm $shdw-color-sm);
+  -webkit-filter: drop-shadow($shdw-sm);
+  filter: drop-shadow($shdw-sm);
 }
 
 .shdw-text-sm {
-  text-shadow: $shdw-x #{$shdw-y-sm / 2} #{$shdw-blur-sm / 2} $shdw-color-sm;
+  text-shadow: $shdw-sm-text;
 }
 
 .shdw-lg {
-  -webkit-filter: drop-shadow($shdw-x $shdw-y-lg $shdw-blur-lg $shdw-color-lg);
-  filter: drop-shadow($shdw-x $shdw-y-lg $shdw-blur-lg $shdw-color-lg);
+  -webkit-filter: drop-shadow($shdw-lg);
+  filter: drop-shadow($shdw-lg);
 }
 
 .shdw-text-lg {
-  text-shadow: $shdw-x #{$shdw-y-lg} #{$shdw-blur-lg / 2} $shdw-color-lg;
+  text-shadow: $shdw-lg-text;
 }
