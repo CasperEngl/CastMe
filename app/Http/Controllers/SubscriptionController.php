@@ -20,19 +20,19 @@ class SubscriptionController extends Controller {
 
     switch ($days) {
       case 60:
-        $price = 2179;
+        $price = 179;
         break;
 
       case 90:
-        $price = 3279;
+        $price = 279;
         break;
 
       case 180:
-        $price = 6449;
+        $price = 449;
         break;
 
       case 365:
-        $price = 12799;
+        $price = 799;
         break;
 
       default:
