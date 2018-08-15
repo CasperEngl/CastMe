@@ -1,16 +1,16 @@
 import $ from 'jquery';
 
-$.map($('input:checked'), input => {
-  $('[for^="' + input.id + '"]')
+$.map($('input:checked'), (input) => {
+  $(`[for^="${input.id}"]`)
     .parent()
     .addClass('active');
 });
 
-$('input').change(function() {
+$('input').change(() => {
   // Set variable for the 'this' input for easy usage
   const input = $(this);
   // Find the corresponding label
-  const label = $('[for^="' + this.id + '"]');
+  const label = $(`[for^="${this.id}"]`);
 
   // If input is a radio
   if (input.is(':radio')) {
@@ -18,9 +18,9 @@ $('input').change(function() {
       .parent()
       .siblings()
       .removeClass('active');
-		label
-			.parent()
-			.addClass('active');
+    label
+      .parent()
+      .addClass('active');
   }
 
   // If input is a checkbox
@@ -28,15 +28,15 @@ $('input').change(function() {
     // If the pagination is already active
     if (label.parent().hasClass('active')) {
       // Remove the active class
-			label
-				.parent()
-				.removeClass('active');
+      label
+        .parent()
+        .removeClass('active');
     } else {
       // If the pagination is not already active
       // Add the active class
-			label
-				.parent()
-				.addClass('active');
+      label
+        .parent()
+        .addClass('active');
     }
   }
 });
