@@ -31,25 +31,25 @@
                 <input type="checkbox" name="musician" value="1" id="profile_type-musician" {{ $post->musician ? 'checked' : '' }}>
               </div>
               <li class="page-item">
-                <label for="profile_type-actor" class="page-link" href="#">{{ title_case(__('Actor')) }}</label>
+                <label for="profile_type-actor" class="page-link" href="#">{{ title_case(__('actor')) }}</label>
               </li>
               <li class="page-item">
-                <label for="profile_type-dancer" class="page-link" href="#">{{ title_case(__('Dancer')) }}</label>
+                <label for="profile_type-dancer" class="page-link" href="#">{{ title_case(__('dancer')) }}</label>
               </li>
               <li class="page-item">
-                <label for="profile_type-entertainer" class="page-link" href="#">{{ title_case(__('Entertainer')) }}</label>
+                <label for="profile_type-entertainer" class="page-link" href="#">{{ title_case(__('entertainer')) }}</label>
               </li>
               <li class="page-item">
-                <label for="profile_type-event_staff" class="page-link" href="#">{{ title_case(__('Event staff')) }}</label>
+                <label for="profile_type-event_staff" class="page-link" href="#">{{ title_case(__('event staff')) }}</label>
               </li>
               <li class="page-item">
-                <label for="profile_type-extra" class="page-link" href="#">{{ title_case(__('Extra')) }}</label>
+                <label for="profile_type-extra" class="page-link" href="#">{{ title_case(__('extra')) }}</label>
               </li>
               <li class="page-item">
-                <label for="profile_type-model" class="page-link" href="#">{{ title_case(__('Model')) }}</label>
+                <label for="profile_type-model" class="page-link" href="#">{{ title_case(__('model')) }}</label>
               </li>
               <li class="page-item">
-                <label for="profile_type-musician" class="page-link" href="#">{{ title_case(__('Musician')) }}</label>
+                <label for="profile_type-musician" class="page-link" href="#">{{ title_case(__('musician')) }}</label>
               </li>
             </ul>
           </div>
