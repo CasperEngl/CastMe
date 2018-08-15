@@ -80,6 +80,8 @@ return [
 
     'locale' => 'en',
 
+    'supported_languages' => ['en' => 'English', 'da' => 'Danish'],
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

@@ -57,6 +57,10 @@ Route::group(['middleware' => ['auth']], function() {
     // Conversation (Singular)
     Route::get('/conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
     Route::post('/conversation/{id}/send', 'ConversationController@send')->where('id', '[0-9]+')->name('conversation.send');
+
+    // Localization
+    Route::get('locale', 'LocaleController@index')->name('locale');
+    Route::get('locale/set/{locale}', 'LocaleController@set')->name('locale.set');
 });
 
 Route::get('/logout', function (){
