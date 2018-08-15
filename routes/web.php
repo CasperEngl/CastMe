@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function() {
     
     // Profile Settings
     Route::get('/user/settings', 'ProfileController@index')->name('user.settings');
+    Route::get('/user/settings/dump', 'ProfileController@settingsDump')->name('user.settings.settingsDump');
     Route::post('/user/settings/update', 'ProfileController@update')->name('user.settings.update');
     Route::post('/user/settings/dump', 'ProfileController@dump')->name('user.settings.dump');
 

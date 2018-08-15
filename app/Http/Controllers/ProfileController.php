@@ -11,9 +11,13 @@ class ProfileController extends Controller {
     return view('user.settings');
   }
 
+  public function settingsDump() {
+    return view('user.settingsDump');
+  }
+
   public function user($id) {
     $user = User::find($id);
-    $gravatarHash = md5(trim(strtolower(Auth::User()->email))) . '?s=200';
+    $gravatarHash = md5(trim(strtolower(Auth::user()->email))) . '?s=200';
 
     !$user->details->actor ?: $profile_types[] = title_case('Actor');
     !$user->details->dancer ?: $profile_types[] = title_case('Dancer');
