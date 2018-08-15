@@ -7,7 +7,7 @@ func-names: 0,
 import $ from 'jquery';
 
 $.map($('input:checked'), (input) => {
-  $(`[for^="${input.id}"]`)
+  $(`[for="${input.id}"]`)
     .parent()
     .addClass('active');
 });
