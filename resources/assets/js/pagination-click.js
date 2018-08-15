@@ -1,3 +1,9 @@
+/*
+eslint
+
+func-names: 0,
+*/
+
 import $ from 'jquery';
 
 $.map($('input:checked'), (input) => {
@@ -6,11 +12,11 @@ $.map($('input:checked'), (input) => {
     .addClass('active');
 });
 
-$('input').change(() => {
+$('.pagination input').change(function () {
   // Set variable for the 'this' input for easy usage
   const input = $(this);
   // Find the corresponding label
-  const label = $(`[for^="${this.id}"]`);
+  const label = $(`[for="${this.id}"]`);
 
   // If input is a radio
   if (input.is(':radio')) {
