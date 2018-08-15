@@ -2,8 +2,12 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600');
 
+// Variables
+@import 'variables';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// @import '~mdbootstrap/scss/mdb';
 
 // Animate.css
 @import '~animate.css/animate.min.css';
@@ -15,9 +19,6 @@
 
 // File upload
 @import 'file-input/fileinput';
-
-// Variables
-@import 'variables';
 
 // Global Styling
 @import 'global';
@@ -36,5 +37,6 @@
 @import 'hero';
 @import 'footer';
 @import 'animation';
+@import 'shadow';
 
 @import url('https://castme.dk/castme.css');
