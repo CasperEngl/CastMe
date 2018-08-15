@@ -1,4 +1,5 @@
 .btn.tile {
+  @extend .shdw;
   margin: .5rem 0;
   width: 100%;
   height: $tile-height;
@@ -8,7 +9,10 @@
   align-items: center;
   justify-content: center;
 
+  background: $primary-color;
+  border: none;
   font-size: $tile-font-size;
+  color: white;
 
   .fa,
   .fas,
