@@ -143,15 +143,15 @@ use \Illuminate\Support\Facades\Auth;
                 </div>
 
                 <div class="col-sm-6">
-                  <input type="checkbox" name="accepth" class="filled-in" id="accepth">
-                  <label for="accepth">{{ ucfirst(__('i accept the')) }} <a href="https://castme.dk/abonnementsbetingelser/" target="blank">{{ __('subscription conditions') }}.</a></label>
+                  <input type="checkbox" name="accepth" id="accepth">
+                  <label for="accepth">{{ ucfirst(__('i accept the')) }} <a href="https://castme.dk/abonnementsbetingelser/" target="blank">{{ __('subscription conditions') }}</a></label>
                 </div>
               </div>
             </div>
 
             <button class="card-footer btn btn-primary" type="submit">
-              @if(\Illuminate\Support\Facades\Auth::user()->activeSub())
-                {{ title_case(__('update info')) }}
+              @if(Auth::user()->activeSub())
+                {{ title_case(__('update information')) }}
               @else
                 {{ title_case(__('subscribe')) }}
               @endif
