@@ -14,7 +14,7 @@
             <div class="card-body">
 
               <?php
-                $splitName = explode(' ', Auth::User()->name);
+                $splitName = explode(' ', Auth::user()->name);
 
                 $first_name = $splitName[0];
                 $last_name = !empty(end($splitName)) && end($splitName) !== $first_name ? end($splitName) : '';
@@ -24,7 +24,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="username" class="text-muted">{{ title_case('Username') }}</label>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="Name yourself" value="{{ kebab_case(Auth::User()->name) }}">
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Name yourself" value="{{ kebab_case(Auth::user()->name) }}">
                   </div>
                 </div>
               </div>
@@ -48,7 +48,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="email" class="text-muted">{{ title_case('Email') }}</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" value="{{ Auth::User()->email }}">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" value="{{ Auth::user()->email }}">
                   </div>
                 </div>
               </div>

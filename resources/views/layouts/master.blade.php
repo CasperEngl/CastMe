@@ -24,8 +24,8 @@
           <ul class="navbar-nav">
             @auth
             <li class="nav-item">
-              <a href="/profile/{{ Auth::User()->id }}" class="nav-link">
-              {{ Auth::User()->name }} {{ Auth::User()->last_name }} | {{ Auth::User()->role }}
+              <a href="/profile/{{ Auth::user()->id }}" class="nav-link">
+              {{ Auth::user()->name }} {{ Auth::user()->last_name }} | {{ Auth::user()->role }}
             </a>
             </li>
             @endauth
