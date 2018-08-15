@@ -2,12 +2,14 @@
 eslint
 
 no-undef: 0,
+class-methods-use-this: 0,
 */
 
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import FontAwesome from 'react-fontawesome';
 import axios from 'axios';
+import LocalizedStrings from 'react-localization';
 
 import {
   Row,
@@ -16,6 +18,31 @@ import {
 } from 'reactstrap';
 
 import ImageInput from './ImageInput';
+
+async function getLocale() {
+  try {
+    /*
+    const response = await fetch('/api/locale');
+    const result = await response.json();
+    */
+    const specific = await fetch('/api/locale/da');
+    const locales = await specific.json();
+
+    if (!locales.error) {
+      return {
+        error: 'failed loading locales',
+      };
+    }
+
+    return locales;
+  } catch (err) {
+    // console.log(err);
+  }
+}
+
+getLocale();
+
+// const strings = new LocalizedStrings();
 
 class ImageInputs extends Component {
   constructor(props) {
@@ -35,9 +62,11 @@ class ImageInputs extends Component {
       const data = await axios.get('data');
       const images = JSON.parse(data.data.images);
 
-      images.map((image) => {
-        this.handleAddInput(image);
-      });
+      if (images) {
+        images.map((image) => {
+          this.handleAddInput(image);
+        });
+      }
     } catch (err) {
       console.log(err);
     }
@@ -51,7 +80,7 @@ class ImageInputs extends Component {
     });
   }
 
-  handleAddInput(image) {
+  handleAddInput(image = '') {
     const { inputList } = this.state;
 
     this.setState(prevState => ({
@@ -76,7 +105,7 @@ class ImageInputs extends Component {
             </h5>
           </Col>
           <Col xs="auto">
-            <Button color="primary" className="circle" onClick={this.handleAddInput}>
+            <Button color="primary" className="circle" onClick={() => this.handleAddInput()}>
               <FontAwesome name="plus" />
             </Button>
           </Col>
