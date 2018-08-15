@@ -3,7 +3,7 @@
 @section('content')
 <section class="hero jumbotron">
   <div class="container d-flex flex-column align-items-center">
-    <h1 class="animated fadeIn">{{ ucfirst(__('is casting something for you?')) }}</h1>
+    <h1 class="animated fadeIn">Er casting noget for dig?</h1>
     <a href="/register" class="btn btn-primary btn-lg m-4">{{ title_case(__('register')) }}</a>
     <figure class="hero-image left animated fadeInUp">
       <img src="{{ asset('img/hero.jpg') }}" alt="">
@@ -28,28 +28,32 @@
     <p class="text-center">
       Vores profilsystem leverer en sikker og brugervenlig platform til at holde øje med dine beskeder og dine opslag.
     </p>
-    <div class="feature d-flex align-items-center my-2 animated fadeInLeft delay-1000ms">
+    <div class="feature my-2 animated fadeInLeft delay-1000ms">
       <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Chat imellem scouts og medlemmer
     </div>
-    <div class="feature d-flex align-items-center my-2 animated fadeInLeft delay-1500ms">
+    <div class="feature my-2 animated fadeInLeft delay-1500ms">
       <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Notifikationer på opslag du er interreseret i
     </div>
-    <div class="feature d-flex align-items-center my-2 animated fadeInLeft delay-2000ms">
+    <div class="feature my-2 animated fadeInLeft delay-2000ms">
       <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Abonnementsstyring, opgradering og nedgradering
     </div>
-    <div class="feature d-flex align-items-center my-2 animated fadeInLeft delay-2500ms">
+    <div class="feature my-2 animated fadeInLeft delay-2500ms">
       <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Detaljeret profilredigering, billedeuskiftning og meget mere
     </div>
   </section>
 </main>
 <section class="jumbotron mt-4 mb-0">
   <div class="container">
-    <h2>Priser fra</h2>
+    <h2 class="page-header">Priser fra</h2>
     <div class="row">
-      <div class="col-md-4">
-        <div class="card">
+      <div class="col-md-3">
+        <article class="card">
           <div class="card-header">
-            <h3>89 DKK/Måned</h3>
+            <h5>2 måneder</h5>
+            <div class="d-flex align-items-center">
+              <h6 class="m-0">179,-</h6>
+              <p class="small ml-2 mb-0">{{ ceil(179 / 2) }} DKK/Måned</p>
+            </div>
           </div>
           <div class="card-body">
             <ul>
@@ -61,12 +65,16 @@
           <div class="card-footer">
             <a href="/register" class="card-link btn btn-primary">{{ title_case(__('register')) }}</a>
           </div>
-        </div>
+        </article>
       </div>
-      <div class="col-md-4">
-        <div class="card">
+      <div class="col-md-3">
+        <article class="card">
           <div class="card-header">
-            <h3>89 DKK/Måned</h3>
+            <h5>3 måneder</h5>
+            <div class="d-flex align-items-center">
+              <h6 class="m-0">279,-</h6>
+              <p class="small ml-2 mb-0">{{ ceil(279 / 3) }} DKK/Måned</p>
+            </div>
           </div>
           <div class="card-body">
             <ul>
@@ -78,12 +86,16 @@
           <div class="card-footer">
             <a href="/register" class="card-link btn btn-primary">{{ title_case(__('register')) }}</a>
           </div>
-        </div>
+        </article>
       </div>
-      <div class="col-md-4">
-        <div class="card">
+      <div class="col-md-3">
+        <article class="card">
           <div class="card-header">
-            <h3>89 DKK/Måned</h3>
+            <h5>6 måneder</h5>
+            <div class="d-flex align-items-center">
+              <h6 class="m-0">449,-</h6>
+              <p class="small ml-2 mb-0">{{ ceil(449 / 6) }} DKK/Måned</p>
+            </div>
           </div>
           <div class="card-body">
             <ul>
@@ -95,7 +107,28 @@
           <div class="card-footer">
             <a href="/register" class="card-link btn btn-primary">{{ title_case(__('register')) }}</a>
           </div>
-        </div>
+        </article>
+      </div>
+      <div class="col-md-3">
+        <article class="card">
+          <div class="card-header">
+            <h5>12 måneder</h5>
+            <div class="d-flex align-items-center">
+              <h6 class="m-0">799,-</h6>
+              <p class="small ml-2 mb-0">{{ ceil(799 / 12) }} DKK/Måned/p>
+            </div>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li>Fuld opslagsoversigt</li>
+              <li>Kontakt scouts direkte</li>
+              <li>Sæt præferencer og foretrukkende</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <a href="/register" class="card-link btn btn-primary">{{ title_case(__('register')) }}</a>
+          </div>
+        </article>
       </div>
     </div>
   </div>
