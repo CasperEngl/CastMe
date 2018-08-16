@@ -55,14 +55,14 @@
           </div>
         </div>
         <div class="card-block">
-          <div id="ImageInputs"></div>
+          <div id="ImageInputs" data-type="{{ $type }}"></div>
         </div>
         <div class="card-block">
-          <h5 class="text-muted">{{ ucfirst(__('upload post banner')) }}</h5>
+          <h5 class="text-muted">{{ ucfirst(__('upload banner')) }}</h5>
           <input name="profile-picture-upload" type="file" class="file">
         </div>
         <div class="card-block">
-          <h5 class="text-muted">{{ ucfirst(__('write post description')) }}</h5>
+          <h5 class="text-muted">{{ ucfirst(__('write description')) }}</h5>
           <textarea name="content" class="tinymce">{{ $post->content }}</textarea>
         </div>
         <div class="card-footer">
