@@ -26,6 +26,8 @@
         "animate.css": "^3.7.0",
         "axios": "^0.18.0",
         "bootstrap": "^4.1.2",
+        "bootstrap-select": "^1.13.1",
+        "flag-icon-css": "^3.0.0",
         "jquery": "^3.2",
         "mdbootstrap": "^4.5.9",
         "popper.js": "^1.12",
