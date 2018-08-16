@@ -13,9 +13,9 @@
         </figure>
         <div class="card-body">
           @if (Auth::user()->id === $post->user_id)
-            <h5 class="text-muted">{{ title_case(__('written by')) }} {{ strtoupper(__('you')) }}</h5>
+            <h5 class="text-muted">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</h5>
           @else
-            <h5 class="text-muted">{{ title_case(__('written by')) }} {{ $post->owner->name }}</h5>
+            <h5 class="text-muted">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</h5>
           @endif
 
           <div class="my-4">
