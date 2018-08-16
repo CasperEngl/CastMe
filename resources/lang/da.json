@@ -7,6 +7,7 @@
   "posts": "indlæg",
   "conversations": "samtaler",
   "new post": "nyt indlæg",
+  "edit post": "rediger indlæg",
   "users": "brugere",
   "overview": "oversigt",
   "logout": "log ud",
@@ -37,5 +38,13 @@
   "event staff": "arrangement personale",
   "extra": "ekstra",
   "model": "model",
-  "musician": "musiker"
+  "musician": "musiker",
+  "written by": "skrevet af",
+  "contact scout": "kontakt spejder",
+  "read more": "læs mere",
+  "edit": "rediger",
+  "upload banner": "upload banner",
+  "write description": "skriv beskrivelse",
+  "update": "opdater",
+  "add": "tilføj"
 }
