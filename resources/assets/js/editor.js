@@ -1,4 +1,10 @@
 import tinymce from 'tinymce';
+import config from './config';
+import getLocale from './getLocale';
+
+import './tinymce-i18n/en_GB';
+
+const locale = getLocale(config.app.supported_languages) === 'da' ? 'da' : 'en_GB';
 
 // Simple Editor
 tinymce.init({
