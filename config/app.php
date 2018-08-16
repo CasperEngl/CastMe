@@ -165,7 +165,12 @@ return [
         /*
          * Lorem Ipsum generator
          */
-        Magyarjeti\LaravelLipsum\LipsumServiceProvider::class
+        Magyarjeti\LaravelLipsum\LipsumServiceProvider::class,
+
+        /*
+         * Expose Laravel config to JS
+         */
+        LaravelJsConfig\LaravelJsConfigServiceProvider::class
     ],
 
     /*
