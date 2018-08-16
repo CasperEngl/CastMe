@@ -3,6 +3,7 @@ eslint
 
 no-undef: 0,
 class-methods-use-this: 0,
+array-callback-return: 0,
 */
 
 import React, { Component, Fragment } from 'react';
@@ -17,32 +18,9 @@ import {
   Button,
 } from 'reactstrap';
 
+import './ucFirst';
+
 import ImageInput from './ImageInput';
-
-async function getLocale() {
-  try {
-    /*
-    const response = await fetch('/api/locale');
-    const result = await response.json();
-    */
-    const specific = await fetch('/api/locale/da');
-    const locales = await specific.json();
-
-    if (!locales.error) {
-      return {
-        error: 'failed loading locales',
-      };
-    }
-
-    return locales;
-  } catch (err) {
-    // console.log(err);
-  }
-}
-
-getLocale();
-
-// const strings = new LocalizedStrings();
 
 class ImageInputs extends Component {
   constructor(props) {
@@ -54,21 +32,54 @@ class ImageInputs extends Component {
     this.state = {
       inputNumber: 0,
       inputList: [],
+      defaultStrings: {
+        en: {
+          images: 'images',
+        },
+        da: {
+          images: 'billeder',
+        },
+      },
+      lang: 'en',
     };
   }
 
   async componentDidMount() {
-    try {
-      const data = await axios.get('data');
-      const images = JSON.parse(data.data.images);
+    const { type } = this.props;
+    const { defaultStrings } = this.state;
 
-      if (images) {
-        images.map((image) => {
-          this.handleAddInput(image);
+    this.getLocale(defaultStrings);
+
+    if (type.toLowerCase() === 'update') {
+      try {
+        const data = await axios.get('data');
+        const images = JSON.parse(data.data.images);
+  
+        if (images) {
+          images.map((image) => {
+            this.handleAddInput(image);
+          });
+        }
+      } catch (err) {
+        // console.log(err);
+      }
+    }
+  }
+
+  async getLocale(supportedLanguages) {
+    try {
+      const response = await fetch('/api/locale');
+      const result = await response.json();
+  
+      if (Object.keys(supportedLanguages).includes(result.lang)) {
+        this.setState({
+          lang: result.lang,
         });
+  
+        return result.lang;
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   }
 
@@ -94,14 +105,18 @@ class ImageInputs extends Component {
   }
 
   render() {
-    const { inputList } = this.state;
+    const { inputList, defaultStrings, lang } = this.state;
+
+    const strings = new LocalizedStrings(defaultStrings);
+
+    strings.setLanguage(lang);
 
     return (
       <Fragment>
         <Row className="d-flex align-items-center mb-2">
           <Col xs="auto">
             <h5 className="text-muted m-0">
-              Images
+              { strings.images.ucFirst() }
             </h5>
           </Col>
           <Col xs="auto">
@@ -119,5 +134,6 @@ class ImageInputs extends Component {
 export default ImageInputs;
 
 if (document.getElementById('ImageInputs')) {
-  ReactDOM.render(<ImageInputs />, document.getElementById('ImageInputs'));
+  const { type } = document.getElementById('ImageInputs').dataset;
+  ReactDOM.render(<ImageInputs type={type} />, document.getElementById('ImageInputs'));
 }
