@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4d356a37a6a72a233f28e4f37030f9d",
+    "content-hash": "3dd5be17194584c5da6d15d71634858c",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -452,6 +452,62 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "kkszymanowski/laravel-js-config",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KKSzymanowski/laravel-js-config.git",
+                "reference": "e8d0559219532dddbf0d2c6179f18d8edc668ffe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KKSzymanowski/laravel-js-config/zipball/e8d0559219532dddbf0d2c6179f18d8edc668ffe",
+                "reference": "e8d0559219532dddbf0d2c6179f18d8edc668ffe",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.2",
+                "illuminate/filesystem": "~5.2",
+                "illuminate/support": "~5.2",
+                "php": "7.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "1.*",
+                "orchestra/testbench": "3.*",
+                "phpunit/phpunit": "5.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LaravelJsConfig\\LaravelJsConfigServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LaravelJsConfig\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kuba Szymanowski",
+                    "email": "kuba.szymanowski@inf24.pl"
+                }
+            ],
+            "description": "Publish Laravel configuration to JS",
+            "keywords": [
+                "config",
+                "javascript",
+                "laravel"
+            ],
+            "time": "2017-11-08T08:36:45+00:00"
         },
         {
             "name": "laravel/framework",
