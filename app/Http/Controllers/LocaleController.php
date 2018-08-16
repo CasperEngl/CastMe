@@ -49,8 +49,8 @@ class LocaleController extends Controller {
         foreach ($this->supported_languages as $key => $value) {
             $preg .= $key . '|';
 
-            end($supported_languages);
-            if ($key === key($supported_languages))
+            end($this->supported_languages);
+            if ($key === key($this->supported_languages))
                 $preg .= $key;
         }
 
@@ -76,6 +76,8 @@ class LocaleController extends Controller {
 
     public function set(Request $request) {
         $user = Auth::user();
+
+        return response()->json($request);
 
         if ($user) {
             $user->lang = $request->input('locale') ? $request->input('locale') : $user->lang;
@@ -106,8 +108,6 @@ class LocaleController extends Controller {
             }
         } else {
             $preg = $this->supported_languages_preg();
-
-            return response()->json(print_r($request->session()));
 
             if (Session::get('locale'))
                 $accept_language = $request->session()->get('locale');
