@@ -40,7 +40,7 @@
             </li>
           </ul>
 
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav align-items-center ml-auto">
             @guest
             <li class="nav-item">
               <a class="nav-link" href="{{ route('login') }}">{{ title_case(__('login')) }}</a>
@@ -76,6 +76,14 @@
               </div>
             </li>
             @endguest
+            <form class="form" action="{{ route('locale.set') }}" method="POST">
+              <select name="locale" class="selectpicker" data-width="fit">
+                <option value="da" data-content="<span class='flag-icon flag-icon-dk'></span> {{ ucfirst(__('danish')) }}" {{ Auth::user() && Auth::user()->lang === 'da' ? 'selected' : '' }}>{{ ucfirst(__('danish')) }}</option>
+                <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ Auth::user() && Auth::user()->lang === 'en' ? 'selected' : '' }}>{{ ucfirst(__('english')) }}</option>
+              </select>
+
+              @csrf
+            </form>
           </ul>
 
         </div>
