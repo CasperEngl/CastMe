@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Localization
     Route::get('locale', 'LocaleController@index')->name('locale');
-    Route::get('locale/set/{locale}', 'LocaleController@set')->name('locale.set');
+    Route::post('locale/set/{locale?}', 'LocaleController@set')->name('locale.set');
 });
 
 Route::get('/logout', function (){
