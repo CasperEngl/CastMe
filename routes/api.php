@@ -17,6 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['web']], function () {
-    Route::get('locale/{locale?}', 'LocaleController@get')->name('locale.get');
-});
+Route::get('locale/{locale?}', 'LocaleController@get')->name('locale.get');
