@@ -77,8 +77,6 @@ class LocaleController extends Controller {
     public function set(Request $request) {
         $user = Auth::user();
 
-        return response()->json($request);
-
         if ($user) {
             $user->lang = $request->input('locale') ? $request->input('locale') : $user->lang;
             $user->save();
