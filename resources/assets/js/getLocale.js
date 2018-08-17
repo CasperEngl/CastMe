@@ -1,3 +1,10 @@
+/*
+eslint
+
+consistent-return: 0,
+no-undef: 0,
+*/
+
 async function getLocale(supportedLanguages) {
   try {
     const response = await fetch('/api/locale');
