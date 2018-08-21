@@ -24,15 +24,15 @@ class SubscriptionController extends Controller {
 
     //Checks if user already have a subscription
     if ($user->subscribed('paid'))
-      return redirect()->route('user.subscription')->withErrors([__('user already have active subscription')]);
+      return redirect()->route('user.subscription')->withErrors([ucfirst(__('user already have an active subscription'))]);
 
     //Checks that $request->input('sub') is not manipulated
     if(!in_array($model, ['2_months', '3_months', '6_months', '12_months']))
-      return redirect()->route('user.subscription')->withErrors([__('Unknown billing model')]);
+      return redirect()->route('user.subscription')->withErrors([ucfirst(__('unknown billing model'))]);
 
     $user->newSubscription('paid', $model)->create($request->input('stripeToken'));
 
-    Flash::push('success', __("You're now subscribed!"));
+    Flash::push('success', ucfirst(__('you\'re now subscribed!')));
     return redirect()->route('user.subscription');
   }
 
@@ -44,11 +44,11 @@ class SubscriptionController extends Controller {
       return redirect()->route('user.subscription')->withErrors([__('user does not have active subscription')]);
 
     if(!in_array($model, ['2_months', '3_months', '6_months', '12_months']))
-      return redirect()->route('user.subscription')->withErrors([__('Unknown billing model')]);
+      return redirect()->route('user.subscription')->withErrors([__('unknown billing model')]);
 
     $user->subscription()->swap($model);
 
-    Flash::push('success', __("Changed billing cycle"));
+    Flash::push('success', ucfirst(__('changed billing cycle')));
     return redirect()->route('user.subscription');
   }
 
@@ -57,7 +57,7 @@ class SubscriptionController extends Controller {
     if ($user->subscribed('paid'))
       $user->subscription()->cancel();
 
-    Flash::push('success', __("Successfully unsubscribed"));
+    Flash::push('success', ucfirst(__('successfully unsubscribed')));
     return redirect()->route('user.subscription');
   }
 }
