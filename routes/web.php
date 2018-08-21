@@ -64,8 +64,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     //subscription Stripe
   Route::get('sub/make', 'SubscriptionController@subForm')->name('subform');
-  Route::post('sub/make', 'SubscriptionController@makeSub');
-  Route::get('sub/check', 'SubscriptionController@checkSub');
+  Route::post('sub/make', 'SubscriptionController@create');
 });
 
 Route::get('/logout', function (){
