@@ -54,9 +54,7 @@ class User extends Authenticatable {
   }
 
   public function activeSub() {
-    $sub = new Subscription($this);
-
-    return $sub->verifySubscription();
+    return $this->subscribed('paid');
   }
 
   public function details() {

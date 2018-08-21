@@ -131,6 +131,18 @@
       }
     </style>
     <form id="payment-form" method="post">
+      <input type="radio" name="sub" id="2_months" value="2_months" >
+      <label style="display: inline-block; cursor: pointer; color: #ccc; padding-right: 20px;" for="2_months">2 Months</label>
+
+      <input type="radio" name="sub" id="3_months" value="3_months" >
+      <label style="display: inline-block; cursor: pointer; color: #ccc; padding-right: 20px;" for="3_months">3 Months</label>
+
+      <input type="radio" name="sub" id="6_months" value="6_months" >
+      <label style="display: inline-block; cursor: pointer; color: #ccc; padding-right: 20px;" for="6_months">6 Months</label>
+
+      <input type="radio" name="sub" id="12_months" value="12_months" >
+      <label style="display: inline-block; cursor: pointer; color: #ccc; padding-right: 20px;" for="12_months">12 Months</label>
+
       <label>
         <div id="card-element" class="field is-empty"></div>
         <span><span>Credit or debit card</span></span>

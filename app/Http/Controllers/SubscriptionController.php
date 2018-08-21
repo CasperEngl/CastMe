@@ -14,65 +14,50 @@ class SubscriptionController extends Controller {
     return view('user.subscription');
   }
 
-  public function subscribe(Request $request) {
-    $days = $request->input('days');
-    $user = Auth::user();
-
-    switch ($days) {
-      case 60:
-        $price = 179;
-        break;
-
-      case 90:
-        $price = 279;
-        break;
-
-      case 180:
-        $price = 449;
-        break;
-
-      case 365:
-        $price = 799;
-        break;
-
-      default:
-        return redirect()->back()->withErrors("Invalid amount of days selected")->withInput();
-        break;
-    }
-
-    $user->order->days = $days;
-    $user->order->save();
-
-    $sub = new Subscription($user);
-
-    $link = $sub->generateLink($price * 100);
-
-    return redirect($link);
-  }
-
-  public function verifyPayment() {
-    $sub = new Subscription(Auth::user());
-
-    $sub->withdraw();
-
-    return redirect()->route('subscription');
-  }
-
   public function subForm() {
     return view('form');
   }
 
-  public function makeSub(Request $request) {
+  public function create(Request $request) {
     $user = Auth::user();
+    $model = $request->input('sub');
 
-    $status = $user->newSubscription('paid', 'plan_DSQK64xSylOipH')->create($request->input('stripeToken'));
+    //Checks if user already have a subscription
+    if ($user->subscribed('paid'))
+      return redirect()->route('user.subscription')->withErrors([__('user already have active subscription')]);
 
-    return "hello world";
+    //Checks that $request->input('sub') is not manipulated
+    if(!in_array($model, ['2_months', '3_months', '6_months', '12_months']))
+      return redirect()->route('user.subscription')->withErrors([__('Unknown billing model')]);
+
+    $user->newSubscription('paid', $model)->create($request->input('stripeToken'));
+
+    Flash::push('success', __("You're now subscribed!"));
+    return redirect()->route('user.subscription');
   }
 
-  public function checkSub() {
+  public function swap(Request $request) {
     $user = Auth::user();
-    $user->subscription('paid')->cancel();
-    return [$user->subscribed('paid'), $user->subscription('paid')->onTrial()];
+    $model = $request->input('sub');
+
+    if (!$user->subscribed('paid'))
+      return redirect()->route('user.subscription')->withErrors([__('user does not have active subscription')]);
+
+    if(!in_array($model, ['2_months', '3_months', '6_months', '12_months']))
+      return redirect()->route('user.subscription')->withErrors([__('Unknown billing model')]);
+
+    $user->subscription()->swap($model);
+
+    Flash::push('success', __("Changed billing cycle"));
+    return redirect()->route('user.subscription');
+  }
+
+  public function cancel() {
+    $user = Auth::user();
+    if ($user->subscribed('paid'))
+      $user->subscription()->cancel();
+
+    Flash::push('success', __("Successfully unsubscribed"));
+    return redirect()->route('user.subscription');
   }
 }
