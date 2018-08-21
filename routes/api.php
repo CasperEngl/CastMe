@@ -18,3 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('locale/{locale?}', 'LocaleController@get')->name('locale.get');
+
+//Stripe webhooks
+Route::post(
+  'stripe/webhook',
+  '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
+);

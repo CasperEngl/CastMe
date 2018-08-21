@@ -57,4 +57,22 @@ class SubscriptionController extends Controller {
 
     return redirect()->route('subscription');
   }
+
+  public function subForm() {
+    return view('form');
+  }
+
+  public function makeSub(Request $request) {
+    $user = Auth::user();
+
+    $status = $user->newSubscription('paid', 'plan_DSQK64xSylOipH')->create($request->input('stripeToken'));
+
+    return "hello world";
+  }
+
+  public function checkSub() {
+    $user = Auth::user();
+    $user->subscription('paid')->cancel();
+    return [$user->subscribed('paid'), $user->subscription('paid')->onTrial()];
+  }
 }
