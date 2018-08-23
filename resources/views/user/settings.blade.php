@@ -3,8 +3,6 @@
 <main class="container">
   <h2 class="page-header">{{ title_case(__('profile information')) }}</h2>
 
-  {{ Auth::user() }}
-
   <div class="row">
 
     <div class="col-lg-4">
