@@ -40,37 +40,42 @@
         @endif
       </div>
 
-      @if (Auth::id() === $post->user_id)
-        <h2 class="page-header mb-0">{{ title_case(__('comments')) }}</h2>
-      @endif
-      @if ($comments)
-        @foreach ($comments as $comment)
-          @if (Auth::id() === $post->user_id || Auth::id() === $comment->user_id)
-          <div class="card my-3">
-            <div class="card-header">{{ $comment->owner->name }} {{ $comment->owner->last_name }}</div>
-            <div class="card-body">
-              {{ strip_tags($comment->content) }}
-            </div>
-            <div class="card-footer">
-              <div class="row align-items-center">
-                <div class="col">{{ Carbon::parse($comment->updated_at)->format('M j \a\t G:i') }}</div>
-                <div class="col-auto">
-                  <form action="/conversation/new" method="POST">
-                    <button class="btn btn-primary" type="submit">{{ ucfirst(__('message')) }}</button>
+      @if ($owner)
+        @if (count($comments) > 0)
+          <h2 class="page-header mb-0">{{ title_case(__('comments')) }}</h2>
+          @foreach ($comments as $comment)
+            {{-- Output comment if user is post owner or user own comment --}}
+            @if ($owner || Auth::id() === $comment->user_id)
+            <div class="card my-3">
+              {{ Auth::id() === $comment->owner }}
+              <div class="card-header">{{ $comment->owner->name }} {{ $comment->owner->last_name }}</div>
+              <div class="card-body">
+                {{ strip_tags($comment->content) }}
+              </div>
+              <div class="card-footer">
+                <div class="row align-items-center">
+                  <div class="col">{{ Carbon::parse($comment->updated_at)->format('M j \a\t G:i') }}</div>
+                  <div class="col-auto">
+                    <form action="{{ route('conversation.new') }}" method="POST">
+                      <button class="btn btn-primary" type="submit">{{ ucfirst(__('message')) }}</button>
 
-                    {{ Form::hidden('user', Crypt::encrypt($comment->owner->id)) }}
-                    @csrf
-                    @method('POST')
-                  </form>
+                      {{ Form::hidden('user', Crypt::encrypt($comment->owner->id)) }}
+                      @csrf
+                      @method('POST')
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          @endif
-        @endforeach
+            @endif
+          @endforeach
+        {{-- If no comments are found --}}
+        @else
+        <h2 class="page-header mb-0">{{ title_case(__('No comments')) }}</h2>
+        @endif
       @endif
-      @if (Auth::id() !== $post->user_id)
-      <form action="/post/comment/new" method="POST">
+      @if (!$owner)
+      <form action="{{ route('comment.new') }}" method="POST">
         <h2 class="page-header mb-0">{{ ucfirst(__('comment')) }}</h2>
         <textarea name="content" class="tinymce"></textarea>
         <button class="btn btn-primary" type="submit">{{ title_case(__('message')) }}</button>

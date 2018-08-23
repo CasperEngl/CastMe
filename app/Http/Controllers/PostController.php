@@ -11,13 +11,13 @@ use App\Helpers\Flash;
 
 class PostController extends Controller {
   public function index($id) {
-    $post = Post::findOrFail($id);
-    $comments = $post->comments;
+    $post = Post::find($id);
 
     if ($post)
       return view('post.singular')->with([
         'post' => $post,
-        'comments' => $comments
+        'comments' => $post->comments,
+        'owner' => Auth::id() === $post->owner->id,
       ]);
     else
       return redirect()->route('post.list')->withErrors([
