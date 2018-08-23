@@ -53,6 +53,10 @@ class User extends Authenticatable {
     return $this->hasMany('App\Payment');
   }
 
+  public function conversations() {
+    return $this->hasMany('App\Conversation');
+  }
+
   public function activeSub() {
     return $this->subscribed('paid');
   }

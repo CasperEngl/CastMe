@@ -13,8 +13,8 @@ class CreateConversationsTable extends Migration {
   public function up() {
     Schema::create('conversations', function (Blueprint $table) {
       $table->increments('id');
-      $table->integer('sender');
-      $table->integer('receiver');
+      $table->integer('sender_id');
+      $table->integer('receiver_id');
       $table->text('content');
       $table->boolean('read')->default(true);
       $table->timestamps();

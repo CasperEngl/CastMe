@@ -9,13 +9,13 @@ use App\Conversation;
 
 class ConversationController extends Controller {
   public function index($id) {
-    $replies = Conversation::findOrFail($id);
-    return response()->json([
-      'test' => $replies
-    ]);
+    $replies = Conversation::where('receiver_id', $id)
+      ->latest()
+      ->get();
 
     return view('conversation.singular')->with([
-      'form_url' => route('conversation.send')
+      'form_url' => route('conversation.send'),
+      'messages' => $replies
     ]);
   }
 
@@ -24,6 +24,7 @@ class ConversationController extends Controller {
   }
 
   public function new(Request $request) {
+
     return redirect()->route('conversation', [
       'id' => Crypt::decrypt($request->input('user')),
     ]);
@@ -33,8 +34,8 @@ class ConversationController extends Controller {
     $user = Crypt::decrypt($request->input('user'));
 
     $message = new Conversation([
-      'sender' => Auth::id(),
-      'receiver' => $user,
+      'sender_id' => Auth::id(),
+      'receiver_id' => $user,
       'content' => $request->input('content'),
       'read' => false,
     ]);
