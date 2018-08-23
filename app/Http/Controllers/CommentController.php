@@ -14,9 +14,8 @@ class CommentController extends Controller {
     public function new(Request $request) {
         $user = Auth::user();
         $post_id = Crypt::decrypt($request->input('post'));
-        $findPost = Post::find($post_id);
 
-        if ($findPost) {
+        if (Post::find($post_id)) {
             $comment = new Comment([
                 'user_id' => $user->id,
                 'post_id' => $post_id,
