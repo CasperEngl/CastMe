@@ -19,7 +19,7 @@
     </div>
 
     <form action="{{ $form_url }}" method="POST">
-      <textarea name="message" class="tinymce"></textarea>
+      <textarea name="content" class="tinymce"></textarea>
       <button type="submit" class="btn btn-primary">{{ title_case(__('send')) }}</button>
 
       @csrf
