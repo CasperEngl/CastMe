@@ -162,7 +162,9 @@ use \Illuminate\Support\Facades\Auth;
           @csrf
           @method('POST')
         </form>
-        <div id="Stripe"></div>
+        
+        <script src="https://js.stripe.com/v3/"></script>
+        <div id="StripeMount"></div>
       </div>
 
     </div>
