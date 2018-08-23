@@ -5,7 +5,7 @@ import StripeCheckout from 'react-stripe-checkout';
 export default class Stripe extends Component {
   onToken = async (token) => {
     try {
-      const response = await fetch('/save-stripe-token', {
+      const response = await fetch('/sub/dump', {
         method: 'POST',
         body: JSON.stringify(token),
       });
