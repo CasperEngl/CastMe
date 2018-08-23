@@ -97,6 +97,7 @@ class PostController extends Controller {
       'content'     => $request->input('content'),
       'user_id'     => Auth::id()
     ]);
+
     $post->save();
 
     Flash::push('success', 'Your post has been created!');
@@ -116,7 +117,6 @@ class PostController extends Controller {
 
     if ($post->user_id !== Auth::id())
       return redirect()->route('overview')->with(['errors' => ['Unauthorized access']]);
-
 
     $post->title       = $request->input('title');
     $post->actor       = $request->input('actor', false);

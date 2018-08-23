@@ -23,6 +23,7 @@ class CommentController extends Controller {
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
+            
             $comment->save();
         } else {
             return redirect()->back()->withErrors([

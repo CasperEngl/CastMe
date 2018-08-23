@@ -52,13 +52,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/user/subscription/verify', 'SubscriptionController@verifyPayment')->name('user.subscription.verify');
     Route::post('/user/subscription/subscribe', 'SubscriptionController@subscribe')->name('user.subscription.subscribe');
 
+    // Conversation (Singular)
+    Route::get('conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
+    Route::post('conversation/new', 'ConversationController@new')->name('conversation.new');
+    Route::post('conversation/send', 'ConversationController@send')->where('id', '[0-9]+')->name('conversation.send');
+
     // Conversations (List)
     Route::get('/conversations', 'ConversationController@list')->name('conversations');
-
-    // Conversation (Singular)
-    Route::get('/conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
-    Route::post('/conversation/{id}/send', 'ConversationController@send')->where('id', '[0-9]+')->name('conversation.send');
-    Route::post('conversation/new', 'ConversationController@new')->name('conversation.new');
 
     // Localization
     Route::get('locale', 'LocaleController@index')->name('locale');
