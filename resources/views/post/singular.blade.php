@@ -24,10 +24,10 @@
 
           @if (json_decode($post->images)[0] !== null)
             <h6 class="text-muted">{{ title_case(__('images')) }}</h6>
-          @endif
-          @foreach (json_decode($post->images) as $image)
+            @foreach (json_decode($post->images) as $image)
             <a href="{{ $image }}" class="image-link" target="_blank">{{ preg_replace('/https|http|(:\/\/)|www\.|\/([^\/]*).*$/', '', $image) }}</a>
-          @endforeach
+            @endforeach
+          @endif
         </div>
         @if (Auth::user()->id === $post->user_id)
         <div class="card-footer">
@@ -40,45 +40,42 @@
         @endif
       </div>
 
-      @if (Auth::user()->id === $post->user_id)
-      <h2 class="page-header mb-0">{{ title_case(__('comments')) }}</h2>
+      @if (Auth::id() === $post->user_id)
+        <h2 class="page-header mb-0">{{ title_case(__('comments')) }}</h2>
+      @endif
+      @if ($comments)
+        @foreach ($comments as $comment)
+          @if (Auth::id() === $post->user_id || Auth::id() === $comment->user_id)
+          <div class="card my-3">
+            <div class="card-header">{{ $comment->owner->name }} {{ $comment->owner->last_name }}</div>
+            <div class="card-body">
+              {{ strip_tags($comment->content) }}
+            </div>
+            <div class="card-footer">
+              <div class="row align-items-center">
+                <div class="col">{{ Carbon::parse($comment->updated_at)->format('M j \a\t G:i') }}</div>
+                <div class="col-auto">
+                  <form action="/conversation/new" method="POST">
+                    <button class="btn btn-primary" type="submit">{{ ucfirst(__('message')) }}</button>
 
-      <div class="card my-3">
-        <div class="card-header">Casper Engelmann</div>
-        <div class="card-body">
-          hello world!
-        </div>
-        <div class="card-footer">
-          <div class="row align-items-center">
-            <div class="col">{{ Carbon\Carbon::now()->toDateTimeString() }}</div>
-            <div class="col-auto">
-              <a href="/conversation/1" class="btn btn-primary">{{ ucfirst(__('message')) }}</a>
+                    {{ Form::hidden('user', Crypt::encrypt($comment->owner->id)) }}
+                    @csrf
+                    @method('POST')
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="card my-3">
-        <div class="card-header">Jonatan Nielsen</div>
-        <div class="card-body">
-          fuck mac
-        </div>
-        <div class="card-footer">
-          <div class="row">
-            <div class="col">
-              {{ Carbon\Carbon::now()->toDateTimeString() }}
-            </div>
-            <div class="col-auto">
-              <a href="/conversation/1" class="btn btn-primary">{{ ucfirst(__('message')) }}</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      @else
-      <form action="" method="POST">
-        <h2 class="page-header mb-0">{{ ucfirst(__('send a message')) }}</h2>
+          @endif
+        @endforeach
+      @endif
+      @if (Auth::id() !== $post->user_id)
+      <form action="/post/comment/new" method="POST">
+        <h2 class="page-header mb-0">{{ ucfirst(__('comment')) }}</h2>
         <textarea name="content" class="tinymce"></textarea>
         <button class="btn btn-primary" type="submit">{{ title_case(__('message')) }}</button>
 
+        {{ Form::hidden('post', Crypt::encrypt($post->id)) }}
         @csrf
         @method('POST')
       </form>
