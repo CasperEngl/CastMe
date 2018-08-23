@@ -3,9 +3,11 @@ $laravel-navbar-background: #FFF;
 $laravel-navbar-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 
 // Body
-$body-bg: #f5f8fa;
+$body-bg: #f5f8fa url(https://castme.dk/pimg/bg2.jpg) no-repeat center center;
+$body-bg-size: cover;
+$body-bg-attachment: fixed;
 
-$wrapper-margin: 5rem auto 0;
+$wrapper-margin: 5rem auto;
 
 // Colors
 $primary-color: #5f91c3;

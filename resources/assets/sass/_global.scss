@@ -1,5 +1,7 @@
 body {
   background: $body-bg;
+  background-size: $body-bg-size;
+  background-attachment: $body-bg-attachment;
 }
 
 img.responsive {
