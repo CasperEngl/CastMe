@@ -59,7 +59,7 @@
                     <form action="{{ route('conversation.new') }}" method="POST">
                       <button class="btn btn-primary" type="submit">{{ ucfirst(__('message')) }}</button>
 
-                      {{ Form::hidden('user', Crypt::encrypt($comment->owner->id)) }}
+                      {{ Form::hidden('user', $comment->owner->id) }}
                       @csrf
                       @method('POST')
                     </form>
@@ -80,7 +80,7 @@
         <textarea name="content" class="tinymce"></textarea>
         <button class="btn btn-primary" type="submit">{{ title_case(__('message')) }}</button>
 
-        {{ Form::hidden('post', Crypt::encrypt($post->id)) }}
+        {{ Form::hidden('post', $post->id) }}
         @csrf
         @method('POST')
       </form>

@@ -13,7 +13,7 @@ use Carbon\Carbon;
 class CommentController extends Controller {
     public function new(Request $request) {
         $user = Auth::user();
-        $post_id = Crypt::decrypt($request->input('post'));
+        $post_id = $request->input('post');
 
         if (Post::find($post_id)) {
             $comment = new Comment([
