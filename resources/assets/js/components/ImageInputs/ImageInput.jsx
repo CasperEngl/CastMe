@@ -10,9 +10,7 @@ import {
   Button,
 } from 'reactstrap';
 
-const ImageInput = (props) => {
-  const { handleRemoveInput, number } = props;
-
+const ImageInput = ({ handleRemoveInput, number, image }) => {
   return (
     <FormGroup>
       <Row className="d-flex align-items-center">
@@ -21,7 +19,7 @@ const ImageInput = (props) => {
             type="url"
             name="image[]"
             placeholder="https://i.imgur.com/XXxXxxX.png"
-            defaultValue={props.image}
+            defaultValue={image}
           />
         </Col>
         <Col xs="auto">
@@ -36,7 +34,7 @@ const ImageInput = (props) => {
 
 ImageInput.defaultProps = {
   image: '',
-}
+};
 
 ImageInput.propTypes = {
   handleRemoveInput: PropTypes.func.isRequired,
