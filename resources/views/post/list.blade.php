@@ -19,17 +19,13 @@
                 <h6 class="card-subtitle w-100 mb-2 text-muted">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</h6>
               @endif
               <p class="card-text w-100">{{ str_limit(strip_tags($post->content), 150, '...') }}</p>
-              <div class="row align-self-end align-items-center justify-content-between">
-                <div class="col-auto">
-                  <a href="/conversation/{{ $post->id }}" class="card-link">{{ ucfirst(__('contact scout')) }}</a>
-                  <a href="/post/{{ $post->id }}" class="card-link">{{ ucfirst(__('read more')) }}</a>
-                </div>
-                @if (Auth::user()->id === $post->user_id)
-                  <div class="col-auto">
-                    <a href="/post/{{ $post->id }}/edit" class="card-link btn btn-success">{{ ucfirst(__('edit')) }}</a>
-                  </div>
-                @endif
-              </div>
+            </section>
+            <section class="card-footer align-items-center justify-content-center">
+              <a href="/conversation/{{ $post->id }}" class="card-link btn btn-link">{{ ucfirst(__('contact scout')) }}</a>
+              <a href="/post/{{ $post->id }}" class="card-link btn btn-link">{{ ucfirst(__('read more')) }}</a>
+              @if (Auth::user()->id === $post->user_id)
+              <a href="/post/{{ $post->id }}/edit" class="d-block mt-2 card-link btn btn-success">{{ ucfirst(__('edit')) }}</a>
+              @endif
             </section>
           </article>
         </div>
