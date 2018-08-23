@@ -35,7 +35,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/post/add', 'PostController@add')->name('post.add');
     Route::post('/post/{id}/update', 'PostController@update')->where('id', '[0-9]+')->name('post.update');
     
-    Route::post('/post/dump', 'PostController@dump')->name('post.dump');
+    // Post Comment
+    Route::post('post/comment/new', 'CommentController@new')->name('comment.new');
     
     // Profile Settings
     Route::get('/user/settings', 'ProfileController@index')->name('user.settings');
@@ -63,8 +64,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('locale/set/{locale?}', 'LocaleController@set')->name('locale.set');
 
     //subscription Stripe
-  Route::get('sub/make', 'SubscriptionController@subForm')->name('subform');
-  Route::post('sub/make', 'SubscriptionController@create');
+    Route::get('sub/make', 'SubscriptionController@subForm')->name('subform');
+    Route::post('sub/make', 'SubscriptionController@create');
 });
 
 Route::get('/logout', function (){
