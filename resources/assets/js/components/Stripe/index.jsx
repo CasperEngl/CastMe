@@ -1,16 +1,17 @@
-// index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { StripeProvider } from 'react-stripe-elements';
+import { StripeProvider, Elements } from 'react-stripe-elements';
 
-import StoreCheckout from './StoreCheckout';
+import InjectedCheckoutForm from './CheckoutForm';
 
-const Stripe = () => (
+const StripeMount = () => (
   <StripeProvider apiKey="pk_test_12345">
-    <StoreCheckout />
+    <Elements>
+      <InjectedCheckoutForm />
+    </Elements>
   </StripeProvider>
 );
 
-if (document.getElementById('Stripe')) {
-  ReactDOM.render(<Stripe />, document.getElementById('Stripe'));
+if (document.getElementById('StripeMount')) {
+  ReactDOM.render(<StripeMount />, document.getElementById('StripeMount'));
 }
