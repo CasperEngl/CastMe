@@ -119,7 +119,7 @@ use \Illuminate\Support\Facades\Auth;
               </div>
 
               <div class="row">
-                <div class="col s6">
+                <div class="col-sm-6">
                   <ul class="pagination">
                     <div class="display-none">
                       <input type="radio" name="days" value="60" id="60days" checked>
@@ -141,10 +141,11 @@ use \Illuminate\Support\Facades\Auth;
                     </li>
                   </ul>
                 </div>
-
+              
                 <div class="col-sm-6">
                   <input type="checkbox" name="accepth" id="accepth">
-                  <label for="accepth">{{ ucfirst(__('i accept the')) }} <a href="https://castme.dk/abonnementsbetingelser/" target="blank">{{ __('subscription conditions') }}</a></label>
+                  <label for="accepth">{{ ucfirst(__('i accept the')) }} <a href="https://castme.dk/abonnementsbetingelser/" target="blank">{{
+                      __('subscription conditions') }}</a></label>
                 </div>
               </div>
             </div>
@@ -161,6 +162,7 @@ use \Illuminate\Support\Facades\Auth;
           @csrf
           @method('POST')
         </form>
+        <div id="Stripe"></div>
       </div>
 
     </div>
