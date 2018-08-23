@@ -18,6 +18,7 @@ class ProfileController extends Controller {
   public function user($id) {
     $user = User::find($id);
     $gravatarHash = md5(trim(strtolower(Auth::user()->email))) . '?s=200';
+    $profile_types = [];
 
     !$user->details->actor ?: $profile_types[] = title_case('Actor');
     !$user->details->dancer ?: $profile_types[] = title_case('Dancer');
