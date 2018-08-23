@@ -12,8 +12,8 @@ class AppServiceProvider extends ServiceProvider {
    * @return void
    */
   public function boot() {
-
     Cashier::useCurrency('DKK', 'kr');
+    date_default_timezone_set('Europe/Amsterdam');
   }
 
   /**
