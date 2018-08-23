@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { CardElement } from 'react-stripe-elements';
 import styled from 'styled-components';
 
