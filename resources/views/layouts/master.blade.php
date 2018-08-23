@@ -78,8 +78,12 @@
             @endguest
             <form class="form" action="{{ route('locale.set') }}" method="POST">
               <select name="locale" class="selectpicker" data-width="fit">
-                <option value="da" data-content="<span class='flag-icon flag-icon-dk'></span> {{ ucfirst(__('danish')) }}" {{ Auth::user() && Auth::user()->lang === 'da' ? 'selected' : '' }}>{{ ucfirst(__('danish')) }}</option>
-                <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ Auth::user() && Auth::user()->lang === 'en' ? 'selected' : '' }}>{{ ucfirst(__('english')) }}</option>
+                <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ Auth::user() && Auth::user()->lang === 'en' ? 'selected' : '' }}>
+                  {{ ucfirst(__('english')) }}
+                </option>
+                <option value="da" data-content="<span class='flag-icon flag-icon-dk'></span> {{ ucfirst(__('danish')) }}" {{ Auth::user() && Auth::user()->lang === 'da' ? 'selected' : '' }}>
+                  {{ ucfirst(__('danish')) }}
+                </option>
               </select>
 
               @csrf
