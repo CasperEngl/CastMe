@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
 use App\User;
+use App\Post;
+use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Helpers\Flash;
 
 class PostController extends Controller {
   public function index($id) {
-    $post = Post::find($id);
+    $post = Post::findOrFail($id);
+    $comments = $post->comments;
 
     if ($post)
       return view('post.singular')->with([
         'post' => $post,
+        'comments' => $comments
       ]);
     else
       return redirect()->route('post.list')->withErrors([
@@ -124,7 +127,7 @@ class PostController extends Controller {
     $post->model       = $request->input('model', false);
     $post->musician    = $request->input('musician', false);
     $post->images      = json_encode($request->input('image.*'));
-    $post->content     = $request->input('message');
+    $post->content     = $request->input('content');
 
     $post->save();
 
