@@ -14,4 +14,4 @@ import './pagination-click';
 import './selectpicker';
 
 import './components/Stripe';
-import './components/ImageInputs/index';
+import './components/ImageInputs';
