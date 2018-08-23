@@ -1,41 +1,15 @@
-import React, { Component } from 'react';
+// index.js
+import React from 'react';
 import ReactDOM from 'react-dom';
-import StripeCheckout from 'react-stripe-checkout';
+import { StripeProvider } from 'react-stripe-elements';
 
-export default class Stripe extends Component {
-  onToken = async (token) => {
-    try {
-      const response = await fetch('/sub/dump', {
-        method: 'POST',
-        body: JSON.stringify(token),
-      });
-      const data = await response.json();
+import StoreCheckout from './StoreCheckout';
 
-      console.log(data.email);
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  render() {
-    return (
-      <StripeCheckout
-        token={this.onToken}
-        stripeKey="pk_test_vwXRriarK5ffUa851WaUwOoS"
-        name="Cast Me"
-        description="Betal med Stripe"
-        locale="auto"
-        amount={17900}
-        currency="DKK"
-        allowRememberMe
-      >
-        <button type="button" onClick={event => event.preventDefault()} className="btn btn-primary">
-          Pay
-        </button>
-      </StripeCheckout>
-    );
-  }
-}
+const Stripe = () => (
+  <StripeProvider apiKey="pk_test_12345">
+    <StoreCheckout />
+  </StripeProvider>
+);
 
 if (document.getElementById('Stripe')) {
   ReactDOM.render(<Stripe />, document.getElementById('Stripe'));
