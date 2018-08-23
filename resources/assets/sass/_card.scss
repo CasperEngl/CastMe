@@ -34,4 +34,8 @@
 
 .card-link {
   outline: none;
+
+  &.btn-link, &.btn-link + .btn {
+    margin: 0;
+  }
 }
