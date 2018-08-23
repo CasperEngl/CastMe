@@ -18,7 +18,7 @@ import {
   Button,
 } from 'reactstrap';
 
-import './ucFirst';
+import '../ucFirst';
 
 import ImageInput from './ImageInput';
 
@@ -54,7 +54,7 @@ class ImageInputs extends Component {
       try {
         const data = await axios.get('data');
         const images = JSON.parse(data.data.images);
-  
+
         if (images) {
           images.map((image) => {
             this.handleAddInput(image);
@@ -70,12 +70,12 @@ class ImageInputs extends Component {
     try {
       const response = await fetch('/api/locale');
       const result = await response.json();
-  
+
       if (Object.keys(supportedLanguages).includes(result.lang)) {
         this.setState({
           lang: result.lang,
         });
-  
+
         return result.lang;
       }
     } catch (err) {
