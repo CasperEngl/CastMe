@@ -1,20 +1,26 @@
 import React from 'react';
 import { injectStripe } from 'react-stripe-elements';
+import styled from 'styled-components';
 
 import CardSection from './CardSection';
 
-class CheckoutForm extends React.Component {
-  static propTypes = {
-    stripe: PropTypes.any().isRequired,
-  }
+const StyledForm = styled.form`
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 3px solid #e6ebf1;
+`;
 
+class CheckoutForm extends React.Component {
   handleSubmit = (ev) => {
     ev.preventDefault();
 
     const { stripe } = this.props;
 
+    console.log('STRIPE', stripe);
+
     stripe.createToken({
-      name: 'Jenny Rosen'
+      type: 'card',
+      name: 'Jenny Rosen',
     }).then(({ token }) => {
       console.log('Received Stripe token:', token);
     });
@@ -22,12 +28,12 @@ class CheckoutForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <StyledForm onSubmit={this.handleSubmit}>
         <CardSection />
-        <button type="button">
+        <button type="submit" className="btn btn-primary">
           Confirm order
         </button>
-      </form>
+      </StyledForm>
     );
   }
 }

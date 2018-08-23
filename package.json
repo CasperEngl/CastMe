@@ -29,6 +29,7 @@
         "bootstrap-select": "^1.13.1",
         "flag-icon-css": "^3.0.0",
         "jquery": "^3.2",
+        "laravel-mix": "^2.0",
         "mdbootstrap": "^4.5.9",
         "popper.js": "^1.12",
         "prop-types": "^15.6.2",
@@ -39,9 +40,9 @@
         "react-stripe-checkout": "^2.6.3",
         "react-stripe-elements": "^2.0.1",
         "reactstrap": "^6.3.1",
+        "styled-components": "^3.4.5",
         "tether": "^1.4.4",
         "tinymce": "^4.8.0",
-        "tinymce-i18n": "^18.8.8",
-        "laravel-mix": "^2.0"
+        "tinymce-i18n": "^18.8.8"
     }
 }
