@@ -18,6 +18,10 @@ class SubscriptionController extends Controller {
     return view('form');
   }
 
+  public function dump(Request $request) {
+    return response()->json($request);
+  }
+
   public function create(Request $request) {
     $user = Auth::user();
     $model = $request->input('sub');
