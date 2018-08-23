@@ -1,12 +1,11 @@
 module.exports = {
     "extends": "airbnb",
     "parser": "babel-eslint",
-    "rules": {
-        "react/jsx-closing-bracket-location": false,
+    "env": {
+        "browser": true,
+        "es6": true,
     },
-    "globals": {
-        "fetch": false,
-        "document": false,
-        "window": false,
-    }
+    "rules": {
+        "linebreak-style": 0,
+    },
 };
