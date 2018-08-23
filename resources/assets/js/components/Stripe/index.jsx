@@ -5,7 +5,7 @@ import { StripeProvider, Elements } from 'react-stripe-elements';
 import InjectedCheckoutForm from './CheckoutForm';
 
 const StripeMount = () => (
-  <StripeProvider apiKey="pk_test_12345">
+  <StripeProvider apiKey="pk_test_q3utIRDba2wBV5yGIgyRUku3">
     <Elements>
       <InjectedCheckoutForm />
     </Elements>

@@ -120,6 +120,7 @@ use \Illuminate\Support\Facades\Auth;
 
               <div class="row">
                 <div class="col-sm-6">
+                  {{-- 
                   <ul class="pagination">
                     <div class="display-none">
                       <input type="radio" name="days" value="60" id="60days" checked>
@@ -140,6 +141,7 @@ use \Illuminate\Support\Facades\Auth;
                       <label for="365days" class="page-link w-100 text-center">365 {{ __('days') }} - 799 DKK</label>
                     </li>
                   </ul>
+                  --}}
                 </div>
               
                 <div class="col-sm-6">

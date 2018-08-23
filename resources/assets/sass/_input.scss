@@ -15,7 +15,7 @@ input, button, select, optgroup, textarea {
 .pagination {
   flex-wrap: wrap;
   
-  .page-item label.page-link {
+  .page-item .page-link {
     margin-bottom: 0;
     border-radius: 0;
   }
