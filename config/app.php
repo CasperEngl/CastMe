@@ -170,7 +170,12 @@ return [
         /*
          * Expose Laravel config to JS
          */
-        LaravelJsConfig\LaravelJsConfigServiceProvider::class
+        LaravelJsConfig\LaravelJsConfigServiceProvider::class,
+
+        /*
+         * Form Builder
+         */
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -220,6 +225,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Lipsum' => Magyarjeti\LaravelLipsum\LipsumFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Carbon' => Carbon\Carbon::class,
 
     ],
 
