@@ -7,5 +7,6 @@ module.exports = {
     },
     "rules": {
         "linebreak-style": 0,
+        "react/jsx-one-expression-per-line": 0,
     },
 };
