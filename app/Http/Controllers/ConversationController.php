@@ -26,12 +26,12 @@ class ConversationController extends Controller {
   public function new(Request $request) {
 
     return redirect()->route('conversation', [
-      'id' => Crypt::decrypt($request->input('user')),
+      'id' => $request->input('user'),
     ]);
   }
 
   public function send(Request $request) {
-    $user = Crypt::decrypt($request->input('user'));
+    $user = $request->input('user');
 
     $message = new Conversation([
       'sender_id' => Auth::id(),
