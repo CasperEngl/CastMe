@@ -1,7 +1,9 @@
 body {
+  /*
   background: $body-bg;
   background-size: $body-bg-size;
   background-attachment: $body-bg-attachment;
+  */
 }
 
 img.responsive {
@@ -17,9 +19,9 @@ img {
 }
 
 .page-header {
-  // @extend .pb-2, .mt-4, .mb-5; // Boostrap 3 .page-header padding and margin
+  @extend .mt-4, .mb-2, .pb-2, .border-bottom; // Boostrap 3 .page-header padding and margin
   // border-bottom: 1px solid $input-border-color; // Boostrap 3 .page-header border-bottom
-  @extend .shdw-text, .mt-2, .mb-3;
+  // @extend .shdw-text, .mt-2, .mb-3;
   font-weight: $font-weight-bold;
   color: var(--gray-dark);
 
