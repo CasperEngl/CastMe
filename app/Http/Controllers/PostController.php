@@ -72,7 +72,17 @@ class PostController extends Controller {
   }
 
   public function list() {
-    return view('post.list')->with('posts', Post::orderBy('id', 'desc')->get());
+    $posts = Post::orderBy('id', 'desc')->get();
+
+    return view('post.list')->with('posts', $posts);
+  }
+
+  public function listOwn() {
+    $posts = Post::orderBy('id', 'desc')
+      ->where('user_id', Auth::id())
+      ->get();
+
+    return view('post.list')->with('posts', $posts);
   }
 
   public function add(Request $request) {
