@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\DB;
 
 class ConversationController extends Controller {
   public function index($id) {
+    if (Auth::id() === (int)$id) {
+      return redirect()->back()->withErrors([
+        StringFormat::format(__('you cannot message yourself.'))
+      ]);
+    }
+
     $replies = Conversation::where('receiver_id', $id)
       ->where('sender_id', Auth::id())
       ->orWhere('receiver_id', Auth::id())
@@ -26,7 +32,11 @@ class ConversationController extends Controller {
   }
 
   public function list() {
-    return view('conversation.list');
+    $conversations = Conversation::where('receiver_id', Auth::id())->get();
+
+    return view('conversation.list')->with([
+      'conversations' => $conversations
+    ]);
   }
 
   public function new(Request $request) {

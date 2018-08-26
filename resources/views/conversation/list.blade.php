@@ -6,20 +6,14 @@
     <div class="card">
       <div class="card-header">Your latest conversations</div>
       <div class="list-group list-group-flush">
-        {{-- 
         @foreach ($conversations as $conversation)
-        <a href="/conversation/{{ $conversation->id }}" class="list-group-item">
-          {{ $conversation->peer }}
-          @if ($conversation->unread_count > 0)
-          <span class="badge badge-danger">{{ $conversation->unread_count }}</span>
+        <a href="/conversation/{{ $conversation->sender_id }}" class="list-group-item">
+          {{ Auth::user()->find($conversation->sender_id)->name }}
+          @if ($conversation->read < 1)
+          <span class="badge badge-danger">{{ ucfirst(__('unread')) }}</span>
           @endif
         </a>
         @endforeach
-        --}}
-        <a href="/conversation/1" class="list-group-item">
-          Jack Goff
-          <span class="badge badge-danger">2</span>
-        </a>
       </div>
       <div class="card-footer">
         <nav aria-label="Page navigation example">
