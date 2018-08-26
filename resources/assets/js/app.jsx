@@ -13,5 +13,4 @@ import './file-input/fileinput-custom';
 import './pagination-click';
 import './selectpicker';
 
-import './components/Stripe';
 import './components/ImageInputs';
