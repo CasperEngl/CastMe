@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Flash;
-use App\Helpers\StringFormat;
+use App\Helpers\Format;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -15,7 +15,7 @@ class ConversationController extends Controller {
   public function index($id) {
     if (Auth::id() === (int)$id) {
       return redirect()->back()->withErrors([
-        StringFormat::format(__('you cannot message yourself.'))
+        Format::string(__('you cannot message yourself.'))
       ]);
     }
 
@@ -26,7 +26,7 @@ class ConversationController extends Controller {
       ->get();
 
     return view('conversation.singular')->with([
-      'form_url' => route('conversation.send', ['user' => $id]),
+      'form_url' => route('conversation.send', ['id' => $id]),
       'messages' => $replies
     ]);
   }
@@ -56,7 +56,7 @@ class ConversationController extends Controller {
 
     $message->save();
 
-    Flash::push('success', StringFormat::format(__('your message was sent!')));
+    Flash::push('success', Format::string(__('your message was sent!')));
     return redirect()->back();
   }
 }
