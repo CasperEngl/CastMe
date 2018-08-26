@@ -25,7 +25,7 @@ use \Illuminate\Support\Facades\Auth;
         </div>
       </div>
       <div class="col-12 col-sm-8">
-        <form action="{{ route('user.subscription.subscribe') }}" method="POST">
+        <form action="{{ route('user.subscription.dump') }}" method="POST">
           <div class="card">
             <div class="card-body">
               <h3 class="page-header">{{ title_case(__('contact information')) }}</h3>
@@ -135,6 +135,87 @@ use \Illuminate\Support\Facades\Auth;
                       __('subscription conditions') }}</a></label>
                 </div>
               </div>
+
+              <div class="row my-4">
+                <div class="col-sm-12">
+                  <script src="https://js.stripe.com/v3/"></script>
+
+                  <div id="card-element" class="field is-empty"></div>
+
+                  <script>
+                    const stripeTokenHandler = token => {
+                      // Insert the token ID into the form so it gets submitted to the server
+                      const form = document.getElementById("payment-form");
+                      const hiddenInput = document.createElement("input");
+                      hiddenInput.setAttribute("type", "hidden");
+                      hiddenInput.setAttribute("name", "stripeToken");
+                      hiddenInput.setAttribute("value", token.id);
+                      form.appendChild(hiddenInput);
+
+                      // Submit the form
+                      form.submit();
+                    };
+
+                    let stripe = Stripe("pk_test_vwXRriarK5ffUa851WaUwOoS");
+                    let elements = stripe.elements();
+
+                    let card = elements.create("card", {
+                      iconStyle: "solid",
+                      style: {
+                        base: {
+                          iconColor: "#8898AA",
+                          color: "white",
+                          lineHeight: "36px",
+                          fontWeight: 300,
+                          fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                          fontSize: "19px",
+
+                          "::placeholder": {
+                            color: "#8898AA"
+                          }
+                        },
+                        invalid: {
+                          iconColor: "#e85746",
+                          color: "#e85746"
+                        }
+                      },
+                      classes: {
+                        focus: "is-focused",
+                        empty: "is-empty"
+                      }
+                    });
+                    card.mount("#card-element");
+
+                    card.addEventListener("change", ({ error }) => {
+                      const displayError = document.getElementById("card-errors");
+                      if (error) {
+                        displayError.textContent = error.message;
+                      } else {
+                        displayError.textContent = "";
+                      }
+                    });
+
+                    // Create a token or display an error when the form is submitted.
+                    const form = document.getElementById("payment-form");
+                    form.addEventListener("submit", async event => {
+                      event.preventDefault();
+
+                      const { token, error } = await stripe.createToken(card);
+
+                      if (error) {
+                        // Inform the customer that there was an error.
+                        const errorElement = document.getElementById("card-errors");
+                        errorElement.textContent = error.message;
+                      } else {
+                        // Send the token to your server.
+                        stripeTokenHandler(token);
+                      }
+                    });
+                  </script>
+                  
+                </div>
+              </div>
+
             </div>
 
             <button class="card-footer btn btn-primary" type="submit">
