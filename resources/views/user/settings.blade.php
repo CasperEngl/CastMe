@@ -49,21 +49,21 @@
                 <div class="form-group">
                   <label for="height" class="text-muted">{{ title_case(__('height')) }}</label>
                   <input type="number" name="height" class="form-control" id="height" placeholder="175" value="{{ Auth::user()->details->height ?? '' }}">
-                  <small class="form-text text-muted">{{ ucfirst(__('height must be in centimeters.')) }}</small>
+                  <small class="form-text text-muted">{{ ucfirst(__('height must be in centimeters')) }}</small>
                 </div>
               </div>
               <div class="col-12 col-sm">
                 <div class="form-group">
                   <label for="weight" class="text-muted">{{ title_case(__('weight')) }}</label>
                   <input type="number" name="weight" class="form-control" id="weight" placeholder="80" value="{{ Auth::user()->details->weight ?? '' }}">
-                  <small class="form-text text-muted">{{ ucfirst(__('we only support weight in kilos.')) }}</small>
+                  <small class="form-text text-muted">{{ ucfirst(__('we only support weight in kilos')) }}</small>
                 </div>
               </div>
               <div class="col-12 col-sm">
                 <div class="form-group">
                   <label for="experience" class="text-muted">{{ title_case(__('experience')) }}</label>
                   <input type="number" name="experience" class="form-control" id="experience" placeholder="5" value="{{ Auth::user()->details->experience ?? '' }}">
-                  <small class="form-text text-muted">{{ ucfirst(__('experience is in whole years to keep it simple.')) }}</small>
+                  <small class="form-text text-muted">{{ ucfirst(__('experience is in whole years to keep it simple')) }}</small>
                 </div>
               </div>
             </div>
@@ -182,7 +182,7 @@
                       <input type="radio" name="hair_color" value="Black" id="hair_color-black" {{ (Auth::user()->details->hair_color == 'Black') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Brown" id="hair_color-brown" {{ (Auth::user()->details->hair_color == 'Brown') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Dark brown" id="hair_color-dark_brown" {{ (Auth::user()->details->hair_color == 'Dark Brown') ? 'checked' : '' }}>
-                      <input type="radio" name="hair_color" value="Blond" id="hair_color-blond" {{ (Auth::user()->details->hair_color == 'Blond') ? 'checked' : '' }}>
+                      <input type="radio" name="hair_color" value="Blonde" id="hair_color-blonde" {{ (Auth::user()->details->hair_color == 'Blonde') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Dirty blonde" id="hair_color-dirty_blonde" {{ (Auth::user()->details->hair_color == 'Dirty Blonde') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Auburn" id="hair_color-auburn" {{ (Auth::user()->details->hair_color == 'Auburn') ? 'checked' : '' }}>
                       <input type="radio" name="hair_color" value="Red" id="hair_color-red" {{ (Auth::user()->details->hair_color == 'Red') ? 'checked' : '' }}>
@@ -201,7 +201,7 @@
                       <label for="hair_color-dark_brown" class="page-link" href="#">{{ title_case(__('dark brown')) }}</label>
                     </li>
                     <li class="page-item">
-                      <label for="hair_color-blond" class="page-link" href="#">{{ title_case(__('blond')) }}</label>
+                      <label for="hair_color-blonde" class="page-link" href="#">{{ title_case(__('blonde')) }}</label>
                     </li>
                     <li class="page-item">
                       <label for="hair_color-dirty_blonde" class="page-link" href="#">{{ title_case(__('dirty blonde')) }}</label>
@@ -244,7 +244,7 @@
                       <input type="radio" name="ethnicity" value="Mediterranean" id="mediterranean" {{ (Auth::user()->details->ethnicity == 'Mediterranean') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Middle eastern" id="middle_eastern" {{ (Auth::user()->details->ethnicity == 'Middle Eastern') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Pakistanis" id="pakistanis" {{ (Auth::user()->details->ethnicity == 'Pakistanis') ? 'checked' : '' }}>
-                      <input type="radio" name="ethnicity" value="Skandinavian" id="skandinavian" {{ (Auth::user()->details->ethnicity == 'Skandinavian') ? 'checked' : '' }}>
+                      <input type="radio" name="ethnicity" value="Scandinavian" id="Scandinavian" {{ (Auth::user()->details->ethnicity == 'Scandinavian') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Spanish" id="spanish" {{ (Auth::user()->details->ethnicity == 'Spanish') ? 'checked' : '' }}>
                       <input type="radio" name="ethnicity" value="Mix" id="mix" {{ (Auth::user()->details->ethnicity == 'Mix') ? 'checked' : '' }}>
                     </div>
@@ -276,7 +276,7 @@
                       <label for="pakistanis" class="page-link" href="#">{{ title_case(__('pakistanis')) }}</label>
                     </li>
                     <li class="page-item">
-                      <label for="skandinavian" class="page-link" href="#">{{ title_case(__('skandinavian')) }}</label>
+                      <label for="scandinavian" class="page-link" href="#">{{ title_case(__('scandinavian')) }}</label>
                     </li>
                     <li class="page-item">
                       <label for="spanish" class="page-link" href="#">{{ title_case(__('spanish')) }}</label>
@@ -331,7 +331,7 @@
 
           </div>
 
-          <button class="card-footer btn btn-primary" type="submit">{{ title_case(__('save changes')) }}</button>
+          <button class="card-footer btn btn-primary" type="submit">{{ ucfirst(__('save changes')) }}</button>
         </div>
         
         @csrf
