@@ -11,7 +11,7 @@
         @foreach($messages as $message)
           <div class="card-header">
             @if($message->sender->id === Auth::id())
-              {{ __('You') }}
+              {{ strtoupper(__('you')) }}
             @else
               {{ $message->sender->name }}
             @endif
