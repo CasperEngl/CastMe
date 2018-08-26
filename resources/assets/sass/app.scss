@@ -6,7 +6,6 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-// @import '~mdbootstrap/scss/mdb';
 @import '~bootstrap-select/sass/bootstrap-select';
 
 // Flag icons
@@ -41,5 +40,6 @@
 @import 'footer';
 @import 'animation';
 @import 'shadow';
+@import 'stripe';
 
 @import url('https://castme.dk/castme.css');

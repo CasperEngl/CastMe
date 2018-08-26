@@ -57,19 +57,6 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="countrySelect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ title_case(__('country')) }}</button>
-                      <div class="dropdown-menu" aria-labelledby="countrySelect">
-                        <a class="dropdown-item" href="#">{{ title_case(__('denmark')) }}</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
                     <label for="address1">{{ title_case(__('street and house number')) }}</label>
                     <input type="text" name="address1" id="address1" class="form-control">
                   </div>
@@ -120,7 +107,6 @@ use \Illuminate\Support\Facades\Auth;
 
               <div class="row">
                 <div class="col-sm-6">
-                  {{-- 
                   <ul class="pagination">
                     <div class="display-none">
                       <input type="radio" name="days" value="60" id="60days" checked>
@@ -141,7 +127,6 @@ use \Illuminate\Support\Facades\Auth;
                       <label for="365days" class="page-link w-100 text-center">365 {{ __('days') }} - 799 DKK</label>
                     </li>
                   </ul>
-                  --}}
                 </div>
               
                 <div class="col-sm-6">
@@ -165,8 +150,6 @@ use \Illuminate\Support\Facades\Auth;
           @method('POST')
         </form>
         
-        <script src="https://js.stripe.com/v3/"></script>
-        <div id="StripeMount"></div>
       </div>
 
     </div>
