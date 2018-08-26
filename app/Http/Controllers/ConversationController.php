@@ -32,10 +32,23 @@ class ConversationController extends Controller {
   }
 
   public function list() {
-    $conversations = Conversation::where('receiver_id', Auth::id())->get();
+    $allConversations = DB::table('conversations')
+      ->select('sender_id', 'receiver_id')
+      ->where('sender_id', Auth::id())
+      ->orWhere('receiver_id', Auth::id())
+      ->distinct()
+      ->get();
+
+    $users = collect();
+    $allConversations->each(function ($value) use(&$users){
+      if ($value->sender_id == Auth::id())
+        $users->push(User::find($value->receiver_id));
+      else
+        $users->push(User::find($value->sender_id));
+    });
 
     return view('conversation.list')->with([
-      'conversations' => $conversations
+      'conversations' => $users->unique()
     ]);
   }
 
