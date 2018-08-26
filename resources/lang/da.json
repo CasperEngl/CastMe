@@ -47,5 +47,8 @@
   "write description": "skriv beskrivelse",
   "update": "opdater",
   "add": "tilføj",
-  "conversation": "samtale"
+  "conversation": "samtale",
+  "your conversations": "dine samtaler",
+  "unread": "ulæst",
+  "profile information": "profil information"
 }
