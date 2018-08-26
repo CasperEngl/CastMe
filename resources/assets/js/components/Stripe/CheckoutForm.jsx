@@ -5,6 +5,7 @@ no-multi-assign: 0,
 */
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { injectStripe } from 'react-stripe-elements';
 import styled from 'styled-components';
 
@@ -18,45 +19,14 @@ const StyledForm = styled.form`
 `;
 
 class CheckoutForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      fname: '',
-      lname: '',
-      company: '',
-      address1: '',
-      address2: '',
-      zip_code: '',
-      city: '',
-      phone_number: '',
-      email: '',
-    };
-  }
-
   handleSubmit = (ev) => {
     ev.preventDefault();
 
     const {
       fname,
       lname,
-      address1,
-      address2,
-      zipCode,
-      city,
-      country,
-    } = this.state;
-    const information = {
-      name: `${fname} ${lname}`,
-      address_city: city,
-      address_country: country,
-      address_line1: address1,
-      address_line2: address2,
-      address_zip: zipCode,
-    };
-    const { stripe } = this.props;
-
-    console.log(...information);
+      stripe,
+    } = this.props;
 
     stripe.createToken({
       type: 'card',
@@ -65,13 +35,6 @@ class CheckoutForm extends Component {
       console.log('Received Stripe token:', token);
     });
   };
-
-  stateHandler(state) {
-    console.log('stateHandler', state);
-    this.setState({
-      ...state,
-    });
-  }
 
   render() {
     return (
@@ -86,4 +49,13 @@ class CheckoutForm extends Component {
   }
 }
 
-export default injectStripe(CheckoutForm);
+const mapStateToProps = state => ({
+  fname: state.address.fname,
+  lname: state.address.lname,
+  address1: state.address.address1,
+  address2: state.address.address2,
+  zipCode: state.address.zipCode,
+  city: state.address.city,
+});
+
+export default connect(mapStateToProps)(injectStripe(CheckoutForm));
