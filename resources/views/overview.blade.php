@@ -37,6 +37,11 @@
           <i class="fas fa-plus"></i><span class="d-inline-block">{{ title_case(__('new post')) }}</span>
         </a>
       </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a href="{{ route('post.new') }}" class="btn tile">
+          <i class="fas fa-clipboard-list"></i><span class="d-inline-block">{{ title_case(__('your posts')) }}</span>
+        </a>
+      </div>
     </section>
     @endif
     {{--Admin only--}}
