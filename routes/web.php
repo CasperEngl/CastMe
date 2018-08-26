@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth']], function() {
     // Conversation (Singular)
     Route::get('conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
     Route::post('conversation/new', 'ConversationController@new')->name('conversation.new');
-    Route::post('conversation/send', 'ConversationController@send')->name('conversation.send');
+    Route::post('conversation/send/{user}', 'ConversationController@send')->name('conversation.send');
 
     // Conversations (List)
     Route::get('/conversations', 'ConversationController@list')->name('conversations');

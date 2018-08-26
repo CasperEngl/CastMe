@@ -18,10 +18,7 @@
           </div>
           <div class="card-block">
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem cum assumenda quos nihil nulla
-              ipsam in et aut quaerat, atque maiores aperiam voluptate voluptatum esse distinctio ea doloribus veniam
-              nesciunt error beatae suscipit rem ratione officia minima. Itaque repellat sit atque eum! Error quisquam
-              consequuntur minima commodi, eaque fugit sequi.
+              {!! $message->content !!}
             </p>
           </div>
           @endforeach
