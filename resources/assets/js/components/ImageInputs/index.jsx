@@ -18,7 +18,7 @@ import {
   Button,
 } from 'reactstrap';
 
-import '../ucFirst';
+import '../../helpers/ucFirst';
 
 import ImageInput from './ImageInput';
 
@@ -100,7 +100,8 @@ class ImageInputs extends Component {
         key={prevState.inputNumber + 1}
         number={prevState.inputNumber + 1}
         image={image}
-        handleRemoveInput={this.handleRemoveInput} />),
+        handleRemoveInput={this.handleRemoveInput}
+      />),
     }));
   }
 
