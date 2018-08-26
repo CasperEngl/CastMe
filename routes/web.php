@@ -51,6 +51,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/user/subscription', 'SubscriptionController@index')->name('user.subscription');
     Route::get('/user/subscription/verify', 'SubscriptionController@verifyPayment')->name('user.subscription.verify');
     Route::post('/user/subscription/subscribe', 'SubscriptionController@subscribe')->name('user.subscription.subscribe');
+    Route::post('/user/subscription/dump', function (Request $request) {
+        return $request->all();
+    })->name('user.subscription.dump');
 
     // Conversation (Singular)
     Route::get('conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
