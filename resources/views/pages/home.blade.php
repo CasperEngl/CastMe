@@ -62,7 +62,7 @@
           <section class="card-footer d-flex flex-wrap align-items-center justify-content-center">
             <a href="{{ route('conversation', ['id' => $post->owner->id]) }}" class="card-link btn btn-link">{{ ucfirst(__('contact scout')) }}</a>
             <a href="/post/{{ $post->id }}" class="card-link btn btn-link">{{ ucfirst(__('read more')) }}</a>
-            @if (Auth::user()->id === $post->user_id)
+            @if (Auth::user() && Auth::id() === $post->user_id)
             <a href="/post/{{ $post->id }}/edit" class="d-block w-100 mt-2 card-link btn btn-success">{{ ucfirst(__('edit')) }}</a>
             @endif
           </section>
