@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Helpers\Format;
+use Storage;
 
 class ProfileController extends Controller {
   public function index() {
-    return view('user.settings');
+    $user = Auth::user();
+    $avatar = Storage::disk('public')->get($user->avatar);
+
+    return view('user.settings')->with([
+      'avatar' => $avatar
+    ]);
   }
 
   public function settingsDump() {
@@ -17,6 +24,7 @@ class ProfileController extends Controller {
 
   public function user($id) {
     $user = User::find($id);
+    $avatar = Storage::get($user->avatar);
     $gravatarHash = md5(trim(strtolower(Auth::user()->email))) . '?s=200';
     $profile_types = [];
 
@@ -30,18 +38,36 @@ class ProfileController extends Controller {
 
     return view('user.profile')->with([
       'user' => $user,
+      'avatar' => $avatar,
       'gravatar' => $gravatarHash,
       'profile_types' => $profile_types,
     ]);
   }
 
   public function update(Request $request) {
-    $user    = Auth::user();
+    $user = Auth::user();
     $details = $user->details;
+
+    $file = $request->file('avatar');
+
+    if ($file) {
+      if ($file->getSize() / 1000 > 2000)
+        return redirect()->back()->withErrors([
+          Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.')
+        ]);
+
+      if ($file->isValid() !== true)
+        return redirect()->back()->withErrors([
+          Format::string('there was an issue with your image. please try uploading again, or find another avatar')
+        ]);
+
+      $storedFile = Storage::disk('public')->put('avatar', $file);
+    }
 
     $user->name           = $request->input('first_name') ? $request->input('first_name') : $user->name;
     $user->last_name      = $request->input('last_name') ? $request->input('last_name') : $user->last_name;
     $user->email          = $request->input('email') ? $request->input('email') : $user->email;
+    $user->avatar         = $file ? $storedFile : $user->avatar;
     $details->age         = $request->input('age') ? $request->input('age') : $details->age;
     $details->height      = $request->input('height') ? $request->input('height') : $details->height;
     $details->weight      = $request->input('weight') ? $request->input('weight') : $details->weight;
