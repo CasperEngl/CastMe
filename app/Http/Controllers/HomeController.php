@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class HomeController extends Controller {
   /**
@@ -20,6 +21,10 @@ class HomeController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    return view('pages.home');
+    $posts = Post::orderBy('id', 'desc')
+      ->limit(4)
+      ->get();
+
+    return view('pages.home')->with('posts', $posts);
   }
 }
