@@ -10,6 +10,6 @@ class ConversationsTableSeeder extends Seeder
      * @return void
      */
     public function run() {
-        factory('App\Conversation', 20)->create();
+        factory('App\Conversation', 100)->create();
     }
 }
