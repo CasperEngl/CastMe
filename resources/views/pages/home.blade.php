@@ -52,7 +52,7 @@
         <article class="card h-100">
           <section class="card-body d-flex flex-wrap">
             <h4 class="card-title w-100">{{ title_case($post->title) }}</h4>
-            @if (Auth::user()->id === $post->user_id)
+            @if (Auth::user() && Auth::id() === $post->user_id)
               <h6 class="card-subtitle w-100 mb-2 text-muted">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</h6>
             @else
               <h6 class="card-subtitle w-100 mb-2 text-muted">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</h6>
