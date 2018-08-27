@@ -1,3 +1,9 @@
+<?php
+
+use App\Helpers\Format;
+
+?>
+
 @extends('layouts.master')
 @section('content')
 <main class="container">
