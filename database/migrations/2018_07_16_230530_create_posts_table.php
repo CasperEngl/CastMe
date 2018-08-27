@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration {
       $table->string('title');
       $table->text('content')->nullable();
       $table->text('images');
+      $table->string('banner')->default('banner/banner.jpg');
       $table->boolean('closed')->default(0);
       $table->boolean('actor')->default(0);
       $table->boolean('dancer')->default(0);
