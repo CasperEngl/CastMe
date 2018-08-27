@@ -8,6 +8,7 @@ use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Helpers\Flash;
+use App\Helpers\Format;
 
 class PostController extends Controller {
   public function index($id) {
