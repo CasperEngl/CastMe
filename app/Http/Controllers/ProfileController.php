@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Helpers\Format;
 use Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProfileController extends Controller {
   public function index() {
@@ -48,26 +49,26 @@ class ProfileController extends Controller {
     $user = Auth::user();
     $details = $user->details;
 
-    $file = $request->file('avatar');
+    $avatar = $request->file('avatar');
 
-    if ($file) {
-      if ($file->getSize() / 1000 > 2000)
+    if ($avatar) {
+      if ($avatar->getSize() / 1000 > 2000)
         return redirect()->back()->withErrors([
           Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.')
         ]);
 
-      if ($file->isValid() !== true)
+      if ($avatar->isValid() !== true)
         return redirect()->back()->withErrors([
           Format::string('there was an issue with your image. please try uploading again, or find another avatar')
         ]);
 
-      $storedFile = Storage::disk('public')->put('avatar', $file);
+      $storedFile = Storage::disk('public')->put('avatar', $avatar);
     }
 
     $user->name           = $request->input('first_name') ? $request->input('first_name') : $user->name;
     $user->last_name      = $request->input('last_name') ? $request->input('last_name') : $user->last_name;
     $user->email          = $request->input('email') ? $request->input('email') : $user->email;
-    $user->avatar         = $file ? $storedFile : $user->avatar;
+    $user->avatar         = $avatar ? $storedFile : $user->avatar;
     $details->age         = $request->input('age') ? $request->input('age') : $details->age;
     $details->height      = $request->input('height') ? $request->input('height') : $details->height;
     $details->weight      = $request->input('weight') ? $request->input('weight') : $details->weight;
