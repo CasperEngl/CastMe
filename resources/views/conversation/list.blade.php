@@ -7,8 +7,8 @@
       <div class="card-header">{{ ucfirst(__('your conversations')) }}</div>
       <div class="list-group">
         @foreach ($conversations as $conversation)
-        <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="list-group-item">
-          {{ $conversation->name }} {{ $conversation->last_name }}
+        <a href="{{ route('conversation', ['id' => $conversation['id']]) }}" class="list-group-item">
+          {{ $conversation['name'] }} {{ $conversation['last_name'] }}
           <span class="badge badge-danger">{{ ucfirst(__('unread')) }}</span>
         </a>
         @endforeach
