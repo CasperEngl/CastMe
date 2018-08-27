@@ -20,11 +20,11 @@
             <div id="avatar-errors"></div>
           </div>
 
-          @if (storage_path(Auth::user()->avatar))
+          @if ($avatar)
           <div class="d-flex flex-wrap justify-content-center">
             <h2 class="w-100 text-center text-muted">{{ ucfirst(__('avatar')) }}</h2>
             <figure class="mb-4 avatar justify-content-center">
-              <img src="{{ asset(Auth::user()->avatar) }}" alt="{{ __('avatar') }}">
+              <img src="{{ $avatar }}" alt="{{ __('avatar') }}">
             </figure>
           </div>
           @endif

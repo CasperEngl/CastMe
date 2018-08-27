@@ -12,10 +12,12 @@ use Intervention\Image\ImageManagerStatic as Image;
 class ProfileController extends Controller {
   public function index() {
     $user = Auth::user();
-    $avatar = Storage::disk('public')->get($user->avatar);
+
+    if (Storage::disk('public')->exists($user->avatar))
+      $avatar = Storage::disk('public')->url($user->avatar);
 
     return view('user.settings')->with([
-      'avatar' => $avatar
+      'avatar' => $avatar ?? null,
     ]);
   }
 
@@ -63,6 +65,7 @@ class ProfileController extends Controller {
         ]);
 
       $storedFile = Storage::disk('public')->put('avatar', $avatar);
+      return Storage::disk('public')->url($storedFile);
     }
 
     $user->name           = $request->input('first_name') ? $request->input('first_name') : $user->name;
