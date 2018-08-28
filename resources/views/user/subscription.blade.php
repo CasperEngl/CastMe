@@ -70,50 +70,50 @@ use \Illuminate\Support\Facades\Auth;
                   <script>
                     const stripeTokenHandler = token => {
                       // Insert the token ID into the form so it gets submitted to the server
-                      const form = document.getElementById("payment-form");
-                      const hiddenInput = document.createElement("input");
-                      hiddenInput.setAttribute("type", "hidden");
-                      hiddenInput.setAttribute("name", "stripeToken");
-                      hiddenInput.setAttribute("value", token.id);
+                      const form = document.getElementById('payment-form');
+                      const hiddenInput = document.createElement('input');
+                      hiddenInput.setAttribute('type', 'hidden');
+                      hiddenInput.setAttribute('name', 'stripeToken');
+                      hiddenInput.setAttribute('value', token.id);
                       form.appendChild(hiddenInput);
 
                       // Submit the form
                       form.submit();
                     };
 
-                    let stripe = Stripe("pk_test_vwXRriarK5ffUa851WaUwOoS");
+                    let stripe = Stripe('pk_test_vwXRriarK5ffUa851WaUwOoS');
                     let elements = stripe.elements();
 
-                    let card = elements.create("card", {
+                    let card = elements.create('card', {
                       hidePostalCode: true,
-                      iconStyle: "solid",
+                      iconStyle: 'solid',
                       style: {
                         base: {
-                          iconColor: "#8898AA",
+                          iconColor: '#8898AA',
                           color: 'rgba(0, 0, 0, .54)',
                           lineHeight: '36px',
                           fontWeight: 400,
                           fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
                           fontSize: '1.25rem',
 
-                          "::placeholder": {
-                            color: "#8898AA"
+                          '::placeholder': {
+                            color: '#8898AA'
                           }
                         },
                         invalid: {
-                          iconColor: "#e85746",
-                          color: "#e85746"
+                          iconColor: '#e85746',
+                          color: '#e85746'
                         }
                       },
                       classes: {
-                        focus: "is-focused",
-                        empty: "is-empty"
+                        focus: 'is-focused',
+                        empty: 'is-empty'
                       }
                     });
-                    card.mount("#card-element");
+                    card.mount('#card-element');
 
-                    card.addEventListener("change", ({ error }) => {
-                      const displayError = document.getElementById("card-errors");
+                    card.addEventListener('change', ({ error }) => {
+                      const displayError = document.getElementById('card-errors');
                       if (error) {
                         displayError.textContent = error.message;
                       } else {
@@ -122,15 +122,15 @@ use \Illuminate\Support\Facades\Auth;
                     });
 
                     // Create a token or display an error when the form is submitted.
-                    const form = document.getElementById("payment-form");
-                    form.addEventListener("submit", async event => {
+                    const form = document.getElementById('payment-form');
+                    form.addEventListener('submit', async event => {
                       event.preventDefault();
 
                       const { token, error } = await stripe.createToken(card);
 
                       if (error) {
                         // Inform the customer that there was an error.
-                        const errorElement = document.getElementById("card-errors");
+                        const errorElement = document.getElementById('card-errors');
                         errorElement.textContent = error.message;
                       } else {
                         // Send the token to your server.
