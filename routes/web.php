@@ -35,10 +35,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('post/{id}/data', 'PostController@data')->where('id', '[0-9]+')->name('post.data');
     Route::post('post/add', 'PostController@add')->name('post.add');
     Route::post('post/{id}/update', 'PostController@update')->where('id', '[0-9]+')->name('post.update');
-    
+
     // Post Comment
     Route::post('post/comment/new', 'CommentController@new')->name('comment.new');
-    
+
     // Profile Settings
     Route::get('user/settings', 'ProfileController@index')->name('user.settings');
     Route::get('user/settings/dump', 'ProfileController@settingsDump')->name('user.settings.settingsDump');
@@ -53,21 +53,21 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('user/subscription/verify', 'SubscriptionController@verifyPayment')->name('user.subscription.verify');
     Route::post('user/subscription/subscribe', 'SubscriptionController@subscribe')->name('user.subscription.subscribe');
     Route::post('user/subscription/dump', 'SubscriptionController@dump')->name('user.subscription.dump');
+    Route::post('user/subscription/create', 'SubscriptionController@create')->name('user.subscription.create');
 
-    // Conversation (Singular)
-    Route::get('conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
-    Route::post('conversation/send/{id}', 'ConversationController@send')->where('id', '[0-9+]')->name('conversation.send');
+  // Conversation (Singular)
+  Route::get('conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
+  Route::post('conversation/send/{id}', 'ConversationController@send')->where('id', '[0-9+]')->name('conversation.send');
 
-    // Conversations (List)
-    Route::get('conversations', 'ConversationController@list')->name('conversations');
+  // Conversations (List)
+  Route::get('conversations', 'ConversationController@list')->name('conversations');
 
-    // Localization
-    Route::get('locale', 'LocaleController@index')->name('locale');
-    Route::post('locale/set/{locale?}', 'LocaleController@set')->name('locale.set');
+  // Localization
+  Route::get('locale', 'LocaleController@index')->name('locale');
+  Route::post('locale/set/{locale?}', 'LocaleController@set')->name('locale.set');
 
-    //subscription Stripe
-    Route::get('sub/make', 'SubscriptionController@subForm')->name('subform');
-    Route::post('sub/make', 'SubscriptionController@create');
+  //subscription Stripe
+  Route::get('sub/make', 'SubscriptionController@subForm')->name('subform');
     Route::post('sub/dump', 'SubscriptionController@dump')->name('sub.dump');
 });
 
