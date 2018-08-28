@@ -31,7 +31,7 @@ use \Illuminate\Support\Facades\Auth;
               <h3 class="page-header">{{ title_case(__('subscribe')) }}</h3>
 
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <ul class="pagination">
                     <li class="page-item w-100 d-flex justify-content-center">
                       <label for="month-2" class="page-link w-100 text-center">2 {{ __('months') }} - 179 DKK</label>
@@ -54,18 +54,10 @@ use \Illuminate\Support\Facades\Auth;
                   </ul>
                 </div>
               
-                <div class="col-sm-6">
-                  <input type="checkbox" name="accepth" id="accepth">
-                  <label for="accepth">{{ ucfirst(__('i accept the')) }} <a href="https://castme.dk/abonnementsbetingelser/" target="blank">{{
-                      __('subscription conditions') }}</a></label>
-                </div>
-              </div>
-
-              <div class="row my-4">
-                <div class="col-sm-12">
+                <div class="col-sm-8">
                   <script src="https://js.stripe.com/v3/"></script>
 
-                  <div id="card-element" class="field is-empty"></div>
+                  <div id="card-element" class="my-4 field is-empty"></div>
 
                   <script>
                     const stripeTokenHandler = token => {
@@ -138,7 +130,10 @@ use \Illuminate\Support\Facades\Auth;
                       }
                     });
                   </script>
-                  
+
+                  <input type="checkbox" name="accepth" id="accepth">
+                  <label for="accepth">{{ ucfirst(__('i accept the')) }} <a href="https://castme.dk/abonnementsbetingelser/" target="blank">{{
+                      __('subscription conditions') }}</a></label>
                 </div>
               </div>
 
