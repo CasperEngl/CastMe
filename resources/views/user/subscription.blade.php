@@ -50,10 +50,10 @@ use \Illuminate\Support\Facades\Auth;
                       <label for="month-12" class="page-link w-100 text-center">12 {{ __('months') }} - 799 DKK</label>
                     </li>
                     <div class="display-none">
-                      <input type="radio" name="months" value="2" id="month-2" checked>
-                      <input type="radio" name="months" value="3" id="month-3">
-                      <input type="radio" name="months" value="6" id="month-6">
-                      <input type="radio" name="months" value="12" id="month-12">
+                      <input type="radio" name="months" value="2" id="month-2" {{ Auth::user()->subscription('paid')->stripe_plan === '2_months' ? 'checked' : '' }}>
+                      <input type="radio" name="months" value="3" id="month-3" {{ Auth::user()->subscription('paid')->stripe_plan === '3_months' ? 'checked' : '' }}>
+                      <input type="radio" name="months" value="6" id="month-6" {{ Auth::user()->subscription('paid')->stripe_plan === '6_months' ? 'checked' : '' }}>
+                      <input type="radio" name="months" value="12" id="month-12" {{ Auth::user()->subscription('paid')->stripe_plan === '12_months' ? 'checked' : '' }}>
                     </div>
                   </ul>
                 </div>
