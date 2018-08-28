@@ -43,7 +43,7 @@ class SubscriptionController extends Controller {
 
   public function swap(Request $request) {
     $user = Auth::user();
-    $model = $request->input('sub');
+    $model = $request->input('months');
 
     if (!$user->subscribed('paid'))
       return redirect()->route('user.subscription')->withErrors([__('user does not have active subscription')]);
