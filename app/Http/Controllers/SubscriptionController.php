@@ -48,10 +48,10 @@ class SubscriptionController extends Controller {
     if (!$user->subscribed('paid'))
       return redirect()->route('user.subscription')->withErrors([__('user does not have active subscription')]);
 
-    if(!in_array($model, ['2_months', '3_months', '6_months', '12_months']))
+    if(!in_array($model, ['2', '3', '6', '12']))
       return redirect()->route('user.subscription')->withErrors([__('unknown billing model')]);
 
-    $user->subscription()->swap($model);
+    $user->subscription()->swap($model . '_months');
 
     Flash::push('success', ucfirst(__('changed billing cycle')));
     return redirect()->route('user.subscription');
