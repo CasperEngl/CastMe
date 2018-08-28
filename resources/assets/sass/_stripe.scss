@@ -3,11 +3,9 @@
 }
 
 .StripeElement {
-  @extend .shdw-sm;
-  padding: 0 .5rem;
-  background: $white;
-  border-radius: 0.25rem;
-  border: 1px solid transparent;
+  @extend .shdw-sm, .px-2, .bg-white;
+  max-width: 25rem;
+  border-radius: $border-radius-lg;
 
   &.is-focused {
     @extend .shdw-md;
@@ -15,9 +13,5 @@
 
   &.is-invalid {
     border-color: #fa755a;
-  }
-
-  &--webkit-autofill {
-    background-color: #fefde5 !important;
   }
 }
