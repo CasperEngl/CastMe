@@ -144,12 +144,6 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col-sm-6">
                   <ul class="pagination">
-                    <div class="display-none">
-                      <input type="radio" name="days" value="60" id="60days" checked>
-                      <input type="radio" name="days" value="90" id="90days">
-                      <input type="radio" name="days" value="180" id="180days">
-                      <input type="radio" name="days" value="365" id="365days">
-                    </div>
                     <li class="page-item w-100 d-flex justify-content-center">
                       <label for="60days" class="page-link w-100 text-center">60 {{ __('days') }} - 179 DKK</label>
                     </li>
@@ -162,6 +156,12 @@ use \Illuminate\Support\Facades\Auth;
                     <li class="page-item w-100 d-flex justify-content-center">
                       <label for="365days" class="page-link w-100 text-center">365 {{ __('days') }} - 799 DKK</label>
                     </li>
+                    <div class="display-none">
+                      <input type="radio" name="days" value="60" id="60days" checked>
+                      <input type="radio" name="days" value="90" id="90days">
+                      <input type="radio" name="days" value="180" id="180days">
+                      <input type="radio" name="days" value="365" id="365days">
+                    </div>
                   </ul>
                 </div>
               
