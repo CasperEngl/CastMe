@@ -65,7 +65,6 @@ class ProfileController extends Controller {
         ]);
 
       $storedFile = Storage::disk('public')->put('avatar', $avatar);
-      return Storage::disk('public')->url($storedFile);
     }
 
     $user->name           = $request->input('first_name') ? $request->input('first_name') : $user->name;

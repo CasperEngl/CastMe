@@ -33,14 +33,22 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="fname">{{ title_case(__('first name')) }}</label>
-                    <input type="text" name="fname" id="fname" class="form-control" value="{{ old('fname') }}">
+                    {{ Form::label('fname', ucfirst(__('first name')), [
+                      'class' => 'text-muted'
+                    ]) }}
+                    {{ Form::text('fname', old('fname'), [
+                      'class' => 'form-control'
+                    ]) }}
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="lname">{{ title_case(__('last name')) }}</label>
-                    <input type="text" name="lname" id="lname" class="form-control" value="{{ old('lname') }}">
+                    {{ Form::label('lname', ucfirst(__('last name')), [
+                      'class' => 'text-muted'
+                    ]) }}
+                    {{ Form::text('lname', old('lname'), [
+                      'class' => 'form-control'
+                    ]) }}
                   </div>
                 </div>
               </div>
@@ -48,8 +56,12 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label for="company">{{ title_case(__('company')) }}</label>
-                    <input type="text" name="company" id="company" class="form-control" value="{{ old('company') }}">
+                    {{ Form::label('company', ucfirst(__('company')), [
+                      'class' => 'text-muted'
+                    ]) }}
+                    {{ Form::text('company', old('company'), [
+                      'class' => 'form-control'
+                    ]) }}
                   </div>
                 </div>
               </div>
@@ -57,8 +69,12 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label for="address1">{{ title_case(__('street and house number')) }}</label>
-                    <input type="text" name="address1" id="address1" class="form-control">
+                    {{ Form::label('address1', ucfirst(__('street and house number')), [
+                      'class' => 'text-muted'
+                    ]) }}
+                    {{ Form::text('address1', old('address1'), [
+                      'class' => 'form-control'
+                    ]) }}
                   </div>
                 </div>
               </div>
@@ -66,8 +82,12 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label for="address2">{{ title_case(__('stairway, floor etc.')) }}</label>
-                    <input type="text" name="address2" id="address2" class="form-control">
+                    {{ Form::label('address2', ucfirst(__('stairway, floor etc.')), [
+                      'class' => 'text-muted'
+                    ]) }}
+                    {{ Form::text('address2', old('address2'), [
+                      'class' => 'form-control'
+                    ]) }}
                   </div>
                 </div>
               </div>
@@ -75,14 +95,22 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="zip_code">{{ title_case(__('zip code')) }}</label>
-                    <input type="text" name="zip_code" id="zip_code" class="form-control">
+                    {{ Form::label('zip_code', ucfirst(__('zip code')), [
+                      'class' => 'text-muted'
+                    ]) }}
+                    {{ Form::text('zip_code', old('zip_code'), [
+                      'class' => 'form-control'
+                    ]) }}
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="city">{{ title_case(__('city')) }}</label>
-                    <input type="text" name="city" id="city" class="form-control">
+                    {{ Form::label('city', ucfirst(__('city')), [
+                      'class' => 'text-muted'
+                    ]) }}
+                    {{ Form::text('city', old('city'), [
+                      'class' => 'form-control'
+                    ]) }}
                   </div>
                 </div>
               </div>
@@ -90,8 +118,12 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label for="phone_number">{{ title_case(__('phone number')) }}</label>
-                    <input type="text" name="phone_number" id="phone_number" class="form-control" value="{{ old('phone_number') }}">
+                    {{ Form::label('phone_number', ucfirst(__('phone number')), [
+                      'class' => 'text-muted'
+                    ]) }}
+                    {{ Form::text('phone_number', old('phone_number'), [
+                      'class' => 'form-control'
+                    ]) }}
                   </div>
                 </div>
               </div>
@@ -99,8 +131,12 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label for="email">{{ title_case(__('email address')) }}</label>
-                    <input type="text" name="email" id="email" class="form-control" value="{{ old('email') }}">
+                    {{ Form::label('email', ucfirst(__('email address')), [
+                      'class' => 'text-muted'
+                    ]) }}
+                    {{ Form::text('email', old('email'), [
+                      'class' => 'form-control'
+                    ]) }}
                   </div>
                 </div>
               </div>
@@ -108,12 +144,6 @@ use \Illuminate\Support\Facades\Auth;
               <div class="row">
                 <div class="col-sm-6">
                   <ul class="pagination">
-                    <div class="display-none">
-                      <input type="radio" name="days" value="60" id="60days" checked>
-                      <input type="radio" name="days" value="90" id="90days">
-                      <input type="radio" name="days" value="180" id="180days">
-                      <input type="radio" name="days" value="365" id="365days">
-                    </div>
                     <li class="page-item w-100 d-flex justify-content-center">
                       <label for="60days" class="page-link w-100 text-center">60 {{ __('days') }} - 179 DKK</label>
                     </li>
@@ -126,6 +156,12 @@ use \Illuminate\Support\Facades\Auth;
                     <li class="page-item w-100 d-flex justify-content-center">
                       <label for="365days" class="page-link w-100 text-center">365 {{ __('days') }} - 799 DKK</label>
                     </li>
+                    <div class="display-none">
+                      <input type="radio" name="days" value="60" id="60days" checked>
+                      <input type="radio" name="days" value="90" id="90days">
+                      <input type="radio" name="days" value="180" id="180days">
+                      <input type="radio" name="days" value="365" id="365days">
+                    </div>
                   </ul>
                 </div>
               
