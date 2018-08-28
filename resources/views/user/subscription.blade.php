@@ -85,15 +85,16 @@ use \Illuminate\Support\Facades\Auth;
                     let elements = stripe.elements();
 
                     let card = elements.create("card", {
+                      hidePostalCode: true,
                       iconStyle: "solid",
                       style: {
                         base: {
                           iconColor: "#8898AA",
-                          color: "white",
-                          lineHeight: "36px",
-                          fontWeight: 300,
+                          color: 'rgba(0, 0, 0, .54)',
+                          lineHeight: '36px',
+                          fontWeight: 400,
                           fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                          fontSize: "19px",
+                          fontSize: '1.25rem',
 
                           "::placeholder": {
                             color: "#8898AA"

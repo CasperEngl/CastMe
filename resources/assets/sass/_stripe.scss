@@ -1,27 +1,23 @@
+.ElementsApp, .ElementsApp .InputElement {
+  color: rgba(black, .87) !important;
+}
 
 .StripeElement {
-  background-color: white;
-  height: 40px;
-  padding: 10px 12px;
-  border-radius: 4px;
+  @extend .shdw-sm;
+  padding: 0 .5rem;
+  background: $white;
+  border-radius: 0.25rem;
   border: 1px solid transparent;
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
 
-  &--focus {
-    box-shadow: 0 1px 3px 0 #cfd7df;
+  &.is-focused {
+    @extend .shdw-md;
   }
 
-  &--invalid {
+  &.is-invalid {
     border-color: #fa755a;
   }
 
   &--webkit-autofill {
     background-color: #fefde5 !important;
-  }
-
-  .InputElement {
-    color: rgba(black, .87);
   }
 }

@@ -4,6 +4,9 @@ $shdw-text:     $shdw-x #{$shdw-y / 2}    #{$shdw-blur / 2}     $shdw-color;
 $shdw-sm:       $shdw-x $shdw-y-sm        $shdw-blur-sm         $shdw-color-sm;
 $shdw-sm-text:  $shdw-x #{$shdw-y-sm / 2} #{$shdw-blur-sm / 2}  $shdw-color-sm;
 
+$shdw-md:       $shdw-x $shdw-y-md        $shdw-blur-md         $shdw-color-md;
+$shdw-md-text:  $shdw-x #{$shdw-y-md / 2} #{$shdw-blur-md / 2}  $shdw-color-md;
+
 $shdw-lg:       $shdw-x $shdw-y-lg        $shdw-blur-lg         $shdw-color-lg;
 $shdw-lg-text:  $shdw-x #{$shdw-y-lg}     #{$shdw-blur-lg / 2}  $shdw-color-lg;
 
@@ -15,6 +18,7 @@ $shdw-lg-text:  $shdw-x #{$shdw-y-lg}     #{$shdw-blur-lg / 2}  $shdw-color-lg;
 .shdw {
   -webkit-filter: drop-shadow($shdw);
   filter: drop-shadow($shdw);
+  transition: $transition-base;
 }
 
 .shdw-text {
@@ -24,15 +28,27 @@ $shdw-lg-text:  $shdw-x #{$shdw-y-lg}     #{$shdw-blur-lg / 2}  $shdw-color-lg;
 .shdw-sm {
   -webkit-filter: drop-shadow($shdw-sm);
   filter: drop-shadow($shdw-sm);
+  transition: $transition-base;
 }
 
 .shdw-text-sm {
   text-shadow: $shdw-sm-text;
 }
 
+.shdw-md {
+  -webkit-filter: drop-shadow($shdw-md);
+  filter: drop-shadow($shdw-md);
+  transition: $transition-base;
+}
+
+.shdw-text-md {
+  text-shadow: $shdw-md-text;
+}
+
 .shdw-lg {
   -webkit-filter: drop-shadow($shdw-lg);
   filter: drop-shadow($shdw-lg);
+  transition: $transition-base;
 }
 
 .shdw-text-lg {
