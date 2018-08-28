@@ -50,24 +50,22 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Subscription
     Route::get('user/subscription', 'SubscriptionController@index')->name('user.subscription');
-    Route::get('user/subscription/verify', 'SubscriptionController@verifyPayment')->name('user.subscription.verify');
-    Route::post('user/subscription/subscribe', 'SubscriptionController@subscribe')->name('user.subscription.subscribe');
-    Route::post('user/subscription/dump', 'SubscriptionController@dump')->name('user.subscription.dump');
     Route::post('user/subscription/create', 'SubscriptionController@create')->name('user.subscription.create');
+    Route::post('user/subscription/swap', 'SubscriptionController@swap')->name('user.subscription.swap');
 
-  // Conversation (Singular)
-  Route::get('conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
-  Route::post('conversation/send/{id}', 'ConversationController@send')->where('id', '[0-9+]')->name('conversation.send');
+    // Conversation (Singular)
+    Route::get('conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
+    Route::post('conversation/send/{id}', 'ConversationController@send')->where('id', '[0-9+]')->name('conversation.send');
 
-  // Conversations (List)
-  Route::get('conversations', 'ConversationController@list')->name('conversations');
+    // Conversations (List)
+    Route::get('conversations', 'ConversationController@list')->name('conversations');
 
-  // Localization
-  Route::get('locale', 'LocaleController@index')->name('locale');
-  Route::post('locale/set/{locale?}', 'LocaleController@set')->name('locale.set');
+    // Localization
+    Route::get('locale', 'LocaleController@index')->name('locale');
+    Route::post('locale/set/{locale?}', 'LocaleController@set')->name('locale.set');
 
-  //subscription Stripe
-  Route::get('sub/make', 'SubscriptionController@subForm')->name('subform');
+    // Subscription Stripe
+    Route::get('sub/make', 'SubscriptionController@subForm')->name('subform');
     Route::post('sub/dump', 'SubscriptionController@dump')->name('sub.dump');
 });
 

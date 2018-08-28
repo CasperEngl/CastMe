@@ -25,7 +25,11 @@ use \Illuminate\Support\Facades\Auth;
         </div>
       </div>
       <div class="col-12 col-sm-8">
+        @if(Auth::user()->activeSub())
+        <form action="{{ route('user.subscription.swap') }}" method="POST" id="payment-form">
+        @else
         <form action="{{ route('user.subscription.create') }}" method="POST" id="payment-form">
+        @endif
           <div class="card">
             <div class="card-body">
               <h3 class="page-header">{{ title_case(__('subscribe')) }}</h3>
@@ -58,6 +62,7 @@ use \Illuminate\Support\Facades\Auth;
                   <script src="https://js.stripe.com/v3/"></script>
 
                   <div id="card-element" class="my-4 field is-empty"></div>
+                  <div id="card-errors"></div>
 
                   <script>
                     const stripeTokenHandler = token => {
@@ -73,7 +78,7 @@ use \Illuminate\Support\Facades\Auth;
                       form.submit();
                     };
 
-                    let stripe = Stripe('pk_test_vwXRriarK5ffUa851WaUwOoS');
+                    let stripe = Stripe('pk_test_q3utIRDba2wBV5yGIgyRUku3');
                     let elements = stripe.elements();
 
                     let card = elements.create('card', {
