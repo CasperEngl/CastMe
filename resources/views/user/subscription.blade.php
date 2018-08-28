@@ -34,22 +34,22 @@ use \Illuminate\Support\Facades\Auth;
                 <div class="col-sm-6">
                   <ul class="pagination">
                     <li class="page-item w-100 d-flex justify-content-center">
-                      <label for="60days" class="page-link w-100 text-center">60 {{ __('days') }} - 179 DKK</label>
+                      <label for="month-2" class="page-link w-100 text-center">2 {{ __('months') }} - 179 DKK</label>
                     </li>
                     <li class="page-item w-100 d-flex justify-content-center">
-                      <label for="90days" class="page-link w-100 text-center">90 {{ __('days') }} - 279 DKK</label>
+                      <label for="month-3" class="page-link w-100 text-center">3 {{ __('months') }} - 279 DKK</label>
                     </li>
                     <li class="page-item w-100 d-flex justify-content-center">
-                      <label for="180days" class="page-link w-100 text-center">180 {{ __('days') }} - 449 DKK</label>
+                      <label for="month-6" class="page-link w-100 text-center">6 {{ __('months') }} - 449 DKK</label>
                     </li>
                     <li class="page-item w-100 d-flex justify-content-center">
-                      <label for="365days" class="page-link w-100 text-center">365 {{ __('days') }} - 799 DKK</label>
+                      <label for="month-12" class="page-link w-100 text-center">12 {{ __('months') }} - 799 DKK</label>
                     </li>
                     <div class="display-none">
-                      <input type="radio" name="days" value="60" id="60days" checked>
-                      <input type="radio" name="days" value="90" id="90days">
-                      <input type="radio" name="days" value="180" id="180days">
-                      <input type="radio" name="days" value="365" id="365days">
+                      <input type="radio" name="months" value="2" id="month-2" checked>
+                      <input type="radio" name="months" value="3" id="month-3">
+                      <input type="radio" name="months" value="6" id="month-6">
+                      <input type="radio" name="months" value="12" id="month-12">
                     </div>
                   </ul>
                 </div>
