@@ -78,7 +78,7 @@ use \Illuminate\Support\Facades\Auth;
                       form.submit();
                     };
 
-                    let stripe = Stripe('pk_test_q3utIRDba2wBV5yGIgyRUku3');
+                    let stripe = Stripe('{{ env('STRIPE_KEY') }}');
                     let elements = stripe.elements();
 
                     let card = elements.create('card', {
