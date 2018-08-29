@@ -59,7 +59,7 @@
               <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 @if (Storage::disk('public')->exists(Auth::user()->avatar))
                 <figure class="circle header-avatar">
-                  <img src="{{ Storage::disk('public')->url(Auth::user()->avatar) }}" alt="{{ __('avatar') }}" class="header-avatar">
+                  <img src="{{ Storage::disk('public')->url(Auth::user()->avatar) }}" alt="{{ __('avatar') }}">
                 </figure>
                 @else
                 {{ Auth::user()->name }}
