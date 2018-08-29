@@ -3,6 +3,7 @@ import $ from 'jquery';
 $('#avatar').fileinput({
   overwriteInitial: true,
   maxFileSize: 2000,
+  autoOrientImage: false,
   showClose: false,
   showCaption: false,
   showUpload: false,
@@ -12,5 +13,5 @@ $('#avatar').fileinput({
   removeIcon: '<i class="fas fa-trash"></i>',
   elErrorContainer: '#avatar-errors',
   msgErrorClass: 'alert alert-block alert-danger',
-  allowedFileExtensions: ['jpg', 'png', 'gif'],
+  allowedFileExtensions: ['jpg', 'jpeg', 'png'],
 });
