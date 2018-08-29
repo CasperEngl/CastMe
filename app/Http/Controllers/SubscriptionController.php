@@ -12,7 +12,12 @@ use QuickPay\QuickPay;
 
 class SubscriptionController extends Controller {
   public function index() {
-    return view('user.subscription');
+    $user = Auth::user();
+    $plan = $user->subscribed('paid') ? $user->subscription('paid')->stripe_plan : '';
+
+    return view('user.subscription')->with([
+      'plan' => $plan
+    ]);
   }
 
   public function subForm() {
@@ -25,6 +30,7 @@ class SubscriptionController extends Controller {
 
   public function create(Request $request) {
     $user = Auth::user();
+    $token = $request->input('stripeToken');
     $model = $request->input('months');
     $accepted = $request->input('accepth');
 
@@ -41,12 +47,12 @@ class SubscriptionController extends Controller {
       ]);
 
     // Checks that $request->input('sub') is not manipulated
-    if(!in_array($model, ['2', '3', '6', '12']))
+    if(!in_array($model, ['2_months', '3_months', '6_months', '12_months']))
       return redirect()->back()->withErrors([
         ucfirst(__('unknown billing model'))
       ]);
 
-    $user->newSubscription('paid', $model . '_months')->create($request->input('stripeToken'));
+    $user->newSubscription('paid', $model . '_months')->create($token);
 
     Flash::push('success', ucfirst(__('you\'re now subscribed!')));
     return redirect()->route('user.subscription');
@@ -54,6 +60,7 @@ class SubscriptionController extends Controller {
 
   public function swap(Request $request) {
     $user = Auth::user();
+    $token = $request->input('stripeToken');
     $model = $request->input('months');
     $accepted = $request->input('accepth');
 
@@ -68,14 +75,20 @@ class SubscriptionController extends Controller {
         ucfirst(__('user does not have active subscription'))
         ]);
 
-    if(!in_array($model, ['2', '3', '6', '12']))
+    if (!in_array($model, ['2_months', '3_months', '6_months', '12_months']))
       return redirect()->back()->withErrors([
         ucfirst(__('unknown billing model'))
       ]);
 
-    $user->subscription('paid')->swap($model . '_months');
+    // Check if user wants to change
+    if ($user->subscription('paid')->stripe_plan === $model) {
+      $user->updateCard($token);
+      Flash::push('success', ucfirst(__('updated card information')));
+    } else {
+      $user->subscription('paid')->swap($model . '_months');
+      Flash::push('success', ucfirst(__('changed billing cycle')));
+    }
 
-    Flash::push('success', ucfirst(__('changed billing cycle')));
     return redirect()->route('user.subscription');
   }
 
@@ -86,5 +99,12 @@ class SubscriptionController extends Controller {
 
     Flash::push('success', ucfirst(__('successfully unsubscribed')));
     return redirect()->route('user.subscription');
+  }
+
+  public function invoice(Request $request, $id) {
+    return $request->user()->downloadInvoice($id, [
+      'vendor' => 'Cast Me',
+      'Product' => ucfirst(__('subscription'))
+    ]);
   }
 }
