@@ -52,7 +52,7 @@ class SubscriptionController extends Controller {
         ucfirst(__('unknown billing model'))
       ]);
 
-    $user->newSubscription('paid', $model . '_months')->create($token);
+    $user->newSubscription('paid', $model)->create($token);
 
     Flash::push('success', ucfirst(__('you\'re now subscribed!')));
     return redirect()->route('user.subscription');
@@ -85,7 +85,7 @@ class SubscriptionController extends Controller {
       $user->updateCard($token);
       Flash::push('success', ucfirst(__('updated card information')));
     } else {
-      $user->subscription('paid')->swap($model . '_months');
+      $user->subscription('paid')->swap($model);
       Flash::push('success', ucfirst(__('changed billing cycle')));
     }
 
