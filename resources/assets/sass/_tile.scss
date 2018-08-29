@@ -1,13 +1,6 @@
 .btn.tile {
-  @extend .shdw;
-  margin: .5rem 0;
-  width: 100%;
+  @extend .my-3, .w-100, .d-flex, .flex-wrap, .align-items-center, .justify-content-center, .shdw;
   height: $tile-height;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
 
   background: $primary-color;
   border: none;
