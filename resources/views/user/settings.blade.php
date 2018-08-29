@@ -17,7 +17,7 @@
             {{ Form::file('avatar', [
                 'class' => 'file mb-4'
               ]) }}
-            <div id="avatar-errors"></div>
+            <div id="avatar-errors" class="my-2"></div>
           </div>
 
           @if ($avatar)
