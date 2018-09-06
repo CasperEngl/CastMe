@@ -16,7 +16,7 @@
     </figure>
   </div>
 </section>
-<main class="container">
+<main>
   <section>
     <h2 class="text-center">Castme er lige nu under udvikling</h2>
     <p class="text-center">
