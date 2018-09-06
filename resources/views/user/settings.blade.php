@@ -23,7 +23,7 @@
           @if ($avatar)
           <div class="d-flex flex-wrap justify-content-center">
             <h2 class="w-100 text-center text-muted">{{ ucfirst(__('avatar')) }}</h2>
-            <figure class="mb-4 circle avatar justify-content-center">
+            <figure class="mb-4 circle edit-profile-avatar justify-content-center">
               <img src="{{ $avatar }}" alt="{{ __('avatar') }}">
             </figure>
           </div>
