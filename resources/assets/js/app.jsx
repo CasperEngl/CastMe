@@ -13,5 +13,6 @@ import './file-input/fileinput-custom';
 import './avatar';
 import './pagination-click';
 import './selectpicker';
+import './sidebar';
 
 import './components/ImageInputs';
