@@ -1,14 +1,14 @@
-$shdw:          $shdw-x $shdw-y           $shdw-blur            $shdw-color;
-$shdw-text:     $shdw-x #{$shdw-y / 2}    #{$shdw-blur / 2}     $shdw-color;
+$shdw:          $shdw-x $shdw-y           $shdw-blur            $shdw-color-sm;
+$shdw-text:     $shdw-x #{$shdw-y / 2}    #{$shdw-blur / 2}     $shdw-color-sm;
 
 $shdw-sm:       $shdw-x $shdw-y-sm        $shdw-blur-sm         $shdw-color-sm;
 $shdw-sm-text:  $shdw-x #{$shdw-y-sm / 2} #{$shdw-blur-sm / 2}  $shdw-color-sm;
 
-$shdw-md:       $shdw-x $shdw-y-md        $shdw-blur-md         $shdw-color-md;
-$shdw-md-text:  $shdw-x #{$shdw-y-md / 2} #{$shdw-blur-md / 2}  $shdw-color-md;
+$shdw-md:       $shdw-x $shdw-y-md        $shdw-blur-md         $shdw-color-sm;
+$shdw-md-text:  $shdw-x #{$shdw-y-md / 2} #{$shdw-blur-md / 2}  $shdw-color-sm;
 
-$shdw-lg:       $shdw-x $shdw-y-lg        $shdw-blur-lg         $shdw-color-lg;
-$shdw-lg-text:  $shdw-x #{$shdw-y-lg}     #{$shdw-blur-lg / 2}  $shdw-color-lg;
+$shdw-lg:       $shdw-x $shdw-y-lg        $shdw-blur-lg         $shdw-color-sm;
+$shdw-lg-text:  $shdw-x #{$shdw-y-lg}     #{$shdw-blur-lg / 2}  $shdw-color-sm;
 
 .shdw-none {
   -webkit-filter: drop-shadow(none);
@@ -16,8 +16,12 @@ $shdw-lg-text:  $shdw-x #{$shdw-y-lg}     #{$shdw-blur-lg / 2}  $shdw-color-lg;
 }
 
 .shdw {
-  -webkit-filter: drop-shadow($shdw);
   filter: drop-shadow($shdw);
+  transition: $transition-base;
+}
+
+.shdw-boxed {
+  box-shadow: $shdw;
   transition: $transition-base;
 }
 
@@ -26,8 +30,12 @@ $shdw-lg-text:  $shdw-x #{$shdw-y-lg}     #{$shdw-blur-lg / 2}  $shdw-color-lg;
 }
 
 .shdw-sm {
-  -webkit-filter: drop-shadow($shdw-sm);
   filter: drop-shadow($shdw-sm);
+  transition: $transition-base;
+}
+
+.shdw-sm-boxed {
+  box-shadow: $shdw-sm;
   transition: $transition-base;
 }
 
@@ -36,8 +44,12 @@ $shdw-lg-text:  $shdw-x #{$shdw-y-lg}     #{$shdw-blur-lg / 2}  $shdw-color-lg;
 }
 
 .shdw-md {
-  -webkit-filter: drop-shadow($shdw-md);
   filter: drop-shadow($shdw-md);
+  transition: $transition-base;
+}
+
+.shdw-md-boxed {
+  box-shadow: $shdw-md;
   transition: $transition-base;
 }
 
@@ -46,8 +58,12 @@ $shdw-lg-text:  $shdw-x #{$shdw-y-lg}     #{$shdw-blur-lg / 2}  $shdw-color-lg;
 }
 
 .shdw-lg {
-  -webkit-filter: drop-shadow($shdw-lg);
   filter: drop-shadow($shdw-lg);
+  transition: $transition-base;
+}
+
+.shdw-lg-boxed {
+  box-shadow: $shdw-lg;
   transition: $transition-base;
 }
 
