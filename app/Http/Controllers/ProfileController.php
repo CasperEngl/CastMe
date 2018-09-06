@@ -27,9 +27,19 @@ class ProfileController extends Controller {
 
   public function user($id) {
     $user = User::find($id);
-    $avatar = Storage::get($user->avatar);
+    $avatar = Storage::disk('public')->exists($user->avatar);
     $gravatarHash = md5(trim(strtolower(Auth::user()->email))) . '?s=200';
     $profile_types = [];
+
+    if ($avatar) {
+      $avatar = Storage::disk('public')->url($user->avatar);
+    }
+      
+
+    if (!$user)
+      return redirect()->back()->withErrors([
+        ucfirst(__('unfortunately, that user does not exist'))
+      ]);
 
     !$user->details->actor ?: $profile_types[] = title_case('Actor');
     !$user->details->dancer ?: $profile_types[] = title_case('Dancer');
