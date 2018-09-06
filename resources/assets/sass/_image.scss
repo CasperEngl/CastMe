@@ -17,7 +17,12 @@ figure {
     }
   }
 
-  &.avatar {
+  &.edit-profile-avatar {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  &.profile-avatar {
     height: 5rem;
     width: 5rem;
   }
