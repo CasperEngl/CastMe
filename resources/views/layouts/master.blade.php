@@ -66,7 +66,6 @@ use App\Helpers\RequestActive;
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item {{ RequestActive::route('user.settings', true) }}" href="{{ route('user.settings') }}">{{ title_case(__('profile settings')) }}</a>
                 <a class="dropdown-item {{ RequestActive::route('user.subscription', true) }}" href="{{ route('user.subscription') }}">{{ title_case(__('subscription')) }}</a>
-                <a class="dropdown-item {{ RequestActive::route('conversations', true) }}" href="{{ route('conversations') }}" class="dropdown-item">{{ title_case(__('conversations')) }} <span class="badge badge-danger">7</span></a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 {{ title_case(__('logout')) }} <i class="fas fa-sign-out-alt"></i></a>
 
@@ -103,20 +102,16 @@ use App\Helpers\RequestActive;
       <aside class="col-sm-3 d-none d-lg-block">
         <div class="sidebar" id="sidebar" data-toggle="affix">
           <div class="list-group mb-4">
-            <li class="list-group-item {{ RequestActive::route('overview', true) }}">
-              <a href="{{ route('overview') }}">{{ title_case(__('overview')) }}</a>
-            </li>
-            <li class="list-group-item {{ RequestActive::route('posts', true) }}">
-              <a href="{{ route('posts') }}">{{ title_case(__('posts')) }}</a>
-            </li>
-            <li class="list-group-item {{ RequestActive::route('conversations', true) }}">
-              <a href="{{ route('conversations') }}">{{ title_case(__('conversations')) }}</a>
-            </li>
+            <a href="{{ route('overview') }}" class="list-group-item {{ RequestActive::route('overview', true) }}">{{ title_case(__('overview')) }}</a>
+            <a href="{{ route('posts') }}" class="list-group-item {{ RequestActive::route('posts', true) }}">{{ title_case(__('posts')) }}</a>
           </div>
           <div class="list-group mb-4">
-            <li class="list-group-item {{ RequestActive::route('post.new', true) }}">
-              <a href="{{ route('post.new') }}">{{ title_case(__('new post')) }}</a>
-            </li>
+            <a href="{{ route('user.settings') }}" class="list-group-item {{ RequestActive::route('user.settings', true) }}">{{ title_case(__('profile settings')) }}</a>
+            <a href="{{ route('user.subscription') }}" class="list-group-item {{ RequestActive::route('user.subscription', true) }}">{{ title_case(__('subscription')) }}</a>
+            <a href="{{ route('conversations') }}" class="list-group-item {{ RequestActive::route('conversations', true) }}">{{ title_case(__('conversations')) }} <span class="badge badge-danger">7</span></a>
+          </div>
+          <div class="list-group mb-4">
+            <a href="{{ route('post.new') }}" class="list-group-item {{ RequestActive::route('post.new', true) }}">{{ title_case(__('new post')) }}</a>
           </div>
         </div>
       </aside>

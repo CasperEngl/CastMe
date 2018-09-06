@@ -15,21 +15,16 @@
   .list-group-item {
     background: none;
     border-width: 0 0 0 4px;
-    border-color: $white;
+    border-color: $gray-500;
     border-radius: 0;
+
+    font-weight: bold;
+    color: $gray-500;
+    text-decoration: none;
     
     &.active {
       border-left: 4px solid $primary-color;
-
-      a {
-        color: $primary-color;
-      }
-    }
-
-    a {
-      font-weight: bold;
-      color: $dark;
-      text-decoration: none;
+      color: $primary-color;
     }
   }
 }
