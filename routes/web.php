@@ -46,12 +46,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('user/settings/dump', 'ProfileController@dump')->name('user.settings.dump');
 
     // Specific Profile
-    Route::get('profile/{id}', 'ProfileController@user')->name('profile');
+    Route::get('profile/{id}', 'ProfileController@user')->where('id', '[0-9]+')->name('profile');
 
     // Subscription
     Route::get('user/subscription', 'SubscriptionController@index')->name('user.subscription');
     Route::post('user/subscription/create', 'SubscriptionController@create')->name('user.subscription.create');
     Route::post('user/subscription/swap', 'SubscriptionController@swap')->name('user.subscription.swap');
+
+    // Invoice
+    Route::get('user/subscription/invoice/{id}', 'SubscriptionController@invoice')->where('id', '[0-9]+')->name('user.subscription.invoice');
 
     // Conversation (Singular)
     Route::get('conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
@@ -62,7 +65,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Localization
     Route::get('locale', 'LocaleController@index')->name('locale');
-    Route::post('locale/set/{locale?}', 'LocaleController@set')->name('locale.set');
+    Route::post('locale/set/{locale?}', 'LocaleController@set')->where('id', '[0-9]+')->name('locale.set');
 
     // Subscription Stripe
     Route::get('sub/make', 'SubscriptionController@subForm')->name('subform');

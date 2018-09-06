@@ -50,10 +50,10 @@ use \Illuminate\Support\Facades\Auth;
                       <label for="month-12" class="page-link w-100 text-center">12 {{ __('months') }} - 799 DKK</label>
                     </li>
                     <div class="display-none">
-                      <input type="radio" name="months" value="2" id="month-2" {{ Auth::user()->subscription('paid')->stripe_plan === '2_months' ? 'checked' : '' }}>
-                      <input type="radio" name="months" value="3" id="month-3" {{ Auth::user()->subscription('paid')->stripe_plan === '3_months' ? 'checked' : '' }}>
-                      <input type="radio" name="months" value="6" id="month-6" {{ Auth::user()->subscription('paid')->stripe_plan === '6_months' ? 'checked' : '' }}>
-                      <input type="radio" name="months" value="12" id="month-12" {{ Auth::user()->subscription('paid')->stripe_plan === '12_months' ? 'checked' : '' }}>
+                      <input type="radio" name="months" value="2_months" id="month-2" {{ $plan === '2_months' ? 'checked' : '' }}>
+                      <input type="radio" name="months" value="3_months" id="month-3" {{ $plan === '3_months' ? 'checked' : '' }}>
+                      <input type="radio" name="months" value="6_months" id="month-6" {{ $plan === '6_months' ? 'checked' : '' }}>
+                      <input type="radio" name="months" value="12_months" id="month-12" {{ $plan === '12_months' ? 'checked' : '' }}>
                     </div>
                   </ul>
                 </div>
