@@ -1,4 +1,6 @@
 .btn {
+  @extend .shdw-sm;
+  
   &:focus {
     box-shadow: none !important;
   }
