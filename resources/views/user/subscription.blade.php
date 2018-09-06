@@ -73,7 +73,7 @@ use \Illuminate\Support\Facades\Auth;
                   color: 'rgba(0, 0, 0, .54)',
                   lineHeight: '36px',
                   fontWeight: 400,
-                  fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
                   fontSize: '1.25rem',
 
                   '::placeholder': {
