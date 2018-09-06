@@ -39,3 +39,45 @@
     margin: 0;
   }
 }
+
+.post-card {
+  @extend .shdw-md;
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  border-radius: $border-radius-lg;
+
+  &__lg {
+    height: 300px;
+  }
+
+  &__sm {
+    height: 100px;
+  }
+
+  &__info {
+    @extend .m-3;
+    z-index: $zindex-popover;
+    position: absolute;
+    bottom: 0;
+  }
+
+  &__title, &__author {
+    @extend .text-white, .m-0;
+  }
+
+  &__frame {
+    @extend
+      .d-flex,
+      .align-items-center,
+      .justify-content-center,
+      .h-100;
+    position: absolute;
+    filter: brightness(150%);
+
+    &__img {
+      @extend .w-100;
+      object-fit: cover;
+    }
+  }
+}
