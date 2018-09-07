@@ -9,6 +9,8 @@ class Post extends Model {
     'user_id',
     'title',
     'content',
+    'banner',
+    'images',
     'actor',
     'dancer',
     'entertainer',
@@ -16,7 +18,6 @@ class Post extends Model {
     'extra',
     'model',
     'musician',
-    'images',
   ];
 
   public function comments() {
