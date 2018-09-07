@@ -27,13 +27,9 @@ class ProfileController extends Controller {
 
   public function user($id) {
     $user = User::find($id);
-    $avatar = Storage::disk('public')->exists($user->avatar);
+    $avatar = Storage::disk('public')->exists($user->avatar) ? $avatar = Storage::disk('public')->url($user->avatar) : false;
     $gravatarHash = md5(trim(strtolower(Auth::user()->email))) . '?s=200';
     $profile_types = [];
-
-    if ($avatar) {
-      $avatar = Storage::disk('public')->url($user->avatar);
-    }
       
 
     if (!$user)
@@ -73,9 +69,10 @@ class ProfileController extends Controller {
         return redirect()->back()->withErrors([
           Format::string('there was an issue with your image. please try uploading again, or find another avatar')
         ]);
-
+      
       $storedFile = Storage::disk('public')->put('avatar', $avatar);
     }
+    
 
     $user->name           = $request->input('first_name') ? $request->input('first_name') : $user->name;
     $user->last_name      = $request->input('last_name') ? $request->input('last_name') : $user->last_name;
