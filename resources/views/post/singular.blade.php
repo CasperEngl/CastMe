@@ -11,7 +11,7 @@ use App\Helpers\Format;
     <h4>{{ title_case($post->title) }}</h4>
   </div>
   <figure class="card-img-top">
-    <img src="{{ asset('img/hero.jpg') }}" alt="Card image cap">
+    <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="Card image cap">
   </figure>
   <div class="card-body">
     @if (Auth::user()->id === $post->user_id)
