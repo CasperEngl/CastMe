@@ -75,7 +75,10 @@ class PostController extends Controller {
   public function list() {
     $posts = Post::orderBy('id', 'desc')->get();
 
-    return view('post.list')->with('posts', $posts);
+    return view('post.list', [
+      'title' => ucfirst(__('posts')),
+      'posts' => $posts,
+    ]);
   }
 
   public function listOwn() {
@@ -83,7 +86,10 @@ class PostController extends Controller {
       ->where('user_id', Auth::id())
       ->get();
 
-    return view('post.list')->with('posts', $posts);
+    return view('post.list', [
+      'title' => ucfirst(__('your posts')),
+      'posts', $posts
+    ]);
   }
 
   public function add(Request $request) {
@@ -94,6 +100,22 @@ class PostController extends Controller {
       'title'   => 'required|max:255',
       'image.*' => 'nullable|url',
     ]);
+
+    $banner = $request->file('banner');
+
+    if ($banner) {
+      if ($banner->getSize() / 1000 > 2000)
+        return redirect()->back()->withErrors([
+          Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.')
+        ]);
+
+      if ($banner->isValid() !== true)
+        return redirect()->back()->withErrors([
+          Format::string('there was an issue with your image. please try uploading again, or find another avatar')
+        ]);
+
+      $storedFile = Storage::disk('public')->put('banner', $banner);
+    }
 
     $post = new Post([
       'title'       => $request->input('title', false),
@@ -106,6 +128,7 @@ class PostController extends Controller {
       'musician'    => $request->input('musician', false),
       'images'      => json_encode($request->input('image.*')),
       'content'     => $request->input('content'),
+      'banner'      => isset($storedFile) ? $storedFile : 'banner.jpg',
       'user_id'     => Auth::id()
     ]);
 
@@ -129,16 +152,17 @@ class PostController extends Controller {
     if ($post->user_id !== Auth::id())
       return redirect()->route('overview')->with(['errors' => ['Unauthorized access']]);
 
-    $post->title       = $request->input('title');
-    $post->actor       = $request->input('actor', false);
-    $post->dancer      = $request->input('dancer', false);
-    $post->entertainer = $request->input('entertainer', false);
-    $post->event_staff = $request->input('event_staff', false);
-    $post->extra       = $request->input('extra', false);
-    $post->model       = $request->input('model', false);
-    $post->musician    = $request->input('musician', false);
-    $post->images      = json_encode($request->input('image.*'));
-    $post->content     = $request->input('content');
+    $post->title        = $request->input('title');
+    $post->actor        = $request->input('actor', false);
+    $post->dancer       = $request->input('dancer', false);
+    $post->entertainer  = $request->input('entertainer', false);
+    $post->event_staff  = $request->input('event_staff', false);
+    $post->extra        = $request->input('extra', false);
+    $post->model        = $request->input('model', false);
+    $post->musician     = $request->input('musician', false);
+    $post->images       = json_encode($request->input('image.*'));
+    $post->content      = $request->input('content');
+    $post->banner       = isset($storedFile) ? $storedFile : $post->banner;
 
     $post->save();
 
