@@ -99,6 +99,7 @@ use App\Helpers\RequestActive;
     @endif
 
     <div class="row">
+      @auth
       <aside class="col-sm-3 d-none d-lg-block">
         <div class="sidebar" id="sidebar" data-toggle="affix">
           <div class="list-group mb-4">
@@ -110,11 +111,15 @@ use App\Helpers\RequestActive;
             <a href="{{ route('user.subscription') }}" class="list-group-item {{ RequestActive::route('user.subscription', true) }}">{{ title_case(__('subscription')) }}</a>
             <a href="{{ route('conversations') }}" class="list-group-item {{ RequestActive::route('conversations', true) }}">{{ title_case(__('conversations')) }} <span class="badge badge-danger">7</span></a>
           </div>
+          @scout
           <div class="list-group mb-4">
             <a href="{{ route('post.new') }}" class="list-group-item {{ RequestActive::route('post.new', true) }}">{{ title_case(__('new post')) }}</a>
+            <a href="{{ route('posts.own') }}" class="list-group-item {{ RequestActive::route('posts.own', true) }}">{{ title_case(__('your posts')) }}</a>
           </div>
+          @endscout
         </div>
       </aside>
+      @endauth
       <main class="col">
         @yield('content')
       </main>
