@@ -39,8 +39,6 @@ class RegisterUser
         $order->uid = $orderId;
 
         $order->save();
-
-
     }
 
     private function generateOrderId()

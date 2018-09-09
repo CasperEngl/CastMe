@@ -9,8 +9,10 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        $user = factory(App\User::class)->create();
+    public function run() {
+        $this->call([
+            UsersTableSeeder::class,
+            ConversationsTableSeeder::class,
+        ]);
     }
 }

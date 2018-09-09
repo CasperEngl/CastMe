@@ -13,7 +13,7 @@ class CreateRepliesTable extends Migration {
   public function up() {
     Schema::create('replies', function (Blueprint $table) {
       $table->increments('id');
-      $table->integer('message_id');
+      $table->integer('conversation_id');
       $table->integer('sender');
       $table->integer('receiver');
       $table->text('content');

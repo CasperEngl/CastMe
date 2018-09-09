@@ -1,4 +1,3 @@
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600');
 
@@ -7,7 +6,6 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-// @import '~mdbootstrap/scss/mdb';
 @import '~bootstrap-select/sass/bootstrap-select';
 
 // Flag icons
@@ -42,5 +40,8 @@
 @import 'footer';
 @import 'animation';
 @import 'shadow';
+@import 'stripe';
+@import 'image';
+@import 'jonatan';
 
-@import url('https://castme.dk/castme.css');
+// @import url('https://castme.dk/castme.css');

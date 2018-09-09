@@ -4,23 +4,16 @@
     <h2 class="page-header">{{ title_case(__('conversations')) }}</h2>
     
     <div class="card">
-      <div class="card-header">Your latest conversations</div>
-      <div class="list-group list-group-flush">
-        {{-- 
+      <div class="card-header">{{ ucfirst(__('your conversations')) }}</div>
+      <div class="list-group">
         @foreach ($conversations as $conversation)
-        <a href="/conversation/{{ $conversation->id }}" class="list-group-item">
-          {{ $conversation->peer }}
-          @if ($conversation->unread_count > 0)
-          <span class="badge badge-danger">{{ $conversation->unread_count }}</span>
-          @endif
+        <a href="{{ route('conversation', ['id' => $conversation['id']]) }}" class="list-group-item">
+          {{ $conversation['name'] }} {{ $conversation['last_name'] }}
+          <span class="badge badge-danger">{{ ucfirst(__('unread')) }}</span>
         </a>
         @endforeach
-        --}}
-        <a href="/conversation/1" class="list-group-item">
-          Jack Goff
-          <span class="badge badge-danger">2</span>
-        </a>
       </div>
+      <!--
       <div class="card-footer">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
@@ -42,6 +35,7 @@
           </ul>
         </nav>
       </div>
+      -->
     </div>
     
   </main>

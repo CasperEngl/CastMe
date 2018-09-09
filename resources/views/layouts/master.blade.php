@@ -56,10 +56,15 @@
               <a href="{{ route('post.new') }}" class="nav-link">{{ title_case(__('new post')) }}</a>
             </li>
             <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false" v-pre>
-              {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
+              <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @if (Storage::disk('public')->exists(Auth::user()->avatar))
+                <figure class="circle header-avatar">
+                  <img src="{{ Storage::disk('public')->url(Auth::user()->avatar) }}" alt="{{ __('avatar') }}">
+                </figure>
+                @else
+                {{ Auth::user()->name }}
+                @endif
+              </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('user.settings') }}">{{ title_case(__('profile settings')) }}</a>
@@ -78,8 +83,12 @@
             @endguest
             <form class="form" action="{{ route('locale.set') }}" method="POST">
               <select name="locale" class="selectpicker" data-width="fit">
-                <option value="da" data-content="<span class='flag-icon flag-icon-dk'></span> {{ ucfirst(__('danish')) }}" {{ Auth::user() && Auth::user()->lang === 'da' ? 'selected' : '' }}>{{ ucfirst(__('danish')) }}</option>
-                <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ Auth::user() && Auth::user()->lang === 'en' ? 'selected' : '' }}>{{ ucfirst(__('english')) }}</option>
+                <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ Auth::user() && Auth::user()->lang === 'en' ? 'selected' : '' }}>
+                  {{ ucfirst(__('english')) }}
+                </option>
+                <option value="da" data-content="<span class='flag-icon flag-icon-dk'></span> {{ ucfirst(__('danish')) }}" {{ Auth::user() && Auth::user()->lang === 'da' ? 'selected' : '' }}>
+                  {{ ucfirst(__('danish')) }}
+                </option>
               </select>
 
               @csrf

@@ -10,6 +10,7 @@ import 'bootstrap-select/dist/js/bootstrap-select.min';
 
 import './editor';
 import './file-input/fileinput-custom';
+import './avatar';
 import './pagination-click';
 import './selectpicker';
 

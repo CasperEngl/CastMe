@@ -6,14 +6,14 @@ use Auth;
 use App\Comment;
 use App\Post;
 use Illuminate\Http\Request;
-use App\Helpers\StringFormat;
+use App\Helpers\Format;
 use Crypt;
 use Carbon\Carbon;
 
 class CommentController extends Controller {
     public function new(Request $request) {
         $user = Auth::user();
-        $post_id = Crypt::decrypt($request->input('post'));
+        $post_id = $request->input('post');
 
         if (Post::find($post_id)) {
             $comment = new Comment([
@@ -23,10 +23,11 @@ class CommentController extends Controller {
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
+            
             $comment->save();
         } else {
             return redirect()->back()->withErrors([
-                StringFormat::format(__('tried to comment on a post that did not exist, try again. if the issue persists, contact an administrator'))
+                Format::string(__('tried to comment on a post that did not exist, try again. if the issue persists, contact an administrator'))
             ]);
         }
 

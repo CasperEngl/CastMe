@@ -23,8 +23,8 @@ class CreateProfileDetailsTable extends Migration {
       $table->integer('shirt_size')->nullable();
       $table->text('description')->nullable();
       $table->enum('hair_length', ['Bald', 'Balding', 'Short', 'Medium', 'Long', 'Super Long'])->nullable();
-      $table->enum('hair_color', ['Black', 'Brown', 'Dark Brown', 'Blond', 'Dirty Blonde', 'Auburn', 'Red', 'Ginger', 'Platinum', 'White', 'Grey'])->nullable();
-      $table->enum('ethnicity', ['African', 'Afro American', 'Asian', 'Caucasian', 'Indian', 'Latino', 'Mediterranean', 'Middle Eastern', 'Pakistanis', 'Skandinavian', 'Spanish', 'Mix'])->nullable();
+      $table->enum('hair_color', ['Black', 'Brown', 'Dark Brown', 'Blonde', 'Dirty Blonde', 'Auburn', 'Red', 'Ginger', 'Platinum', 'White', 'Grey'])->nullable();
+      $table->enum('ethnicity', ['African', 'Afro American', 'Asian', 'Caucasian', 'Indian', 'Latino', 'Mediterranean', 'Middle Eastern', 'Pakistanis', 'Scandinavian', 'Spanish', 'Mix'])->nullable();
       $table->enum('eye_color', ['Amber', 'Blue', 'Brown', 'Grey', 'Green', 'Hazel', 'Other'])->nullable();
       $table->boolean('actor')->default(0);
       $table->boolean('dancer')->default(0);

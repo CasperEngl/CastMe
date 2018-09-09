@@ -8,16 +8,17 @@ use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Helpers\Flash;
+use App\Helpers\Format;
 
 class PostController extends Controller {
   public function index($id) {
-    $post = Post::findOrFail($id);
-    $comments = $post->comments;
+    $post = Post::find($id);
 
     if ($post)
       return view('post.singular')->with([
         'post' => $post,
-        'comments' => $comments
+        'comments' => $post->comments,
+        'owner' => Auth::id() === $post->owner->id,
       ]);
     else
       return redirect()->route('post.list')->withErrors([
@@ -72,7 +73,17 @@ class PostController extends Controller {
   }
 
   public function list() {
-    return view('post.list')->with('posts', Post::orderBy('id', 'desc')->get());
+    $posts = Post::orderBy('id', 'desc')->get();
+
+    return view('post.list')->with('posts', $posts);
+  }
+
+  public function listOwn() {
+    $posts = Post::orderBy('id', 'desc')
+      ->where('user_id', Auth::id())
+      ->get();
+
+    return view('post.list')->with('posts', $posts);
   }
 
   public function add(Request $request) {
@@ -97,6 +108,7 @@ class PostController extends Controller {
       'content'     => $request->input('content'),
       'user_id'     => Auth::id()
     ]);
+
     $post->save();
 
     Flash::push('success', 'Your post has been created!');
@@ -116,7 +128,6 @@ class PostController extends Controller {
 
     if ($post->user_id !== Auth::id())
       return redirect()->route('overview')->with(['errors' => ['Unauthorized access']]);
-
 
     $post->title       = $request->input('title');
     $post->actor       = $request->input('actor', false);

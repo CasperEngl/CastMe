@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Helpers\StringFormat;
+use App\Helpers\Format;
 use App;
 use Session;
 use File;
@@ -84,7 +84,7 @@ class LocaleController extends Controller {
             App::setLocale($user->lang);
         } else {
             return redirect()->back()->withErrors([
-                StringFormat::format(__('sorry, could not save your language setting. please try again. if the issue persists, please contact the site administrator.'))
+                Format::string(__('sorry, could not save your language setting. please try again. if the issue persists, please contact the site administrator.'))
             ]);
         }
 

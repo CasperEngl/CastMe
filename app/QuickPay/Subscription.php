@@ -100,10 +100,9 @@ class Subscription
 
         $payment->save();
 
-      if ( $payment->accepted ) {
-        $order->from = Carbon::now();
-        $order->save();
-      }
-
+        if ( $payment->accepted ) {
+            $order->from = Carbon::now();
+            $order->save();
+        }
     }
 }

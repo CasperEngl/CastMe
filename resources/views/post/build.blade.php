@@ -59,7 +59,7 @@
         </div>
         <div class="card-block">
           <h5 class="text-muted">{{ ucfirst(__('upload banner')) }}</h5>
-          <input name="profile-picture-upload" type="file" class="file">
+          <input name="banner" type="file" class="file">
         </div>
         <div class="card-block">
           <h5 class="text-muted">{{ ucfirst(__('write description')) }}</h5>

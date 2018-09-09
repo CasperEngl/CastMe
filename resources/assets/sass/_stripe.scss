@@ -1,0 +1,17 @@
+.ElementsApp, .ElementsApp .InputElement {
+  color: rgba(black, .87) !important;
+}
+
+.StripeElement {
+  @extend .shdw-sm, .px-2, .bg-white;
+  max-width: 25rem;
+  border-radius: $border-radius-lg;
+
+  &.is-focused {
+    @extend .shdw-md;
+  }
+
+  &.is-invalid {
+    border-color: #fa755a;
+  }
+}

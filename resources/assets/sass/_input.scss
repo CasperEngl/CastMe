@@ -15,7 +15,7 @@ input, button, select, optgroup, textarea {
 .pagination {
   flex-wrap: wrap;
   
-  .page-item label.page-link {
+  .page-item .page-link {
     margin-bottom: 0;
     border-radius: 0;
   }
@@ -28,5 +28,11 @@ input, button, select, optgroup, textarea {
     bottom: .5rem;
     right: 1.5rem;
     margin-top: 0;
+  }
+}
+
+.file-zoom-dialog {
+  .file-other-icon {
+    font-size: 15em;
   }
 }

@@ -44,92 +44,32 @@
 </main>
 <section class="jumbotron mt-4 mb-0">
   <div class="container">
-    <h2 class="page-header">Priser fra</h2>
+    <h2 class="page-header">Indlæg</h2>
     <div class="row">
+
+      @foreach($posts as $post)
       <div class="col-md-3">
-        <article class="card">
-          <div class="card-header">
-            <h5>2 måneder</h5>
-            <div class="d-flex align-items-center">
-              <h6 class="m-0">179,-</h6>
-              <p class="small ml-2 mb-0">{{ ceil(179 / 2) }} DKK/Måned</p>
-            </div>
-          </div>
-          <div class="card-body">
-            <ul>
-              <li>Fuld opslagsoversigt</li>
-              <li>Kontakt scouts direkte</li>
-              <li>Sæt præferencer og foretrukkende</li>
-            </ul>
-          </div>
-          <div class="card-footer">
-            <a href="/register" class="card-link btn btn-primary">{{ title_case(__('register')) }}</a>
-          </div>
+        <article class="card h-100">
+          <section class="card-body d-flex flex-wrap">
+            <h4 class="card-title w-100">{{ title_case($post->title) }}</h4>
+            @if (Auth::user() && Auth::id() === $post->user_id)
+              <h6 class="card-subtitle w-100 mb-2 text-muted">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</h6>
+            @else
+              <h6 class="card-subtitle w-100 mb-2 text-muted">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</h6>
+            @endif
+            <p class="card-text w-100">{{ str_limit(strip_tags($post->content), 150, '...') }}</p>
+          </section>
+          <section class="card-footer d-flex flex-wrap align-items-center justify-content-center">
+            <a href="{{ route('conversation', ['id' => $post->owner->id]) }}" class="card-link btn btn-link">{{ ucfirst(__('contact scout')) }}</a>
+            <a href="/post/{{ $post->id }}" class="card-link btn btn-link">{{ ucfirst(__('read more')) }}</a>
+            @if (Auth::user() && Auth::id() === $post->user_id)
+            <a href="/post/{{ $post->id }}/edit" class="d-block w-100 mt-2 card-link btn btn-success">{{ ucfirst(__('edit')) }}</a>
+            @endif
+          </section>
         </article>
       </div>
-      <div class="col-md-3">
-        <article class="card">
-          <div class="card-header">
-            <h5>3 måneder</h5>
-            <div class="d-flex align-items-center">
-              <h6 class="m-0">279,-</h6>
-              <p class="small ml-2 mb-0">{{ ceil(279 / 3) }} DKK/Måned</p>
-            </div>
-          </div>
-          <div class="card-body">
-            <ul>
-              <li>Fuld opslagsoversigt</li>
-              <li>Kontakt scouts direkte</li>
-              <li>Sæt præferencer og foretrukkende</li>
-            </ul>
-          </div>
-          <div class="card-footer">
-            <a href="/register" class="card-link btn btn-primary">{{ title_case(__('register')) }}</a>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-3">
-        <article class="card">
-          <div class="card-header">
-            <h5>6 måneder</h5>
-            <div class="d-flex align-items-center">
-              <h6 class="m-0">449,-</h6>
-              <p class="small ml-2 mb-0">{{ ceil(449 / 6) }} DKK/Måned</p>
-            </div>
-          </div>
-          <div class="card-body">
-            <ul>
-              <li>Fuld opslagsoversigt</li>
-              <li>Kontakt scouts direkte</li>
-              <li>Sæt præferencer og foretrukkende</li>
-            </ul>
-          </div>
-          <div class="card-footer">
-            <a href="/register" class="card-link btn btn-primary">{{ title_case(__('register')) }}</a>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-3">
-        <article class="card">
-          <div class="card-header">
-            <h5>12 måneder</h5>
-            <div class="d-flex align-items-center">
-              <h6 class="m-0">799,-</h6>
-              <p class="small ml-2 mb-0">{{ ceil(799 / 12) }} DKK/Måned/p>
-            </div>
-          </div>
-          <div class="card-body">
-            <ul>
-              <li>Fuld opslagsoversigt</li>
-              <li>Kontakt scouts direkte</li>
-              <li>Sæt præferencer og foretrukkende</li>
-            </ul>
-          </div>
-          <div class="card-footer">
-            <a href="/register" class="card-link btn btn-primary">{{ title_case(__('register')) }}</a>
-          </div>
-        </article>
-      </div>
+      @endforeach
+
     </div>
   </div>
 </section>
