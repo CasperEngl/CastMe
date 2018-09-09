@@ -1,0 +1,45 @@
+.post-article {
+  &__title {
+    @extend .text-center;
+  }
+
+  &__date {
+    @extend .text-muted;
+  }
+
+  &__frame {
+    @extend
+      .d-flex,
+      .align-items-center,
+      .justify-content-center,
+      .w-100;
+
+    overflow: hidden;
+    height: 25vh;
+    max-height: 25rem;
+
+    &__img {
+      @extend .w-100, .h-100;
+      object-fit: cover;
+    }
+  }
+
+  &__quote {
+    @extend 
+      .d-flex,
+      .flex-column,
+      .align-items-center,
+      .blockquote,
+      .my-2;
+
+    &__avatar {
+      @extend figure.circle;
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+
+    &__name {
+      @extend .mb-0, .ml-2;
+    }
+  }
+}
