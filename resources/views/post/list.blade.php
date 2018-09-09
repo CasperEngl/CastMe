@@ -47,7 +47,6 @@
             <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="" class="post-card__frame__img">
           </figure>
         </article>
-<<<<<<< HEAD
       </div>
     --}}
 
@@ -67,11 +66,5 @@
       </article>
     </a>
   @endforeach
-=======
-      </a>
-    @endforeach
-  </div>
-@endif
->>>>>>> c80ddde4beece099c25273232d4fe99e672dc1df
 
 @endsection

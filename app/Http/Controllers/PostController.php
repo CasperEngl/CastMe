@@ -120,7 +120,6 @@ class PostController extends Controller {
       'image.*' => 'nullable|url',
     ]);
 
-<<<<<<< HEAD
     $roles = [];
     
     if ($request->input('roles.*')) {
@@ -142,37 +141,6 @@ class PostController extends Controller {
       'content' => $request->input('content'),
       'banner'  => isset($storedFile) ? $storedFile : 'banner.svg',
       'user_id' => Auth::id()
-=======
-    $banner = $request->file('banner');
-
-    if ($banner) {
-      if ($banner->getSize() / 1000 > 2000)
-        return redirect()->back()->withErrors([
-          Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.')
-        ]);
-
-      if ($banner->isValid() !== true)
-        return redirect()->back()->withErrors([
-          Format::string('there was an issue with your image. please try uploading again, or find another avatar')
-        ]);
-
-      $storedFile = Storage::disk('public')->put('banner', $banner);
-    }
-
-    $post = new Post([
-      'title'       => $request->input('title', false),
-      'actor'       => $request->input('actor', false),
-      'dancer'      => $request->input('dancer', false),
-      'entertainer' => $request->input('entertainer', false),
-      'event_staff' => $request->input('event_staff', false),
-      'extra'       => $request->input('extra', false),
-      'model'       => $request->input('model', false),
-      'musician'    => $request->input('musician', false),
-      'images'      => json_encode($request->input('image.*')),
-      'content'     => $request->input('content'),
-      'banner'      => isset($storedFile) ? $storedFile : 'banner.jpg',
-      'user_id'     => Auth::id()
->>>>>>> c80ddde4beece099c25273232d4fe99e672dc1df
     ]);
 
     $post->save();
@@ -195,7 +163,6 @@ class PostController extends Controller {
     if ($post->user_id !== Auth::id())
       return redirect()->route('overview')->with(['errors' => ['Unauthorized access']]);
 
-<<<<<<< HEAD
     foreach ($request->input('roles.*') as $role) {
       if (!in_array($role, ['actor', 'dancer', 'entertainer', 'event_staff', 'extra', 'model', 'musician', 'other'])) {
         return redirect()->back()->withErrors([
@@ -210,19 +177,6 @@ class PostController extends Controller {
     $post->roles    = json_encode($roles);
     $post->images   = json_encode($request->input('image.*'));
     $post->content  = $request->input('content');
-=======
-    $post->title        = $request->input('title');
-    $post->actor        = $request->input('actor', false);
-    $post->dancer       = $request->input('dancer', false);
-    $post->entertainer  = $request->input('entertainer', false);
-    $post->event_staff  = $request->input('event_staff', false);
-    $post->extra        = $request->input('extra', false);
-    $post->model        = $request->input('model', false);
-    $post->musician     = $request->input('musician', false);
-    $post->images       = json_encode($request->input('image.*'));
-    $post->content      = $request->input('content');
-    $post->banner       = isset($storedFile) ? $storedFile : $post->banner;
->>>>>>> c80ddde4beece099c25273232d4fe99e672dc1df
 
     $post->save();
 

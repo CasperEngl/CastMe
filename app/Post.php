@@ -11,17 +11,7 @@ class Post extends Model {
     'content',
     'banner',
     'images',
-<<<<<<< HEAD
     'roles',
-=======
-    'actor',
-    'dancer',
-    'entertainer',
-    'event_staff',
-    'extra',
-    'model',
-    'musician',
->>>>>>> c80ddde4beece099c25273232d4fe99e672dc1df
   ];
 
   public function comments() {
