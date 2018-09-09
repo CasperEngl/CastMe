@@ -66,6 +66,10 @@
     @extend .text-white, .m-0;
   }
 
+  &__title {
+    font-size: 1.5rem;
+  }
+
   &__roles {
     @extend .mt-2, .mb-1;
     margin: -.25rem;
