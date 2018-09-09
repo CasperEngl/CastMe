@@ -15,8 +15,6 @@ use \Illuminate\Support\Facades\Auth;
 @endif
   <div class="card">
     <div class="card-body">
-      <h3 class="page-header">{{ title_case(__('subscribe')) }}</h3>
-
       <div class="row">
         <div class="col-sm-4">
           <ul class="pagination">
