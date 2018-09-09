@@ -2,7 +2,7 @@
 @section('content')
 <h2 class="page-header">{{ title_case($title) }}</h2>
 
-<form action="{{ $form_url }}" method="POST">
+{{ Form::open(['url' => $form_url, 'files' => 'true']) }}
 
   <div class="card">
     <div class="card-header">
@@ -20,36 +20,71 @@
         <h5 class="text-muted">{{ ucfirst(__('looking for')) }}</h5>
         <p>{{ ucfirst(__('select multiple if applicable')) }}</p>
         <ul class="pagination">
-          <div class="display-none">
-            <input type="checkbox" name="actor" value="1" id="profile_type-actor" {{ $post->actor ? 'checked' : '' }}>
-            <input type="checkbox" name="dancer" value="1" id="profile_type-dancer" {{ $post->dancer ? 'checked' : '' }}>
-            <input type="checkbox" name="entertainer" value="1" id="profile_type-entertainer" {{ $post->entertainer ? 'checked' : '' }}>
-            <input type="checkbox" name="event_staff" value="1" id="profile_type-event_staff" {{ $post->event_staff ? 'checked' : '' }}>
-            <input type="checkbox" name="extra" value="1" id="profile_type-extra" {{ $post->extra ? 'checked' : '' }}>
-            <input type="checkbox" name="model" value="1" id="profile_type-model" {{ $post->model ? 'checked' : '' }}>
-            <input type="checkbox" name="musician" value="1" id="profile_type-musician" {{ $post->musician ? 'checked' : '' }}>
-          </div>
           <li class="page-item">
             <label for="profile_type-actor" class="page-link" href="#">{{ title_case(__('actor')) }}</label>
+            {{ Form::label('profile_type-actor', ucfirst(__('actor')), [
+              'class' => 'page-link'
+            ]) }}
           </li>
           <li class="page-item">
             <label for="profile_type-dancer" class="page-link" href="#">{{ title_case(__('dancer')) }}</label>
+            {{ Form::label('profile_type-dancer', ucfirst(__('dancer')), [
+              'class' => 'page-link'
+            ]) }}
           </li>
           <li class="page-item">
             <label for="profile_type-entertainer" class="page-link" href="#">{{ title_case(__('entertainer')) }}</label>
+            {{ Form::label('profile_type-entertainer', ucfirst(__('entertainer')), [
+              'class' => 'page-link'
+            ]) }}
           </li>
           <li class="page-item">
             <label for="profile_type-event_staff" class="page-link" href="#">{{ title_case(__('event staff')) }}</label>
+            {{ Form::label('profile_type-event_staff', ucfirst(__('event_staff')), [
+              'class' => 'page-link'
+            ]) }}
           </li>
           <li class="page-item">
             <label for="profile_type-extra" class="page-link" href="#">{{ title_case(__('extra')) }}</label>
+            {{ Form::label('profile_type-extra', ucfirst(__('extra')), [
+              'class' => 'page-link'
+            ]) }}
           </li>
           <li class="page-item">
             <label for="profile_type-model" class="page-link" href="#">{{ title_case(__('model')) }}</label>
+            {{ Form::label('profile_type-model', ucfirst(__('model')), [
+              'class' => 'page-link'
+            ]) }}
           </li>
           <li class="page-item">
             <label for="profile_type-musician" class="page-link" href="#">{{ title_case(__('musician')) }}</label>
+            {{ Form::label('profile_type-musician', ucfirst(__('musician')), [
+              'class' => 'page-link'
+            ]) }}
           </li>
+          <div class="display-none">
+            {{ Form::checkbox('roles[]', 'actor', $post->roles && in_array('actor', json_decode($post->roles)), [
+              'id' => 'profile_type-actor'
+            ]) }}
+            {{ Form::checkbox('roles[]', 'dancer', $post->roles && in_array('dancer', json_decode($post->roles)), [
+              'id' => 'profile_type-dancer'
+            ]) }}
+            {{ Form::checkbox('roles[]', 'entertainer', $post->roles && in_array('entertainer', json_decode($post->roles)), [
+              'id' => 'profile_type-entertainer'
+            ]) }}
+            {{ Form::checkbox('roles[]', 'event_staff', $post->roles && in_array('event_staff', json_decode($post->roles)), [
+              'id' => 'profile_type-event_staff'
+            ]) }}
+            {{ Form::checkbox('roles[]', 'extra', $post->roles && in_array('extra', json_decode($post->roles)), [
+              'id' => 'profile_type-extra'
+            ]) }}
+            {{ Form::checkbox('roles[]', 'model', $post->roles && in_array('model', json_decode($post->roles)), [
+              'id' => 'profile_type-model'
+            ]) }}
+            {{ Form::checkbox('roles[]', 'musician', $post->roles && in_array('musician', json_decode($post->roles)), [
+              'id' => 'profile_type-musician'
+            ]) }}
+          </div>
         </ul>
       </div>
     </div>
@@ -69,7 +104,5 @@
     </div>
   </div>
 
-  @csrf
-  @method('POST')
-</form>
+{{ Form::close() }}
 @endsection
