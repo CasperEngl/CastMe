@@ -30,7 +30,7 @@ use App\Helpers\Format;
       <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="" class="post-article__frame__img">
     </figure>
 
-    @if ($owner)
+    @if ($owner || in_array(Auth::user()->role, ['Admin', 'Moderator']))
     <div class="my-2 align-self-start">
       <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-success">{{ ucfirst(__('edit')) }}</a>
       @if ($post->closed)

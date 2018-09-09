@@ -193,7 +193,7 @@ class PostController extends Controller {
   public function disable($id) {
     $post = Post::find($id);
 
-    if ($post->user_id !== Auth::id())
+    if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
       return redirect()->back()->withErrors([
         ucfirst(__('oops, looks like that post doesn\'t belong to you.'))
       ]);
@@ -208,7 +208,7 @@ class PostController extends Controller {
   public function enable($id) {
     $post = Post::find($id);
 
-    if ($post->user_id !== Auth::id())
+    if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
       return redirect()->back()->withErrors([
         ucfirst(__('oops, looks like that post doesn\'t belong to you.'))
       ]);
