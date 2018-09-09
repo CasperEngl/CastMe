@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-  <main class="container" style="background: #333;">
+  <main style="background: #333;">
     <style>
       form {
         width: 90%;

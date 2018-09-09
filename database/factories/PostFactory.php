@@ -7,13 +7,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
     'title'       => $faker->sentence,
     'content'     => $faker->paragraph,
     'images'      => json_encode([$faker->imageUrl()]),
-    'actor'       => rand(0, 1),
-    'dancer'      => rand(0, 1),
-    'entertainer' => rand(0, 1),
-    'event_staff' => rand(0, 1),
-    'extra'       => rand(0, 1),
-    'model'       => rand(0, 1),
-    'musician'    => rand(0, 1),
+    'roles'       => json_encode(['actor', 'entertainer']),
     'user_id'     => function () {
       return factory('App\User')->create()->id;
     }

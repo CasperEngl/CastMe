@@ -1,14 +1,16 @@
 @extends('layouts.master')
 @section('content')
-  <main class="container">
-    @if(in_array(Auth::user()->role, ['Scout', 'Moderator', 'Admin']))
-    <a href="{{ route('post.new') }}" class="btn btn-primary btn-lg mb-4" role="button">{{ ucfirst(__('new post')) }}</a>
-    @endif
+@scout
+<a href="{{ route('post.new') }}" class="btn btn-primary btn-lg mb-4" role="button">{{ ucfirst(__('new post')) }}</a>
+@endscout
 
-    <div class="row">
-
-      @foreach($posts as $post)
-
+@if (empty($posts))
+  <div class="page-header">{{ ucfirst(__('no posts')) }}</div>
+@else
+  <div class="page-header">{{ $title }}</div>
+  <div class="row">
+    @foreach($posts as $post)
+      {{-- 
         <div class="col-md-4 mt-2 mb-2">
           <article class="card h-100">
             <section class="card-body d-flex flex-wrap">
@@ -29,9 +31,40 @@
             </section>
           </article>
         </div>
+      --}}
 
-      @endforeach
+      <a href="{{ route('post', ['id' => $post->id]) }}" class="col-12 col-md-6">
+        <article class="post-card">
+          <div class="post-card__info">
+            @if (Auth::user()->id === $post->user_id)
+            <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
+            @else
+            <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</p>
+            @endif
+            <h2 class="post-card__title">{{ str_limit(title_case($post->title), 40) }}</h2>
+          </div>
+          <figure class="post-card__frame">
+            <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="" class="post-card__frame__img">
+          </figure>
+        </article>
+      </div>
+    --}}
 
-    </div>
-  </main>
+    <a href="{{ route('post', ['id' => $post->id]) }}" class="col-12 col-md-6">
+      <article class="post-card">
+        <div class="post-card__info">
+          @if (Auth::user()->id === $post->user_id)
+          <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
+          @else
+          <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</p>
+          @endif
+          <h2 class="post-card__title">{{ str_limit(title_case($post->title), 40) }}</h2>
+        </div>
+        <figure class="post-card__frame">
+          <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->content) }}" class="post-card__frame__img">
+        </figure>
+      </article>
+    </a>
+  @endforeach
+
 @endsection

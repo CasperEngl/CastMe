@@ -17,15 +17,9 @@ class CreatePostsTable extends Migration {
       $table->string('title');
       $table->text('content')->nullable();
       $table->text('images');
-      $table->string('banner')->default('banner/banner.jpg');
+      $table->text('roles');
+      $table->string('banner')->default('placeholder/banner.png');
       $table->boolean('closed')->default(0);
-      $table->boolean('actor')->default(0);
-      $table->boolean('dancer')->default(0);
-      $table->boolean('entertainer')->default(0);
-      $table->boolean('event_staff')->default(0);
-      $table->boolean('extra')->default(0);
-      $table->boolean('model')->default(0);
-      $table->boolean('musician')->default(0);
       $table->timestamps();
     });
   }

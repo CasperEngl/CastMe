@@ -27,23 +27,18 @@ class ProfileController extends Controller {
 
   public function user($id) {
     $user = User::find($id);
-    $avatar = Storage::get($user->avatar);
+    $avatar = Storage::disk('public')->exists($user->avatar) ? Storage::disk('public')->url($user->avatar) : false;
     $gravatarHash = md5(trim(strtolower(Auth::user()->email))) . '?s=200';
-    $profile_types = [];
 
-    !$user->details->actor ?: $profile_types[] = title_case('Actor');
-    !$user->details->dancer ?: $profile_types[] = title_case('Dancer');
-    !$user->details->entertainer ?: $profile_types[] = title_case('Entertainer');
-    !$user->details->event_staff ?: $profile_types[] = title_case('Event Staff');
-    !$user->details->extra ?: $profile_types[] = title_case('Extra');
-    !$user->details->model ?: $profile_types[] = title_case('Model');
-    !$user->details->musician ?: $profile_types[] = title_case('Musician');
+    if (!$user)
+      return redirect()->back()->withErrors([
+        ucfirst(__('unfortunately, that user does not exist'))
+      ]);
 
     return view('user.profile')->with([
       'user' => $user,
       'avatar' => $avatar,
       'gravatar' => $gravatarHash,
-      'profile_types' => $profile_types,
     ]);
   }
 
@@ -63,8 +58,23 @@ class ProfileController extends Controller {
         return redirect()->back()->withErrors([
           Format::string('there was an issue with your image. please try uploading again, or find another avatar')
         ]);
-
+      
       $storedFile = Storage::disk('public')->put('avatar', $avatar);
+    }
+    
+
+    $roles = [];
+    
+    if ($request->input('roles.*')) {
+      foreach ($request->input('roles.*') as $role) {
+        if (!in_array($role, ['actor', 'dancer', 'entertainer', 'event_staff', 'extra', 'model', 'musician', 'other'])) {
+          return redirect()->back()->withErrors([
+            ucfirst(__('"' . $role . '" is not a valid role'))
+          ]);
+        }
+
+        $roles[] = $role;
+      }
     }
 
     $user->name           = $request->input('first_name') ? $request->input('first_name') : $user->name;
@@ -80,14 +90,7 @@ class ProfileController extends Controller {
     $details->shirt_size  = $request->input('shirt_size') ? $request->input('shirt_size') : $details->shirt_size;
     $details->description = $request->input('description') ? strip_tags($request->input('description')) : $details->description;
 
-    $details->actor       = $request->input('actor') ? $request->input('actor') : 0;
-    $details->dancer      = $request->input('dancer') ? $request->input('dancer') : 0;
-    $details->entertainer = $request->input('entertainer') ? $request->input('entertainer') : 0;
-    $details->event_staff = $request->input('event_staff') ? $request->input('event_staff') : 0;
-    $details->extra       = $request->input('extra') ? $request->input('extra') : 0;
-    $details->model       = $request->input('model') ? $request->input('model') : 0;
-    $details->musician    = $request->input('musician') ? $request->input('musician') : 0;
-    $details->other       = $request->input('other') ? $request->input('other') : 0;
+    $details->roles       = json_encode($roles);
 
     $details->hair_length = $request->input('hair_length') ? $request->input('hair_length') : $details->hair_length;
     $details->eye_color   = $request->input('eye_color') ? $request->input('eye_color') : $details->eye_color;

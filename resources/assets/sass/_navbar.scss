@@ -3,9 +3,9 @@
   width: auto;
 }
 
-.navbar-laravel {
-  background-color: $laravel-navbar-background;
-  box-shadow: $laravel-navbar-shadow;
+.navbar {
+  @extend .bg-white;
+  height: 80px;
 }
 
 a[class='nav-link'] {

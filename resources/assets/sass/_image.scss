@@ -24,6 +24,7 @@ figure {
   }
 
   &.header-avatar {
+    @extend .shdw-boxed;
     height: 2.5rem;
     width: 2.5rem;
     margin-right: .25rem;
