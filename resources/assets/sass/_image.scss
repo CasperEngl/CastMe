@@ -4,7 +4,6 @@ figure {
 
 figure {
   &.circle {
-    @extend .shdw-boxed;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -19,17 +18,13 @@ figure {
     }
   }
 
-  &.edit-profile-avatar {
-    height: 5rem;
-    width: 5rem;
-  }
-
-  &.profile-avatar {
+  &.avatar {
     height: 5rem;
     width: 5rem;
   }
 
   &.header-avatar {
+    @extend .shdw-boxed;
     height: 2.5rem;
     width: 2.5rem;
     margin-right: .25rem;
