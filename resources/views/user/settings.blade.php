@@ -19,7 +19,7 @@
       @if ($avatar)
       <div class="d-flex flex-wrap justify-content-center">
         <h2 class="w-100 text-center text-muted">{{ ucfirst(__('avatar')) }}</h2>
-        <figure class="mb-4 circle edit-profile-avatar justify-content-center">
+        <figure class="mb-4 circle avatar justify-content-center">
           <img src="{{ $avatar }}" alt="{{ __('avatar') }}">
         </figure>
       </div>
@@ -204,15 +204,32 @@
                   'class' => 'page-link'
                 ]) }}
               </li>
+
               <div class="display-none">
-                {{ Form::checkbox('actor', '1', Auth::user()->details->actor ? 'checked' : '') }}
-                {{ Form::checkbox('dancer', '1', Auth::user()->details->dancer ? 'checked' : '') }}
-                {{ Form::checkbox('entertainer', '1', Auth::user()->details->entertainer ? 'checked' : '') }}
-                {{ Form::checkbox('event_staff', '1', Auth::user()->details->event_staff ? 'checked' : '') }}
-                {{ Form::checkbox('extra', '1', Auth::user()->details->extra ? 'checked' : '') }}
-                {{ Form::checkbox('model', '1', Auth::user()->details->model ? 'checked' : '') }}
-                {{ Form::checkbox('musician', '1', Auth::user()->details->musician ? 'checked' : '') }}
-                {{ Form::checkbox('other', '1', Auth::user()->details->other ? 'checked' : '') }}
+                {{ Form::checkbox('roles[]', 'actor', Auth::user()->details->roles && in_array('actor', json_decode(Auth::user()->details->roles)), [
+                  'id' => 'actor'
+                ]) }}
+                {{ Form::checkbox('roles[]', 'dancer', Auth::user()->details->roles && in_array('dancer', json_decode(Auth::user()->details->roles)), [
+                  'id' => 'dancer'
+                ]) }}
+                {{ Form::checkbox('roles[]', 'entertainer', Auth::user()->details->roles && in_array('entertainer', json_decode(Auth::user()->details->roles)), [
+                  'id' => 'entertainer'
+                ]) }}
+                {{ Form::checkbox('roles[]', 'event_staff', Auth::user()->details->roles && in_array('event_staff', json_decode(Auth::user()->details->roles)), [
+                  'id' => 'event_staff'
+                ]) }}
+                {{ Form::checkbox('roles[]', 'extra', Auth::user()->details->roles && in_array('extra', json_decode(Auth::user()->details->roles)), [
+                  'id' => 'extra'
+                ]) }}
+                {{ Form::checkbox('roles[]', 'model', Auth::user()->details->roles && in_array('model', json_decode(Auth::user()->details->roles)), [
+                  'id' => 'model'
+                ]) }}
+                {{ Form::checkbox('roles[]', 'musician', Auth::user()->details->roles && in_array('musician', json_decode(Auth::user()->details->roles)), [
+                  'id' => 'musician'
+                ]) }}
+                {{ Form::checkbox('roles[]', 'other', Auth::user()->details->roles && in_array('other', json_decode(Auth::user()->details->roles)), [
+                  'id' => 'other'
+                ]) }}
               </div>
             </ul>
           </div>
