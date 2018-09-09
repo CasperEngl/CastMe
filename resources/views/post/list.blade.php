@@ -41,7 +41,7 @@
           <h2 class="post-card__title">{{ str_limit(title_case($post->title), 40) }}</h2>
         </div>
         <figure class="post-card__frame">
-          <img src="https://source.unsplash.com/random/{{ rand(600, 800) }}x{{ rand(600, 800) }}" alt="unsplash" class="post-card__frame__img">
+          <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->content) }}" class="post-card__frame__img">
         </figure>
       </article>
     </a>
