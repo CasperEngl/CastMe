@@ -64,6 +64,7 @@ use App\Helpers\RequestActive;
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <div class="dropdown-header">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</div>
                 <a class="dropdown-item {{ RequestActive::route('user.settings', true) }}" href="{{ route('user.settings') }}">{{ title_case(__('profile settings')) }}</a>
                 <a class="dropdown-item {{ RequestActive::route('user.subscription', true) }}" href="{{ route('user.subscription') }}">{{ title_case(__('subscription')) }}</a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
