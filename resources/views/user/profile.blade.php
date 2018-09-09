@@ -3,7 +3,7 @@
 <div class="card">
   <div class="card-header d-flex align-items-center">
     @if ($avatar)
-    <figure class="circle profile-avatar">
+    <figure class="circle avatar">
       <img src="{{ $avatar }}" alt="{{ __('avatar') }}">
     </figure>
     @endif
