@@ -17,8 +17,12 @@ class CreatePostsTable extends Migration {
       $table->string('title');
       $table->text('content')->nullable();
       $table->text('images');
+<<<<<<< HEAD
       $table->text('roles');
       $table->string('banner')->default('placeholder/banner.png');
+=======
+      $table->string('banner')->default('banner.jpg');
+>>>>>>> c80ddde4beece099c25273232d4fe99e672dc1df
       $table->boolean('closed')->default(0);
       $table->timestamps();
     });
