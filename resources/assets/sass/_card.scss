@@ -56,7 +56,7 @@
   }
 
   &__info {
-    @extend .m-3;
+    @extend .p-3, .w-100;
     z-index: $zindex-popover;
     position: absolute;
     bottom: 0;
@@ -64,6 +64,11 @@
 
   &__title, &__author {
     @extend .text-white, .m-0;
+  }
+
+  &__roles {
+    @extend .mt-2, .mb-1;
+    margin: -.25rem;
   }
 
   &__frame {

@@ -42,4 +42,8 @@
       @extend .mb-0, .ml-2;
     }
   }
+
+  &__content {
+    @extend .container, .mt-3;
+  }
 }
