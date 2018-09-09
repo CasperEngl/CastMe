@@ -18,14 +18,7 @@ class ProfileDetails extends Model {
     'hair_color',
     'ethnicity',
     'eye_color',
-    'Actor',
-    'Dancer',
-    'Entertainer',
-    'Event Staff',
-    'Extra',
-    'Model',
-    'Musician',
-    'Other',
+    'roles',
     'user_id'
   ];
 

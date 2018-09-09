@@ -9,14 +9,9 @@ class Post extends Model {
     'user_id',
     'title',
     'content',
-    'actor',
-    'dancer',
-    'entertainer',
-    'event_staff',
-    'extra',
-    'model',
-    'musician',
+    'banner',
     'images',
+    'roles',
   ];
 
   public function comments() {

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Helpers\Flash;
 use App\Helpers\Format;
+use Storage;
 
 class PostController extends Controller {
   public function index($id) {
@@ -90,23 +91,50 @@ class PostController extends Controller {
     if (!in_array(Auth::user()->role, ['Admin', 'Moderator', 'Scout']))
       return abort(403, 'Unauthorized action.');
 
+    $banner = $request->file('banner');
+
+    if ($banner) {
+      if ($banner->getSize() / 1000 > 2000) {
+        return redirect()->back()->withErrors([
+          Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.'),
+        ]);
+      }
+
+      if ($banner->isValid() !== true) {
+        return redirect()->back()->withErrors([
+          Format::string('there was an issue with your image. please try uploading again, or find another avatar'),
+        ]);
+      }
+
+      $storedFile = Storage::disk('public')->put('banner', $banner);
+    }
+
     $request->validate([
       'title'   => 'required|max:255',
       'image.*' => 'nullable|url',
     ]);
 
+    $roles = [];
+    
+    if ($request->input('roles.*')) {
+      foreach ($request->input('roles.*') as $role) {
+        if (!in_array($role, ['actor', 'dancer', 'entertainer', 'event_staff', 'extra', 'model', 'musician', 'other'])) {
+          return redirect()->back()->withErrors([
+            ucfirst(__('"' . $role . '" is not a valid role')),
+          ]);
+        }
+
+        $roles[] = $role;
+      }
+    }
+
     $post = new Post([
-      'title'       => $request->input('title', false),
-      'actor'       => $request->input('actor', false),
-      'dancer'      => $request->input('dancer', false),
-      'entertainer' => $request->input('entertainer', false),
-      'event_staff' => $request->input('event_staff', false),
-      'extra'       => $request->input('extra', false),
-      'model'       => $request->input('model', false),
-      'musician'    => $request->input('musician', false),
-      'images'      => json_encode($request->input('image.*')),
-      'content'     => $request->input('content'),
-      'user_id'     => Auth::id()
+      'title'   => $request->input('title', false),
+      'roles'   => json_encode($roles),
+      'images'  => json_encode($request->input('image.*')),
+      'content' => $request->input('content'),
+      'banner'  => isset($storedFile) ? $storedFile : 'banner.svg',
+      'user_id' => Auth::id()
     ]);
 
     $post->save();
@@ -129,16 +157,20 @@ class PostController extends Controller {
     if ($post->user_id !== Auth::id())
       return redirect()->route('overview')->with(['errors' => ['Unauthorized access']]);
 
-    $post->title       = $request->input('title');
-    $post->actor       = $request->input('actor', false);
-    $post->dancer      = $request->input('dancer', false);
-    $post->entertainer = $request->input('entertainer', false);
-    $post->event_staff = $request->input('event_staff', false);
-    $post->extra       = $request->input('extra', false);
-    $post->model       = $request->input('model', false);
-    $post->musician    = $request->input('musician', false);
-    $post->images      = json_encode($request->input('image.*'));
-    $post->content     = $request->input('content');
+    foreach ($request->input('roles.*') as $role) {
+      if (!in_array($role, ['actor', 'dancer', 'entertainer', 'event_staff', 'extra', 'model', 'musician', 'other'])) {
+        return redirect()->back()->withErrors([
+          ucfirst(__('"' . $role . '" is not a valid role')),
+        ]);
+      }
+
+      $roles[] = $role;
+    }
+
+    $post->title    = $request->input('title');
+    $post->roles    = json_encode($roles);
+    $post->images   = json_encode($request->input('image.*'));
+    $post->content  = $request->input('content');
 
     $post->save();
 
