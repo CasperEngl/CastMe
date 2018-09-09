@@ -11,7 +11,7 @@
   <div class="row">
     @foreach($posts as $key => $post)
       @if (!$post->closed || $own)
-      <a href="{{ route('post', ['id' => $post->id]) }}" class="col-12 col-md-6 animated fadeInRight delay-{{ $key * 200 }}ms">
+      <a href="{{ route('post', ['id' => $post->id]) }}" class="col-12 col-md-6 animated fadeInRight delay-{{ $key * 100 }}ms">
         <article class="post-card">
           <div class="post-card__info">
             @if (Auth::user()->id === $post->user_id)
@@ -22,7 +22,7 @@
             <h2 class="post-card__title">{{ str_limit(title_case($post->title), 40) }}</h2>
             <div class="post-card__roles">
               @foreach (json_decode($post->roles) as $role)
-              <span class="badge badge-pill badge-primary py-2 px-3 mr-1">{{ strtoupper(__($role)) }}</span>
+              <span class="badge badge-pill badge-primary py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
               @endforeach
             </div>
           </div>
