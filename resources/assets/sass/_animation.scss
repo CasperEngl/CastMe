@@ -1,4 +1,4 @@
-$animation-delay-count: 30;
+$animation-delay-count: 100;
 
 @for $i from 1 through $animation-delay-count {
   .delay-#{$i * 100}ms {

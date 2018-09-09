@@ -15,6 +15,11 @@ class PostController extends Controller {
   public function index($id) {
     $post = Post::find($id);
 
+    if ($post->closed && $post->user_id !== Auth::id())
+      return redirect()->back()->withErrors([
+        ucfirst(__('that post no longer exists.'))
+      ]);
+
     if ($post)
       return view('post.singular')->with([
         'post' => $post,
@@ -23,7 +28,7 @@ class PostController extends Controller {
       ]);
     else
       return redirect()->route('post.list')->withErrors([
-        'Sorry, that post doesn\'t exist'
+        ucfirst(__('sorry, that post doesn\'t exist'))
       ]);
   }
 
@@ -79,6 +84,7 @@ class PostController extends Controller {
     return view('post.list', [
       'title' => ucfirst(__('posts')),
       'posts' => $posts,
+      'own' => false,
     ]);
   }
 
@@ -89,7 +95,8 @@ class PostController extends Controller {
 
     return view('post.list', [
       'title' => ucfirst(__('your posts')),
-      'posts', $posts
+      'posts' => $posts,
+      'own' => true,
     ]);
   }
 
@@ -181,6 +188,36 @@ class PostController extends Controller {
     $post->save();
 
     return redirect()->route('posts');
+  }
+
+  public function disable($id) {
+    $post = Post::find($id);
+
+    if ($post->user_id !== Auth::id())
+      return redirect()->back()->withErrors([
+        ucfirst(__('oops, looks like that post doesn\'t belong to you.'))
+      ]);
+
+    $post->closed = 1;
+    $post->save();
+
+    Flash::push('success', Format::string(__('your post is now disabled. it will no longer be visible to the public.')));
+    return redirect()->back();
+  }
+
+  public function enable($id) {
+    $post = Post::find($id);
+
+    if ($post->user_id !== Auth::id())
+      return redirect()->back()->withErrors([
+        ucfirst(__('oops, looks like that post doesn\'t belong to you.'))
+      ]);
+
+    $post->closed = 0;
+    $post->save();
+
+    Flash::push('success', Format::string(__('your post is now enabled. it is now visible to the public.')));
+    return redirect()->back();
   }
 
   public function dump(Request $request) {

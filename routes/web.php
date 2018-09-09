@@ -35,6 +35,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('post/{id}/data', 'PostController@data')->where('id', '[0-9]+')->name('post.data');
   Route::post('post/add', 'PostController@add')->name('post.add');
   Route::post('post/{id}/update', 'PostController@update')->where('id', '[0-9]+')->name('post.update');
+  Route::get('post/{id}/disable', 'PostController@disable')->where('id', '[0-9]+')->name('post.disable');
+  Route::get('post/{id}/enable', 'PostController@enable')->where('id', '[0-9]+')->name('post.enable');
 
   // Post Comment
   Route::post('post/comment/new', 'CommentController@new')->name('comment.new');

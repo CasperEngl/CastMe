@@ -21,43 +21,36 @@
         <p>{{ ucfirst(__('select multiple if applicable')) }}</p>
         <ul class="pagination">
           <li class="page-item">
-            <label for="profile_type-actor" class="page-link" href="#">{{ title_case(__('actor')) }}</label>
             {{ Form::label('profile_type-actor', ucfirst(__('actor')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-dancer" class="page-link" href="#">{{ title_case(__('dancer')) }}</label>
             {{ Form::label('profile_type-dancer', ucfirst(__('dancer')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-entertainer" class="page-link" href="#">{{ title_case(__('entertainer')) }}</label>
             {{ Form::label('profile_type-entertainer', ucfirst(__('entertainer')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-event_staff" class="page-link" href="#">{{ title_case(__('event staff')) }}</label>
             {{ Form::label('profile_type-event_staff', ucfirst(__('event_staff')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-extra" class="page-link" href="#">{{ title_case(__('extra')) }}</label>
             {{ Form::label('profile_type-extra', ucfirst(__('extra')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-model" class="page-link" href="#">{{ title_case(__('model')) }}</label>
             {{ Form::label('profile_type-model', ucfirst(__('model')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-musician" class="page-link" href="#">{{ title_case(__('musician')) }}</label>
             {{ Form::label('profile_type-musician', ucfirst(__('musician')), [
               'class' => 'page-link'
             ]) }}
