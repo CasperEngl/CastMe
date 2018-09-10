@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
 
   // Localization
   Route::get('locale', 'LocaleController@index')->name('locale');
+  Route::get('locale/{locale?}', 'LocaleController@get')->where('locale', '[a-zA-Z]+')->name('locale.get');
   Route::post('locale/set/{locale?}', 'LocaleController@set')->where('id', '[0-9]+')->name('locale.set');
 
   // Subscription Stripe
