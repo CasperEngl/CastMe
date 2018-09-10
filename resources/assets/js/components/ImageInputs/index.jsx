@@ -68,7 +68,7 @@ class ImageInputs extends Component {
 
   async getLocale(supportedLanguages) {
     try {
-      const response = await fetch('/api/locale');
+      const response = await fetch('/locale');
       const result = await response.json();
 
       if (Object.keys(supportedLanguages).includes(result.lang)) {

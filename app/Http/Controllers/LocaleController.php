@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Helpers\Format;
 use App;
 use Session;
 use File;
 use Response;
-use Auth;
 
 class LocaleController extends Controller {
     protected $supported_languages;
@@ -71,7 +71,9 @@ class LocaleController extends Controller {
     }
 
     public function index() {
-        return App::getLocale();
+        return response()->json([
+            'lang' => App::getLocale(),
+        ]);
     }
 
     public function set(Request $request) {
@@ -105,9 +107,12 @@ class LocaleController extends Controller {
                 ]);
             }
         } else {
+            $user = Auth::user();
             $preg = $this->supported_languages_preg();
 
-            if (Session::get('locale'))
+            if ($user->lang)
+                $accept_language = $user->lang;
+            else if (Session::get('locale'))
                 $accept_language = $request->session()->get('locale');
             else
                 $accept_language = $request->server('HTTP_ACCEPT_LANGUAGE');

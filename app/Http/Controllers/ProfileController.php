@@ -67,11 +67,10 @@ class ProfileController extends Controller {
     
     if ($request->input('roles.*')) {
       foreach ($request->input('roles.*') as $role) {
-        if (!in_array($role, ['actor', 'dancer', 'entertainer', 'event_staff', 'extra', 'model', 'musician', 'other'])) {
+        if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
           return redirect()->back()->withErrors([
-            ucfirst(__('"' . $role . '" is not a valid role'))
+            ucfirst(__('"' . $role . '" is not a valid role')),
           ]);
-        }
 
         $roles[] = $role;
       }
