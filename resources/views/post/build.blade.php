@@ -11,7 +11,7 @@
           <span class="h3">{{ ucfirst(__('title')) }}</span>
         </div>
         <div class="col">
-          <input type="text" name="title" class="form-control bg-transparent" value="{{ $post->title }}">
+          <input type="text" name="title" class="form-control bg-transparent" value="{{ $post->title }}" placeholder="{{ $post->title }}">
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
             ]) }}
           </li>
           <li class="page-item">
-            {{ Form::label('profile_type-event_staff', ucfirst(__('event_staff')), [
+            {{ Form::label('profile_type-event_staff', ucfirst(__('event staff')), [
               'class' => 'page-link'
             ]) }}
           </li>
@@ -65,7 +65,7 @@
             {{ Form::checkbox('roles[]', 'entertainer', $post->roles && in_array('entertainer', json_decode($post->roles)), [
               'id' => 'profile_type-entertainer'
             ]) }}
-            {{ Form::checkbox('roles[]', 'event_staff', $post->roles && in_array('event_staff', json_decode($post->roles)), [
+            {{ Form::checkbox('roles[]', 'event staff', $post->roles && in_array('event staff', json_decode($post->roles)), [
               'id' => 'profile_type-event_staff'
             ]) }}
             {{ Form::checkbox('roles[]', 'extra', $post->roles && in_array('extra', json_decode($post->roles)), [
@@ -86,6 +86,8 @@
     </div>
     <div class="card-block">
       <h5 class="text-muted">{{ ucfirst(__('upload banner')) }}</h5>
+      <p class="text-muted m-0">{{ ucfirst(__('preferably 825x400 or above pixels')) }}</p>
+      <p class="text-muted small">{{ ucfirst(__('aspect ratio 2,0625:1')) }}</p>
       <input name="banner" type="file" class="file">
     </div>
     <div class="card-block">
