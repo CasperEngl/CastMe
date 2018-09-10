@@ -215,7 +215,7 @@
                 {{ Form::checkbox('roles[]', 'entertainer', Auth::user()->details->roles && in_array('entertainer', json_decode(Auth::user()->details->roles)), [
                   'id' => 'entertainer'
                 ]) }}
-                {{ Form::checkbox('roles[]', 'event_staff', Auth::user()->details->roles && in_array('event_staff', json_decode(Auth::user()->details->roles)), [
+                {{ Form::checkbox('roles[]', 'event staff', Auth::user()->details->roles && in_array('event staff', json_decode(Auth::user()->details->roles)), [
                   'id' => 'event_staff'
                 ]) }}
                 {{ Form::checkbox('roles[]', 'extra', Auth::user()->details->roles && in_array('extra', json_decode(Auth::user()->details->roles)), [
