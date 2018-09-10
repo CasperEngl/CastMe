@@ -63,7 +63,7 @@ class PostController extends Controller {
     $user = Auth::user();
     $post = Post::find($id);
 
-    if ($user->id !== $post->user_id)
+    if ($user->id !== $post->user_id && !in_array($user->role, ['Admin', 'Moderator']))
       return redirect()->route('overview')->withErrors([
         'You do not own that post.',
       ]);
@@ -104,9 +104,13 @@ class PostController extends Controller {
     if (!in_array(Auth::user()->role, ['Admin', 'Moderator', 'Scout']))
       return abort(403, 'Unauthorized action.');
 
-    $banner = $request->file('banner');
+    $request->validate([
+      'title'   => 'required|max:255',
+      'image.*' => 'nullable|url',
+      'roles.*' => 'nullable|string',
+    ]);
 
-    if ($banner) {
+    if ($banner = $request->file('banner')) {
       if ($banner->getSize() / 1000 > 2000) {
         return redirect()->back()->withErrors([
           Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.'),
@@ -122,20 +126,14 @@ class PostController extends Controller {
       $storedFile = Storage::disk('public')->put('banner', $banner);
     }
 
-    $request->validate([
-      'title'   => 'required|max:255',
-      'image.*' => 'nullable|url',
-    ]);
-
     $roles = [];
     
     if ($request->input('roles.*')) {
       foreach ($request->input('roles.*') as $role) {
-        if (!in_array($role, ['actor', 'dancer', 'entertainer', 'event_staff', 'extra', 'model', 'musician', 'other'])) {
+        if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
           return redirect()->back()->withErrors([
             ucfirst(__('"' . $role . '" is not a valid role')),
           ]);
-        }
 
         $roles[] = $role;
       }
@@ -146,7 +144,7 @@ class PostController extends Controller {
       'roles'   => json_encode($roles),
       'images'  => json_encode($request->input('image.*')),
       'content' => $request->input('content'),
-      'banner'  => isset($storedFile) ? $storedFile : 'banner.svg',
+      'banner'  => isset($storedFile) ? $storedFile : 'placeholder/banner.png',
       'user_id' => Auth::id()
     ]);
 
@@ -163,19 +161,37 @@ class PostController extends Controller {
     $request->validate([
       'title'   => 'required|max:255',
       'image.*' => 'nullable|url',
+      'roles.*' => 'nullable|string',
     ]);
+
+    if ($banner = $request->file('banner')) {
+      if ($banner->getSize() / 1000 > 2000) {
+        return redirect()->back()->withErrors([
+          Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.'),
+        ]);
+      }
+
+      if ($banner->isValid() !== true) {
+        return redirect()->back()->withErrors([
+          Format::string('there was an issue with your image. please try uploading again, or find another avatar'),
+        ]);
+      }
+
+      $storedFile = Storage::disk('public')->put('banner', $banner);
+    }
 
     $post = Post::find($id);
 
-    if ($post->user_id !== Auth::id())
-      return redirect()->route('overview')->with(['errors' => ['Unauthorized access']]);
+    if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
+      return redirect()->route('overview')->withErrors([
+        ucfirst(__('unauthorized access'))
+      ]);
 
     foreach ($request->input('roles.*') as $role) {
-      if (!in_array($role, ['actor', 'dancer', 'entertainer', 'event_staff', 'extra', 'model', 'musician', 'other'])) {
+      if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
         return redirect()->back()->withErrors([
           ucfirst(__('"' . $role . '" is not a valid role')),
         ]);
-      }
 
       $roles[] = $role;
     }
@@ -183,6 +199,7 @@ class PostController extends Controller {
     $post->title    = $request->input('title');
     $post->roles    = json_encode($roles);
     $post->images   = json_encode($request->input('image.*'));
+    $post->banner   = isset($storedFile) ? $storedFile : $post->banner;
     $post->content  = $request->input('content');
 
     $post->save();
