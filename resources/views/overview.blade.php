@@ -19,18 +19,16 @@
       <i class="fas fa-bookmark"></i><span class="d-inline-block">{{ title_case(__('posts')) }}</span>
     </a>
   </div>
+
+  @paid
   <div class="col-12 col-sm-6 col-lg-4 animated fadeInRight delay-400ms">
     <a href="{{ route('conversations') }}" class="btn tile">
       <i class="fas fa-comments"></i><span class="d-inline-block">{{ title_case(__('conversations')) }}</span>
     </a>
   </div>
-</section>
-{{--Scout only--}}
-@if(in_array(Auth::user()->role, ['Scout', 'Moderator', 'Admin']))
-<section class="row">
-  <div class="col-12">
-    <h2 class="page-header">{{ title_case(__('scout')) }}</h2>
-  </div>
+  @endpaid
+
+  @scout
   <div class="col-12 col-sm-6 col-lg-4 animated fadeInRight delay-500ms">
     <a href="{{ route('post.new') }}" class="btn tile">
       <i class="fas fa-plus"></i><span class="d-inline-block">{{ title_case(__('new post')) }}</span>
@@ -41,10 +39,10 @@
       <i class="fas fa-clipboard-list"></i><span class="d-inline-block">{{ title_case(__('your posts')) }}</span>
     </a>
   </div>
+  @endscout
 </section>
-@endif
-{{--Admin only--}}
-@if(in_array(Auth::user()->role, ['Moderator', 'Admin']))
+
+@admin
 <section class="row">
   <div class="col-12">
     <h2 class="page-header">{{ title_case(__('admin')) }}</h2>
@@ -55,5 +53,5 @@
     </a>
   </div>
 </section>
-@endif
+@endadmin
 @endsection
