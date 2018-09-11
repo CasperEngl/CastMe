@@ -35,6 +35,11 @@ class ProfileController extends Controller {
         ucfirst(__('unfortunately, that user does not exist'))
       ]);
 
+    if ($user->role === 'Free' && $user->id !== Auth::id())
+      return redirect()->back()->withErrors([
+        ucfirst(__('oops, looks like that user is not a member yet.'))
+      ]);
+
     return view('user.profile')->with([
       'user' => $user,
       'avatar' => $avatar,
