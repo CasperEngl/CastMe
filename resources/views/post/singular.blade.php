@@ -15,12 +15,14 @@ use App\Helpers\Format;
       @endif
       <h1 class="post-article__title">{{ title_case($post->title) }}</h1>
     </hgroup>
-    <blockquote class="post-article__quote">
-      <figure class="post-article__quote__avatar">
-        <img src="{{ Storage::disk('public')->url($post->owner->avatar) }}" alt="">
-      </figure>
-      <p class="post-article__quote__name">{{ $post->owner->name }} {{ $post->owner->last_name }}</p>
-    </blockquote>
+    <a href="{{ route('profile', ['id' => $post->owner->id]) }}">
+      <blockquote class="post-article__quote">
+        <figure class="post-article__quote__avatar">
+          <img src="{{ Storage::disk('public')->url($post->owner->avatar) }}" alt="">
+        </figure>
+        <p class="post-article__quote__name">{{ $post->owner->name }} {{ $post->owner->last_name }}</p>
+      </blockquote>
+    </a>
     @if ($post->roles)
     <section class="d-flex align-items-center my-3">
       @foreach (json_decode($post->roles) as $role)
