@@ -86,15 +86,21 @@ use App\Helpers\RequestActive;
   <div id="wrapper" class="container">
     @if (Session::has('success'))
       @foreach (Session::get('success') as $success)
-      <div class="alert alert-success">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ $success }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       @endforeach
     @endif 
     @if ($errors->any())
       @foreach ($errors->all() as $error)
-      <div class="alert alert-danger">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ $error }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       @endforeach
     @endif
@@ -110,8 +116,12 @@ use App\Helpers\RequestActive;
           <div class="list-group mb-4">
             <a href="{{ route('user.settings') }}" class="list-group-item {{ RequestActive::route('user.settings', true) }}">{{ title_case(__('profile settings')) }}</a>
             <a href="{{ route('user.subscription') }}" class="list-group-item {{ RequestActive::route('user.subscription', true) }}">{{ title_case(__('subscription')) }}</a>
+          </div>
+          @paid
+          <div class="list-group mb-4">
             <a href="{{ route('conversations') }}" class="list-group-item {{ RequestActive::route('conversations', true) }}">{{ title_case(__('conversations')) }} <span class="badge badge-danger">7</span></a>
           </div>
+          @endpaid
           @scout
           <div class="list-group mb-4">
             <a href="{{ route('post.new') }}" class="list-group-item {{ RequestActive::route('post.new', true) }}">{{ title_case(__('new post')) }}</a>
