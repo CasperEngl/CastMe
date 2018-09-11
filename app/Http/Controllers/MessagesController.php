@@ -16,12 +16,6 @@ class MessagesController extends Controller {
   }
 
   public function send(Request $request) {
-    if ( !Auth::check() )
-      return redirect()->route('login')->with('error', ucfirst(__('login and try again')));
-
-    if ( !in_array(Auth::user()->role, ['Scout', 'Moderator', 'Admin']) )
-      return redirect()->route('home')->with('error', ucfirst(__('permission denied')));
-
     $request->validate([
       'title'    => 'required|min:3|max:255',
       'content'  => 'required',
