@@ -9,7 +9,7 @@
     @endif
     <div class="d-flex flex-column ml-3">
       <div class="card-title m-0">{{ $user->name }} {{ $user->last_name }}</div>
-      @if (count($profile_types) > 0)
+      @if (isset($profile_types) && count($profile_types) > 0)
       <div class="card-text text-muted">{{ count($profile_types) > 1 ? ucfirst(__('roles')) : ucfirst(__('role')) }}</div>
       <div class="card-text text-muted">
         @foreach ($profile_types as $profile_type)
