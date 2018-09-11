@@ -46,11 +46,6 @@ class PostController extends Controller {
   public function new() {
     $user = Auth::user();
 
-    if (!in_array($user->role, ['Scout', 'Moderator', 'Admin']))
-      return redirect()->route('overview')->withErrors([
-        'You do not have access to create posts.'
-      ]);
-
     return view('post.build')->with([
       'title' => ucfirst(__('new post')),
       'post' => new Post,
@@ -101,9 +96,6 @@ class PostController extends Controller {
   }
 
   public function add(Request $request) {
-    if (!in_array(Auth::user()->role, ['Admin', 'Moderator', 'Scout']))
-      return abort(403, 'Unauthorized action.');
-
     $request->validate([
       'title'   => 'required|max:255',
       'image.*' => 'nullable|url',
@@ -155,9 +147,6 @@ class PostController extends Controller {
   }
 
   public function update(Request $request, $id) {
-    if (!in_array(Auth::user()->role, ['Admin', 'Moderator', 'Scout']))
-      return abort(403, 'Unauthorized action.');
-
     $request->validate([
       'title'   => 'required|max:255',
       'image.*' => 'nullable|url',
