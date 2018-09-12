@@ -112,5 +112,7 @@
   "images": "billeder",
   "comment": "kommenter",
   "no comments": "ingen kommentarer",
-  "you": "dig"
+  "you": "dig",
+  "preferably 825x400 or above pixels": "fortrinsvis 825x400 eller over pixels",
+  "aspect ratio 2,0625:1": "billedformat 2,0625:1"
 }
