@@ -15,7 +15,7 @@ use App\Helpers\Format;
       @endif
       <h1 class="post-article__title">{{ title_case($post->title) }}</h1>
     </hgroup>
-    <a href="{{ route('profile', ['id' => $post->owner->id]) }}">
+    <a href="{{ route('profile', ['id' => $post->owner->id]) }}" class="post-article__profile-link">
       <blockquote class="post-article__quote">
         <figure class="post-article__quote__avatar">
           <img src="{{ Storage::disk('public')->url($post->owner->avatar) }}" alt="">
