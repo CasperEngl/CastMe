@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use QuickPay\QuickPay;
 
 // Homepage
-Route::get('', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 //User has to be logged in to access these
 Route::group(['middleware' => ['auth']], function () {
@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth']], function () {
   // Specific Profile
   Route::get('profile/{id}', 'ProfileController@user')->name('profile');
 
-  Route::group(['prefix' => 'posts'], function () {
+  Route::prefix('posts')->group(function () {
     // Posts
     Route::get('/', 'PostController@list')->name('posts');
     
@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
   });
 
-  Route::group(['prefix' => 'post'], function () {
+  Route::prefix('post')->group(function () {
     // Singular Post
     Route::get('{id}', 'PostController@index')->name('post');
     Route::get('{id}/data', 'PostController@data')->name('post.data');
@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
   });
 
-  Route::group(['prefix' => 'user'], function () {
+  Route::prefix('user')->group(function () {
     // Profile Settings
     Route::get('settings', 'ProfileController@index')->name('user.settings');
     Route::post('settings/update', 'ProfileController@update')->name('user.settings.update');
@@ -73,18 +73,18 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('subscription/invoice/{id}', 'SubscriptionController@invoice')->name('user.subscription.invoice');
   });
 
-  Route::group(['prefix' => 'conversation', 'middleware' => 'App\Http\Middleware\MemberMiddleware'], function () {
+  Route::prefix('conversation')->middleware('App\Http\Middleware\MemberMiddleware')->group(function () {
     // Conversation (Singular)
     Route::get('{id}', 'ConversationController@index')->name('conversation');
     Route::post('send/{id}', 'ConversationController@send')->name('conversation.send');
   });
 
-  Route::middleware(['App\Http\Middleware\MemberMiddleware'])->group(function () {
+  Route::middleware('App\Http\Middleware\MemberMiddleware')->group(function () {
     // Conversations (List)
     Route::get('conversations', 'ConversationController@list')->name('conversations');
   });
 
-  Route::group(['prefix' => 'locale'], function () {
+  Route::prefix('locale')->group(function () {
     // Localization
     Route::get('/', 'LocaleController@index')->name('locale');
     Route::get('locale/{locale?}', 'LocaleController@get')->where('locale', '[a-zA-Z]+')->name('locale.get');
@@ -98,39 +98,6 @@ Route::get('logout', function () {
   }
 
   return redirect()->intended('/login');
-});
-
-Route::post('message/send', 'MessagesController@send');
-
-Route::get('form', function () {
-  return view('form');
-});
-
-Route::get('test', function () {
-  $api_key = '5256684d74e913d6085cc4c1d839a7c4b8245907b84f31b43462bc1b72179598';
-  $client = new QuickPay(":$api_key");
-
-  $response = $client->request->get('subscriptions/120004902');
-
-  $json = $response->asArray();
-
-  return $json;
-});
-
-Route::get('lirik/{id}', function ($id) {
-  $api_key = '5256684d74e913d6085cc4c1d839a7c4b8245907b84f31b43462bc1b72179598';
-  $client = new QuickPay(":$api_key");
-
-  $response = $client->request->post('subscriptions/' . $id . '/session');
-
-  $json = $response->asArray();
-
-  return $json;
-});
-
-Route::any('dump', function () {
-  $order = Auth::user()->order()->first();
-  dd(strtotime($order->date) < strtotime('-30 day'));
 });
 
 Auth::routes();
