@@ -193,7 +193,7 @@ class PostController extends Controller {
 
     $post->save();
 
-    return redirect()->route('posts');
+    return redirect()->route('post', ['id' => $post->id]);
   }
 
   public function disable($id) {
@@ -208,7 +208,7 @@ class PostController extends Controller {
     $post->save();
 
     Flash::push('success', Format::string(__('your post is now disabled. it will no longer be visible to the public.')));
-    return redirect()->back();
+    return redirect()->route('posts');
   }
 
   public function enable($id) {
@@ -223,7 +223,7 @@ class PostController extends Controller {
     $post->save();
 
     Flash::push('success', Format::string(__('your post is now enabled. it is now visible to the public.')));
-    return redirect()->back();
+    return redirect()->route('post', ['id' => $post->id]);
   }
 
   public function dump(Request $request) {
