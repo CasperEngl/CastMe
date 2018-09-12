@@ -1,6 +1,5 @@
 .sidebar {
   &.affix {
-    z-index: $zindex-fixed;
     position: fixed;
     top: 50px;
   }
