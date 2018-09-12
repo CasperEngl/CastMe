@@ -83,12 +83,21 @@ import getLocale from './getLocale';
     branding: false,
 
     width: '100%',
-    height: 300,
+    height: 500,
 
     statubar: false,
 
     plugins: [
       'lists',
+      'link',
+      'autolink',
+      'autosave',
+      'emoticons',
+      'fullscreen',
+      'image',
+      'insertdatetime',
+      'preview',
+      'wordcount',
     ],
 
     // toolbar: 'bold italic | alignleft aligncenter alignright alignjustify | link image | bullist numlist outdent indent',
@@ -147,7 +156,7 @@ import getLocale from './getLocale';
     branding: false,
 
     width: '100%',
-    height: 300,
+    height: 500,
 
     statubar: true,
 
