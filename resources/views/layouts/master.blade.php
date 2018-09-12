@@ -40,7 +40,7 @@ use App\Helpers\RequestActive;
             </li>
             @else
             <form class="form mr-2" action="{{ route('locale.set') }}" method="POST">
-              <select name="locale" class="selectpicker" data-width="fit">
+              <select name="locale" class="selectpicker" data-width="fit" data-style="btn-default">
                 <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ Auth::user() && Auth::user()->lang === 'en' ? 'selected' : '' }}>
                   {{ ucfirst(__('english')) }}
                 </option>
