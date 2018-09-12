@@ -24,6 +24,16 @@
     }
   }
 
+  &__profile-link {
+    color: $body-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $body-color;
+      text-decoration: none;
+    }
+  }
+
   &__quote {
     @extend 
       .d-flex,
@@ -31,6 +41,7 @@
       .align-items-center,
       .blockquote,
       .my-2;
+    text-decoration: none;
 
     &__avatar {
       @extend figure.circle;
@@ -39,7 +50,7 @@
     }
 
     &__name {
-      @extend .mb-0, .ml-2;
+      @extend .mb-0;
     }
   }
 
