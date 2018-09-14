@@ -6,10 +6,10 @@
   <div class="card">
     @foreach($messages as $message)
       <div class="card-header">
-        @if($message->sender->id === Auth::id())
+        @if($message->user->id === Auth::id())
           {{ strtoupper(__('you')) }}
         @else
-          {{ $message->sender->name }}
+          {{ $message->user->name }}
         @endif
       </div>
       <div class="card-block">

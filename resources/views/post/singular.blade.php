@@ -76,7 +76,12 @@ use App\Helpers\Format;
         <div class="row align-items-center">
           <div class="col">{{ Carbon::parse($comment->updated_at)->format('M j \a\t G:i') }}</div>
           <div class="col-auto">
-            <a href="{{ route('conversation', ['id' => $comment->user_id]) }}" class="btn btn-primary">{{ ucfirst(__('message')) }}</a>
+            <form action="{{ route('conversation.new') }}" method="post">
+              @csrf
+              <input type="hidden" name="users[]" value="{{ Auth::id() }}">
+              <input type="hidden" name="users[]" value="{{ $comment->user_id }}">
+              <input type="submit" class="btn btn-primary" value="{{ ucfirst(__('message')) }}">
+            </form>
           </div>
         </div>
       </div>
