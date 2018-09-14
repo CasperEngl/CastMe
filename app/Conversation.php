@@ -40,7 +40,7 @@ class Conversation extends Model {
       ->where('new', 1)
       ->where('user_id', '!=', $userId);
 
-    if($messages->count() > 0)
+    if ($messages->count() > 0)
       return true;
 
     return false;
