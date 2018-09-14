@@ -103,17 +103,6 @@ use App\Helpers\Format;
       <div class="card-footer">
         <div class="row align-items-center">
           <div class="col">{{ Carbon::parse($comment->updated_at)->format('M j, Y \a\t G:i a') }}</div>
-<<<<<<< HEAD
-=======
-          <div class="col-auto">
-            <form action="{{ route('conversation.new') }}" method="post">
-              @csrf
-              <input type="hidden" name="users[]" value="{{ Auth::id() }}">
-              <input type="hidden" name="users[]" value="{{ $comment->user_id }}">
-              <input type="submit" class="btn btn-primary" value="{{ ucfirst(__('message')) }}">
-            </form>
-          </div>
->>>>>>> master
         </div>
       </div>
     </div>
