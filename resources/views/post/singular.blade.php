@@ -103,9 +103,6 @@ use App\Helpers\Format;
       <div class="card-footer">
         <div class="row align-items-center">
           <div class="col">{{ Carbon::parse($comment->updated_at)->format('M j, Y \a\t G:i a') }}</div>
-          <div class="col-auto">
-            <a href="{{ route('conversation', ['id' => $comment->user_id]) }}" class="btn btn-primary">{{ ucfirst(__('message')) }}</a>
-          </div>
         </div>
       </div>
     </div>
