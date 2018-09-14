@@ -6,9 +6,15 @@
   <div class="card-header">{{ ucfirst(__('your conversations')) }}</div>
   <div class="list-group">
     @foreach ($conversations as $conversation)
-    <a href="{{ route('conversation', ['id' => $conversation['id']]) }}" class="list-group-item">
-      {{ $conversation['name'] }} {{ $conversation['last_name'] }}
-      <span class="badge badge-danger">{{ ucfirst(__('unread')) }}</span>
+    <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="list-group-item">
+      @foreach($conversation->users as $user)
+        @if($user->id !== Auth::id())
+          {{ $user->name }}
+        @endif
+      @endforeach
+      @if($conversation->new(Auth::id()))
+        <span class="badge badge-danger">{{ ucfirst(__('unread')) }}</span>
+      @endif
     </a>
     @endforeach
   </div>
