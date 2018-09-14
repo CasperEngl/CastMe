@@ -6,10 +6,10 @@ use App\Helpers\Flash;
 use App\Helpers\Format;
 use App\Message;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Auth;
 use App\Conversation;
+use App\User;
 /**
  * @mixin \Eloquent
  */
@@ -47,7 +47,7 @@ class ConversationController extends Controller {
     $conversation->save();
 
     foreach ( $request->input('users') as $userId ) {
-      User::find($userId)->conversations->attach($conversation->id);
+      User::find($userId)->conversations()->attach($conversation->id);
     }
 
     return redirect()->route('conversation', [
@@ -57,7 +57,7 @@ class ConversationController extends Controller {
 
   private function checkIfExist(Array $users) : int {
     $users = User::whereIn('id', $users)->get();
-    $conversations = \App\Conversation::with('users')->get();
+    $conversations = Conversation::with('users')->get();
 
     foreach ( $conversations as $conversation ) {
       if($users->diff($conversation->users)->count() == 0)

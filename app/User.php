@@ -54,7 +54,7 @@ class User extends Authenticatable {
   }
 
   public function conversations() {
-    return $this->belongsToMany('App\Conversation');
+    return $this->belongsToMany(Conversation::class, 'conversation_user', 'user_id', 'conversation_id');
   }
 
   public function activeSub() {
