@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<h2 class="page-header">{{ title_case(__('conversations')) }}</h2>
+<h2 class="page-header">{{ ucfirst(__('conversations')) }}</h2>
 
 <div class="card">
   <div class="card-header">{{ ucfirst(__('your conversations')) }}</div>

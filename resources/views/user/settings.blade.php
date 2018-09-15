@@ -1,6 +1,6 @@
 @extends('layouts.master') 
 @section('content')
-<h2 class="page-header">{{ title_case(__('profile information')) }}</h2>
+<h2 class="page-header">{{ ucfirst(__('profile information')) }}</h2>
 
 {{ Form::open(['url' => route('user.settings.update'), 'files' => 'true']) }}
   <div class="card">
@@ -161,7 +161,7 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <h5 class="text-muted">{{ title_case(__('profile type')) }}</h5>
+            <h5 class="text-muted">{{ ucfirst(__('profile type')) }}</h5>
             <p class="text-muted">{{ ucfirst(__('select multiple if applicable')) }}</p>
             <ul class="pagination">
               <li class="page-item">
@@ -239,7 +239,7 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <h5 class="text-muted">{{ title_case(__('hair length')) }}</h5>
+            <h5 class="text-muted">{{ ucfirst(__('hair length')) }}</h5>
             <ul class="pagination">
               <li class="page-item">
                 {{ Form::label('hair_length-bald', ucfirst(__('bald')), [
@@ -287,7 +287,7 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <h5 class="text-muted">{{ title_case(__('hair color')) }}</h5>
+            <h5 class="text-muted">{{ ucfirst(__('hair color')) }}</h5>
             <ul class="pagination">
               <li class="page-item">
                 {{ Form::label('hair_color-black', ucfirst(__('black')), [
@@ -365,7 +365,7 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <h5 class="text-muted">{{ title_case(__('ethnicity')) }}</h5>
+            <h5 class="text-muted">{{ ucfirst(__('ethnicity')) }}</h5>
             <ul class="pagination">
               <li class="page-item">
                 {{ Form::label('african', ucfirst(__('african')), [
@@ -449,7 +449,7 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <h5 class="text-muted">{{ title_case(__('eye color')) }}</h5>
+            <h5 class="text-muted">{{ ucfirst(__('eye color')) }}</h5>
             <ul class="pagination">
               <li class="page-item">
                 {{ Form::label('eye_color-amber', ucfirst(__('amber')), [

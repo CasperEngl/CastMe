@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<h2 class="page-header">{{ title_case($title) }}</h2>
+<h2 class="page-header">{{ ucfirst($title) }}</h2>
 
 {{ Form::open(['url' => $form_url, 'files' => 'true']) }}
 
@@ -95,7 +95,7 @@
       <textarea name="content" class="tinymce">{{ $post->content }}</textarea>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary">{{ title_case($type) }}</button>
+      <button type="submit" class="btn btn-primary">{{ ucfirst($type) }}</button>
     </div>
   </div>
 

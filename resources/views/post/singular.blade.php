@@ -64,7 +64,7 @@ use App\Helpers\Format;
 
 @if ($owner)
   @if (count($comments) > 0)
-    <h2 class="page-header mb-0">{{ title_case(__('comments')) }}</h2>
+    <h2 class="page-header mb-0">{{ ucfirst(__('comments')) }}</h2>
     @foreach ($comments as $comment)
     <div class="card my-3">
       {{ Auth::id() === $comment->owner }}
@@ -111,7 +111,7 @@ use App\Helpers\Format;
   <form action="{{ route('comment.new') }}" method="POST">
     <h2 class="page-header mb-0">{{ ucfirst(__('comment')) }}</h2>
     <textarea name="content" class="tinymce"></textarea>
-    <button class="btn btn-primary" type="submit">{{ title_case(__('comment')) }}</button>
+    <button class="btn btn-primary mt-2" type="submit">{{ ucfirst(__('comment')) }}</button>
 
     {{ Form::hidden('post', $post->id) }}
     
