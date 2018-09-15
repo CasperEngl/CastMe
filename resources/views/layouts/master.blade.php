@@ -138,6 +138,15 @@ use App\Helpers\RequestActive;
     </div>
   </div>
 
+  @auth
+  <script>
+    @if (Auth::user()->lang)
+    var locale = '{{ Auth::user()->lang }}';
+    @endif
+    var user = {{ Auth::id() }};
+  </script>
+  @endauth
+
   <script src="{{ mix('js/app.js') }}"></script>
 
 </body>
