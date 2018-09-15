@@ -16,3 +16,4 @@ import './selectpicker';
 import './sidebar';
 
 import './components/ImageInputs';
+import './components/Stripe';

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 const StyledCardElement = styled(CardElement)`
   display: block;
-  margin: 1rem 0 1.5rem 0;
   padding: 1rem;
+  width: 100%;
   font-size: 1em;
   font-family: 'Source Code Pro', monospace;
   border: 0;
