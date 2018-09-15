@@ -84,13 +84,6 @@ Route::group(['middleware' => ['auth']], function () {
     // Conversations (List)
     Route::get('conversations', 'ConversationController@list')->name('conversations');
   });
-
-  Route::prefix('locale')->group(function () {
-    // Localization
-    Route::get('/', 'LocaleController@index')->name('locale');
-    Route::get('locale/{locale?}', 'LocaleController@get')->where('locale', '[a-zA-Z]+')->name('locale.get');
-    Route::post('locale/set/{locale?}', 'LocaleController@set')->name('locale.set');
-  });
 });
 
 Route::get('logout', function () {

@@ -19,6 +19,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 */
 
+Route::prefix('locale')->group(function () {
+  // Localization
+  Route::post('get/{locale}', 'LocaleController@get')->where('locale', '[a-zA-Z]+')->name('locale');
+  Route::post('user/{id}', 'LocaleController@user')->name('locale.user');
+  Route::post('set', 'LocaleController@set')->name('locale.set');
+});
+
 //Stripe webhooks
 Route::post(
   'stripe/webhook',

@@ -4,6 +4,7 @@ eslint
 no-undef: 0,
 class-methods-use-this: 0,
 array-callback-return: 0,
+consistent-return: 0,
 */
 
 import React, { Component, Fragment } from 'react';
@@ -40,7 +41,7 @@ class ImageInputs extends Component {
           images: 'billeder',
         },
       },
-      lang: 'en',
+      lang: locale,
     };
   }
 
@@ -68,7 +69,9 @@ class ImageInputs extends Component {
 
   async getLocale(supportedLanguages) {
     try {
-      const response = await fetch('/locale');
+      const response = await fetch(`/api/locale/user/${user}`, {
+        method: 'POST',
+      });
       const result = await response.json();
 
       if (Object.keys(supportedLanguages).includes(result.lang)) {
