@@ -56,12 +56,12 @@ class ProfileController extends Controller {
     if ($avatar) {
       if ($avatar->getSize() / 1000 > 2000)
         return redirect()->back()->withErrors([
-          Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.')
+          sentence('Sorry, that avatar image is too big. Max file size is 2 MB.')
         ]);
 
       if ($avatar->isValid() !== true)
         return redirect()->back()->withErrors([
-          Format::string('there was an issue with your image. please try uploading again, or find another avatar')
+          sentence('there was an issue with your image. please try uploading again, or find another avatar')
         ]);
       
       $storedFile = Storage::disk('public')->put('avatar', $avatar);

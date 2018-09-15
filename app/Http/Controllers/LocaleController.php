@@ -87,7 +87,7 @@ class LocaleController extends Controller {
             App::setLocale($user->lang);
         } else {
             return redirect()->back()->withErrors([
-                Format::string(__('sorry, could not save your language setting. please try again. if the issue persists, please contact the site administrator.'))
+                sentence(__('sorry, could not save your language setting. please try again. if the issue persists, please contact the site administrator.'))
             ]);
         }
 
@@ -112,7 +112,7 @@ class LocaleController extends Controller {
         $user = User::find($id);
         $preg = $this->supported_languages_preg();
 
-        if (!user)
+        if (!$user)
             return response()->json([
                 'error' => ucfirst(__('user not found.'))
             ]);

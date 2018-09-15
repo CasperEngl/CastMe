@@ -105,13 +105,13 @@ class PostController extends Controller {
     if ($banner = $request->file('banner')) {
       if ($banner->getSize() / 1000 > 2000) {
         return redirect()->back()->withErrors([
-          Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.'),
+          sentence('Sorry, that avatar image is too big. Max file size is 2 MB.'),
         ]);
       }
 
       if ($banner->isValid() !== true) {
         return redirect()->back()->withErrors([
-          Format::string('there was an issue with your image. please try uploading again, or find another avatar'),
+          sentence('there was an issue with your image. please try uploading again, or find another avatar'),
         ]);
       }
 
@@ -156,13 +156,13 @@ class PostController extends Controller {
     if ($banner = $request->file('banner')) {
       if ($banner->getSize() / 1000 > 2000) {
         return redirect()->back()->withErrors([
-          Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.'),
+          sentence('Sorry, that avatar image is too big. Max file size is 2 MB.'),
         ]);
       }
 
       if ($banner->isValid() !== true) {
         return redirect()->back()->withErrors([
-          Format::string('there was an issue with your image. please try uploading again, or find another avatar'),
+          sentence('there was an issue with your image. please try uploading again, or find another avatar'),
         ]);
       }
 
@@ -207,7 +207,7 @@ class PostController extends Controller {
     $post->closed = 1;
     $post->save();
 
-    Flash::push('success', Format::string(__('your post is now disabled. it will no longer be visible to the public.')));
+    Flash::push('success', sentence(__('your post is now disabled. it will no longer be visible to the public.')));
     return redirect()->route('posts');
   }
 
@@ -222,7 +222,7 @@ class PostController extends Controller {
     $post->closed = 0;
     $post->save();
 
-    Flash::push('success', Format::string(__('your post is now enabled. it is now visible to the public.')));
+    Flash::push('success', sentence(__('your post is now enabled. it is now visible to the public.')));
     return redirect()->route('post', ['id' => $post->id]);
   }
 
