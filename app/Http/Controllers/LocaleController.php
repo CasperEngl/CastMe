@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Helpers\Format;
+use App\User;
 use App;
 use Session;
 use File;
@@ -93,43 +94,48 @@ class LocaleController extends Controller {
         return redirect()->back();
     }
 
-    public function get($locale = null, Request $request) {
-        if ($locale !== null) {
-            $file_path = resource_path('lang/' . $locale . '.json');
+    public function get($locale, Request $request) {
+        $file_path = resource_path('lang/' . $locale . '.json');
 
-            if (File::exists($file_path)) {
-                $json = json_decode(file_get_contents($file_path), true);
+        if (File::exists($file_path)) {
+            $json = json_decode(file_get_contents($file_path), true);
 
-                return response()->json($json);
-            } else {
-                return response()->json([
-                    'error' => 'Locale file does not exist.',
-                ]);
-            }
+            return response()->json($json);
         } else {
-            $user = Auth::user();
-            $preg = $this->supported_languages_preg();
+            return response()->json([
+                'error' => ucfirst(__('locale file does not exist.')),
+            ]);
+        }
+    }
 
-            if ($user->lang)
-                $accept_language = $user->lang;
-            else if (Session::get('locale'))
-                $accept_language = $request->session()->get('locale');
-            else
-                $accept_language = $request->server('HTTP_ACCEPT_LANGUAGE');
+    public function user($id, Request $request) {
+        $user = User::find($id);
+        $preg = $this->supported_languages_preg();
 
-            // Check if client language (HTTP_ACCEPT_LANGUAGE) is in supported languages with preg
-            $client_lang = $this->return_preg_language_matches($preg, $accept_language);
-            $file_path = base_path('resources/lang/' . $client_lang[0] . '.json');
+        if (!user)
+            return response()->json([
+                'error' => ucfirst(__('user not found.'))
+            ]);
 
-            if (isset($client_lang[0]) && File::exists($file_path)) {
-                return response()->json([
-                    'lang' => $client_lang[0]
-                ]);
-            } else {
-                return response()->json([
-                    'lang' => App::getLocale(),
-                ]);
-            }
+        if ($user->lang)
+            $accept_language = $user->lang;
+        else if (Session::get('locale'))
+            $accept_language = $request->session()->get('locale');
+        else
+            $accept_language = $request->server('HTTP_ACCEPT_LANGUAGE');
+
+        // Check if client language (HTTP_ACCEPT_LANGUAGE) is in supported languages with preg
+        $client_lang = $this->return_preg_language_matches($preg, $accept_language);
+        $file_path = resource_path('lang/' . $client_lang[0] . '.json');
+
+        if (isset($client_lang[0]) && File::exists($file_path)) {
+            return response()->json([
+                'lang' => $client_lang[0]
+            ]);
+        } else {
+            return response()->json([
+                'lang' => App::getLocale(),
+            ]);
         }
     }
 }
