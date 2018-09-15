@@ -34,15 +34,12 @@ class Conversation extends Model {
    *
    * @return bool
    */
-  public function new(int $userId = 0) : bool {
+  public function new(int $userId = 0) : int {
     $messages = $this
       ->messages
       ->where('new', 1)
       ->where('user_id', '!=', $userId);
 
-    if ($messages->count() > 0)
-      return true;
-
-    return false;
+    return $messages->count();
   }
 }
