@@ -18,12 +18,27 @@ class ConversationController extends Controller {
     try { //Find conversation
       $conversation = Conversation::findOrFail($id);
     } catch (ModelNotFoundException $exception) { //Conversation could not be found
-      return redirect()->route('conversations')->withErrors([__('conversation not found')]);
+      return redirect()->route('conversations')->withErrors([
+        ucfirst(__('conversation not found'))
+      ]);
     }
 
     //Don't allow user to read conversation if he's not part of it
     if(!$conversation->users->contains(Auth::user()))
-      return redirect()->route('conversations')->withErrors([__('conversation not found')]);
+      return redirect()->route('conversations')->withErrors([
+        ucfirst(__('conversation not found'))
+      ]);
+
+    if ($conversation->new()) {
+      $users = $conversation->users;
+
+      foreach ($users as $user) {
+        if ($user->id !== Auth::id())
+          Message::where('user_id', $user->id)->update([
+            'new' => 0,
+          ]);
+      }
+    }
 
     return view('conversation.singular')->with([
       'form_url' => route('conversation.send', ['id' => $id]),
