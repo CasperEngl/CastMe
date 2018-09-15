@@ -12,8 +12,8 @@
           {{ $user->name }}
         @endif
       @endforeach
-      @if($conversation->new(Auth::id()))
-        <span class="badge badge-danger">{{ ucfirst(__('unread')) }}</span>
+      @if ($conversation->new(Auth::id()))
+        <span class="badge badge-danger ml-1">{{ $conversation->new(Auth::id()) }} {{ __('unread') }}</span>
       @endif
     </a>
     @endforeach
