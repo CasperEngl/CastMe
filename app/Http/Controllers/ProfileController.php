@@ -81,8 +81,8 @@ class ProfileController extends Controller {
       }
     }
 
-    $user->name           = $request->input('first_name') ? $request->input('first_name') : $user->name;
-    $user->last_name      = $request->input('last_name') ? $request->input('last_name') : $user->last_name;
+    $user->name           = $request->input('first_name') ? title_case($request->input('first_name')) : title_case($user->name);
+    $user->last_name      = $request->input('last_name') ? title_case($request->input('last_name')) : title_case($user->last_name);
     $user->email          = $request->input('email') ? $request->input('email') : $user->email;
     $user->avatar         = $avatar ? $storedFile : $user->avatar;
     $details->age         = $request->input('age') ? $request->input('age') : $details->age;
