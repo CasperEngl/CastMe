@@ -120,7 +120,7 @@ use App\Helpers\RequestActive;
           </div>
           @paid
           <div class="list-group mb-4">
-            <a href="{{ route('conversations') }}" class="list-group-item {{ RequestActive::route('conversations', true) }}">{{ title_case(__('conversations')) }} <span class="badge badge-danger">7</span></a>
+            <a href="{{ route('conversations') }}" class="list-group-item {{ RequestActive::route('conversations', true) }}">{{ title_case(__('conversations')) }}</a>
           </div>
           @endpaid
           @scout
