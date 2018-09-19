@@ -8,13 +8,13 @@ if (!function_exists('sentence')) {
    * @return string
    */
   function sentence($string) {
-  return preg_replace_callback('/[.!?].*?\w/', function ($matches) {
-    return strtoupper($matches[0]);
-  }, ucfirst($string));
+    return preg_replace_callback('/[.!?].*?\w/', function ($matches) {
+      return strtoupper($matches[0]);
+    }, ucfirst($string));
   }
 }
 
-if (!function_exists('')) {
+if (!function_exists('stripDomain')) {
   /**
    * Strips http(s) protocol and trailing routes
    *
