@@ -18,10 +18,10 @@ use App\Helpers\RequestActive;
 <body>
 
   <header>
-    <nav class="navbar navbar-expand-sm navbar-light">
+    <nav class="navbar navbar-expand-sm navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
-        <img src="{{ asset('img/logo-dark.png') }}" alt="castme logo">
+        <img src="{{ asset('img/logo.png') }}" alt="castme logo">
       </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse"
           aria-expanded="false" aria-label="Toggle navigation">
