@@ -13,6 +13,9 @@
       @if (!$post->closed || $own)
       <a href="{{ route('post', ['id' => $post->id]) }}" class="col-12 col-md-6 animated fadeInRight delay-{{ $key * 100 }}ms">
         <article class="post-card">
+          <figure class="post-card__frame">
+            <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->content) }}" class="post-card__frame__img">
+          </figure>
           <div class="post-card__info">
             @if (Auth::user()->id === $post->user_id)
             <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
@@ -22,13 +25,9 @@
             <h2 class="post-card__title">{{ str_limit(title_case($post->title), 40) }}</h2>
             <div class="post-card__roles">
               @foreach (json_decode($post->roles) as $role)
-              <span class="badge badge-pill badge-primary py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
-              @endforeach
+              <span class="badge badge-pill badge-primary py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span> @endforeach
             </div>
           </div>
-          <figure class="post-card__frame">
-            <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->content) }}" class="post-card__frame__img">
-          </figure>
         </article>
       </a>
       @endif
