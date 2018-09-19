@@ -19,7 +19,7 @@ use QuickPay\QuickPay;
 Route::get('/', 'HomeController@index')->name('home');
 
 //User has to be logged in to access these
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'App\Http\Middleware\Localization']], function () {
   // Overview
   Route::get('overview', 'PagesController@overview')->name('overview');
 
@@ -78,6 +78,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('{id}', 'ConversationController@index')->name('conversation');
     Route::post('send/{id}', 'ConversationController@send')->name('conversation.send');
     Route::post('new', 'ConversationController@new')->name('conversation.new');
+  });
+
+  Route::prefix('locale')->group(function () {
+    Route::post('set', 'LocaleController@set')->name('locale.set');
   });
 
   Route::middleware('App\Http\Middleware\MemberMiddleware')->group(function () {
