@@ -1,7 +1,25 @@
 .mce-tinymce.mce-container {
-  box-shadow: none;
+  @extend .shdw-sm-boxed;
+  overflow: hidden;
+  border-radius: $border-radius-lg;
 }
 
-.mce-branding-powered-by {
+.mce-branding-powered-by, .mce-branding {
   display: none !important;
+}
+
+.mce-charactercount {
+  padding: 16px !important;
+}
+
+.mce-path {
+  display: none !important;
+}
+
+.mce-edit-area {
+  padding: 8px;
+}
+
+.mce-edit-area, .mce-tinymce.mce-container {
+  border: none !important;
 }

@@ -1,31 +1,47 @@
 @extends('layouts.master')
 @section('content')
-<h2 class="page-header">{{ ucfirst(__('conversation')) }}</h2>
+@foreach ($users as $user)    
+@if ($user->id !== Auth::id())
+<h2 class="page-header">{{ $user->name }} {{ $user->last_name }}</h2>
+@endif
+@endforeach
 
-@if ($messages->count() > 0)
-  <div class="card">
-    @foreach($messages as $message)
-      <div class="card-header">
-        @if($message->user->id === Auth::id())
+@if (count($messages) > 0)
+  <div class="conversation__container">
+    @foreach ($messages as $message)
+      @if ($message->user->id === Auth::id())
+      <div class="conversation__item right">
+      @else
+      <div class="conversation__item left">
+      @endif
+        <a href="{{ route('profile', ['id' => $message->user->id]) }}" class="conversation__user">
+          @if ($message->user->id === Auth::id())
           {{ strtoupper(__('you')) }}
-        @else
-          {{ $message->user->name }}
-        @endif
-      </div>
-      <div class="card-block">
-        <p>
-          {!! sentence($message->content) !!}
-        </p>
-      </div>
-      @endforeach
+          <figure class="conversation__avatar mb-1">
+            <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
+          </figure>
+          @else
+          <figure class="conversation__avatar circle mb-1">
+            <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
+          </figure>
+          {{ $message->user->name }} {{ $message->user->last_name }}
+          @endif
+        </a>
+        <div class="conversation__message" title="Message sent {{ Carbon::parse($message->created_at)->format('M j, Y \a\t G:i a') }}">
+          <div class="conversation__date">{{ Carbon::parse($message->created_at)->format('M j, Y \a\t G:i a') }}</div>
+          {!! $message->content !!}
+        </div>
+      </div>  
+    @endforeach
   </div>
 @else
-  <p>{{ Format }}</p>
+  <h3>{{ ucfirst(__('no messages yet')) }}</h3>
 @endif
 
-<form class="mt-4" action="{{ $form_url }}" method="POST">
-  <textarea name="content" class="tinymce"></textarea>
-  <button type="submit" class="btn btn-primary mt-2">{{ ucfirst(__('send')) }}</button>
+<div class="h3">{{ ucfirst(__('new message')) }}</div>
+<form action="{{ $form_url }}" method="POST">
+  <textarea name="content" class="tinymce simple"></textarea>
+  <button type="submit" class="btn btn-primary mt-3">{{ ucfirst(__('send')) }}</button>
 
   @csrf
   @method('POST')

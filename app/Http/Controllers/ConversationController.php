@@ -42,7 +42,8 @@ class ConversationController extends Controller {
 
     return view('conversation.singular')->with([
       'form_url' => route('conversation.send', ['id' => $id]),
-      'messages' => $conversation->messages
+      'messages' => $conversation->messages,
+      'users' => $conversation->users,
     ]);
   }
 
