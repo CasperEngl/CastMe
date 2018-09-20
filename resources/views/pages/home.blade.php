@@ -47,6 +47,9 @@
     <h2 class="page-header">{{ ucfirst(__('posts')) }}</h2>
     <div class="row">
 
+    @if (empty(array_filter(json_decode($posts), function ($post) {
+      return $post->closed === 0;
+    })))
       @foreach($posts as $post)
         @if (!$post->closed || $own)
         <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-12 animated fadeInRight">
@@ -71,6 +74,7 @@
         </a>
         @endif
       @endforeach
+    @endif
 
     </div>
   </div>
