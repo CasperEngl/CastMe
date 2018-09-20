@@ -47,9 +47,12 @@
     <h2 class="page-header">{{ ucfirst(__('job postings')) }}</h2>
     <div class="row">
 
+    @if (empty(array_filter(json_decode($posts), function ($post) {
+      return $post->closed === 0;
+    })))
       @foreach($posts as $post)
         @if (!$post->closed || $own)
-        <a href="{{ route('post', ['id' => $post->id]) }}" class="col-12 animated fadeInRight">
+        <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-12 animated fadeInRight">
           <article class="post-card post-card--sm">
             <figure class="post-card__frame">
               <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->content) }}" class="post-card__frame__img">
@@ -71,6 +74,7 @@
         </a>
         @endif
       @endforeach
+    @endif
 
     </div>
   </div>

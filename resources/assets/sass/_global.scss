@@ -1,16 +1,15 @@
 body {
-  @extend .bg-light;
   overflow-x: hidden;
-  /*
   background: $body-bg;
+  /*
   background-size: $body-bg-size;
   background-attachment: $body-bg-attachment;
   */
 }
 
 #main {
-  @extend .p-4, .bg-white, .shdw-lg;
-  border-radius: $border-radius-lg;
+  // @extend .p-4, .bg-white, .shdw-lg;
+  // border-radius: $border-radius-lg;
 }
 
 img.responsive {

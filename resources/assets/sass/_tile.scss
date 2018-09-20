@@ -1,5 +1,5 @@
 .btn.tile {
-  @extend .my-3, .w-100, .d-flex, .flex-wrap, .align-items-center, .justify-content-center, .shdw;
+  @extend .my-3, .w-100, .d-flex, .flex-wrap, .align-items-center, .justify-content-center, .shdw-md;
   height: $tile-height;
 
   background: $primary-color;

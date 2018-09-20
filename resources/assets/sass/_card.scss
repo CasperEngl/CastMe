@@ -40,7 +40,8 @@
 }
 
 .post-card {
-  @extend .mt-3;
+  @extend .mt-3, .bg-white;
+  border-radius: $border-radius-lg;
 
   &--lg {
     .post-card__frame {
@@ -54,8 +55,12 @@
     }
 
     .post-card__info {
-      @extend .pt-1, .pb-2, .px-0;
+      @extend .p-3;
     }
+  }
+
+  &__link:hover {
+    text-decoration: none;
   }
 
   &__info {
@@ -66,7 +71,6 @@
   &__title, &__author {
     @extend .m-0;
     color: $dark;
-    text-decoration: none;
   }
 
   &__title {
