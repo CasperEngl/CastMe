@@ -1,1 +1,28 @@
+
+.hero .d-flex h1 {
+    color: #fff;
+    text-shadow: 2px 2px 10px #000;
+}
+
+body {
+ 
+    background: url(/img/blurbg.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.feature.my-2.animated.fadeInLeft {
+    display: flex;
+    justify-content: center;
+}
+
+main.col {
+    background: #ffffff2e;
+    z-index: 10;
+    padding-top: 14px;
+    border-radius: 5px;
+}
+
+.jumbotron h2.page-header {
+    text-align: center;
+}
 /* hej */

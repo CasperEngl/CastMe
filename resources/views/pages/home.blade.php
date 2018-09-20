@@ -44,7 +44,7 @@
 </main>
 <section class="jumbotron mt-4 mb-0">
   <div class="container">
-    <h2 class="page-header">Indlæg</h2>
+    <h2 class="page-header">{{ ucfirst(__('posts')) }}</h2>
     <div class="row">
 
       @foreach($posts as $post)
