@@ -40,6 +40,24 @@
 }
 
 .post-card {
+  @extend .mt-3;
+
+  &--lg {
+    .post-card__frame {
+      height: 300px;
+    }
+  }
+
+  &--sm {
+    .post-card__frame {
+      height: 100px;
+    }
+
+    .post-card__info {
+      @extend .pt-1, .pb-2, .px-0;
+    }
+  }
+
   &__info {
     @extend .p-3, .w-100;
     z-index: $zindex-popover;
@@ -78,14 +96,6 @@
 
     &:hover {
       @extend .shdw;
-    }
-
-    &__lg {
-      height: 300px;
-    }
-  
-    &__sm {
-      height: 100px;
     }
 
     &__img {

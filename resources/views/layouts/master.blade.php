@@ -39,7 +39,7 @@ use App\Helpers\RequestActive;
               <a class="nav-link" href="{{ route('register') }}">{{ title_case(__('register')) }}</a>
             </li>
             @else
-            <form class="form mr-2" action="{{ route('locale.set') }}" method="POST">
+            <form class="form mr-2 mb-0" action="{{ route('locale.set') }}" method="POST">
               <select name="locale" class="selectpicker" data-width="fit" data-style="btn-default">
                 <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ Auth::user() && Auth::user()->lang === 'en' ? 'selected' : '' }}>
                   {{ ucfirst(__('english')) }}
@@ -133,9 +133,9 @@ use App\Helpers\RequestActive;
       </aside>
       @endauth
       @guest
-      <main class="col">
+      <main id="main" class="col">
       @else
-      <main class="col-lg-9">
+      <main id="main" class="col-lg-9">
       @endguest
         @yield('content')
       </main>

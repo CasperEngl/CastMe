@@ -39,18 +39,13 @@ class Snack {
           opacity: '0',
           transition: 'opacity 700ms ease-in-out',
         });
-        
+
         await this.show(500, snack, {
           marginBottom: '1rem',
           transitionDelay: `${key * -100}ms`,
         });
         await this.hide(3000, snack);
       });
-    } else {
-      this.container.append(el);
-
-      await this.show(500, null);
-      await this.hide(3000, null);
     }
   }
 
