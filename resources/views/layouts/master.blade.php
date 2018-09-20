@@ -4,8 +4,6 @@ use App\Helpers\RequestActive;
 
 ?>
 
-<div class="snack">test</div>
-
 <!DOCTYPE html>
 <html>
 
