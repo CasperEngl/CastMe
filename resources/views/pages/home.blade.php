@@ -49,7 +49,7 @@
 
       @foreach($posts as $post)
         @if (!$post->closed || $own)
-        <a href="{{ route('post', ['id' => $post->id]) }}" class="col-12 animated fadeInRight">
+        <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-12 animated fadeInRight">
           <article class="post-card post-card--sm">
             <figure class="post-card__frame">
               <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->content) }}" class="post-card__frame__img">

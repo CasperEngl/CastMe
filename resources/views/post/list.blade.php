@@ -14,7 +14,7 @@
   <div class="row">
     @foreach($posts as $key => $post)
       @if (!$post->closed || $own)
-      <a href="{{ route('post', ['id' => $post->id]) }}" class="col-12 col-md-6 animated fadeInRight delay-{{ $key * 100 }}ms">
+      <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-12 col-md-6 animated fadeInRight delay-{{ $key * 100 }}ms">
         <article class="post-card">
           <figure class="post-card__frame">
             <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->content) }}" class="post-card__frame__img">
