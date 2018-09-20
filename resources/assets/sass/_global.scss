@@ -26,6 +26,10 @@ img {
   font-weight: $font-weight-bold;
   color: var(--gray-dark);
 
+  @include media-breakpoint-down(xs) {
+    text-align: center;
+  }
+
   &.mt-0 {
     margin-top: 0 !important;
   }
@@ -73,4 +77,14 @@ img {
 
 .display-block {
   display: block;
+}
+
+.hidden {
+  opacity: 0;
+  transition: $transition-base;
+}
+
+.shown {
+  opacity: 1;
+  transition: $transition-base;
 }

@@ -1,0 +1,22 @@
+.list-group {
+  @extend .shdw-boxed, .bg-white;
+  overflow: hidden;
+  border-radius: $border-radius-lg;
+
+  .list-group-item {
+    background: none;
+    border-width: 0 0 0 4px;
+    border-color: $gray-500;
+    border-radius: 0;
+  
+    color: $gray-500;
+    text-decoration: none;
+
+    transition: $transition-base;
+    
+    &.active, &:hover {
+      border-left: 4px solid $primary-color;
+      color: $primary-color;
+    }
+  }
+}

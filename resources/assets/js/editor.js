@@ -2,6 +2,8 @@ import tinymce from 'tinymce';
 import config from './config';
 import getLocale from './getLocale';
 
+import './tinymce-plugins/charactercount';
+
 (async () => {
   const locale = await getLocale(config.app.supported_languages) === 'da' ? 'da' : 'en';
   const locales = {
@@ -74,6 +76,16 @@ import getLocale from './getLocale';
       },
     },
   };
+
+  tinymce.init({
+    selector: 'textarea.tinymce.simple',
+    paste_as_text: true,
+    toolbar: false,
+    menubar: false,
+    plugins: [
+      'charactercount',
+    ],
+  });
 
   // Simple Editor
   tinymce.init({

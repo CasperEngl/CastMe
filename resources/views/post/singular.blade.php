@@ -24,9 +24,9 @@ use App\Helpers\Format;
       </blockquote>
     </a>
     @if ($post->roles)
-    <section class="d-flex align-items-center my-3">
+    <section class="d-flex flex-wrap align-items-center justify-content-center my-3">
       @foreach (json_decode($post->roles) as $role)
-      <span class="badge badge-pill badge-primary py-2 px-3 mx-1">{{ strtoupper(__($role)) }}</span>
+      <span class="badge badge-pill badge-primary py-2 px-3 my-1 mx-1">{{ strtoupper(__($role)) }}</span>
       @endforeach
     </section>
     @endif

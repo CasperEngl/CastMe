@@ -16,3 +16,5 @@ import './selectpicker';
 import './sidebar';
 
 import './components/ImageInputs';
+
+import Snack from './snack';

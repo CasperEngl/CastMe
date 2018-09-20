@@ -78,8 +78,12 @@
     @endif
   </div>
   <div class="card-footer">
-    <a href="/conversations/new/{{ $user->id }}" class="card-link btn btn-primary">{{ ucfirst(__('message')) }}</a>
-    <a href="/poke/{{ $user->id }}" class="card-link">{{ ucfirst(__('poke')) }}</a>
+    <form action="{{ route('conversation.new') }}" method="post">
+      @csrf
+      <input type="hidden" name="users[]" value="{{ Auth::id() }}">
+      <input type="hidden" name="users[]" value="{{ $user->id }}">
+      <input type="submit" class="btn btn-primary" value="{{ ucfirst(__('message')) }}">
+    </form>
   </div>
 </div>
 @endsection

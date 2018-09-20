@@ -120,7 +120,7 @@ use App\Helpers\RequestActive;
           </div>
           @paid
           <div class="list-group mb-4">
-            <a href="{{ route('conversations') }}" class="list-group-item {{ RequestActive::route('conversations', true) }}">{{ title_case(__('conversations')) }}</a>
+            <a href="{{ route('conversations') }}" class="list-group-item {{ RequestActive::route(['conversations', 'conversation'], true) }}">{{ title_case(__('conversations')) }}</a>
           </div>
           @endpaid
           @scout
@@ -132,7 +132,11 @@ use App\Helpers\RequestActive;
         </div>
       </aside>
       @endauth
+      @guest
       <main class="col">
+      @else
+      <main class="col-lg-9">
+      @endguest
         @yield('content')
       </main>
     </div>

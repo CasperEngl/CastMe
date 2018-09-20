@@ -1,45 +1,31 @@
 @extends('layouts.master')
 @section('content')
+
+@if (count($conversations) === 0)
+<h2 class="page-header">{{ ucfirst(__('no conversations')) }}</h2>
+@else
 <h2 class="page-header">{{ ucfirst(__('conversations')) }}</h2>
 
-<div class="card">
-  <div class="card-header">{{ ucfirst(__('your conversations')) }}</div>
-  <div class="list-group">
-    @foreach ($conversations as $conversation)
-    <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="list-group-item">
-      @foreach($conversation->users as $user)
-        @if($user->id !== Auth::id())
-          {{ $user->name }}
-        @endif
-      @endforeach
-      @if ($conversation->new(Auth::id()))
-        <span class="badge badge-danger ml-1">{{ $conversation->new(Auth::id()) }} {{ __('unread') }}</span>
+<div class="list-group">
+  @foreach ($conversations as $conversation)
+  <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="conversation list-group-item d-flex align-items-center justify-content-between">
+    @foreach($conversation->users as $user)
+      @if ($user->id !== Auth::id())
+        <div class="d-flex align-items-center">
+          <figure class="conversation__avatar mr-2">
+            <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
+          </figure>
+          <div class="conversation__user">{{ $user->name }} {{ $user->last_name }}</div>
+          @if ($conversation->new(Auth::id()))
+            <span class="badge badge-danger ml-1">{{ $conversation->new(Auth::id()) }} {{ __('unread') }}</span>
+          @endif
+        </div>
+        <div class="conversation__sneakpeak d-none d-sm-block"><i class="fas fa-comment"></i> {{ str_limit(strip_tags($conversation->messages()->latest()->get()[0]->content), 30, '...') }}</div>
       @endif
-    </a>
     @endforeach
-  </div>
-  <!--
-  <div class="card-footer">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#">Previous</a>
-        </li>
-        <li class="page-item active">
-          <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-  -->
+  </a>
+  @endforeach
 </div>
+@endif
+
 @endsection
