@@ -27,7 +27,7 @@ class CommentController extends Controller {
             $comment->save();
         } else {
             return redirect()->back()->withErrors([
-                Format::string(__('tried to comment on a post that did not exist, try again. if the issue persists, contact an administrator'))
+                sentence(__('tried to comment on a post that did not exist, try again. if the issue persists, contact an administrator'))
             ]);
         }
 

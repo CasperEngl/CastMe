@@ -1,0 +1,76 @@
+.conversation {
+  &__container {
+    @extend .py-4;
+  }
+
+  &__avatar {
+    @extend figure.circle, .shdw-md-boxed, .d-inline-block;
+    height: 2rem;
+    width: 2rem;
+  }
+
+  &__user {
+    @extend .d-inline-flex, .align-items-center;
+    color: $dark;
+
+    &:hover {
+      color: $dark;
+      text-decoration: none;
+    }
+  }
+
+  &__sneakpeak {
+    @extend .text-muted, .small;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 80%;
+      background: linear-gradient(to right, transparent 0%, #FFF 110%);
+    }
+  }
+
+  &__item {
+    @extend .d-flex, .flex-column, .my-4;
+
+    .conversation__avatar {
+      height: 3rem;
+      width: 3rem;
+    }
+
+    .conversation__user {
+      @extend .mb-2;
+    }
+
+    &.left {
+      .conversation__avatar {
+        @extend .mr-2;
+      }
+    }
+
+    &.right {
+      @extend .align-items-end;
+
+      .conversation__user {
+        @extend .justify-content-end;
+      }
+
+      .conversation__avatar {
+        @extend .ml-2;
+      }
+    }
+  }
+
+  &__message {
+    @extend .bg-white, .shdw, .w-100, .p-4;
+    border-radius: $border-radius-lg;
+  }
+
+  &__date {
+    @extend .text-muted, .small;
+  }
+}

@@ -1,17 +1,16 @@
 .card {
-  .card-img-top {
-    max-height: 250px;
-  }
+  @extend .shdw-md;
+  overflow: hidden;
+  border: none;
+  border-radius: $border-radius-lg;
 
   .pagination {
     margin: 0;
   }
 }
 
-.card-header {
-  &:not(:first-of-type) {
-    border-top: $card-header-border;
-  }
+.card-header, .card-footer {
+  border: none;
 }
 
 .card-title {
@@ -41,40 +40,67 @@
 }
 
 .post-card {
-  @extend .shdw-md;
-  position: relative;
-  overflow: hidden;
-  height: 200px;
+  @extend .mt-3, .bg-white;
   border-radius: $border-radius-lg;
 
-  &__lg {
-    height: 300px;
+  &--lg {
+    .post-card__frame {
+      height: 300px;
+    }
   }
 
-  &__sm {
-    height: 100px;
+  &--sm {
+    .post-card__frame {
+      height: 100px;
+    }
+
+    .post-card__info {
+      @extend .p-3;
+    }
+  }
+
+  &__link:hover {
+    text-decoration: none;
   }
 
   &__info {
-    @extend .m-3;
+    @extend .p-3, .w-100;
     z-index: $zindex-popover;
-    position: absolute;
-    bottom: 0;
   }
 
   &__title, &__author {
-    @extend .text-white, .m-0;
+    @extend .m-0;
+    color: $dark;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    color: $dark;
+  }
+
+  &__roles {
+    @extend .mt-2, .mb-3, .mx-3;
+    position: absolute;
+    left: 0;
+    bottom: 0;
   }
 
   &__frame {
     @extend
+      .shdw-md,
       .d-flex,
       .align-items-center,
       .justify-content-center,
-      .w-100,
-      .h-100;
-    position: absolute;
+      .w-100;
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    border-radius: $border-radius-lg;
     filter: brightness(150%);
+
+    &:hover {
+      @extend .shdw;
+    }
 
     &__img {
       @extend .w-100, .h-100;

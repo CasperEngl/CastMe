@@ -15,61 +15,81 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use QuickPay\QuickPay;
 
-// Homepage
-Route::get('', 'HomeController@index')->name('home');
+Route::middleware('App\Http\Middleware\Localization')->group(function() {
+  // Homepage
+  Route::get('/', 'HomeController@index')->name('home');
 
-//User has to be logged in to access these
-Route::group(['middleware' => ['auth']], function () {
+  //User has to be logged in to access these
+  Route::group(['middleware' => ['auth']], function () {
   // Overview
   Route::get('overview', 'PagesController@overview')->name('overview');
 
-  // Posts
-  Route::get('posts', 'PostController@list')->name('posts');
-  Route::get('posts/own', 'PostController@listOwn')->name('posts.own');
-
-  // Post
-  Route::get('post/{id}', 'PostController@index')->where('id', '[0-9]+')->name('post');
-  Route::get('post/new', 'PostController@new')->name('post.new');
-  Route::get('post/{id}/edit', 'PostController@edit')->where('id', '[0-9]+')->name('post.edit');
-  Route::get('post/{id}/edit/data', 'PostController@data')->where('id', '[0-9]+');
-  Route::get('post/{id}/data', 'PostController@data')->where('id', '[0-9]+')->name('post.data');
-  Route::post('post/add', 'PostController@add')->name('post.add');
-  Route::post('post/{id}/update', 'PostController@update')->where('id', '[0-9]+')->name('post.update');
-
-  // Post Comment
-  Route::post('post/comment/new', 'CommentController@new')->name('comment.new');
-
-  // Profile Settings
-  Route::get('user/settings', 'ProfileController@index')->name('user.settings');
-  Route::get('user/settings/dump', 'ProfileController@settingsDump')->name('user.settings.settingsDump');
-  Route::post('user/settings/update', 'ProfileController@update')->name('user.settings.update');
-  Route::post('user/settings/dump', 'ProfileController@dump')->name('user.settings.dump');
-
   // Specific Profile
-  Route::get('profile/{id}', 'ProfileController@user')->where('id', '[0-9]+')->name('profile');
+  Route::get('profile/{id}', 'ProfileController@user')->name('profile');
 
-  // Subscription
-  Route::get('user/subscription', 'SubscriptionController@index')->name('user.subscription');
-  Route::post('user/subscription/create', 'SubscriptionController@create')->name('user.subscription.create');
-  Route::post('user/subscription/swap', 'SubscriptionController@swap')->name('user.subscription.swap');
+  Route::prefix('posts')->group(function () {
+    // Posts
+    Route::get('/', 'PostController@list')->name('posts');
 
-  // Invoice
-  Route::get('user/subscription/invoice/{id}', 'SubscriptionController@invoice')->where('id', '[0-9]+')->name('user.subscription.invoice');
+    Route::middleware(['App\Http\Middleware\ScoutMiddleware'])->group(function () {
+    Route::get('own', 'PostController@listOwn')->name('posts.own');
+    });
+  });
 
-  // Conversation (Singular)
-  Route::get('conversation/{id}', 'ConversationController@index')->where('id', '[0-9]+')->name('conversation');
-  Route::post('conversation/send/{id}', 'ConversationController@send')->where('id', '[0-9+]')->name('conversation.send');
+  Route::prefix('post')->group(function () {
+    // Singular Post
+    Route::get('{id}', 'PostController@index')->name('post');
+    Route::get('{id}/data', 'PostController@data')->name('post.data');
 
-  // Conversations (List)
-  Route::get('conversations', 'ConversationController@list')->name('conversations');
+    Route::middleware(['App\Http\Middleware\MemberMiddleware'])->group(function () {
+    // Post Comment
+    Route::post('comment/new', 'CommentController@new')->name('comment.new');
+    });
 
-  // Localization
-  Route::get('locale', 'LocaleController@index')->name('locale');
-  Route::post('locale/set/{locale?}', 'LocaleController@set')->where('id', '[0-9]+')->name('locale.set');
+    Route::middleware(['App\Http\Middleware\ScoutMiddleware'])->group(function () {
+    // Create Post
+    Route::get('new', 'PostController@new')->name('post.new');
+    Route::post('add', 'PostController@add')->name('post.add');
 
-  // Subscription Stripe
-  Route::get('sub/make', 'SubscriptionController@subForm')->name('subform');
-  Route::post('sub/dump', 'SubscriptionController@dump')->name('sub.dump');
+    // Edit Post
+    Route::get('{id}/edit', 'PostController@edit')->name('post.edit');
+    Route::get('{id}/edit/data', 'PostController@data');
+    Route::get('{id}/disable', 'PostController@disable')->name('post.disable');
+    Route::get('{id}/enable', 'PostController@enable')->name('post.enable');
+    Route::post('{id}/update', 'PostController@update')->name('post.update');
+    });
+  });
+
+  Route::prefix('user')->group(function () {
+    // Profile Settings
+    Route::get('settings', 'ProfileController@index')->name('user.settings');
+    Route::post('settings/update', 'ProfileController@update')->name('user.settings.update');
+
+    // Subscription
+    Route::get('subscription', 'SubscriptionController@index')->name('user.subscription');
+    Route::post('subscription/create', 'SubscriptionController@create')->name('user.subscription.create');
+    Route::post('subscription/swap', 'SubscriptionController@swap')->name('user.subscription.swap');
+
+    // Invoice
+    Route::get('subscription/invoice/{id}', 'SubscriptionController@invoice')->name('user.subscription.invoice');
+  });
+
+  Route::prefix('conversation')->middleware('App\Http\Middleware\MemberMiddleware')->group(function () {
+    // Conversation (Singular)
+    Route::get('{id}', 'ConversationController@index')->name('conversation');
+    Route::post('send/{id}', 'ConversationController@send')->name('conversation.send');
+    Route::post('new', 'ConversationController@new')->name('conversation.new');
+  });
+
+  Route::prefix('locale')->group(function () {
+    Route::post('set', 'LocaleController@set')->name('locale.set');
+  });
+
+  Route::middleware('App\Http\Middleware\MemberMiddleware')->group(function () {
+    // Conversations (List)
+    Route::get('conversations', 'ConversationController@list')->name('conversations');
+  });
+  });
 });
 
 Route::get('logout', function () {
@@ -78,39 +98,6 @@ Route::get('logout', function () {
   }
 
   return redirect()->intended('/login');
-});
-
-Route::post('message/send', 'MessagesController@send');
-
-Route::get('form', function () {
-  return view('form');
-});
-
-Route::get('test', function () {
-  $api_key = '5256684d74e913d6085cc4c1d839a7c4b8245907b84f31b43462bc1b72179598';
-  $client = new QuickPay(":$api_key");
-
-  $response = $client->request->get('subscriptions/120004902');
-
-  $json = $response->asArray();
-
-  return $json;
-});
-
-Route::get('lirik/{id}', function ($id) {
-  $api_key = '5256684d74e913d6085cc4c1d839a7c4b8245907b84f31b43462bc1b72179598';
-  $client = new QuickPay(":$api_key");
-
-  $response = $client->request->post('subscriptions/' . $id . '/session');
-
-  $json = $response->asArray();
-
-  return $json;
-});
-
-Route::any('dump', function () {
-  $order = Auth::user()->order()->first();
-  dd(strtotime($order->date) < strtotime('-30 day'));
 });
 
 Auth::routes();

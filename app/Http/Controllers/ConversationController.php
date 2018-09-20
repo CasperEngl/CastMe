@@ -4,72 +4,93 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Flash;
 use App\Helpers\Format;
-use Illuminate\Foundation\Auth\User;
+use App\Message;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Auth;
-use Crypt;
 use App\Conversation;
-use Illuminate\Support\Facades\DB;
-
+use App\User;
+/**
+ * @mixin \Eloquent
+ */
 class ConversationController extends Controller {
   public function index($id) {
-    if (Auth::id() === (int)$id) {
-      return redirect()->back()->withErrors([
-        Format::string(__('you cannot message yourself.'))
+    try { //Find conversation
+      $conversation = Conversation::findOrFail($id);
+    } catch (ModelNotFoundException $exception) { //Conversation could not be found
+      return redirect()->route('conversations')->withErrors([
+        ucfirst(__('conversation not found'))
       ]);
     }
 
-    $replies = Conversation::where('receiver_id', $id)
-      ->where('sender_id', Auth::id())
-      ->orWhere('receiver_id', Auth::id())
-      ->where('sender_id', $id)
-      ->get();
+    //Don't allow user to read conversation if he's not part of it
+    if(!$conversation->users->contains(Auth::user()))
+      return redirect()->route('conversations')->withErrors([
+        ucfirst(__('conversation not found'))
+      ]);
+
+    if ($conversation->new()) {
+      $users = $conversation->users;
+
+      foreach ($users as $user) {
+        if ($user->id !== Auth::id())
+          Message::where('user_id', $user->id)->update([
+            'new' => 0,
+          ]);
+      }
+    }
 
     return view('conversation.singular')->with([
       'form_url' => route('conversation.send', ['id' => $id]),
-      'messages' => $replies
+      'messages' => $conversation->messages,
+      'users' => $conversation->users,
     ]);
   }
 
   public function list() {
-    $allConversations = DB::table('conversations')
-      ->select('sender_id', 'receiver_id')
-      ->where('sender_id', Auth::id())
-      ->orWhere('receiver_id', Auth::id())
-      ->distinct()
-      ->get();
-
-    $users = collect();
-    $allConversations->each(function ($value) use(&$users){
-      if ($value->sender_id == Auth::id())
-        $users->push(User::find($value->receiver_id));
-      else
-        $users->push(User::find($value->sender_id));
-    });
+    $conversations = Auth::user()->conversations;
 
     return view('conversation.list')->with([
-      'conversations' => $users->unique()
+      'conversations' => $conversations
     ]);
   }
 
   public function new(Request $request) {
+    if($id = $this->checkIfExist($request->input('users')))
+      return redirect()->route('conversation', ['id' => $id]);
+
+    $conversation = new Conversation();
+    $conversation->save();
+
+    foreach ( $request->input('users') as $userId ) {
+      User::find($userId)->conversations()->attach($conversation->id);
+    }
 
     return redirect()->route('conversation', [
-      'id' => $request->input('user'),
+      'id' => $conversation->id,
     ]);
   }
 
-  public function send(Request $request, User $user) {
-    $message = new Conversation([
-      'sender_id' => Auth::id(),
-      'receiver_id' => $user->id,
-      'content' => $request->input('content'),
-      'read' => false,
-    ]);
+  private function checkIfExist(Array $users) : int {
+    $users = User::whereIn('id', $users)->get();
+    $conversations = Conversation::with('users')->get();
 
+    foreach ( $conversations as $conversation ) {
+      if($users->diff($conversation->users)->count() == 0)
+        return $conversation->id;
+    }
+
+    return 0;
+  }
+
+  public function send(Request $request, $conversationId) {
+    $message = new Message();
+    $message->user_id = Auth::id();
+    $message->content = $request->input('content');
+    $message->conversation_id = $conversationId;
     $message->save();
 
-    Flash::push('success', Format::string(__('your message was sent!')));
+    Flash::push('success', sentence(__('your message was sent!')));
     return redirect()->back();
   }
 }

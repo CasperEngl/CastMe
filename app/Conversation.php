@@ -19,4 +19,27 @@ class Conversation extends Model {
   public function receiver() {
     return $this->belongsTo('App\User', 'receiver_id');
   }
+
+  public function users() {
+    return $this->belongsToMany(User::class, 'conversation_user', 'conversation_id', 'user_id');
+  }
+
+  public function messages() {
+    return $this->hasMany('App\Message');
+  }
+
+  /**
+   * Checks if any new messages are sent
+   * @param int $userId - filters out messages sent from user_id
+   *
+   * @return bool
+   */
+  public function new(int $userId = 0) : int {
+    $messages = $this
+      ->messages
+      ->where('new', 1)
+      ->where('user_id', '!=', $userId);
+
+    return $messages->count();
+  }
 }

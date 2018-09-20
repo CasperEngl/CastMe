@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<h2 class="page-header">{{ title_case($title) }}</h2>
+<h2 class="page-header">{{ ucfirst($title) }}</h2>
 
 {{ Form::open(['url' => $form_url, 'files' => 'true']) }}
 
@@ -11,7 +11,7 @@
           <span class="h3">{{ ucfirst(__('title')) }}</span>
         </div>
         <div class="col">
-          <input type="text" name="title" class="form-control bg-transparent" value="{{ $post->title }}">
+          <input type="text" name="title" class="form-control bg-transparent" value="{{ $post->title }}" placeholder="{{ $post->title }}">
         </div>
       </div>
     </div>
@@ -21,43 +21,36 @@
         <p>{{ ucfirst(__('select multiple if applicable')) }}</p>
         <ul class="pagination">
           <li class="page-item">
-            <label for="profile_type-actor" class="page-link" href="#">{{ title_case(__('actor')) }}</label>
             {{ Form::label('profile_type-actor', ucfirst(__('actor')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-dancer" class="page-link" href="#">{{ title_case(__('dancer')) }}</label>
             {{ Form::label('profile_type-dancer', ucfirst(__('dancer')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-entertainer" class="page-link" href="#">{{ title_case(__('entertainer')) }}</label>
             {{ Form::label('profile_type-entertainer', ucfirst(__('entertainer')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-event_staff" class="page-link" href="#">{{ title_case(__('event staff')) }}</label>
-            {{ Form::label('profile_type-event_staff', ucfirst(__('event_staff')), [
+            {{ Form::label('profile_type-event_staff', ucfirst(__('event staff')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-extra" class="page-link" href="#">{{ title_case(__('extra')) }}</label>
             {{ Form::label('profile_type-extra', ucfirst(__('extra')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-model" class="page-link" href="#">{{ title_case(__('model')) }}</label>
             {{ Form::label('profile_type-model', ucfirst(__('model')), [
               'class' => 'page-link'
             ]) }}
           </li>
           <li class="page-item">
-            <label for="profile_type-musician" class="page-link" href="#">{{ title_case(__('musician')) }}</label>
             {{ Form::label('profile_type-musician', ucfirst(__('musician')), [
               'class' => 'page-link'
             ]) }}
@@ -72,7 +65,7 @@
             {{ Form::checkbox('roles[]', 'entertainer', $post->roles && in_array('entertainer', json_decode($post->roles)), [
               'id' => 'profile_type-entertainer'
             ]) }}
-            {{ Form::checkbox('roles[]', 'event_staff', $post->roles && in_array('event_staff', json_decode($post->roles)), [
+            {{ Form::checkbox('roles[]', 'event staff', $post->roles && in_array('event staff', json_decode($post->roles)), [
               'id' => 'profile_type-event_staff'
             ]) }}
             {{ Form::checkbox('roles[]', 'extra', $post->roles && in_array('extra', json_decode($post->roles)), [
@@ -93,6 +86,8 @@
     </div>
     <div class="card-block">
       <h5 class="text-muted">{{ ucfirst(__('upload banner')) }}</h5>
+      <p class="text-muted m-0">{{ ucfirst(__('preferably 825x400 or above pixels')) }}</p>
+      <p class="text-muted small">{{ ucfirst(__('aspect ratio 2,0625:1')) }}</p>
       <input name="banner" type="file" class="file">
     </div>
     <div class="card-block">
@@ -100,7 +95,7 @@
       <textarea name="content" class="tinymce">{{ $post->content }}</textarea>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary">{{ title_case($type) }}</button>
+      <button type="submit" class="btn btn-primary">{{ ucfirst($type) }}</button>
     </div>
   </div>
 

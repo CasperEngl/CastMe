@@ -15,6 +15,11 @@ class PostController extends Controller {
   public function index($id) {
     $post = Post::find($id);
 
+    if ($post->closed && $post->user_id !== Auth::id())
+      return redirect()->back()->withErrors([
+        ucfirst(__('that post no longer exists.'))
+      ]);
+
     if ($post)
       return view('post.singular')->with([
         'post' => $post,
@@ -23,7 +28,7 @@ class PostController extends Controller {
       ]);
     else
       return redirect()->route('post.list')->withErrors([
-        'Sorry, that post doesn\'t exist'
+        ucfirst(__('sorry, that post doesn\'t exist'))
       ]);
   }
 
@@ -41,11 +46,6 @@ class PostController extends Controller {
   public function new() {
     $user = Auth::user();
 
-    if (!in_array($user->role, ['Scout', 'Moderator', 'Admin']))
-      return redirect()->route('overview')->withErrors([
-        'You do not have access to create posts.'
-      ]);
-
     return view('post.build')->with([
       'title' => ucfirst(__('new post')),
       'post' => new Post,
@@ -58,7 +58,7 @@ class PostController extends Controller {
     $user = Auth::user();
     $post = Post::find($id);
 
-    if ($user->id !== $post->user_id)
+    if ($user->id !== $post->user_id && !in_array($user->role, ['Admin', 'Moderator']))
       return redirect()->route('overview')->withErrors([
         'You do not own that post.',
       ]);
@@ -79,6 +79,7 @@ class PostController extends Controller {
     return view('post.list', [
       'title' => ucfirst(__('posts')),
       'posts' => $posts,
+      'own' => false,
     ]);
   }
 
@@ -89,46 +90,42 @@ class PostController extends Controller {
 
     return view('post.list', [
       'title' => ucfirst(__('your posts')),
-      'posts', $posts
+      'posts' => $posts,
+      'own' => true,
     ]);
   }
 
   public function add(Request $request) {
-    if (!in_array(Auth::user()->role, ['Admin', 'Moderator', 'Scout']))
-      return abort(403, 'Unauthorized action.');
+    $request->validate([
+      'title'   => 'required|max:255',
+      'image.*' => 'nullable|url',
+      'roles.*' => 'nullable|string',
+    ]);
 
-    $banner = $request->file('banner');
-
-    if ($banner) {
+    if ($banner = $request->file('banner')) {
       if ($banner->getSize() / 1000 > 2000) {
         return redirect()->back()->withErrors([
-          Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.'),
+          sentence('Sorry, that avatar image is too big. Max file size is 2 MB.'),
         ]);
       }
 
       if ($banner->isValid() !== true) {
         return redirect()->back()->withErrors([
-          Format::string('there was an issue with your image. please try uploading again, or find another avatar'),
+          sentence('there was an issue with your image. please try uploading again, or find another avatar'),
         ]);
       }
 
       $storedFile = Storage::disk('public')->put('banner', $banner);
     }
 
-    $request->validate([
-      'title'   => 'required|max:255',
-      'image.*' => 'nullable|url',
-    ]);
-
     $roles = [];
     
     if ($request->input('roles.*')) {
       foreach ($request->input('roles.*') as $role) {
-        if (!in_array($role, ['actor', 'dancer', 'entertainer', 'event_staff', 'extra', 'model', 'musician', 'other'])) {
+        if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
           return redirect()->back()->withErrors([
             ucfirst(__('"' . $role . '" is not a valid role')),
           ]);
-        }
 
         $roles[] = $role;
       }
@@ -139,7 +136,7 @@ class PostController extends Controller {
       'roles'   => json_encode($roles),
       'images'  => json_encode($request->input('image.*')),
       'content' => $request->input('content'),
-      'banner'  => isset($storedFile) ? $storedFile : 'banner.svg',
+      'banner'  => isset($storedFile) ? $storedFile : 'placeholder/banner.png',
       'user_id' => Auth::id()
     ]);
 
@@ -150,25 +147,40 @@ class PostController extends Controller {
   }
 
   public function update(Request $request, $id) {
-    if (!in_array(Auth::user()->role, ['Admin', 'Moderator', 'Scout']))
-      return abort(403, 'Unauthorized action.');
-
     $request->validate([
       'title'   => 'required|max:255',
       'image.*' => 'nullable|url',
+      'roles.*' => 'nullable|string',
     ]);
+
+    if ($banner = $request->file('banner')) {
+      if ($banner->getSize() / 1000 > 2000) {
+        return redirect()->back()->withErrors([
+          sentence('Sorry, that avatar image is too big. Max file size is 2 MB.'),
+        ]);
+      }
+
+      if ($banner->isValid() !== true) {
+        return redirect()->back()->withErrors([
+          sentence('there was an issue with your image. please try uploading again, or find another avatar'),
+        ]);
+      }
+
+      $storedFile = Storage::disk('public')->put('banner', $banner);
+    }
 
     $post = Post::find($id);
 
-    if ($post->user_id !== Auth::id())
-      return redirect()->route('overview')->with(['errors' => ['Unauthorized access']]);
+    if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
+      return redirect()->route('overview')->withErrors([
+        ucfirst(__('unauthorized access'))
+      ]);
 
     foreach ($request->input('roles.*') as $role) {
-      if (!in_array($role, ['actor', 'dancer', 'entertainer', 'event_staff', 'extra', 'model', 'musician', 'other'])) {
+      if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
         return redirect()->back()->withErrors([
           ucfirst(__('"' . $role . '" is not a valid role')),
         ]);
-      }
 
       $roles[] = $role;
     }
@@ -176,11 +188,42 @@ class PostController extends Controller {
     $post->title    = $request->input('title');
     $post->roles    = json_encode($roles);
     $post->images   = json_encode($request->input('image.*'));
+    $post->banner   = isset($storedFile) ? $storedFile : $post->banner;
     $post->content  = $request->input('content');
 
     $post->save();
 
+    return redirect()->route('post', ['id' => $post->id]);
+  }
+
+  public function disable($id) {
+    $post = Post::find($id);
+
+    if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
+      return redirect()->back()->withErrors([
+        ucfirst(__('oops, looks like that post doesn\'t belong to you.'))
+      ]);
+
+    $post->closed = 1;
+    $post->save();
+
+    Flash::push('success', sentence(__('your post is now disabled. it will no longer be visible to the public.')));
     return redirect()->route('posts');
+  }
+
+  public function enable($id) {
+    $post = Post::find($id);
+
+    if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
+      return redirect()->back()->withErrors([
+        ucfirst(__('oops, looks like that post doesn\'t belong to you.'))
+      ]);
+
+    $post->closed = 0;
+    $post->save();
+
+    Flash::push('success', sentence(__('your post is now enabled. it is now visible to the public.')));
+    return redirect()->route('post', ['id' => $post->id]);
   }
 
   public function dump(Request $request) {

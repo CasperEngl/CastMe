@@ -3,7 +3,7 @@
 <div class="row justify-content-center">
   <div class="col-md-8">
     <div class="card">
-      <div class="card-header">{{ title_case(__('reset password')) }}</div>
+      <div class="card-header">{{ ucfirst(__('reset password')) }}</div>
 
       <div class="card-body">
         @if (session('status'))
@@ -12,12 +12,12 @@
         </div>
         @endif
 
-        <form action="{{ route('password.email') }}" method="POST" aria-label="{{ title_case(__('reset password')) }}">
+        <form action="{{ route('password.email') }}" method="POST" aria-label="{{ ucfirst(__('reset password')) }}">
           @csrf 
           @method('POST')
 
           <div class="form-group row">
-            <label for="email" class="col-md-4 col-form-label text-md-right">{{ title_case(__('e-mail address')) }}</label>
+            <label for="email" class="col-md-4 col-form-label text-md-right">{{ ucfirst(__('e-mail address')) }}</label>
 
             <div class="col-md-6">
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
@@ -29,7 +29,7 @@
 
           <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
-              <button type="submit" class="btn btn-primary">{{ title_case(__('send password reset link')) }}</button>
+              <button type="submit" class="btn btn-primary">{{ ucfirst(__('send password reset link')) }}</button>
             </div>
           </div>
         </form>

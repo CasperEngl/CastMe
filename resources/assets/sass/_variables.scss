@@ -6,6 +6,7 @@ $body-bg-attachment: fixed;
 $wrapper-margin: 5rem auto;
 
 // Colors
+// $primary-color: #007bff;
 $primary-color: #5f91c3;
 $primary: $primary-color; // Reset Bootstrap primary color
 
@@ -36,9 +37,6 @@ $card-title-font-size: 1.25rem;
 $card-title-font-weight: $font-weight-bold;
 $card-header-border: 1px solid rgba(0, 0, 0, 0.125);
 $post-card-margin: 1rem 0;
-
-// TinyMCE
-$editor-margin: 1rem 0;
 
 // Navbar
 $navbar-brand-logo-height: 40px;

@@ -30,7 +30,7 @@
             {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-          aria-expanded="false" aria-label="{{ title_case(__('toggle navigation')) }}">
+          aria-expanded="false" aria-label="{{ ucfirst(__('toggle navigation')) }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -45,23 +45,21 @@
             <!-- Authentication Links -->
             @guest
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}">{{ title_case(__('login')) }}</a>
+              <a class="nav-link" href="{{ route('login') }}">{{ ucfirst(__('login')) }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('register') }}">{{ title_case(__('register')) }}</a>
+              <a class="nav-link" href="{{ route('register') }}">{{ ucfirst(__('register')) }}</a>
             </li>
             @else
             <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }} <span class="caret"></span>
+              </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ title_case(__('logout')) }}
-                                    </a>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  {{ ucfirst(__('logout')) }}
+                </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf

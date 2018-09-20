@@ -35,6 +35,11 @@ class ProfileController extends Controller {
         ucfirst(__('unfortunately, that user does not exist'))
       ]);
 
+    if ($user->role === 'Free' && $user->id !== Auth::id())
+      return redirect()->back()->withErrors([
+        ucfirst(__('oops, looks like that user is not a member yet.'))
+      ]);
+
     return view('user.profile')->with([
       'user' => $user,
       'avatar' => $avatar,
@@ -51,12 +56,12 @@ class ProfileController extends Controller {
     if ($avatar) {
       if ($avatar->getSize() / 1000 > 2000)
         return redirect()->back()->withErrors([
-          Format::string('Sorry, that avatar image is too big. Max file size is 2 MB.')
+          sentence('Sorry, that avatar image is too big. Max file size is 2 MB.')
         ]);
 
       if ($avatar->isValid() !== true)
         return redirect()->back()->withErrors([
-          Format::string('there was an issue with your image. please try uploading again, or find another avatar')
+          sentence('there was an issue with your image. please try uploading again, or find another avatar')
         ]);
       
       $storedFile = Storage::disk('public')->put('avatar', $avatar);
@@ -67,18 +72,17 @@ class ProfileController extends Controller {
     
     if ($request->input('roles.*')) {
       foreach ($request->input('roles.*') as $role) {
-        if (!in_array($role, ['actor', 'dancer', 'entertainer', 'event_staff', 'extra', 'model', 'musician', 'other'])) {
+        if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
           return redirect()->back()->withErrors([
-            ucfirst(__('"' . $role . '" is not a valid role'))
+            ucfirst(__('"' . $role . '" is not a valid role')),
           ]);
-        }
 
         $roles[] = $role;
       }
     }
 
-    $user->name           = $request->input('first_name') ? $request->input('first_name') : $user->name;
-    $user->last_name      = $request->input('last_name') ? $request->input('last_name') : $user->last_name;
+    $user->name           = $request->input('first_name') ? title_case($request->input('first_name')) : title_case($user->name);
+    $user->last_name      = $request->input('last_name') ? title_case($request->input('last_name')) : title_case($user->last_name);
     $user->email          = $request->input('email') ? $request->input('email') : $user->email;
     $user->avatar         = $avatar ? $storedFile : $user->avatar;
     $details->age         = $request->input('age') ? $request->input('age') : $details->age;

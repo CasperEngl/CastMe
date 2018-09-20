@@ -7,7 +7,9 @@ no-undef: 0,
 
 async function getLocale(supportedLanguages) {
   try {
-    const response = await fetch('/api/locale');
+    const response = await fetch(`/api/locale/user/${user}`, {
+      method: 'POST',
+    });
     const result = await response.json();
 
     if (Object.keys(supportedLanguages).includes(result.lang)) {

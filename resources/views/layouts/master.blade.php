@@ -18,10 +18,10 @@ use App\Helpers\RequestActive;
 <body>
 
   <header>
-    <nav class="navbar navbar-expand-sm navbar-light">
+    <nav class="navbar navbar-expand-sm navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
-        <img src="{{ asset('img/logo-dark.png') }}" alt="castme logo">
+        <img src="{{ asset('img/logo.png') }}" alt="castme logo">
       </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse"
           aria-expanded="false" aria-label="Toggle navigation">
@@ -39,8 +39,8 @@ use App\Helpers\RequestActive;
               <a class="nav-link" href="{{ route('register') }}">{{ title_case(__('register')) }}</a>
             </li>
             @else
-            <form class="form mr-2" action="{{ route('locale.set') }}" method="POST">
-              <select name="locale" class="selectpicker" data-width="fit">
+            <form class="form mr-2 mb-0" action="{{ route('locale.set') }}" method="POST">
+              <select name="locale" class="selectpicker" data-width="fit" data-style="btn-default">
                 <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ Auth::user() && Auth::user()->lang === 'en' ? 'selected' : '' }}>
                   {{ ucfirst(__('english')) }}
                 </option>
@@ -65,10 +65,10 @@ use App\Helpers\RequestActive;
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <div class="dropdown-header">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</div>
-                <a class="dropdown-item {{ RequestActive::route('user.settings', true) }}" href="{{ route('user.settings') }}">{{ title_case(__('profile settings')) }}</a>
-                <a class="dropdown-item {{ RequestActive::route('user.subscription', true) }}" href="{{ route('user.subscription') }}">{{ title_case(__('subscription')) }}</a>
+                <a class="dropdown-item {{ RequestActive::route('user.settings', true) }}" href="{{ route('user.settings') }}">{{ ucfirst(__('profile settings')) }}</a>
+                <a class="dropdown-item {{ RequestActive::route('user.subscription', true) }}" href="{{ route('user.subscription') }}">{{ ucfirst(__('subscription')) }}</a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                {{ title_case(__('logout')) }} <i class="fas fa-sign-out-alt"></i></a>
+                {{ ucfirst(__('logout')) }} <i class="fas fa-sign-out-alt"></i></a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf @method('POST')
@@ -86,15 +86,21 @@ use App\Helpers\RequestActive;
   <div id="wrapper" class="container">
     @if (Session::has('success'))
       @foreach (Session::get('success') as $success)
-      <div class="alert alert-success">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ $success }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       @endforeach
     @endif 
     @if ($errors->any())
       @foreach ($errors->all() as $error)
-      <div class="alert alert-danger">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ $error }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       @endforeach
     @endif
@@ -105,13 +111,18 @@ use App\Helpers\RequestActive;
         <div class="sidebar" id="sidebar" data-toggle="affix">
           <div class="list-group mb-4">
             <a href="{{ route('overview') }}" class="list-group-item {{ RequestActive::route('overview', true) }}">{{ title_case(__('overview')) }}</a>
-            <a href="{{ route('posts') }}" class="list-group-item {{ RequestActive::route('posts', true) }}">{{ title_case(__('posts')) }}</a>
+            <a href="{{ route('posts') }}" class="list-group-item {{ RequestActive::route(['posts', 'post'], true) }}">{{ title_case(__('posts')) }}</a>
           </div>
           <div class="list-group mb-4">
+            <a href="{{ route('profile', ['id' => Auth::id()]) }}" class="list-group-item {{ RequestActive::route('profile', true) }}">{{ title_case('my profile') }}</a>
             <a href="{{ route('user.settings') }}" class="list-group-item {{ RequestActive::route('user.settings', true) }}">{{ title_case(__('profile settings')) }}</a>
             <a href="{{ route('user.subscription') }}" class="list-group-item {{ RequestActive::route('user.subscription', true) }}">{{ title_case(__('subscription')) }}</a>
-            <a href="{{ route('conversations') }}" class="list-group-item {{ RequestActive::route('conversations', true) }}">{{ title_case(__('conversations')) }} <span class="badge badge-danger">7</span></a>
           </div>
+          @paid
+          <div class="list-group mb-4">
+            <a href="{{ route('conversations') }}" class="list-group-item {{ RequestActive::route(['conversations', 'conversation'], true) }}">{{ title_case(__('conversations')) }}</a>
+          </div>
+          @endpaid
           @scout
           <div class="list-group mb-4">
             <a href="{{ route('post.new') }}" class="list-group-item {{ RequestActive::route('post.new', true) }}">{{ title_case(__('new post')) }}</a>
@@ -121,11 +132,24 @@ use App\Helpers\RequestActive;
         </div>
       </aside>
       @endauth
-      <main class="col">
+      @guest
+      <main id="main" class="col">
+      @else
+      <main id="main" class="col-lg-9">
+      @endguest
         @yield('content')
       </main>
     </div>
   </div>
+
+  @auth
+  <script>
+    @if (Auth::user()->lang)
+    var locale = '{{ Auth::user()->lang }}';
+    @endif
+    var user = {{ Auth::id() }};
+  </script>
+  @endauth
 
   <script src="{{ mix('js/app.js') }}"></script>
 

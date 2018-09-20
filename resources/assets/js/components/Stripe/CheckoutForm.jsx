@@ -7,30 +7,23 @@ no-multi-assign: 0,
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { injectStripe } from 'react-stripe-elements';
+import { Row, Col } from 'reactstrap';
 import styled from 'styled-components';
 
 import CardSection from './CardSection';
 import AddressSection from './AddressSection';
 
 const StyledForm = styled.form`
-  margin-bottom: 2.5rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 3px solid #e6ebf1;
 `;
 
 class CheckoutForm extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault();
 
-    const {
-      fname,
-      lname,
-      stripe,
-    } = this.props;
+    const { stripe } = this.props;
 
     stripe.createToken({
       type: 'card',
-      name: `${fname} ${lname}`,
     }).then(({ token }) => {
       console.log('Received Stripe token:', token);
     });
@@ -39,11 +32,17 @@ class CheckoutForm extends Component {
   render() {
     return (
       <StyledForm onSubmit={this.handleSubmit}>
-        <AddressSection stateHandler={this.stateHandler} />
-        <CardSection />
-        <button type="submit" className="btn btn-primary">
-          Confirm order
-        </button>
+        <Row>
+          <Col>
+            <AddressSection />
+          </Col>
+          <Col>
+            <CardSection />
+            <button type="submit" className="btn btn-primary mt-3">
+              Subscribe
+            </button>
+          </Col>
+        </Row>
       </StyledForm>
     );
   }

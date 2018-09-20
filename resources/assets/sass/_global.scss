@@ -1,10 +1,16 @@
 body {
   @extend .bg-light;
+  overflow-x: hidden;
   /*
   background: $body-bg;
   background-size: $body-bg-size;
   background-attachment: $body-bg-attachment;
   */
+}
+
+#main {
+  @extend .p-4, .bg-white, .shdw-lg;
+  border-radius: $border-radius-lg;
 }
 
 img.responsive {
@@ -25,6 +31,10 @@ img {
   // @extend .shdw-text, .mt-2, .mb-3;
   font-weight: $font-weight-bold;
   color: var(--gray-dark);
+
+  @include media-breakpoint-down(xs) {
+    text-align: center;
+  }
 
   &.mt-0 {
     margin-top: 0 !important;
@@ -73,4 +83,14 @@ img {
 
 .display-block {
   display: block;
+}
+
+.hidden {
+  opacity: 0;
+  transition: $transition-base;
+}
+
+.shown {
+  opacity: 1;
+  transition: $transition-base;
 }

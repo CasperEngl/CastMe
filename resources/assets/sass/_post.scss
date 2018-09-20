@@ -21,6 +21,17 @@
     &__img {
       @extend .w-100, .h-100;
       object-fit: cover;
+      border-radius: $border-radius-lg;
+    }
+  }
+
+  &__profile-link {
+    color: $body-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $body-color;
+      text-decoration: none;
     }
   }
 
@@ -31,6 +42,7 @@
       .align-items-center,
       .blockquote,
       .my-2;
+    text-decoration: none;
 
     &__avatar {
       @extend figure.circle;
@@ -39,7 +51,11 @@
     }
 
     &__name {
-      @extend .mb-0, .ml-2;
+      @extend .mb-0;
     }
+  }
+
+  &__content {
+    @extend .container, .mt-3;
   }
 }

@@ -3,17 +3,17 @@
 <div class="row justify-content-center">
   <div class="col-md-8">
     <div class="card">
-      <div class="card-header">{{ title_case(__('reset password')) }}</div>
+      <div class="card-header">{{ ucfirst(__('reset password')) }}</div>
 
       <div class="card-body">
-        <form action="{{ route('password.request') }}" method="POST" aria-label="{{ title_case(__('reset password')) }}">
+        <form action="{{ route('password.request') }}" method="POST" aria-label="{{ ucfirst(__('reset password')) }}">
           @csrf 
           @method('POST')
 
           <input type="hidden" name="token" value="{{ $token }}">
 
           <div class="form-group row">
-            <label for="email" class="col-md-4 col-form-label text-md-right">{{ title_case(__('e-mail address')) }}</label>
+            <label for="email" class="col-md-4 col-form-label text-md-right">{{ ucfirst(__('e-mail address')) }}</label>
 
             <div class="col-md-6">
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus> 
@@ -24,7 +24,7 @@
           </div>
 
           <div class="form-group row">
-            <label for="password" class="col-md-4 col-form-label text-md-right">{{ title_case(__('password')) }}</label>
+            <label for="password" class="col-md-4 col-form-label text-md-right">{{ ucfirst(__('password')) }}</label>
 
             <div class="col-md-6">
               <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required> 
@@ -35,7 +35,7 @@
           </div>
 
           <div class="form-group row">
-            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ title_case(__('confirm Password')) }}</label>
+            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ ucfirst(__('confirm Password')) }}</label>
 
             <div class="col-md-6">
               <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -44,7 +44,7 @@
 
           <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
-              <button type="submit" class="btn btn-primary">{{ title_case(__('reset password')) }}</button>
+              <button type="submit" class="btn btn-primary">{{ ucfirst(__('reset password')) }}</button>
             </div>
           </div>
         </form>

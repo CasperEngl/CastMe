@@ -17,7 +17,10 @@ class User extends Authenticatable {
    * @var array
    */
   protected $fillable = [
-    'name', 'email', 'password',
+    'name',
+    'last_name',
+    'email',
+    'password',
   ];
 
   /**
@@ -54,7 +57,7 @@ class User extends Authenticatable {
   }
 
   public function conversations() {
-    return $this->hasMany('App\Conversation');
+    return $this->belongsToMany(Conversation::class, 'conversation_user', 'user_id', 'conversation_id');
   }
 
   public function activeSub() {

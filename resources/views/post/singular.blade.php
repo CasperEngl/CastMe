@@ -8,39 +8,55 @@ use App\Helpers\Format;
 @section('content')
 <article class="post-article">
   <div class="d-flex flex-column align-items-center">
-    <h6 class="post-article__date">{{ Carbon::parse($post->created_at)->toFormattedDateString() }}</h6>
-    @if (Carbon::parse($post->created_at)->timestamp !== Carbon::parse($post->updated_at)->timestamp)
-    <p class="text-muted"><em>{{ ucfirst(__('updated at')) }} {{ Carbon::parse($post->updated_at)->toDateTimeString() }}</em></p>
-    @endif
-    <h1 class="post-article__title">{{ title_case($post->title) }}</h1>
-    <blockquote class="post-article__quote">
-      <figure class="post-article__quote__avatar">
-        <img src="{{ Storage::disk('public')->url($post->owner->avatar) }}" alt="">
-      </figure>
-      <p class="post-article__quote__name">{{ $post->owner->name }} {{ $post->owner->last_name }}</p>
-    </blockquote>
+    <hgroup class="d-flex flex-column align-items-center">
+      <h5 class="post-article__date">{{ Carbon::parse($post->created_at)->format('M j, Y \a\t G:i a') }}</h5>
+      @if (Carbon::parse($post->created_at)->timestamp !== Carbon::parse($post->updated_at)->timestamp)
+      <h6 class="text-muted"><em>{{ ucfirst(__('updated')) }} {{ Carbon::parse($post->updated_at)->format('M j, Y \a\t G:i a') }}</em></h6>
+      @endif
+      <h1 class="post-article__title">{{ title_case($post->title) }}</h1>
+    </hgroup>
+    <a href="{{ route('profile', ['id' => $post->owner->id]) }}" class="post-article__profile-link">
+      <blockquote class="post-article__quote">
+        <figure class="post-article__quote__avatar">
+          <img src="{{ Storage::disk('public')->url($post->owner->avatar) }}" alt="">
+        </figure>
+        <p class="post-article__quote__name">{{ $post->owner->name }} {{ $post->owner->last_name }}</p>
+      </blockquote>
+    </a>
     @if ($post->roles)
-    <div class="d-flex align-items-center my-3">
+    <section class="d-flex flex-wrap align-items-center justify-content-center my-3">
       @foreach (json_decode($post->roles) as $role)
-      <span class="badge badge-pill badge-primary py-2 px-3 mx-1">{{ strtoupper($role) }}</span> @endforeach
-    </div>
+      <span class="badge badge-pill badge-primary py-2 px-3 my-1 mx-1">{{ strtoupper(__($role)) }}</span>
+      @endforeach
+    </section>
     @endif
     <figure class="post-article__frame">
       <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="" class="post-article__frame__img">
     </figure>
 
-    <div class="container mt-3">      
+    @if ($owner || in_array(Auth::user()->role, ['Admin', 'Moderator']))
+    <section class="my-2 align-self-start">
+      <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-success">{{ ucfirst(__('edit')) }}</a>
+      @if ($post->closed)
+        <a href="{{ route('post.enable', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('release')) }}</a>
+      @else
+        <a href="{{ route('post.disable', ['id' => $post->id]) }}" class="btn btn-danger">{{ ucfirst(__('disable')) }}</a>
+      @endif
+    </section>
+    @endif
+
+    <section class="post-article__content">      
       {!! $post->content !!}
 
       <div class="d-flex flex-column">
-      @if ($post->images)
-        <h6 class="text-muted mt-4">{{ ucfirst(__('images')) }}</h6>
+      @if (is_array($post->images))
+        <h5 class="text-muted mt-4">{{ ucfirst(__('images')) }}</h5>
         @foreach (json_decode($post->images) as $image)
         <a href="{{ $image }}" target="_blank">{{ Format::stripDomain($image) }}</a>
         @endforeach
       @endif
       </div>
-    </div>
+    </section>
   </div>
 </article>
 
@@ -48,7 +64,7 @@ use App\Helpers\Format;
 
 @if ($owner)
   @if (count($comments) > 0)
-    <h2 class="page-header mb-0">{{ title_case(__('comments')) }}</h2>
+    <h2 class="page-header mb-0">{{ ucfirst(__('comments')) }}</h2>
     @foreach ($comments as $comment)
     <div class="card my-3">
       {{ Auth::id() === $comment->owner }}
@@ -60,7 +76,12 @@ use App\Helpers\Format;
         <div class="row align-items-center">
           <div class="col">{{ Carbon::parse($comment->updated_at)->format('M j \a\t G:i') }}</div>
           <div class="col-auto">
-            <a href="{{ route('conversation', ['id' => $comment->user_id]) }}" class="btn btn-primary">{{ ucfirst(__('message')) }}</a>
+            <form action="{{ route('conversation.new') }}" method="post">
+              @csrf
+              <input type="hidden" name="users[]" value="{{ Auth::id() }}">
+              <input type="hidden" name="users[]" value="{{ $comment->user_id }}">
+              <input type="submit" class="btn btn-primary" value="{{ ucfirst(__('message')) }}">
+            </form>
           </div>
         </div>
       </div>
@@ -68,7 +89,7 @@ use App\Helpers\Format;
     @endforeach
   @else
   {{-- If nocomments are found --}}
-  <h2 class="page-header mb-0">{{ title_case(__('No comments')) }}</h2>
+  <h2 class="page-header mb-0">{{ ucfirst(__('no comments')) }}</h2>
   @endif
 @else
   @foreach ($comments as $comment)
@@ -81,10 +102,7 @@ use App\Helpers\Format;
       </div>
       <div class="card-footer">
         <div class="row align-items-center">
-          <div class="col">{{ Carbon::parse($comment->updated_at)->format('M j \a\t G:i') }}</div>
-          <div class="col-auto">
-            <a href="{{ route('conversation', ['id' => $comment->user_id]) }}" class="btn btn-primary">{{ ucfirst(__('message')) }}</a>
-          </div>
+          <div class="col">{{ Carbon::parse($comment->updated_at)->format('M j, Y \a\t G:i a') }}</div>
         </div>
       </div>
     </div>
@@ -93,7 +111,7 @@ use App\Helpers\Format;
   <form action="{{ route('comment.new') }}" method="POST">
     <h2 class="page-header mb-0">{{ ucfirst(__('comment')) }}</h2>
     <textarea name="content" class="tinymce"></textarea>
-    <button class="btn btn-primary" type="submit">{{ title_case(__('comment')) }}</button>
+    <button class="btn btn-primary mt-2" type="submit">{{ ucfirst(__('comment')) }}</button>
 
     {{ Form::hidden('post', $post->id) }}
     
