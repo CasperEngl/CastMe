@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 @scout
-<a href="{{ route('post.new') }}" class="btn btn-primary btn-lg mb-4" role="button">{{ ucfirst(__('new post')) }}</a>
+<a href="{{ route('post.new') }}" class="btn btn-primary btn-lg mb-4" role="button">{{ ucfirst(__('new job post')) }}</a>
 @endscout
 
 {{-- Check if no posts or all posts are closed --}}

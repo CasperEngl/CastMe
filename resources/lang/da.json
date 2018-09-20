@@ -114,5 +114,10 @@
   "no comments": "ingen kommentarer",
   "you": "dig",
   "preferably 825x400 or above pixels": "fortrinsvis 825x400 eller over pixels",
-  "aspect ratio 2,0625:1": "billedformat 2,0625:1"
+  "aspect ratio 2,0625:1": "billedformat 2,0625:1",
+  "job postings": "jobopslag",
+  "new job posts": "nye jobopslag",
+  "new job post": "nyt jobopslag",
+  "your job posts": "dine jobopslag"
+
 }

@@ -47,7 +47,7 @@ class PostController extends Controller {
     $user = Auth::user();
 
     return view('post.build')->with([
-      'title' => ucfirst(__('new post')),
+      'title' => ucfirst(__('new job post')),
       'post' => new Post,
       'form_url' => route('post.add'),
       'type' => ucfirst(__('add'))

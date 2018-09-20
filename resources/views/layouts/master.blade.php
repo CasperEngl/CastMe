@@ -125,8 +125,8 @@ use App\Helpers\RequestActive;
           @endpaid
           @scout
           <div class="list-group mb-4">
-            <a href="{{ route('post.new') }}" class="list-group-item {{ RequestActive::route('post.new', true) }}">{{ title_case(__('new post')) }}</a>
-            <a href="{{ route('posts.own') }}" class="list-group-item {{ RequestActive::route('posts.own', true) }}">{{ title_case(__('your posts')) }}</a>
+            <a href="{{ route('post.new') }}" class="list-group-item {{ RequestActive::route('post.new', true) }}">{{ title_case(__('new job post')) }}</a>
+            <a href="{{ route('posts.own') }}" class="list-group-item {{ RequestActive::route('posts.own', true) }}">{{ title_case(__('your job posts')) }}</a>
           </div>
           @endscout
         </div>
