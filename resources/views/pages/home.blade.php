@@ -47,12 +47,12 @@
     <h2 class="page-header">{{ ucfirst(__('posts')) }}</h2>
     <div class="row">
 
-    @if (empty(array_filter(json_decode($posts), function ($post) {
+    @if (!empty(array_filter(json_decode($posts), function ($post) {
       return $post->closed === 0;
     })))
       @foreach($posts as $post)
         @if (!$post->closed || $own)
-        <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-12 animated fadeInRight">
+        <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-sm-6 animated fadeInRight">
           <article class="post-card post-card--sm">
             <figure class="post-card__frame">
               <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->content) }}" class="post-card__frame__img">
@@ -63,7 +63,7 @@
               </div>
             </figure>
             <div class="post-card__info">
-              @if (Auth::user()->id === $post->user_id)
+              @if (Auth::user() && Auth::id() === $post->user_id)
               <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
               @else
               <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</p>
@@ -75,6 +75,10 @@
         @endif
       @endforeach
     @endif
+
+    <div class="col-12 d-flex justify-content-center mt-4">
+      <a href="{{ route('posts') }}" class="btn btn-lg btn-castme">Se flere</a>
+    </div>
 
     </div>
   </div>
