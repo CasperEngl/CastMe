@@ -181,11 +181,6 @@ return [
          * Image Intervention
          */
         Intervention\Image\ImageServiceProvider::class,
-
-        /*
-         * Helpers
-         */
-        App\Providers\HelperServiceProvider::class,
     ],
 
     /*

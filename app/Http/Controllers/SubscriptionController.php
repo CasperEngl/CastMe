@@ -54,7 +54,7 @@ class SubscriptionController extends Controller {
 
     $user->newSubscription('paid', $model)->create($token);
 
-    Flash::push('success', ucfirst(__('you\'re now subscribed!')));
+    session_push('success', ucfirst(__('you\'re now subscribed!')));
     return redirect()->route('user.subscription');
   }
 
@@ -83,10 +83,10 @@ class SubscriptionController extends Controller {
     // Check if user wants to change
     if ($user->subscription('paid')->stripe_plan === $model) {
       $user->updateCard($token);
-      Flash::push('success', ucfirst(__('updated card information')));
+      session_push('success', ucfirst(__('updated card information')));
     } else {
       $user->subscription('paid')->swap($model);
-      Flash::push('success', ucfirst(__('changed billing cycle')));
+      session_push('success', ucfirst(__('changed billing cycle')));
     }
 
     return redirect()->route('user.subscription');
@@ -97,7 +97,7 @@ class SubscriptionController extends Controller {
     if ($user->subscribed('paid'))
       $user->subscription()->cancel();
 
-    Flash::push('success', ucfirst(__('successfully unsubscribed')));
+    session_push('success', ucfirst(__('successfully unsubscribed')));
     return redirect()->route('user.subscription');
   }
 

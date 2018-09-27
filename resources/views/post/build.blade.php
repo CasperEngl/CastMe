@@ -17,8 +17,18 @@
     </div>
     <div class="card-block">
       <div class="form-group">
-        <h5 class="text-muted">{{ ucfirst(__('looking for')) }}</h5>
-        <p>{{ ucfirst(__('select multiple if applicable')) }}</p>
+        <h5>{{ ucfirst(__('location')) }}</h5>
+        <p class="text-muted">{{ sentence(__('location for the job. this guides users to find your job in their local area.')) }}</p>
+        <p class="text-muted">{{ sentence(__('')) }}</p>
+        {{ Form::text('location', $post->location, [
+          'class' => 'form-control'
+        ]) }}
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="form-group">
+        <h5>{{ ucfirst(__('looking for')) }}</h5>
+        <p class="text-muted">{{ ucfirst(__('select multiple if applicable')) }}</p>
         <ul class="pagination">
           <li class="page-item">
             {{ Form::label('profile_type-actor', ucfirst(__('actor')), [
@@ -85,17 +95,17 @@
       <div id="ImageInputs" data-type="{{ $type }}"></div>
     </div>
     <div class="card-block">
-      <h5 class="text-muted">{{ ucfirst(__('upload banner')) }}</h5>
+      <h5>{{ ucfirst(__('upload banner')) }}</h5>
       <p class="text-muted m-0">{{ ucfirst(__('preferably 825x400 or above pixels')) }}</p>
       <p class="text-muted small">{{ ucfirst(__('aspect ratio 2,0625:1')) }}</p>
       <input name="banner" type="file" class="file">
     </div>
     <div class="card-block">
-      <h5 class="text-muted">{{ ucfirst(__('write description')) }}</h5>
+      <h5>{{ ucfirst(__('write description')) }}</h5>
       <textarea name="content" class="tinymce">{{ $post->content }}</textarea>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary">{{ ucfirst($type) }}</button>
+      <button type="submit" class="btn btn-castme">{{ ucfirst($type) }}</button>
     </div>
   </div>
 

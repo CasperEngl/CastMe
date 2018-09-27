@@ -2,7 +2,7 @@
   @extend .my-3, .w-100, .d-flex, .flex-wrap, .align-items-center, .justify-content-center, .shdw-md;
   height: $tile-height;
 
-  background: $primary-color;
+  background: color('castme');
   border: none;
   font-size: $tile-font-size;
   color: white;

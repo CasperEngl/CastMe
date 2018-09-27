@@ -90,7 +90,7 @@ class ConversationController extends Controller {
     $message->conversation_id = $conversationId;
     $message->save();
 
-    Flash::push('success', sentence(__('your message was sent!')));
+    session_push('success', sentence(__('your message was sent!')));
     return redirect()->back();
   }
 }
