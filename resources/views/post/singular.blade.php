@@ -1,9 +1,3 @@
-<?php
-
-use App\Helpers\Format;
-
-?>
-
 @extends('layouts.master')
 @section('content')
 <article class="post-article">
@@ -30,33 +24,40 @@ use App\Helpers\Format;
       @endforeach
     </section>
     @endif
-    <figure class="post-article__frame">
-      <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="" class="post-article__frame__img">
-    </figure>
-
-    @if ($owner || in_array(Auth::user()->role, ['Admin', 'Moderator']))
-    <section class="my-2 align-self-start">
-      <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-success">{{ ucfirst(__('edit')) }}</a>
-      @if ($post->closed)
-        <a href="{{ route('post.enable', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('release')) }}</a>
-      @else
-        <a href="{{ route('post.disable', ['id' => $post->id]) }}" class="btn btn-danger">{{ ucfirst(__('disable')) }}</a>
-      @endif
+    @if ($post->location)
+    <section class="d-flex flex-wrap align-items-center justify-content-center mb-3">
+      <h3 class="post-article__location">{{ $post->location }}</h3>
     </section>
     @endif
-
-    <section class="post-article__content">      
-      {!! $post->content !!}
-
-      <div class="d-flex flex-column">
-      @if (is_array($post->images))
-        <h5 class="text-muted mt-4">{{ ucfirst(__('images')) }}</h5>
-        @foreach (json_decode($post->images) as $image)
-        <a href="{{ $image }}" target="_blank">{{ Format::stripDomain($image) }}</a>
-        @endforeach
+    <div class="post-article__container">
+      <figure class="post-article__frame">
+        <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="" class="post-article__frame__img">
+      </figure>
+  
+      @if ($owner || in_array(Auth::user()->role, ['Admin', 'Moderator']))
+      <section class="my-2 align-self-start">
+        <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('edit')) }}</a>
+        @if ($post->closed)
+          <a href="{{ route('post.enable', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('release')) }}</a>
+        @else
+          <a href="{{ route('post.disable', ['id' => $post->id]) }}" class="btn btn-danger">{{ ucfirst(__('disable')) }}</a>
+        @endif
+      </section>
       @endif
-      </div>
-    </section>
+  
+      <section class="post-article__content">      
+        {!! $post->content !!}
+  
+        <div class="d-flex flex-column">
+        @if (is_array($post->images))
+          <h5 class="text-muted mt-4">{{ ucfirst(__('images')) }}</h5>
+          @foreach (json_decode($post->images) as $image)
+          <a href="{{ $image }}" target="_blank">{{ Format::stripDomain($image) }}</a>
+          @endforeach
+        @endif
+        </div>
+      </section>
+    </div>
   </div>
 </article>
 
