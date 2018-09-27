@@ -12,6 +12,7 @@ class Post extends Model {
     'banner',
     'images',
     'roles',
+    'location',
   ];
 
   public function comments() {
