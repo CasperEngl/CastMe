@@ -22,7 +22,7 @@ class HomeController extends Controller {
    */
   public function index() {
     $posts = Post::orderBy('id', 'desc')
-      ->limit(4)
+      ->limit(8)
       ->get();
 
     return view('pages.home')->with('posts', $posts);
