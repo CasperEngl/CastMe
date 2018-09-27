@@ -4,7 +4,7 @@ input, button, select, optgroup, textarea {
     border: none;
     border-bottom: 1px solid $input-border-color;
     border-radius: 0;
-    color: color('dark');
+    color: color('gray-dark');
     
     &:focus {
       box-shadow: none;

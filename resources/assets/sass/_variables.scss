@@ -2,7 +2,12 @@
 $castme-color: #5F91C3;
 
 $theme-colors: (
-  'castme': $castme-color
+  'castme': $castme-color,
+  'primary': #03A9F4,
+  'danger': #E64A19,
+  'warning': #FFEE58,
+  'success': #69F0AE,
+  'info': #7C4DFF,
 );
 $colors: (
   'castme': $castme-color
