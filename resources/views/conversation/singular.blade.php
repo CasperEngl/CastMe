@@ -41,7 +41,7 @@
 <div class="h3">{{ ucfirst(__('new message')) }}</div>
 <form action="{{ $form_url }}" method="POST">
   <textarea name="content" class="tinymce simple"></textarea>
-  <button type="submit" class="btn btn-primary mt-3">{{ ucfirst(__('send')) }}</button>
+  <button type="submit" class="btn btn-castme mt-3">{{ ucfirst(__('send')) }}</button>
 
   @csrf
   @method('POST')

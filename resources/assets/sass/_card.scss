@@ -21,8 +21,8 @@
 .card-footer.btn {
   width: 100%;
 
-  &.btn-primary {
-    background: var(--primary);
+  &.btn-castme {
+    background: color('castme');
   }
 }
 
@@ -70,12 +70,12 @@
 
   &__title, &__author {
     @extend .m-0;
-    color: $dark;
+    color: color('dark');
   }
 
   &__title {
     font-size: 1.5rem;
-    color: $dark;
+    color: color('dark');
   }
 
   &__roles {

@@ -122,7 +122,7 @@ use \Illuminate\Support\Facades\Auth;
 
     </div>
 
-    <button class="card-footer btn btn-primary" type="submit">
+    <button class="card-footer btn btn-castme" type="submit">
       @if(Auth::user()->activeSub())
         {{ ucfirst(__('update information')) }}
       @else

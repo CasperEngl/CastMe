@@ -11,10 +11,10 @@
 
   &__user {
     @extend .d-inline-flex, .align-items-center;
-    color: $dark;
+    color: color('dark');
 
     &:hover {
-      color: $dark;
+      color: color('dark');
       text-decoration: none;
     }
   }

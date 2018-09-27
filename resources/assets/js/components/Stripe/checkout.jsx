@@ -29,7 +29,7 @@ export default class Stripe extends Component {
         currency="DKK"
         allowRememberMe
       >
-        <button type="button" onClick={event => event.preventDefault()} className="btn btn-primary">
+        <button type="button" onClick={event => event.preventDefault()} className="btn btn-castme">
           Pay
         </button>
       </StripeCheckout>

@@ -1,10 +1,23 @@
+$navbar-castme-color:                rgba(color-yiq(color('castme')), .5) !default;
+$navbar-castme-hover-color:          rgba(color-yiq(color('castme')), .7) !default;
+$navbar-castme-active-color:         rgba(color-yiq(color('castme')), .9) !default;
+$navbar-castme-disabled-color:       rgba(color-yiq(color('castme')), .3) !default;
+$navbar-castme-toggler-icon-bg:      str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-castme-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+$navbar-castme-toggler-border-color: rgba(color-yiq(color('castme')), .1) !default;
+
+$navbar-castme-logo-color: invert(100%);
+
+@if color-yiq(color('castme')) == #FFF {
+  $navbar-castme-logo-color: invert(0%);
+}
+
 .navbar-brand img {
   max-height: $navbar-brand-logo-height;
   width: auto;
 }
 
 .navbar {
-  @extend .bg-primary;
+  @extend .bg-castme;
   padding-bottom: 0;
   height: 80px;
 }
@@ -26,6 +39,61 @@ a[class='nav-link'] {
       top: .1rem;
       left: .95rem;
       border-radius: 50%;
+    }
+  }
+}
+
+.navbar-castme {
+  .navbar-brand {
+    color: $navbar-castme-active-color;
+
+    > img {
+      filter: $navbar-castme-logo-color;
+    }
+
+    @include hover-focus {
+      color: $navbar-castme-active-color;
+    }
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: $navbar-castme-color;
+
+      @include hover-focus {
+        color: $navbar-castme-hover-color;
+      }
+
+      &.disabled {
+        color: $navbar-castme-disabled-color;
+      }
+    }
+
+    .show > .nav-link,
+    .active > .nav-link,
+    .nav-link.show,
+    .nav-link.active {
+      color: $navbar-castme-active-color;
+    }
+  }
+
+  .navbar-toggler {
+    color: $navbar-castme-color;
+    border-color: $navbar-castme-toggler-border-color;
+  }
+
+  .navbar-toggler-icon {
+    background-image: $navbar-castme-toggler-icon-bg;
+  }
+
+  .navbar-text {
+    color: $navbar-castme-color;
+    a {
+      color: $navbar-castme-active-color;
+
+      @include hover-focus {
+        color: $navbar-castme-active-color;
+      }
     }
   }
 }

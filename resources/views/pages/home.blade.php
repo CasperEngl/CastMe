@@ -4,7 +4,7 @@
 <section class="hero jumbotron">
   <div class="container d-flex flex-column align-items-center">
     <h1 class="animated fadeIn">Er casting noget for dig?</h1>
-    <a href="/register" class="btn btn-primary btn-lg m-4">{{ title_case(__('register')) }}</a>
+    <a href="/register" class="btn btn-castme btn-lg m-4">{{ title_case(__('register')) }}</a>
     <figure class="hero-image left animated fadeInUp">
       <img src="{{ asset('img/hero.jpg') }}" alt="">
     </figure>
@@ -58,7 +58,7 @@
               <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->content) }}" class="post-card__frame__img">
               <div class="post-card__roles">
                 @foreach (json_decode($post->roles) as $key => $role)
-                <span class="badge badge-pill badge-primary py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
+                <span class="badge badge-pill badge-castme py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
                 @endforeach
               </div>
             </figure>
@@ -85,7 +85,7 @@
     <div class="row d-flex align-items-center">
       <div class="col">
         <h2 class="text-white">Find dit castingjob i dag!</h2>
-        <a href="/register" class="text-center btn btn-primary">{{ title_case(__('register')) }}</a>
+        <a href="/register" class="text-center btn btn-castme">{{ title_case(__('register')) }}</a>
       </div>
       <div class="col-auto">
         <iframe src="https://support.wkt.dk/public/kort.php?cards=visa,mastercard-w,paypal-w" class="cards" frameborder="0" kwframeid="1" style="zoom: 1;"></iframe>

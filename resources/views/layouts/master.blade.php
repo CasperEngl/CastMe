@@ -18,7 +18,7 @@ use App\Helpers\RequestActive;
 <body>
 
   <header>
-    <nav class="navbar navbar-expand-sm navbar-dark">
+    <nav class="navbar navbar-expand-sm navbar-castme">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
         <img src="{{ asset('img/logo.png') }}" alt="castme logo">

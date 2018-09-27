@@ -26,7 +26,7 @@ use App\Helpers\Format;
     @if ($post->roles)
     <section class="d-flex flex-wrap align-items-center justify-content-center my-3">
       @foreach (json_decode($post->roles) as $role)
-      <span class="badge badge-pill badge-primary py-2 px-3 my-1 mx-1">{{ strtoupper(__($role)) }}</span>
+      <span class="badge badge-pill badge-castme py-2 px-3 my-1 mx-1">{{ strtoupper(__($role)) }}</span>
       @endforeach
     </section>
     @endif
@@ -80,7 +80,7 @@ use App\Helpers\Format;
               @csrf
               <input type="hidden" name="users[]" value="{{ Auth::id() }}">
               <input type="hidden" name="users[]" value="{{ $comment->user_id }}">
-              <input type="submit" class="btn btn-primary" value="{{ ucfirst(__('message')) }}">
+              <input type="submit" class="btn btn-castme" value="{{ ucfirst(__('message')) }}">
             </form>
           </div>
         </div>
@@ -111,7 +111,7 @@ use App\Helpers\Format;
   <form action="{{ route('comment.new') }}" method="POST">
     <h2 class="page-header mb-0">{{ ucfirst(__('comment')) }}</h2>
     <textarea name="content" class="tinymce"></textarea>
-    <button class="btn btn-primary mt-2" type="submit">{{ ucfirst(__('comment')) }}</button>
+    <button class="btn btn-castme mt-2" type="submit">{{ ucfirst(__('comment')) }}</button>
 
     {{ Form::hidden('post', $post->id) }}
     

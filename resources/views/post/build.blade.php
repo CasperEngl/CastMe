@@ -95,7 +95,7 @@
       <textarea name="content" class="tinymce">{{ $post->content }}</textarea>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary">{{ ucfirst($type) }}</button>
+      <button type="submit" class="btn btn-castme">{{ ucfirst($type) }}</button>
     </div>
   </div>
 
