@@ -16,7 +16,7 @@
       @endif
         <a href="{{ route('profile', ['id' => $message->user->id]) }}" class="conversation__user">
           @if ($message->user->id === Auth::id())
-          {{ strtoupper(__('you')) }}
+          <div class="conversation__user__name">{{ strtoupper(__('you')) }}</div>
           <figure class="conversation__avatar mb-1">
             <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
           </figure>
@@ -24,7 +24,7 @@
           <figure class="conversation__avatar circle mb-1">
             <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
           </figure>
-          {{ $message->user->name }} {{ $message->user->last_name }}
+          <div class="conversation__user__name">{{ $message->user->name }} {{ $message->user->last_name }}</div>
           @endif
         </a>
         <div class="conversation__message" title="Message sent {{ Carbon::parse($message->created_at)->format('M j, Y \a\t G:i a') }}">
@@ -41,7 +41,7 @@
 <div class="h3">{{ ucfirst(__('new message')) }}</div>
 <form action="{{ $form_url }}" method="POST">
   <textarea name="content" class="tinymce simple"></textarea>
-  <button type="submit" class="btn btn-primary mt-3">{{ ucfirst(__('send')) }}</button>
+  <button type="submit" class="btn btn-castme mt-3">{{ ucfirst(__('send')) }}</button>
 
   @csrf
   @method('POST')

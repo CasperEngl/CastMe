@@ -26,13 +26,23 @@
   }
 
   &__profile-link {
-    color: $body-color;
+    color: color('gray-dark');
     text-decoration: none;
 
     &:hover {
-      color: $body-color;
+      color: color('gray-dark');
       text-decoration: none;
     }
+  }
+
+  &__container {
+    @extend .bg-white;
+    border-radius: $border-radius-lg;
+  }
+
+  &__location {
+    @extend .badge, .badge-light, .p-3;
+    font-size: 1.25rem;
   }
 
   &__quote {

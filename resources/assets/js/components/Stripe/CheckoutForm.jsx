@@ -38,7 +38,7 @@ class CheckoutForm extends Component {
           </Col>
           <Col>
             <CardSection />
-            <button type="submit" className="btn btn-primary mt-3">
+            <button type="submit" className="btn btn-castme mt-3">
               Subscribe
             </button>
           </Col>

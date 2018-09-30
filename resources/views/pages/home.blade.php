@@ -4,7 +4,7 @@
 <section class="hero jumbotron">
   <div class="container d-flex flex-column align-items-center">
     <h1 class="animated fadeIn">Er casting noget for dig?</h1>
-    <a href="/register" class="btn btn-primary btn-lg m-4">{{ title_case(__('register')) }}</a>
+    <a href="/register" class="btn btn-castme btn-lg m-4">{{ title_case(__('register')) }}</a>
     <figure class="hero-image left animated fadeInUp">
       <img src="{{ asset('img/hero.jpg') }}" alt="">
     </figure>
@@ -47,23 +47,23 @@
     <h2 class="page-header">{{ ucfirst(__('posts')) }}</h2>
     <div class="row">
 
-    @if (empty(array_filter(json_decode($posts), function ($post) {
+    @if (!empty(array_filter(json_decode($posts), function ($post) {
       return $post->closed === 0;
     })))
       @foreach($posts as $post)
         @if (!$post->closed || $own)
-        <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-12 animated fadeInRight">
+        <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-sm-6 animated fadeInRight">
           <article class="post-card post-card--sm">
             <figure class="post-card__frame">
               <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->content) }}" class="post-card__frame__img">
               <div class="post-card__roles">
                 @foreach (json_decode($post->roles) as $key => $role)
-                <span class="badge badge-pill badge-primary py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
+                <span class="badge badge-pill badge-castme py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
                 @endforeach
               </div>
             </figure>
             <div class="post-card__info">
-              @if (Auth::user()->id === $post->user_id)
+              @if (Auth::user() && Auth::id() === $post->user_id)
               <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
               @else
               <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</p>
@@ -76,6 +76,10 @@
       @endforeach
     @endif
 
+    <div class="col-12 d-flex justify-content-center mt-4">
+      <a href="{{ route('posts') }}" class="btn btn-lg btn-castme">Se flere</a>
+    </div>
+
     </div>
   </div>
 </section>
@@ -85,7 +89,7 @@
     <div class="row d-flex align-items-center">
       <div class="col">
         <h2 class="text-white">Find dit castingjob i dag!</h2>
-        <a href="/register" class="text-center btn btn-primary">{{ title_case(__('register')) }}</a>
+        <a href="/register" class="text-center btn btn-castme">{{ title_case(__('register')) }}</a>
       </div>
       <div class="col-auto">
         <iframe src="https://support.wkt.dk/public/kort.php?cards=visa,mastercard-w,paypal-w" class="cards" frameborder="0" kwframeid="1" style="zoom: 1;"></iframe>

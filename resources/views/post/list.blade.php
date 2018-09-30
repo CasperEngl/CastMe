@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 @scout
-<a href="{{ route('post.new') }}" class="btn btn-primary btn-lg mb-4" role="button">{{ ucfirst(__('new post')) }}</a>
+<a href="{{ route('post.new') }}" class="btn btn-castme btn-lg mb-4" role="button">{{ ucfirst(__('new post')) }}</a>
 @endscout
 
 {{-- Check if no posts or all posts are closed --}}
@@ -23,7 +23,7 @@
               @if ($key === 5)
                 @break
               @endif
-              <span class="badge badge-pill badge-primary py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
+              <span class="badge badge-pill badge-castme py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
               @endforeach
             </div>
           </figure>

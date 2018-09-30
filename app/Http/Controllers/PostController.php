@@ -136,13 +136,14 @@ class PostController extends Controller {
       'roles'   => json_encode($roles),
       'images'  => json_encode($request->input('image.*')),
       'content' => $request->input('content'),
+      'location' => $request->input('location'),
       'banner'  => isset($storedFile) ? $storedFile : 'placeholder/banner.png',
       'user_id' => Auth::id()
     ]);
 
     $post->save();
 
-    Flash::push('success', 'Your post has been created!');
+    session_push('success', 'Your post has been created!');
     return redirect()->route('posts');
   }
 
@@ -190,6 +191,7 @@ class PostController extends Controller {
     $post->images   = json_encode($request->input('image.*'));
     $post->banner   = isset($storedFile) ? $storedFile : $post->banner;
     $post->content  = $request->input('content');
+    $post->location = $request->input('location');
 
     $post->save();
 
@@ -207,7 +209,7 @@ class PostController extends Controller {
     $post->closed = 1;
     $post->save();
 
-    Flash::push('success', sentence(__('your post is now disabled. it will no longer be visible to the public.')));
+    session_push('success', sentence(__('your post is now disabled. it will no longer be visible to the public.')));
     return redirect()->route('posts');
   }
 
@@ -222,7 +224,7 @@ class PostController extends Controller {
     $post->closed = 0;
     $post->save();
 
-    Flash::push('success', sentence(__('your post is now enabled. it is now visible to the public.')));
+    session_push('success', sentence(__('your post is now enabled. it is now visible to the public.')));
     return redirect()->route('post', ['id' => $post->id]);
   }
 

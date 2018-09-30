@@ -4325,7 +4325,7 @@
         previewFileExtSettings: {},
         buttonLabelClass: 'hidden-xs',
         browseIcon: '<i class="fas fa-folder-open"></i>&nbsp;',
-        browseClass: 'btn btn-primary',
+        browseClass: 'btn btn-castme',
         removeIcon: '<i class="fas fa-trash"></i>',
         removeClass: 'btn btn-default btn-secondary',
         cancelIcon: '<i class="fas fa-ban"></i>',

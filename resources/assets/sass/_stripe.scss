@@ -12,6 +12,6 @@
   }
 
   &.is-invalid {
-    border-color: #fa755a;
+    border-color: color('danger');
   }
 }

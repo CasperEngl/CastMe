@@ -502,7 +502,7 @@
 
     </div>
 
-    <button class="card-footer btn btn-primary" type="submit">{{ ucfirst(__('save changes')) }}</button>
+    <button class="card-footer btn btn-castme" type="submit">{{ ucfirst(__('save changes')) }}</button>
   </div>
 {{ Form::close() }}
 @endsection

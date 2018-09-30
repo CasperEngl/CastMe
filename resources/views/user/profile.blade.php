@@ -24,7 +24,7 @@
         @csrf
         <input type="hidden" name="users[]" value="{{ Auth::id() }}">
         <input type="hidden" name="users[]" value="{{ $user->id }}">
-        <input type="submit" class="btn btn-primary mt-2" value="{{ ucfirst(__('message')) }}">
+        <input type="submit" class="btn btn-castme" value="{{ ucfirst(__('message')) }}">
       </form>
     </div>
     <div class="col-sm-6">
