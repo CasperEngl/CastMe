@@ -17,7 +17,7 @@
       <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-12 col-md-6 animated fadeInRight delay-{{ $key * 100 }}ms">
         <article class="post-card">
           <figure class="post-card__frame">
-            <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->content) }}" class="post-card__frame__img">
+            <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->location) }}" class="post-card__frame__img">
             <div class="post-card__roles">
               @foreach (json_decode($post->roles) as $key => $role)
               @if ($key === 5)
