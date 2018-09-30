@@ -45,13 +45,13 @@
 
   &--lg {
     .post-card__frame {
-      min-height: 300px;
+      height: 300px;
     }
   }
 
   &--sm {
     .post-card__frame {
-      min-height: 100px;
+      height: 100px;
     }
 
     .post-card__info {
@@ -94,7 +94,7 @@
       .w-100;
     position: relative;
     overflow: hidden;
-    min-height: 200px;
+    height: 200px;
     border-radius: $border-radius-lg;
     filter: brightness(150%);
 
