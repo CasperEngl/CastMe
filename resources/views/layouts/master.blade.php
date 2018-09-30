@@ -108,7 +108,6 @@
             <a href="{{ route('posts') }}" class="list-group-item {{ active_routes(['posts', str_singular('posts')], true) }}">{{ title_case(__('posts')) }}</a>
           </div>
           <div class="list-group mb-4">
-            <a href="{{ route('profile', ['id' => Auth::id()]) }}" class="list-group-item {{ active_route('profile', true) }}">{{ title_case('my profile') }}</a>
             <a href="{{ route('user.settings') }}" class="list-group-item {{ active_route('user.settings', true) }}">{{ title_case(__('profile settings')) }}</a>
             <a href="{{ route('user.subscription') }}" class="list-group-item {{ active_route('user.subscription', true) }}">{{ title_case(__('subscription')) }}</a>
           </div>
