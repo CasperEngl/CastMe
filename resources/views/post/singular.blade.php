@@ -22,7 +22,7 @@
         <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="" class="post-article__frame__img">
       </figure>
   
-      @if ($owner || in_array(Auth::user()->role, ['Admin', 'Moderator']))
+      @if ($owner || Auth::user() && in_array(Auth::user()->role, ['Admin', 'Moderator']))
       <section class="my-2 align-self-start">
         <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('edit')) }}</a>
         @if ($post->closed)
@@ -110,6 +110,8 @@
     </div>
     @endif
   @endforeach
+
+  @if (Auth::user())
   <form action="{{ route('comment.new') }}" method="POST">
     <h2 class="page-header mb-0">{{ ucfirst(__('comment')) }}</h2>
     <textarea name="content" class="tinymce"></textarea>
@@ -120,5 +122,6 @@
     @csrf
     @method('POST')
   </form>
+  @endif
 @endif
 @endsection
