@@ -6,6 +6,8 @@
   <div class="card">
     <div class="card-body">
 
+      <a href="{{ route('profile', ['id' => Auth::id()]) }}" class="btn btn-castme">{{ ucfirst('Your profile') }}</a>
+
       <div class="mb-4">
         {{ Form::label('avatar', ucfirst(__('avatar upload')), [
           'class' => 'text-muted mt-4'

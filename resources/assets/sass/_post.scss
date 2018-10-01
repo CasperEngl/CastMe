@@ -41,7 +41,7 @@
   }
 
   &__location {
-    @extend .badge, .badge-light, .p-3;
+    @extend .badge, .badge-light, .p-3, .m-0;
     font-size: 1.25rem;
   }
 

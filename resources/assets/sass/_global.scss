@@ -8,7 +8,7 @@ body {
 }
 
 #main {
-  @extend .p-4, .bg-white, .shdw-lg;
+  @extend .py-3, .bg-white, .shdw-lg;
   border-radius: $border-radius-lg;
 }
 

@@ -1,21 +1,20 @@
 import tinymce from 'tinymce';
-import config from './config';
 import getLocale from './getLocale';
 
 import './tinymce-plugins/charactercount';
 
 (async () => {
-  const locale = await getLocale(config.app.supported_languages) === 'da' ? 'da' : 'en';
+  const locale = await getLocale() === 'da' ? 'da' : 'en';
+
   const locales = {
     en: {
       headers: {
         title: 'Headers',
-        h1: 'Header 1',
-        h2: 'Header 2',
-        h3: 'Header 3',
-        h4: 'Header 4',
-        h5: 'Header 5',
-        h6: 'Header 6',
+        h1: 'Heading',
+        h2: 'Title',
+        h3: 'Subheading',
+        h4: 'Between Headline',
+        h5: 'Footnote',
       },
       inline: {
         title: 'Inline',
@@ -44,12 +43,11 @@ import './tinymce-plugins/charactercount';
     da: {
       headers: {
         title: 'Overskrifter',
-        h1: 'Overskrift 1',
-        h2: 'Overskrift 2',
-        h3: 'Overskrift 3',
-        h4: 'Overskrift 4',
-        h5: 'Overskrift 5',
-        h6: 'Overskrift 6',
+        h1: 'Overskrift',
+        h2: 'Titel',
+        h3: 'Underoverskrift',
+        h4: 'Mellemoverskrift',
+        h5: 'Fodnote',
       },
       inline: {
         title: 'Linje',
@@ -62,6 +60,7 @@ import './tinymce-plugins/charactercount';
         code: 'Kode',
       },
       blocks: {
+        title: 'Blokke',
         paragraph: 'Brødtekst',
         blockquote: 'Blokcitat',
         div: 'Div',
@@ -83,6 +82,7 @@ import './tinymce-plugins/charactercount';
     toolbar: false,
     menubar: false,
     plugins: [
+      'paste',
       'charactercount',
     ],
   });
@@ -93,6 +93,7 @@ import './tinymce-plugins/charactercount';
     theme: 'modern',
     skin: 'lightgray',
     branding: false,
+    paste_as_text: true,
 
     width: '100%',
     height: 500,
@@ -100,6 +101,7 @@ import './tinymce-plugins/charactercount';
     statubar: false,
 
     plugins: [
+      'paste',
       'lists',
       'link',
       'autolink',
@@ -118,16 +120,15 @@ import './tinymce-plugins/charactercount';
       {
         title: locales[locale].headers.title,
         items: [
-          { title: locales[locale].headers.h1, format: 'h1' },
-          { title: locales[locale].headers.h2, format: 'h2' },
-          { title: locales[locale].headers.h3, format: 'h3' },
-          { title: locales[locale].headers.h4, format: 'h4' },
-          { title: locales[locale].headers.h5, format: 'h5' },
-          { title: locales[locale].headers.h6, format: 'h6' },
+          { title: locales[locale].headers.h1, format: 'h2' },
+          { title: locales[locale].headers.h2, format: 'h3' },
+          { title: locales[locale].headers.h3, format: 'h4' },
+          { title: locales[locale].headers.h4, format: 'h5' },
+          { title: locales[locale].headers.h5, format: 'h6' },
         ],
       },
       {
-        title: 'Inline',
+        title: locales[locale].inline.title,
         items: [
           { title: locales[locale].inline.bold, icon: 'bold', format: 'bold' },
           { title: locales[locale].inline.italic, icon: 'italic', format: 'italic' },
@@ -139,7 +140,7 @@ import './tinymce-plugins/charactercount';
         ],
       },
       {
-        title: 'Blocks',
+        title: locales[locale].blocks.title,
         items: [
           { title: locales[locale].blocks.paragraph, format: 'p' },
           { title: locales[locale].blocks.blockquote, format: 'blockquote' },
@@ -148,7 +149,7 @@ import './tinymce-plugins/charactercount';
         ],
       },
       {
-        title: 'Alignment',
+        title: locales[locale].alignment.title,
         items: [
           { title: locales[locale].alignment.left, icon: 'alignleft', format: 'alignleft' },
           { title: locales[locale].alignment.center, icon: 'aligncenter', format: 'aligncenter' },
@@ -184,16 +185,15 @@ import './tinymce-plugins/charactercount';
       {
         title: locales[locale].headers.title,
         items: [
-          { title: locales[locale].headers.h1, format: 'h1' },
-          { title: locales[locale].headers.h2, format: 'h2' },
-          { title: locales[locale].headers.h3, format: 'h3' },
-          { title: locales[locale].headers.h4, format: 'h4' },
-          { title: locales[locale].headers.h5, format: 'h5' },
-          { title: locales[locale].headers.h6, format: 'h6' },
+          { title: locales[locale].headers.h1, format: 'h2' },
+          { title: locales[locale].headers.h2, format: 'h3' },
+          { title: locales[locale].headers.h3, format: 'h4' },
+          { title: locales[locale].headers.h4, format: 'h5' },
+          { title: locales[locale].headers.h5, format: 'h6' },
         ],
       },
       {
-        title: 'Inline',
+        title: locales[locale].inline.title,
         items: [
           { title: locales[locale].inline.bold, icon: 'bold', format: 'bold' },
           { title: locales[locale].inline.italic, icon: 'italic', format: 'italic' },
@@ -205,7 +205,7 @@ import './tinymce-plugins/charactercount';
         ],
       },
       {
-        title: 'Blocks',
+        title: locales[locale].blocks.title,
         items: [
           { title: locales[locale].blocks.paragraph, format: 'p' },
           { title: locales[locale].blocks.blockquote, format: 'blockquote' },
@@ -214,7 +214,7 @@ import './tinymce-plugins/charactercount';
         ],
       },
       {
-        title: 'Alignment',
+        title: locales[locale].alignment.title,
         items: [
           { title: locales[locale].alignment.left, icon: 'alignleft', format: 'alignleft' },
           { title: locales[locale].alignment.center, icon: 'aligncenter', format: 'aligncenter' },

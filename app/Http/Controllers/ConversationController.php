@@ -56,7 +56,19 @@ class ConversationController extends Controller {
   }
 
   public function new(Request $request) {
-    if($id = $this->checkIfExist($request->input('users')))
+    // Check if user is taking part in conversation
+    if (!in_array(Auth::id(), $request->input('users')))
+      return redirect()->back()->withErrors([
+        sentence(__('you are not part of this conversation.'))
+      ]);
+
+    // If only one unique user id is in the array, that means user tries to message themselves
+    if (count(array_unique($request->input('users'))) === 1)
+      return redirect()->back()->withErrors([
+        sentence(__('you cannot message yourself'))
+      ]);
+
+    if ($id = $this->checkIfExist($request->input('users')))
       return redirect()->route('conversation', ['id' => $id]);
 
     $conversation = new Conversation();
