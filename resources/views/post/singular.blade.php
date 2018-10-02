@@ -111,7 +111,7 @@
     @endif
   @endforeach
 
-  @if (Auth::user())
+  @paid
   <form action="{{ route('comment.new') }}" method="POST">
     <h2 class="page-header mb-0">{{ ucfirst(__('comment')) }}</h2>
     <textarea name="content" class="tinymce"></textarea>
@@ -122,6 +122,12 @@
     @csrf
     @method('POST')
   </form>
-  @endif
+  @else
+    @free
+    <a href="{{ route('user.subscription') }}" class="btn btn-lg btn-castme">{{ sentence(__('start your subscription to contact scout')) }}</a>
+    @else
+    <a href="{{ route('login') . '?previous=' . Request::fullUrl() }}" class="btn btn-lg btn-castme">{{ sentence(__('Login to contact scout')) }}</a>
+    @endfree
+  @endpaid
 @endif
 @endsection
