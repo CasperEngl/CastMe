@@ -29,8 +29,8 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
   Route::get('post/{id}', 'PostController@index')->name('post');
   Route::get('post/{id}/data', 'PostController@data')->name('post.data');
 
-  //User has to be logged in to access these
-  Route::middleware('auth', function () {
+  // User has to be logged in to access these
+  Route::group(['middleware' => ['auth']], function () {
     // Overview
     Route::get('overview', 'PagesController@overview')->name('overview');
 
@@ -46,34 +46,34 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
     // Invoice
     Route::get('user/subscription/invoice/{id}', 'SubscriptionController@invoice')->name('user.subscription.invoice');
 
-    Route::middleware('App\Http\Middleware\MemberMiddleware')->group(function () {
-      // Conversation (Singular)
-      Route::get('conversation/{id}', 'ConversationController@index')->name('conversation');
-      Route::post('conversation/send/{id}', 'ConversationController@send')->name('conversation.send');
-      Route::post('conversation/new', 'ConversationController@new')->name('conversation.new');
-  
-      // Conversations (List)
-      Route::get('conversations', 'ConversationController@list')->name('conversations');
+    // START MEMBER
+    // Conversation (Singular)
+    Route::get('conversation/{id}', 'ConversationController@index')->name('conversation');
+    Route::post('conversation/send/{id}', 'ConversationController@send')->name('conversation.send');
+    Route::post('conversation/new', 'ConversationController@new')->name('conversation.new');
 
-      // Post Comment
-      Route::post('post/comment/new', 'CommentController@new')->name('comment.new');
-    });
+    // Conversations (List)
+    Route::get('conversations', 'ConversationController@list')->name('conversations');
 
-    Route::middleware(['App\Http\Middleware\ScoutMiddleware'])->group(function () {
-      // Get own posts
-      Route::get('posts/own', 'PostController@listOwn')->name('posts.own');
+    // Post Comment
+    Route::post('post/comment/new', 'CommentController@new')->name('comment.new');
+    // END MEMBER
 
-      // Create Post
-      Route::get('post/new', 'PostController@new')->name('post.new');
-      Route::post('post/add', 'PostController@add')->name('post.add');
+    // START SCOUT
+    // Get own posts
+    Route::get('posts/own', 'PostController@listOwn')->name('posts.own');
 
-      // Edit Post
-      Route::get('post/{id}/edit', 'PostController@edit')->name('post.edit');
-      Route::get('post/{id}/edit/data', 'PostController@data');
-      Route::get('post/{id}/disable', 'PostController@disable')->name('post.disable');
-      Route::get('post/{id}/enable', 'PostController@enable')->name('post.enable');
-      Route::post('post/{id}/update', 'PostController@update')->name('post.update');
-    });
+    // Create Post
+    Route::get('post/new', 'PostController@new')->name('post.new');
+    Route::post('post/add', 'PostController@add')->name('post.add');
+
+    // Edit Post
+    Route::get('post/{id}/edit', 'PostController@edit')->name('post.edit');
+    Route::get('post/{id}/edit/data', 'PostController@data');
+    Route::get('post/{id}/disable', 'PostController@disable')->name('post.disable');
+    Route::get('post/{id}/enable', 'PostController@enable')->name('post.enable');
+    Route::post('post/{id}/update', 'PostController@update')->name('post.update');
+    // END SCOUT
   });
 
   Route::post('locale/set', 'LocaleController@set')->name('locale.set');
