@@ -9,6 +9,10 @@ class Snack {
     this.container = document.createElement('div');
     this.el = el;
 
+    this.hideTimeout = 5000;
+    this.showTimeout = 500;
+    this.staggerDelay = 100;
+
     this.containerStyles = {
       position: 'fixed',
       bottom: '1rem',
@@ -26,25 +30,18 @@ class Snack {
 
   async run(el = this.el) {
     document.body.append(this.container);
+
     Object.assign(this.container.style, this.containerStyles);
 
     if (el.length) {
       [...el].map(async (snack, key) => {
         this.container.append(snack);
 
-        Object.assign(snack.style, {
-          padding: '8px 12px',
-          background: '#000',
-          color: 'white',
-          opacity: '0',
-          transition: 'opacity 700ms ease-in-out',
-        });
-
-        await this.show(500, snack, {
+        await this.show(this.showTimeout, snack, {
           marginBottom: '1rem',
-          transitionDelay: `${key * -100}ms`,
+          transitionDelay: `${key * -this.staggerDelay}ms`,
         });
-        await this.hide(3000, snack);
+        await this.hide(this.hideTimeout, snack);
       });
     }
   }
