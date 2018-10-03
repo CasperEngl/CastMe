@@ -26,7 +26,7 @@
       <section class="my-2 align-self-start">
         <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('edit')) }}</a>
         @if ($post->closed)
-          <a href="{{ route('post.enable', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('release')) }}</a>
+          <a href="{{ route('post.enable', ['id' => $post->id]) }}" class="btn btn-warning">{{ ucfirst(__('release')) }}</a>
         @else
           <a href="{{ route('post.disable', ['id' => $post->id]) }}" class="btn btn-danger">{{ ucfirst(__('disable')) }}</a>
         @endif
