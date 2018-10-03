@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -25,18 +26,15 @@ class RegisterController extends Controller
 
     /**
      * Where to redirect users after registration.
-     *
-     * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/overview';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest');
     }
 
@@ -62,8 +60,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
         return User::create([
             'name' => title_case($data['name']),
             'last_name' => title_case($data['last_name']),

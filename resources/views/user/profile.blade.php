@@ -20,19 +20,21 @@
         @endforeach
       </div>
       @endif
+      @if (Auth::user() && Auth::id() === $user->id)
       <form action="{{ route('conversation.new') }}" method="post">
         @csrf
         <input type="hidden" name="users[]" value="{{ Auth::id() }}">
         <input type="hidden" name="users[]" value="{{ $user->id }}">
-        <input type="submit" class="btn btn-castme" value="{{ ucfirst(__('message')) }}">
+        <input type="submit" class="btn btn-castme mt-2" value="{{ ucfirst(__('message')) }}">
       </form>
+      @endif
     </div>
     <div class="col-sm-6">
       <section class="row">
-        <div class="col-auto">
+        <div class="col-12">
           <h4 class="profile__title">{{ ucfirst(__('description')) }}</h4>
         </div>
-        <div class="col">
+        <div class="col-12">
           @if ($user->details->description)
           <p>{{ $user->details->description }}</p>
           @else
@@ -42,10 +44,10 @@
       </section>
 
       <section class="row">
-        <div class="col-auto">
-          <h4 class="profile__title">{{ ucfirst(__('description')) }}</h4>
+        <div class="col-12">
+          <h4 class="profile__title">{{ ucfirst(__('Details')) }}</h4>
         </div>
-        <div class="col">
+        <div class="col-12">
           @if ($user->details->ethnicity)
           <p class="text-muted m-0">{{ ucfirst(__('ethnicity')) }}</p>
           <p class="h5">{{ $user->details->ethnicity }}</p>
@@ -62,14 +64,6 @@
           <p class="text-muted m-0">{{ ucfirst(__('hair color')) }}</p>
           <p class="h5">{{ $user->details->hair_color }}</p>
           @endif
-        </div>
-      </section>
-
-      <section class="row">
-        <div class="col-auto">
-          <h4 class="profile__title">{{ ucfirst(__('description')) }}</h4>
-        </div>
-        <div class="col">
           @if ($user->details->age)
           <p class="text-muted m-0">{{ ucfirst(__('age')) }}</p>
           <p class="h5">{{ $user->details->age }}</p>

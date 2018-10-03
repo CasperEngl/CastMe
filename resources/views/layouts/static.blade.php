@@ -15,12 +15,12 @@
     <nav class="navbar navbar-expand-sm navbar-castme">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
-        <img src="{{ asset('img/logo.png') }}" alt="castme logo">
-      </a>
+          <img src="{{ asset('img/logo.png') }}" alt="castme logo">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse"
-          aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
 
@@ -42,7 +42,7 @@
                   {{ ucfirst(__('danish')) }}
                 </option>
               </select>
-              
+
               @csrf
             </form>
             <li class="nav-item dropdown">
@@ -62,7 +62,7 @@
                 <a class="dropdown-item {{ active_route('user.settings', true) }}" href="{{ route('user.settings') }}">{{ ucfirst(__('profile settings')) }}</a>
                 <a class="dropdown-item {{ active_route('user.subscription', true) }}" href="{{ route('user.subscription') }}">{{ ucfirst(__('subscription')) }}</a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                {{ ucfirst(__('logout')) }} <i class="fas fa-sign-out-alt"></i></a>
+                  {{ ucfirst(__('logout')) }} <i class="fas fa-sign-out-alt"></i></a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf @method('POST')
@@ -77,75 +77,10 @@
     </nav>
   </header>
 
-  <div id="wrapper" class="container">
-    @if (Session::has('success'))
-      @foreach (Session::get('success') as $success)
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ $success }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      @endforeach
-    @endif 
-    @if ($errors->any())
-      @foreach ($errors->all() as $error)
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ $error }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      @endforeach
-    @endif
-
-    <div class="row">
-      @auth
-      <aside class="col-sm-3 d-none d-lg-block">
-        <div class="sidebar" id="sidebar" data-toggle="affix">
-          <div class="list-group mb-4">
-            <a href="{{ route('overview') }}" class="list-group-item {{ active_route('overview', true) }}">{{ title_case(__('overview')) }}</a>
-            <a href="{{ route('posts') }}" class="list-group-item {{ active_routes(['posts', str_singular('posts')], true) }}">{{ title_case(__('posts')) }}</a>
-          </div>
-          <div class="list-group mb-4">
-            <a href="{{ route('user.settings') }}" class="list-group-item {{ active_route('user.settings', true) }}">{{ title_case(__('profile settings')) }}</a>
-            <a href="{{ route('user.subscription') }}" class="list-group-item {{ active_route('user.subscription', true) }}">{{ title_case(__('subscription')) }}</a>
-          </div>
-          @paid
-          <div class="list-group mb-4">
-            <a href="{{ route('conversations') }}" class="list-group-item {{ active_routes(['conversations', str_singular('conversations')], true) }}">{{ title_case(__('conversations')) }}</a>
-          </div>
-          @endpaid
-          @scout
-          <div class="list-group mb-4">
-            <a href="{{ route('post.new') }}" class="list-group-item {{ active_route('post.new', true) }}">{{ title_case(__('new post')) }}</a>
-            <a href="{{ route('posts.own') }}" class="list-group-item {{ active_route('posts.own', true) }}">{{ title_case(__('your posts')) }}</a>
-          </div>
-          @endscout
-        </div>
-      </aside>
-      @endauth
-      @guest
-      <main id="main" class="col">
-      @else
-      <main id="main" class="col-lg-9">
-      @endguest
-        @yield('content')
-      </main>
-    </div>
-  </div>
-
-  @auth
-  <script>
-    @if (Auth::user()->lang)
-    var locale = '{{ Auth::user()->lang }}';
-    @endif
-    var user = {{ Auth::id() }};
-  </script>
-  @endauth
+  <main id="main">
+    @yield('content')
+  </main>
 
   <script src="{{ mix('js/app.js') }}"></script>
 
 </body>
-
-</html>

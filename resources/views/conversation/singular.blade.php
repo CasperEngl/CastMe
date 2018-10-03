@@ -34,8 +34,6 @@
       </div>  
     @endforeach
   </div>
-@else
-  <h3>{{ ucfirst(__('no messages yet')) }}</h3>
 @endif
 
 <div class="h3">{{ ucfirst(__('new message')) }}</div>

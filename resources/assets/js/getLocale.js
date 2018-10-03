@@ -5,14 +5,16 @@ consistent-return: 0,
 no-undef: 0,
 */
 
-async function getLocale(supportedLanguages) {
+import config from './config';
+
+async function getLocale() {
   try {
     const response = await fetch(`/api/locale/user/${user}`, {
       method: 'POST',
     });
     const result = await response.json();
 
-    if (Object.keys(supportedLanguages).includes(result.lang)) {
+    if (Object.keys(config.app.supported_languages).includes(result.lang)) {
       return result.lang;
     }
   } catch (err) {

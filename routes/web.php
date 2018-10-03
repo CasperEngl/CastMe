@@ -19,77 +19,64 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
   // Homepage
   Route::get('/', 'HomeController@index')->name('home');
 
-  //User has to be logged in to access these
-  Route::group(['middleware' => ['auth']], function () {
-  // Overview
-  Route::get('overview', 'PagesController@overview')->name('overview');
-
   // Specific Profile
   Route::get('profile/{id}', 'ProfileController@user')->name('profile');
 
-  Route::prefix('posts')->group(function () {
-    // Posts
-    Route::get('/', 'PostController@list')->name('posts');
+  // Posts
+  Route::get('posts', 'PostController@list')->name('posts');
 
-    Route::middleware(['App\Http\Middleware\ScoutMiddleware'])->group(function () {
-    Route::get('own', 'PostController@listOwn')->name('posts.own');
-    });
-  });
+  // Singular Post
+  Route::get('post/{id}', 'PostController@index')->name('post');
+  Route::get('post/{id}/data', 'PostController@data')->name('post.data');
 
-  Route::prefix('post')->group(function () {
-    // Singular Post
-    Route::get('{id}', 'PostController@index')->name('post');
-    Route::get('{id}/data', 'PostController@data')->name('post.data');
+  // User has to be logged in to access these
+  Route::group(['middleware' => ['auth']], function () {
+    // Overview
+    Route::get('overview', 'PagesController@overview')->name('overview');
 
-    Route::middleware(['App\Http\Middleware\MemberMiddleware'])->group(function () {
-    // Post Comment
-    Route::post('comment/new', 'CommentController@new')->name('comment.new');
-    });
-
-    Route::middleware(['App\Http\Middleware\ScoutMiddleware'])->group(function () {
-    // Create Post
-    Route::get('new', 'PostController@new')->name('post.new');
-    Route::post('add', 'PostController@add')->name('post.add');
-
-    // Edit Post
-    Route::get('{id}/edit', 'PostController@edit')->name('post.edit');
-    Route::get('{id}/edit/data', 'PostController@data');
-    Route::get('{id}/disable', 'PostController@disable')->name('post.disable');
-    Route::get('{id}/enable', 'PostController@enable')->name('post.enable');
-    Route::post('{id}/update', 'PostController@update')->name('post.update');
-    });
-  });
-
-  Route::prefix('user')->group(function () {
     // Profile Settings
-    Route::get('settings', 'ProfileController@index')->name('user.settings');
-    Route::post('settings/update', 'ProfileController@update')->name('user.settings.update');
+    Route::get('user/settings', 'ProfileController@index')->name('user.settings');
+    Route::post('user/settings/update', 'ProfileController@update')->name('user.settings.update');
 
     // Subscription
-    Route::get('subscription', 'SubscriptionController@index')->name('user.subscription');
-    Route::post('subscription/create', 'SubscriptionController@create')->name('user.subscription.create');
-    Route::post('subscription/swap', 'SubscriptionController@swap')->name('user.subscription.swap');
+    Route::get('user/subscription', 'SubscriptionController@index')->name('user.subscription');
+    Route::post('user/subscription/create', 'SubscriptionController@create')->name('user.subscription.create');
+    Route::post('user/subscription/swap', 'SubscriptionController@swap')->name('user.subscription.swap');
 
     // Invoice
-    Route::get('subscription/invoice/{id}', 'SubscriptionController@invoice')->name('user.subscription.invoice');
-  });
+    Route::get('user/subscription/invoice/{id}', 'SubscriptionController@invoice')->name('user.subscription.invoice');
 
-  Route::prefix('conversation')->middleware('App\Http\Middleware\MemberMiddleware')->group(function () {
+    // START MEMBER
     // Conversation (Singular)
-    Route::get('{id}', 'ConversationController@index')->name('conversation');
-    Route::post('send/{id}', 'ConversationController@send')->name('conversation.send');
-    Route::post('new', 'ConversationController@new')->name('conversation.new');
-  });
+    Route::get('conversation/{id}', 'ConversationController@index')->name('conversation');
+    Route::post('conversation/send/{id}', 'ConversationController@send')->name('conversation.send');
+    Route::post('conversation/new', 'ConversationController@new')->name('conversation.new');
 
-  Route::prefix('locale')->group(function () {
-    Route::post('set', 'LocaleController@set')->name('locale.set');
-  });
-
-  Route::middleware('App\Http\Middleware\MemberMiddleware')->group(function () {
     // Conversations (List)
     Route::get('conversations', 'ConversationController@list')->name('conversations');
+
+    // Post Comment
+    Route::post('post/comment/new', 'CommentController@new')->name('comment.new');
+    // END MEMBER
+
+    // START SCOUT
+    // Get own posts
+    Route::get('posts/own', 'PostController@listOwn')->name('posts.own');
+
+    // Create Post
+    Route::get('post/new', 'PostController@new')->name('post.new');
+    Route::post('post/add', 'PostController@add')->name('post.add');
+
+    // Edit Post
+    Route::get('post/{id}/edit', 'PostController@edit')->name('post.edit');
+    Route::get('post/{id}/edit/data', 'PostController@data');
+    Route::get('post/{id}/disable', 'PostController@disable')->name('post.disable');
+    Route::get('post/{id}/enable', 'PostController@enable')->name('post.enable');
+    Route::post('post/{id}/update', 'PostController@update')->name('post.update');
+    // END SCOUT
   });
-  });
+
+  Route::post('locale/set', 'LocaleController@set')->name('locale.set');
 });
 
 Route::get('logout', function () {

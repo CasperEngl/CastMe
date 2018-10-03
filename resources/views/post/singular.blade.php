@@ -17,24 +17,12 @@
         <p class="post-article__quote__name">{{ $post->owner->name }} {{ $post->owner->last_name }}</p>
       </blockquote>
     </a>
-    @if ($post->roles)
-    <section class="d-flex flex-wrap align-items-center justify-content-center my-3">
-      @foreach (json_decode($post->roles) as $role)
-      <span class="badge badge-pill badge-castme py-2 px-3 my-1 mx-1">{{ strtoupper(__($role)) }}</span>
-      @endforeach
-    </section>
-    @endif
-    @if ($post->location)
-    <section class="d-flex flex-wrap align-items-center justify-content-center mb-3">
-      <h3 class="post-article__location">{{ $post->location }}</h3>
-    </section>
-    @endif
     <div class="post-article__container">
       <figure class="post-article__frame">
         <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="" class="post-article__frame__img">
       </figure>
   
-      @if ($owner || in_array(Auth::user()->role, ['Admin', 'Moderator']))
+      @if ($owner || Auth::user() && in_array(Auth::user()->role, ['Admin', 'Moderator']))
       <section class="my-2 align-self-start">
         <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('edit')) }}</a>
         @if ($post->closed)
@@ -44,6 +32,19 @@
         @endif
       </section>
       @endif
+      <section class="row align-items-center justify-content-center my-3">
+        @if ($post->location)
+        <div class="col-auto">
+          <h3 class="post-article__location">{{ $post->location }}</h3>
+        </div>
+        @endif
+        @if ($post->roles)
+        <div class="col">
+          @foreach (json_decode($post->roles) as $role)
+          <span class="badge badge-pill badge-castme py-2 px-3 my-1 mx-1">{{ strtoupper(__($role)) }}</span> @endforeach
+          @endif
+        </div>
+      </section>
   
       <section class="post-article__content">      
         {!! $post->content !!}
@@ -109,6 +110,8 @@
     </div>
     @endif
   @endforeach
+
+  @paid
   <form action="{{ route('comment.new') }}" method="POST">
     <h2 class="page-header mb-0">{{ ucfirst(__('comment')) }}</h2>
     <textarea name="content" class="tinymce"></textarea>
@@ -119,5 +122,12 @@
     @csrf
     @method('POST')
   </form>
+  @else
+    @free
+    <a href="{{ route('user.subscription') }}" class="btn btn-lg btn-castme">{{ sentence(__('start your subscription to contact scout')) }}</a>
+    @else
+    <a href="{{ route('login') . '?previous=' . Request::fullUrl() }}" class="btn btn-lg btn-castme">{{ sentence(__('Login to contact scout')) }}</a>
+    @endfree
+  @endpaid
 @endif
 @endsection
