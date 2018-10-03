@@ -22,7 +22,7 @@
         <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="" class="post-article__frame__img">
       </figure>
   
-      @if ($owner || in_array(Auth::user()->role, ['Admin', 'Moderator']))
+      @if ($owner || Auth::user() && in_array(Auth::user()->role, ['Admin', 'Moderator']))
       <section class="my-2 align-self-start">
         <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('edit')) }}</a>
         @if ($post->closed)
@@ -110,6 +110,8 @@
     </div>
     @endif
   @endforeach
+
+  @paid
   <form action="{{ route('comment.new') }}" method="POST">
     <h2 class="page-header mb-0">{{ ucfirst(__('comment')) }}</h2>
     <textarea name="content" class="tinymce"></textarea>
@@ -120,5 +122,12 @@
     @csrf
     @method('POST')
   </form>
+  @else
+    @free
+    <a href="{{ route('user.subscription') }}" class="btn btn-lg btn-castme">{{ sentence(__('start your subscription to contact scout')) }}</a>
+    @else
+    <a href="{{ route('login') . '?previous=' . Request::fullUrl() }}" class="btn btn-lg btn-castme">{{ sentence(__('Login to contact scout')) }}</a>
+    @endfree
+  @endpaid
 @endif
 @endsection

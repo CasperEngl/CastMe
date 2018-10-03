@@ -14,6 +14,15 @@ use App\User;
  * @mixin \Eloquent
  */
 class ConversationController extends Controller {
+  public function __construct() {
+    $this->middleware('App\Http\Middleware\MemberMiddleware');
+    $this->middleware('App\Http\Middleware\ScoutMiddleware', [
+      'only' => [
+        'new'
+      ]
+    ]);
+  }
+
   public function index($id) {
     try { //Find conversation
       $conversation = Conversation::findOrFail($id);
@@ -47,7 +56,7 @@ class ConversationController extends Controller {
     ]);
   }
 
-  public function list() {
+  public function list() {    
     $conversations = Auth::user()->conversations;
 
     return view('conversation.list')->with([
