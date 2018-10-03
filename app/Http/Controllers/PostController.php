@@ -177,17 +177,19 @@ class PostController extends Controller {
         ucfirst(__('unauthorized access'))
       ]);
 
-    foreach ($request->input('roles.*') as $role) {
-      if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
-        return redirect()->back()->withErrors([
-          ucfirst(__('"' . $role . '" is not a valid role')),
-        ]);
+    if ($request->input('roles.*')) {
+      foreach ($request->input('roles.*') as $role) {
+        if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
+          return redirect()->back()->withErrors([
+            ucfirst(__('"' . $role . '" is not a valid role')),
+          ]);
 
-      $roles[] = $role;
+        $roles[] = $role;
+      }
     }
 
     $post->title    = $request->input('title');
-    $post->roles    = json_encode($roles);
+    $post->roles    = isset($roles) ? json_encode($roles) : $post->roles;
     $post->images   = json_encode($request->input('image.*'));
     $post->banner   = isset($storedFile) ? $storedFile : $post->banner;
     $post->content  = $request->input('content');
