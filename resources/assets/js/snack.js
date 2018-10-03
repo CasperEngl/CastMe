@@ -38,7 +38,7 @@ class Snack {
         this.container.append(snack);
 
         await this.show(this.showTimeout, snack, {
-          marginBottom: '1rem',
+          marginBottom: key === 0 ? '0' : '1rem',
           transitionDelay: `${key * -this.staggerDelay}ms`,
         });
         await this.hide(this.hideTimeout, snack);
