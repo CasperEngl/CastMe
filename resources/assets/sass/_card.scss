@@ -100,11 +100,17 @@
 
     &:hover {
       @extend .shdw;
+
+      .post-card__frame__img {
+        opacity: .75;
+        transform: scale(1.05);
+      }
     }
 
     &__img {
       @extend .w-100, .h-100;
       object-fit: cover;
+      transition: $transition-base;
     }
   }
 }
