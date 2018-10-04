@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration {
       $table->string('email')->unique();
       $table->string('password');
       $table->string('avatar')->default('placeholder/avatar.png');
-      $table->string('lang')->nullable();
+      $table->string('lang')->default('da');
       $table->enum('role', ['Free', 'Paid', 'Scout', 'Moderator', 'Admin'])->default('Free');
       $table->rememberToken();
       $table->string('stripe_id')->nullable();
