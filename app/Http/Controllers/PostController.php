@@ -14,7 +14,7 @@ use Storage;
 class PostController extends Controller {
   public function index($id) {
     $post = Post::find($id);
-
+    
     if ($post->closed && $post->user_id !== Auth::id())
       return redirect()->back()->withErrors([
         ucfirst(__('that post no longer exists.'))
@@ -74,7 +74,9 @@ class PostController extends Controller {
   }
 
   public function list() {
-    $posts = Post::orderBy('id', 'desc')->get();
+    $posts = Post::orderBy('id', 'desc')
+      ->where('closed', 0)
+      ->get();
 
     return view('post.list', [
       'title' => ucfirst(__('posts')),
@@ -198,7 +200,7 @@ class PostController extends Controller {
     return redirect()->route('post', ['id' => $post->id]);
   }
 
-  public function disable($id) {
+  public function toggle(int $id) {
     $post = Post::find($id);
 
     if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
@@ -206,26 +208,17 @@ class PostController extends Controller {
         ucfirst(__('oops, looks like that post doesn\'t belong to you.'))
       ]);
 
-    $post->closed = 1;
+    $post->closed = !$post->closed;
     $post->save();
 
-    session_push('success', sentence(__('your post is now disabled. it will no longer be visible to the public.')));
-    return redirect()->route('posts');
-  }
-
-  public function enable($id) {
-    $post = Post::find($id);
-
-    if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
-      return redirect()->back()->withErrors([
-        ucfirst(__('oops, looks like that post doesn\'t belong to you.'))
-      ]);
-
-    $post->closed = 0;
-    $post->save();
-
-    session_push('success', sentence(__('your post is now enabled. it is now visible to the public.')));
-    return redirect()->route('post', ['id' => $post->id]);
+    // If the post is closed
+    if ($post->closed) {
+      session_push('success', sentence(__('your post is now disabled. it will no longer be visible to the public.')));
+      return redirect()->route('posts');
+    } else { // If the post is not closed
+      session_push('success', sentence(__('your post is now enabled. it is now visible to the public.')));
+      return redirect()->route('post', ['id' => $post->id]);
+    }
   }
 
   public function dump(Request $request) {
