@@ -6,7 +6,7 @@
 @endif
 @endforeach
 
-@if (count($messages) > 0)
+@if (count($messages))
   <div class="conversation__container">
     @foreach ($messages as $message)
       @if ($message->user->id === Auth::id())
