@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 
-@if (count($conversations) === 0)
+@if (!count($conversations))
 <h2 class="page-header">{{ ucfirst(__('no conversations')) }}</h2>
 @else
 <h2 class="page-header">{{ ucfirst(__('conversations')) }}</h2>
