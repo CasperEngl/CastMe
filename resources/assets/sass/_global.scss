@@ -1,6 +1,7 @@
 body {
   position: relative;
   overflow-x: hidden;
+  min-height: 100vh;
   background: $body-bg;
   /*
   background-size: $body-bg-size;

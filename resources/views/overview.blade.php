@@ -31,7 +31,7 @@
   @scout
   <div class="col-12 col-sm-6 col-lg-4 animated fadeInRight delay-500ms">
     <a href="{{ route('post.new') }}" class="btn tile">
-      <i class="fas fa-plus"></i><span class="d-inline-block">{{ ucfirst(__('new post')) }}</span>
+      <i class="fas fa-plus"></i><span class="d-inline-block">{{ ucfirst(__('new job post')) }}</span>
     </a>
   </div>
   <div class="col-12 col-sm-6 col-lg-4 animated fadeInRight delay-600ms">

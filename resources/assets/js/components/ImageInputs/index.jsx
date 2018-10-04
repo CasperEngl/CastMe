@@ -19,6 +19,7 @@ import {
   Button,
 } from 'reactstrap';
 
+import config from '../../config';
 import '../../helpers/ucFirst';
 
 import ImageInput from './ImageInput';
@@ -41,7 +42,7 @@ class ImageInputs extends Component {
           images: 'billeder',
         },
       },
-      lang: locale,
+      lang: window.locale,
     };
   }
 
@@ -49,7 +50,7 @@ class ImageInputs extends Component {
     const { type } = this.props;
     const { defaultStrings } = this.state;
 
-    this.getLocale(defaultStrings);
+    this.getLocale();
 
     if (type.toLowerCase() === 'update') {
       try {
@@ -67,17 +68,15 @@ class ImageInputs extends Component {
     }
   }
 
-  async getLocale(supportedLanguages) {
+  async getLocale() {
     try {
       const response = await fetch(`/api/locale/user/${user}`, {
         method: 'POST',
       });
       const result = await response.json();
 
-      if (Object.keys(supportedLanguages).includes(result.lang)) {
-        this.setState({
-          lang: result.lang,
-        });
+      if (Object.keys(config.app.supported_languages).includes(result.lang)) {
+        this.setState({ lang: result.lang });
 
         return result.lang;
       }
@@ -109,18 +108,14 @@ class ImageInputs extends Component {
   }
 
   render() {
-    const { inputList, defaultStrings, lang } = this.state;
-
-    const strings = new LocalizedStrings(defaultStrings);
-
-    strings.setLanguage(lang);
+    const { inputList } = this.state;
 
     return (
       <Fragment>
         <Row className="d-flex align-items-center mb-2">
           <Col xs="auto">
             <h5 className="text-muted m-0">
-              { strings.images.ucFirst() }
+              Images
             </h5>
           </Col>
           <Col xs="auto">

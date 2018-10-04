@@ -86,6 +86,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      @admin
+      <div class="snack snack-success">{{ $success }}</div>
+      @endadmin
       @endforeach
     @endif 
     @if ($errors->any())
@@ -96,6 +99,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      @admin
+      <div class="snack snack-danger">{{ $error }}</div>
+      @endadmin
       @endforeach
     @endif
 
