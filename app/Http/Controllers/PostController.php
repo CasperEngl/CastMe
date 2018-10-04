@@ -12,6 +12,25 @@ use App\Helpers\Format;
 use Storage;
 
 class PostController extends Controller {
+  public function __construct() {
+    $this->middleware('App\Http\Middleware\MemberMiddleware', [
+      'except' => [
+        'index',
+        'list',
+      ]
+    ]);
+    $this->middleware('App\Http\Middleware\ScoutMiddleware', [
+      'only' => [
+        'new',
+        'edit',
+        'listOwn',
+        'add',
+        'update',
+        'toggle',
+      ]
+    ]);
+  }
+
   public function index($id) {
     $post = Post::find($id);
     
@@ -43,6 +62,18 @@ class PostController extends Controller {
       ]);
   }
 
+  public function list() {
+    $posts = Post::orderBy('id', 'desc')
+      ->where('closed', 0)
+      ->get();
+
+    return view('post.list', [
+      'title' => ucfirst(__('posts')),
+      'posts' => $posts,
+      'own' => false,
+    ]);
+  }
+
   public function new() {
     $user = Auth::user();
 
@@ -70,18 +101,6 @@ class PostController extends Controller {
         'id' => $id,
       ]),
       'type' => ucfirst(__('update')),
-    ]);
-  }
-
-  public function list() {
-    $posts = Post::orderBy('id', 'desc')
-      ->where('closed', 0)
-      ->get();
-
-    return view('post.list', [
-      'title' => ucfirst(__('posts')),
-      'posts' => $posts,
-      'own' => false,
     ]);
   }
 
