@@ -50,32 +50,28 @@
           <h2 class="page-header">{{ ucfirst(__('posts')) }}</h2>
           <div class="row">
       
-          @if (!empty(array_filter(json_decode($posts), function ($post) {
-            return $post->closed === 0;
-          })))
+          @if (count($posts))
             @foreach($posts as $post)
-              @if (!$post->closed || $own)
-              <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-sm-6 animated fadeInRight">
-                <article class="post-card post-card--sm">
-                  <figure class="post-card__frame">
-                    <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->location) }}" class="post-card__frame__img">
-                    <div class="post-card__roles">
-                      @foreach (json_decode($post->roles) as $key => $role)
-                      <span class="badge badge-pill badge-castme py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
-                      @endforeach
-                    </div>
-                  </figure>
-                  <div class="post-card__info">
-                    @if (Auth::user() && Auth::id() === $post->user_id)
-                    <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
-                    @else
-                    <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</p>
-                    @endif
-                    <h2 class="post-card__title">{{ str_limit(title_case($post->title), 40) }}</h2>
+            <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-sm-6 animated fadeInRight">
+              <article class="post-card post-card--sm">
+                <figure class="post-card__frame">
+                  <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->location) }}" class="post-card__frame__img">
+                  <div class="post-card__roles">
+                    @foreach (json_decode($post->roles) as $key => $role)
+                    <span class="badge badge-pill badge-castme py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
+                    @endforeach
                   </div>
-                </article>
-              </a>
-              @endif
+                </figure>
+                <div class="post-card__info">
+                  @if (Auth::user() && Auth::id() === $post->user_id)
+                  <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
+                  @else
+                  <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</p>
+                  @endif
+                  <h2 class="post-card__title">{{ str_limit(title_case($post->title), 40) }}</h2>
+                </div>
+              </article>
+            </a>
             @endforeach
           @endif
       
