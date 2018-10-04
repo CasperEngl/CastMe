@@ -11,4 +11,13 @@
       font-weight: bold;
     }
   }
+
+  &__user__avatar {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  &__user__name {
+    @extend .h5, .mt-2;
+  }
 }
