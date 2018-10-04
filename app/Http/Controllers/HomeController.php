@@ -22,6 +22,7 @@ class HomeController extends Controller {
    */
   public function index() {
     $posts = Post::orderBy('id', 'desc')
+      ->where('closed', 0)
       ->limit(8)
       ->get();
 
