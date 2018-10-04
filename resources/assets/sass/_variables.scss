@@ -1,12 +1,13 @@
 // Colors
-$castme-color: #5F91C3;
+// $castme-color: #5F91C3;
+$castme-color: #01689f;
 
 $theme-colors: (
   'castme': $castme-color,
   'primary': #03A9F4,
   'danger': #E64A19,
   'warning': #FFEE58,
-  'success': #69F0AE,
+  'success': #469864,
   'info': #7C4DFF,
 );
 $colors: (
@@ -52,6 +53,7 @@ $post-card-margin: 1rem 0;
 
 // Navbar
 $navbar-brand-logo-height: 40px;
+$navbar-background-color: rgba(22, 22, 22, 0.5);
 
 // Tile buttons
 $tile-height: 10rem;
