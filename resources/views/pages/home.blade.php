@@ -47,7 +47,7 @@
       </main>
       <section class="jumbotron mt-4 mb-0">
         <div class="container">
-          <h2 class="page-header">{{ ucfirst(__('posts')) }}</h2>
+          <h2 class="page-header">{{ ucfirst(__('posts')) }} <i class="fas fa-clipboard-list"></i></h2>
           <div class="row">
       
           @if (count($posts))
@@ -111,6 +111,23 @@
               </a>
             </div>
           </article>
+        </section>
+        <section class="list-group my-4 py-2 card d-flex align-items-center">
+          <p class="h4 text-align">Nyeste bruger</p>
+          @foreach ($latestUsers as $user)
+          <figure class="circle sidebar__user__avatar">
+            <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
+          </figure>
+          <p class="sidebar__user__name">{{ $user->name }}</p>
+          @endforeach
+          <hr class="w-100">
+          <p class="h4 text-align">Fremhævet profil</p>
+          @foreach ($showcasedUsers as $user)
+          <figure class="circle sidebar__user__avatar">
+            <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
+          </figure>
+          <p class="sidebar__user__name">{{ $user->name }}</p>
+          @endforeach
         </section>
       </div>
     </aside>

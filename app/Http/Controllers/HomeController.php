@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 
 class HomeController extends Controller {
   /**
@@ -25,7 +26,17 @@ class HomeController extends Controller {
       ->where('closed', 0)
       ->limit(8)
       ->get();
+    $latestUsers = User::orderBy('id', 'desc')
+      ->limit(1)
+      ->get();
+    $showcasedUsers = User::inRandomOrder()
+      ->limit(1)
+      ->get();
 
-    return view('pages.home')->with('posts', $posts);
+    return view('pages.home')->with([
+      'posts' => $posts,
+      'latestUsers' => $latestUsers,
+      'showcasedUsers' => $showcasedUsers,
+    ]);
   }
 }
