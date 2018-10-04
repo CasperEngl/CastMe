@@ -70,8 +70,7 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
     // Edit Post
     Route::get('post/{id}/edit', 'PostController@edit')->name('post.edit');
     Route::get('post/{id}/edit/data', 'PostController@data');
-    Route::get('post/{id}/disable', 'PostController@disable')->name('post.disable');
-    Route::get('post/{id}/enable', 'PostController@enable')->name('post.enable');
+    Route::get('post/{id}/toggle', 'PostController@toggle')->name('post.toggle');
     Route::post('post/{id}/update', 'PostController@update')->name('post.update');
     // END SCOUT
   });
