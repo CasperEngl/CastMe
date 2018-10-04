@@ -13,12 +13,6 @@ class Snack {
     this.showTimeout = 500;
     this.staggerDelay = 100;
 
-    this.containerStyles = {
-      position: 'fixed',
-      bottom: '1rem',
-      right: '1rem',
-    };
-
     this.hideStyles = {
       opacity: '0',
     };
@@ -29,6 +23,7 @@ class Snack {
   }
 
   async run(el = this.el) {
+    this.container.classList.add('snack__container');
     document.body.append(this.container);
 
     Object.assign(this.container.style, this.containerStyles);

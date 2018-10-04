@@ -11,4 +11,13 @@
       color: color-yiq($color);
     }
   }
+
+  &__container {
+    @extend .container;
+    z-index: 9999;
+    position: fixed;
+    top: 7rem;
+    right: 0;
+    left: 0;
+  }
 }
