@@ -5,39 +5,35 @@
 @endscout
 
 {{-- Check if no posts or all posts are closed --}}
-@if (empty(array_filter(json_decode($posts), function ($post) {
-  return $post->closed === 0;
-})))
+@if (!count($posts))
   <div class="page-header">{{ ucfirst(__('no posts')) }}</div>
 @else
   <div class="page-header">{{ $title }}</div>
   <div class="row">
     @foreach($posts as $key => $post)
-      @if (!$post->closed || $own)
-      <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-12 col-md-6 animated fadeInRight delay-{{ $key * 100 }}ms">
-        <article class="post-card">
-          <figure class="post-card__frame">
-            <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->location) }}" class="post-card__frame__img">
-            <div class="post-card__roles">
-              @foreach (json_decode($post->roles) as $key => $role)
-              @if ($key === 5)
-                @break
-              @endif
-              <span class="badge badge-pill badge-castme py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
-              @endforeach
-            </div>
-          </figure>
-          <div class="post-card__info">
-            @if (Auth::user()->id === $post->user_id)
-            <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
-            @else
-            <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</p>
+    <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-12 col-md-6 animated fadeInRight delay-{{ $key * 100 }}ms">
+      <article class="post-card">
+        <figure class="post-card__frame">
+          <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->location) }}" class="post-card__frame__img">
+          <div class="post-card__roles">
+            @foreach (json_decode($post->roles) as $key => $role)
+            @if ($key === 5)
+              @break
             @endif
-            <h2 class="post-card__title">{{ str_limit(title_case($post->title), 40) }}</h2>
+            <span class="badge badge-pill badge-castme py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
+            @endforeach
           </div>
-        </article>
-      </a>
-      @endif
+        </figure>
+        <div class="post-card__info">
+          @if (Auth::user()->id === $post->user_id)
+          <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
+          @else
+          <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</p>
+          @endif
+          <h2 class="post-card__title">{{ str_limit(title_case($post->title), 40) }}</h2>
+        </div>
+      </article>
+    </a>
     @endforeach
   </div>
 @endif
