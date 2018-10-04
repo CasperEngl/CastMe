@@ -136,6 +136,10 @@
   </div>
 
   @auth
+  <?php
+    $lang = Auth::user()->lang ?: 'en';
+  ?>
+  <script src="{{ asset('js/tm-editor-' . $lang . '.js') }}"></script>
   <script>
     @if (Auth::user()->lang)
     var locale = '{{ Auth::user()->lang }}';

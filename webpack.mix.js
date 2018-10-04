@@ -13,6 +13,8 @@ const mix = require('laravel-mix');
 
 mix
   .react('resources/assets/js/app.jsx', 'public/js')
+  .js('resources/assets/js/tm-editor-da.js', 'public/js')
+  .js('resources/assets/js/tm-editor-en.js', 'public/js')
   .sass('resources/assets/sass/app.scss', 'public/css');
 
 if (mix.inProduction()) {
