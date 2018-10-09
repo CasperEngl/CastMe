@@ -181,11 +181,6 @@ return [
          * Image Intervention
          */
         Intervention\Image\ImageServiceProvider::class,
-
-        /**
-         * Laravel 5 IDE Helper Generator
-         */
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*
