@@ -17,7 +17,9 @@ use QuickPay\QuickPay;
 
 Route::middleware('App\Http\Middleware\Localization')->group(function() {
   // Homepage
-  Route::get('/', 'HomeController@index')->name('home');
+  Route::get('/', 'PagesController@home')->name('home');
+  Route::get('terms', 'PagesController@terms')->name('terms');
+  Route::get('contact', 'PagesController@contact')->name('contact');
 
   // Specific Profile
   Route::get('profile/{id}', 'ProfileController@user')->name('profile');
