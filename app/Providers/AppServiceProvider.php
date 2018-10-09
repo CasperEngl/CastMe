@@ -18,35 +18,35 @@ class AppServiceProvider extends ServiceProvider {
     date_default_timezone_set('Europe/Amsterdam');
 
     Blade::if('free', function () {
-      if (!Auth::user())
+      if (!Auth::check())
         return false;
 
       return in_array(Auth::user()->role, ['Admin', 'Moderator', 'Scout', 'Paid', 'Free']);
     });
 
     Blade::if('paid', function () {
-      if (!Auth::user())
+      if (!Auth::check())
         return false;
 
       return in_array(Auth::user()->role, ['Admin', 'Moderator', 'Scout', 'Paid']);
     });
 
     Blade::if('scout', function () {
-      if (!Auth::user())
+      if (!Auth::check())
         return false;
 
       return in_array(Auth::user()->role, ['Admin', 'Moderator', 'Scout']);
     });
 
     Blade::if('moderator', function() {
-      if (!Auth::user())
+      if (!Auth::check())
         return false;
 
       return in_array(Auth::user()->role, ['Admin', 'Moderator']);
     });
 
     Blade::if('admin', function () {
-      if (!Auth::user())
+      if (!Auth::check())
         return false;
 
       return in_array(Auth::user()->role, ['Admin']);
