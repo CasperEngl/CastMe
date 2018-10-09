@@ -103,18 +103,6 @@
             <small class="form-text text-muted">{{ ucfirst(__('we only support weight in kilos')) }}</small>
           </div>
         </div>
-        <div class="col-12 col-sm">
-          <div class="form-group">
-            {{ Form::label('experience', ucfirst(__('experience')), [
-              'class' => 'text-muted'
-              ]) }}
-            {{ Form::text('experience', Auth::user()->details->experience ?? '', [
-              'class' => 'form-control',
-              'placeholder' => '5'
-            ]) }}
-            <small class="form-text text-muted">{{ ucfirst(__('experience is in whole years to keep it simple')) }}</small>
-          </div>
-        </div>
       </div>
 
       <div class="row">

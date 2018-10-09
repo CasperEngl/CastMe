@@ -1,0 +1,23 @@
+.snack {
+  padding: 8px 12px;
+  opacity: 0;
+  background: #000;
+  color: white;
+  transition: opacity 700ms ease-in-out;
+
+  @each $name, $color in $theme-colors {
+    &.snack-#{$name} {
+      background: $color;
+      color: color-yiq($color);
+    }
+  }
+
+  &__container {
+    @extend .container;
+    z-index: 9999;
+    position: fixed;
+    top: 7rem;
+    right: 0;
+    left: 0;
+  }
+}

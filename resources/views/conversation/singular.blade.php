@@ -6,7 +6,7 @@
 @endif
 @endforeach
 
-@if (count($messages) > 0)
+@if (count($messages))
   <div class="conversation__container">
     @foreach ($messages as $message)
       @if ($message->user->id === Auth::id())
@@ -39,7 +39,7 @@
 <div class="h3">{{ ucfirst(__('new message')) }}</div>
 <form action="{{ $form_url }}" method="POST">
   <textarea name="content" class="tinymce simple"></textarea>
-  <button type="submit" class="btn btn-castme mt-3">{{ ucfirst(__('send')) }}</button>
+  <button type="submit" class="btn btn-lg btn-castme mt-2">{{ ucfirst(__('send')) }}</button>
 
   @csrf
   @method('POST')

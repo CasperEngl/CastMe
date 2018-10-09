@@ -17,7 +17,9 @@ use QuickPay\QuickPay;
 
 Route::middleware('App\Http\Middleware\Localization')->group(function() {
   // Homepage
-  Route::get('/', 'HomeController@index')->name('home');
+  Route::get('/', 'PagesController@home')->name('home');
+  Route::get('terms', 'PagesController@terms')->name('terms');
+  Route::get('contact', 'PagesController@contact')->name('contact');
 
   // Specific Profile
   Route::get('profile/{id}', 'ProfileController@user')->name('profile');
@@ -70,8 +72,7 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
     // Edit Post
     Route::get('post/{id}/edit', 'PostController@edit')->name('post.edit');
     Route::get('post/{id}/edit/data', 'PostController@data');
-    Route::get('post/{id}/disable', 'PostController@disable')->name('post.disable');
-    Route::get('post/{id}/enable', 'PostController@enable')->name('post.enable');
+    Route::get('post/{id}/toggle', 'PostController@toggle')->name('post.toggle');
     Route::post('post/{id}/update', 'PostController@update')->name('post.update');
     // END SCOUT
   });

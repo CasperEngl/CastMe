@@ -1,9 +1,9 @@
-$navbar-castme-color:                rgba(color-yiq(color('castme')), .5) !default;
-$navbar-castme-hover-color:          rgba(color-yiq(color('castme')), .7) !default;
-$navbar-castme-active-color:         rgba(color-yiq(color('castme')), .9) !default;
-$navbar-castme-disabled-color:       rgba(color-yiq(color('castme')), .3) !default;
-$navbar-castme-toggler-icon-bg:      str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-castme-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
-$navbar-castme-toggler-border-color: rgba(color-yiq(color('castme')), .1) !default;
+$navbar-castme-color:                 rgba(color-yiq($navbar-background-color), .5) !default;
+$navbar-castme-hover-color:           rgba(color-yiq($navbar-background-color), .7) !default;
+$navbar-castme-active-color:          rgba(color-yiq($navbar-background-color), .9) !default;
+$navbar-castme-disabled-color:        rgba(color-yiq($navbar-background-color), .3) !default;
+$navbar-castme-toggler-icon-bg:       str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-castme-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+$navbar-castme-toggler-border-color: rgba(color-yiq($navbar-background-color), .1) !default;
 
 $navbar-castme-logo-color: invert(100%);
 
@@ -17,9 +17,10 @@ $navbar-castme-logo-color: invert(100%);
 }
 
 .navbar {
-  @extend .bg-castme;
-  padding-bottom: 0;
+  @extend .py-0;
+  background: $navbar-background-color;
   height: 80px;
+  backdrop-filter: saturate(180%) blur(20px);
 }
 
 a[class='nav-link'] {

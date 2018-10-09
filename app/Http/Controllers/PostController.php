@@ -12,9 +12,28 @@ use App\Helpers\Format;
 use Storage;
 
 class PostController extends Controller {
+  public function __construct() {
+    $this->middleware('App\Http\Middleware\MemberMiddleware', [
+      'except' => [
+        'index',
+        'list',
+      ]
+    ]);
+    $this->middleware('App\Http\Middleware\ScoutMiddleware', [
+      'only' => [
+        'new',
+        'edit',
+        'listOwn',
+        'add',
+        'update',
+        'toggle',
+      ]
+    ]);
+  }
+
   public function index($id) {
     $post = Post::find($id);
-
+    
     if ($post->closed && $post->user_id !== Auth::id())
       return redirect()->back()->withErrors([
         ucfirst(__('that post no longer exists.'))
@@ -41,6 +60,18 @@ class PostController extends Controller {
       return response()->json([
         'error' => 'Could not find any posts with that id',
       ]);
+  }
+
+  public function list() {
+    $posts = Post::orderBy('id', 'desc')
+      ->where('closed', 0)
+      ->get();
+
+    return view('post.list', [
+      'title' => ucfirst(__('posts')),
+      'posts' => $posts,
+      'own' => false,
+    ]);
   }
 
   public function new() {
@@ -70,16 +101,6 @@ class PostController extends Controller {
         'id' => $id,
       ]),
       'type' => ucfirst(__('update')),
-    ]);
-  }
-
-  public function list() {
-    $posts = Post::orderBy('id', 'desc')->get();
-
-    return view('post.list', [
-      'title' => ucfirst(__('posts')),
-      'posts' => $posts,
-      'own' => false,
     ]);
   }
 
@@ -177,17 +198,19 @@ class PostController extends Controller {
         ucfirst(__('unauthorized access'))
       ]);
 
-    foreach ($request->input('roles.*') as $role) {
-      if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
-        return redirect()->back()->withErrors([
-          ucfirst(__('"' . $role . '" is not a valid role')),
-        ]);
+    if ($request->input('roles.*')) {
+      foreach ($request->input('roles.*') as $role) {
+        if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
+          return redirect()->back()->withErrors([
+            ucfirst(__('"' . $role . '" is not a valid role')),
+          ]);
 
-      $roles[] = $role;
+        $roles[] = $role;
+      }
     }
 
     $post->title    = $request->input('title');
-    $post->roles    = json_encode($roles);
+    $post->roles    = isset($roles) ? json_encode($roles) : $post->roles;
     $post->images   = json_encode($request->input('image.*'));
     $post->banner   = isset($storedFile) ? $storedFile : $post->banner;
     $post->content  = $request->input('content');
@@ -198,7 +221,7 @@ class PostController extends Controller {
     return redirect()->route('post', ['id' => $post->id]);
   }
 
-  public function disable($id) {
+  public function toggle(int $id) {
     $post = Post::find($id);
 
     if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
@@ -206,26 +229,17 @@ class PostController extends Controller {
         ucfirst(__('oops, looks like that post doesn\'t belong to you.'))
       ]);
 
-    $post->closed = 1;
+    $post->closed = !$post->closed;
     $post->save();
 
-    session_push('success', sentence(__('your post is now disabled. it will no longer be visible to the public.')));
-    return redirect()->route('posts');
-  }
-
-  public function enable($id) {
-    $post = Post::find($id);
-
-    if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
-      return redirect()->back()->withErrors([
-        ucfirst(__('oops, looks like that post doesn\'t belong to you.'))
-      ]);
-
-    $post->closed = 0;
-    $post->save();
-
-    session_push('success', sentence(__('your post is now enabled. it is now visible to the public.')));
-    return redirect()->route('post', ['id' => $post->id]);
+    // If the post is closed
+    if ($post->closed) {
+      session_push('success', sentence(__('your post is now disabled. it will no longer be visible to the public.')));
+      return redirect()->route('posts');
+    } else { // If the post is not closed
+      session_push('success', sentence(__('your post is now enabled. it is now visible to the public.')));
+      return redirect()->route('post', ['id' => $post->id]);
+    }
   }
 
   public function dump(Request $request) {

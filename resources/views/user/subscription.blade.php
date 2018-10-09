@@ -31,9 +31,9 @@ use \Illuminate\Support\Facades\Auth;
               <label for="month-6" class="page-link w-100 text-center">6 {{ __('months') }} - 449 DKK</label>
             </li>
             <div class="display-none">
-              <input type="radio" name="months" value="2_months" id="month-2" {{ $plan==='2_months' ? 'checked' : '' }}>
-              <input type="radio" name="months" value="3_months" id="month-3" {{ $plan==='3_months' ? 'checked' : '' }}>
-              <input type="radio" name="months" value="6_months" id="month-6" {{ $plan==='6_months' ? 'checked' : '' }}>
+              <input type="radio" name="months" value="2_months" id="month-2" {{ $plan ==='2_months' ? 'checked' : '' }}>
+              <input type="radio" name="months" value="3_months" id="month-3" {{ $plan ==='3_months' ? 'checked' : '' }}>
+              <input type="radio" name="months" value="6_months" id="month-6" {{ $plan ==='6_months' ? 'checked' : '' }}>
             </div>
           </ul>
         </div>

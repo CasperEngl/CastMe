@@ -47,35 +47,31 @@
       </main>
       <section class="jumbotron mt-4 mb-0">
         <div class="container">
-          <h2 class="page-header">{{ ucfirst(__('posts')) }}</h2>
+          <h2 class="page-header">{{ ucfirst(__('posts')) }} <i class="fas fa-clipboard-list"></i></h2>
           <div class="row">
       
-          @if (!empty(array_filter(json_decode($posts), function ($post) {
-            return $post->closed === 0;
-          })))
+          @if (count($posts))
             @foreach($posts as $post)
-              @if (!$post->closed || $own)
-              <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-sm-6 animated fadeInRight">
-                <article class="post-card post-card--sm">
-                  <figure class="post-card__frame">
-                    <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->location) }}" class="post-card__frame__img">
-                    <div class="post-card__roles">
-                      @foreach (json_decode($post->roles) as $key => $role)
-                      <span class="badge badge-pill badge-castme py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
-                      @endforeach
-                    </div>
-                  </figure>
-                  <div class="post-card__info">
-                    @if (Auth::user() && Auth::id() === $post->user_id)
-                    <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
-                    @else
-                    <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</p>
-                    @endif
-                    <h2 class="post-card__title">{{ str_limit(title_case($post->title), 40) }}</h2>
+            <a href="{{ route('post', ['id' => $post->id]) }}" class="post-card__link col-sm-6 animated fadeInRight">
+              <article class="post-card post-card--sm">
+                <figure class="post-card__frame">
+                  <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->location) }}" class="post-card__frame__img">
+                  <div class="post-card__roles">
+                    @foreach (json_decode($post->roles) as $key => $role)
+                    <span class="badge badge-pill badge-castme py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
+                    @endforeach
                   </div>
-                </article>
-              </a>
-              @endif
+                </figure>
+                <div class="post-card__info">
+                  @if (Auth::user() && Auth::id() === $post->user_id)
+                  <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
+                  @else
+                  <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</p>
+                  @endif
+                  <h2 class="post-card__title">{{ str_limit(title_case($post->title), 40) }}</h2>
+                </div>
+              </article>
+            </a>
             @endforeach
           @endif
       
@@ -115,6 +111,23 @@
               </a>
             </div>
           </article>
+        </section>
+        <section class="list-group my-4 py-2 card d-flex align-items-center">
+          <p class="h4 text-align">Nyeste bruger</p>
+          @foreach ($latestUsers as $user)
+          <figure class="circle sidebar__user__avatar">
+            <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
+          </figure>
+          <p class="sidebar__user__name">{{ $user->name }}</p>
+          @endforeach
+          <hr class="w-100">
+          <p class="h4 text-align">Fremhævet profil</p>
+          @foreach ($showcasedUsers as $user)
+          <figure class="circle sidebar__user__avatar">
+            <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
+          </figure>
+          <p class="sidebar__user__name">{{ $user->name }}</p>
+          @endforeach
         </section>
       </div>
     </aside>

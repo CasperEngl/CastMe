@@ -86,6 +86,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      @admin
+      <div class="snack snack-success">{{ $success }}</div>
+      @endadmin
       @endforeach
     @endif 
     @if ($errors->any())
@@ -96,6 +99,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      @admin
+      <div class="snack snack-danger">{{ $error }}</div>
+      @endadmin
       @endforeach
     @endif
 
@@ -136,6 +142,10 @@
   </div>
 
   @auth
+  <?php
+    $lang = Auth::user()->lang ?: 'en';
+  ?>
+  <script src="{{ asset('js/tm-editor-' . $lang . '.js') }}"></script>
   <script>
     @if (Auth::user()->lang)
     var locale = '{{ Auth::user()->lang }}';

@@ -26,9 +26,9 @@
       <section class="my-2 align-self-start">
         <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('edit')) }}</a>
         @if ($post->closed)
-          <a href="{{ route('post.enable', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('release')) }}</a>
+        <a href="{{ route('post.toggle', ['id' => $post->id]) }}" class="btn btn-warning">{{ ucfirst(__('release')) }}</a>
         @else
-          <a href="{{ route('post.disable', ['id' => $post->id]) }}" class="btn btn-danger">{{ ucfirst(__('disable')) }}</a>
+        <a href="{{ route('post.toggle', ['id' => $post->id]) }}" class="btn btn-danger">{{ ucfirst(__('disable')) }}</a>
         @endif
       </section>
       @endif
@@ -64,70 +64,59 @@
 
 <hr class="my-5">
 
-@if ($owner)
-  @if (count($comments) > 0)
-    <h2 class="page-header mb-0">{{ ucfirst(__('comments')) }}</h2>
-    @foreach ($comments as $comment)
-    <div class="card my-3">
-      {{ Auth::id() === $comment->owner }}
-      <div class="card-header">{{ $comment->owner->name }} {{ $comment->owner->last_name }}</div>
-      <div class="card-body">
-        {{ strip_tags($comment->content) }}
-      </div>
-      <div class="card-footer">
-        <div class="row align-items-center">
-          <div class="col">{{ Carbon::parse($comment->updated_at)->format('M j \a\t G:i') }}</div>
-          <div class="col-auto">
-            <form action="{{ route('conversation.new') }}" method="post">
-              @csrf
-              <input type="hidden" name="users[]" value="{{ Auth::id() }}">
-              <input type="hidden" name="users[]" value="{{ $comment->user_id }}">
-              <input type="submit" class="btn btn-castme" value="{{ ucfirst(__('message')) }}">
-            </form>
+@if (count($comments))
+  @foreach ($comments as $comment)
+  @if (Auth::user() && Auth::id() === $post->owner->id || Auth::user() && Auth::id() === $comment->user_id)
+  <div class="comment__container">
+      <div class="comment__item">
+        <a href="{{ route('profile', ['id' => $comment->owner->id]) }}" class="comment__user">
+          <figure class="comment__avatar circle mb-1">
+            <img src="{{ Storage::disk('public')->url($comment->owner->avatar) }}" alt="">
+          </figure>
+          <div class="comment__user__name">{{ $comment->owner->name }} {{ $comment->owner->last_name }}</div>
+        </a>
+        <div class="comment__message" title="Message sent {{ Carbon::parse($comment->updated_at)->format('M j \a\t G:i') }}">
+          <div class="row align-items-center">
+            <div class="col">
+              <div class="comment__content">{{ strip_tags($comment->content) }}</div>
+              <div class="comment__date">{{ Carbon::parse($comment->created_at)->format('M j \a\t G:i') }}</div>
+            </div>
+            @if (Auth::user() && Auth::id() === $post->owner->id)
+            <div class="col-auto">
+              <form action="{{ route('conversation.new') }}" method="post">
+                @csrf
+                <input type="hidden" name="users[]" value="{{ Auth::id() }}">
+                <input type="hidden" name="users[]" value="{{ $comment->user_id }}">
+                <input type="submit" class="btn btn-castme" value="{{ ucfirst(__('message')) }}">
+              </form>
+            </div>
+            @endif
           </div>
         </div>
       </div>
-    </div>
-    @endforeach
-  @else
-  {{-- If nocomments are found --}}
-  <h2 class="page-header mb-0">{{ ucfirst(__('no comments')) }}</h2>
+  </div>
   @endif
-@else
-  @foreach ($comments as $comment)
-    @if (Auth::id() === $comment->user_id)
-    <div class="card my-3">
-      {{ Auth::id() === $comment->owner }}
-      <div class="card-header">{{ strtoupper(__('you')) }}</div>
-      <div class="card-body">
-        {{ strip_tags($comment->content) }}
-      </div>
-      <div class="card-footer">
-        <div class="row align-items-center">
-          <div class="col">{{ Carbon::parse($comment->updated_at)->format('M j, Y \a\t G:i a') }}</div>
-        </div>
-      </div>
-    </div>
-    @endif
   @endforeach
+@endif
 
-  @paid
-  <form action="{{ route('comment.new') }}" method="POST">
-    <h2 class="page-header mb-0">{{ ucfirst(__('comment')) }}</h2>
-    <textarea name="content" class="tinymce"></textarea>
-    <button class="btn btn-castme mt-2" type="submit">{{ ucfirst(__('comment')) }}</button>
+@if (Auth::user() && Auth::id() !== $post->owner->id)
+@paid
+<form action="{{ route('comment.new') }}" method="POST">
+  <div class="h3">{{ ucfirst(__('comment')) }}</div>
+  <textarea name="content" class="tinymce simple"></textarea>
+  <button class="btn btn-castme mt-2" type="submit">{{ ucfirst(__('comment')) }}</button>
 
-    {{ Form::hidden('post', $post->id) }}
-    
-    @csrf
-    @method('POST')
-  </form>
+  {{ Form::hidden('post', $post->id) }}
+  
+  @csrf
+  @method('POST')
+</form>
+@else
+  @free
+  <a href="{{ route('user.subscription') }}" class="btn btn-lg btn-castme">{{ sentence(__('start your subscription to contact scout')) }}</a>
   @else
-    @free
-    <a href="{{ route('user.subscription') }}" class="btn btn-lg btn-castme">{{ sentence(__('start your subscription to contact scout')) }}</a>
-    @else
-    <a href="{{ route('login') . '?previous=' . Request::fullUrl() }}" class="btn btn-lg btn-castme">{{ sentence(__('Login to contact scout')) }}</a>
-    @endfree
-  @endpaid
+  <a href="{{ route('login') . '?previous=' . Request::fullUrl() }}" class="btn btn-lg btn-castme">{{ sentence(__('Login to contact scout')) }}</a>
+  @endfree
+@endpaid
 @endif
 @endsection

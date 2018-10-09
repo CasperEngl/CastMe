@@ -11,6 +11,10 @@ use Crypt;
 use Carbon\Carbon;
 
 class CommentController extends Controller {
+    public function __construct() {
+        $this->middleware('App\Http\Middleware\MemberMiddleware');
+    }
+    
     public function new(Request $request) {
         $user = Auth::user();
         $post_id = $request->input('post');
