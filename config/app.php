@@ -149,11 +149,11 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        /*
+        /**
          * Package Service Providers...
          */
 
-        /*
+        /**
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -162,25 +162,30 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        /*
+        /**
          * Lorem Ipsum generator
          */
         Magyarjeti\LaravelLipsum\LipsumServiceProvider::class,
 
-        /*
+        /**
          * Expose Laravel config to JS
          */
         LaravelJsConfig\LaravelJsConfigServiceProvider::class,
 
-        /*
+        /**
          * Form Builder
          */
         Collective\Html\HtmlServiceProvider::class,
 
-        /*
+        /**
          * Image Intervention
          */
         Intervention\Image\ImageServiceProvider::class,
+
+        /**
+         * Laravel 5 IDE Helper Generator
+         */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*
