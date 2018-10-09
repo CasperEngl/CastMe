@@ -7,8 +7,6 @@ use App\Post;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Helpers\Flash;
-use App\Helpers\Format;
 use Storage;
 
 class PostController extends Controller {

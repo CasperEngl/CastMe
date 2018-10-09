@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use App\Helpers\Format;
 use Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Flash;
 use App\Orders;
 use App\QuickPay\Subscription;
 use App\User;
