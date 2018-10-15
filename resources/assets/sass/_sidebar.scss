@@ -1,11 +1,11 @@
 .sidebar {
   &.affix {
-    position: fixed;
-    top: 50px;
+    position: relative;
+    top: 0px;
   }
 
   .list-group {
-    width: 200px;
+    width: 100%;
 
     .list-group-item {
       font-weight: bold;
