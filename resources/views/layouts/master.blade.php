@@ -25,6 +25,21 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
 
           <ul class="navbar-nav align-items-center ml-auto">
+            <li class="nav-item">
+              <a href="{{ route('pages.home') }}" class="nav-link">{{ ucfirst(__('home')) }}</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('pages.about-us') }}" class="nav-link">{{ ucfirst(__('about us')) }}</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('pages.guides') }}" class="nav-link">{{ ucfirst(__('guides')) }}</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('pages.contact') }}" class="nav-link">{{ ucfirst(__('contact us')) }}</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('posts') }}" class="nav-link">{{ ucfirst(__('jobs')) }}</a>
+            </li>
             @guest
             <li class="nav-item">
               <a class="nav-link" href="{{ route('login') }}">{{ title_case(__('login')) }}</a>
@@ -33,42 +48,44 @@
               <a class="nav-link" href="{{ route('register') }}">{{ title_case(__('register')) }}</a>
             </li>
             @else
-            <form class="form mr-2 mb-0" action="{{ route('locale.set') }}" method="POST">
-              <select name="locale" class="selectpicker" data-width="fit" data-style="btn-default">
-                <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ Auth::user() && Auth::user()->lang === 'en' ? 'selected' : '' }}>
-                  {{ ucfirst(__('english')) }}
-                </option>
-                <option value="da" data-content="<span class='flag-icon flag-icon-dk'></span> {{ ucfirst(__('danish')) }}" {{ Auth::user() && Auth::user()->lang === 'da' ? 'selected' : '' }}>
-                  {{ ucfirst(__('danish')) }}
-                </option>
-              </select>
-              
-              @csrf
-            </form>
-            <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                @if (Storage::disk('public')->exists(Auth::user()->avatar))
-                <figure class="circle header-avatar">
-                  <img src="{{ Storage::disk('public')->url(Auth::user()->avatar) }}" alt="{{ __('avatar') }}">
-                </figure>
-                @else
-                {{ Auth::user()->name }}
-                @endif
-              </a>
+            <div class="d-flex align-items-center ml-2">
+              <form class="form mr-2 mb-0" action="{{ route('locale.set') }}" method="POST">
+                <select name="locale" class="selectpicker" data-width="fit" data-style="btn-default">
+                  <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ Auth::user() && Auth::user()->lang === 'en' ? 'selected' : '' }}>
+                    {{ ucfirst(__('english')) }}
+                  </option>
+                  <option value="da" data-content="<span class='flag-icon flag-icon-dk'></span> {{ ucfirst(__('danish')) }}" {{ Auth::user() && Auth::user()->lang === 'da' ? 'selected' : '' }}>
+                    {{ ucfirst(__('danish')) }}
+                  </option>
+                </select>
+                
+                @csrf
+              </form>
+              <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  @if (Storage::disk('public')->exists(Auth::user()->avatar))
+                  <figure class="circle header-avatar">
+                    <img src="{{ Storage::disk('public')->url(Auth::user()->avatar) }}" alt="{{ __('avatar') }}">
+                  </figure>
+                  @else
+                  {{ Auth::user()->name }}
+                  @endif
+                </a>
 
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <div class="dropdown-header">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</div>
-                <a class="dropdown-item {{ active_route('user.settings', true) }}" href="{{ route('user.settings') }}">{{ ucfirst(__('profile settings')) }}</a>
-                <a class="dropdown-item {{ active_route('user.subscription', true) }}" href="{{ route('user.subscription') }}">{{ ucfirst(__('subscription')) }}</a>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                {{ ucfirst(__('logout')) }} <i class="fas fa-sign-out-alt"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <div class="dropdown-header">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</div>
+                  <a class="dropdown-item {{ active_route('user.settings', true) }}" href="{{ route('user.settings') }}">{{ ucfirst(__('profile settings')) }}</a>
+                  <a class="dropdown-item {{ active_route('user.subscription', true) }}" href="{{ route('user.subscription') }}">{{ ucfirst(__('subscription')) }}</a>
+                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  {{ ucfirst(__('logout')) }} <i class="fas fa-sign-out-alt"></i></a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf @method('POST')
-                </form>
-              </div>
-            </li>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf @method('POST')
+                  </form>
+                </div>
+              </li>
+            </div>
             @endguest
           </ul>
 
@@ -106,7 +123,7 @@
     @endif
 
     <div class="row">
-      @auth
+      @if (Auth::check() && !isset($static))
       <aside class="col-sm-3 d-none d-lg-block">
         <div class="sidebar" id="sidebar" data-toggle="affix">
           <div class="list-group mb-4">
@@ -130,12 +147,12 @@
           @endscout
         </div>
       </aside>
-      @endauth
-      @guest
+      @endif
+      @if (Auth::check() && isset($static))
       <main id="main" class="col">
       @else
       <main id="main" class="col-lg-9">
-      @endguest
+      @endif
         @yield('content')
       </main>
     </div>
@@ -153,6 +170,34 @@
     var user = {{ Auth::id() }};
   </script>
   @endauth
+
+  <footer class="footer p-5 bg-dark">
+    <section class="container d-flex flex-column align-items-center mb-4">
+      <h3 class="text-white text-center">{{ ucfirst(__('be a part of Cast Me today!')) }}</h3>
+      <a href="/register" class="text-center px-4 btn btn-castme">{{ ucfirst(__('register here')) }}</a>
+    </section>
+      
+    <section class="container d-flex justify-content-center align-items-center flex-wrap content-wrapper">
+      <article class="my-2 mx-5">
+        <p class="m-0">Cast Me IVS</p>
+        <p class="m-0">Cvr. 39302845</p>
+        <p class="m-0">Carl bernhardsvej 13B</p>
+        <p class="m-0">Frederiksberg 1817</p>
+        <p class="m-0">Tlf: +45 31171877</p>
+        <p class="m-0">Mail: support@castme.dk</p>
+      </article>
+      <article class="my-2 mx-5">
+        <a href="/terms" class="text-center my-1 w-100 btn btn-castme">{{ sentence(__('terms and conditions')) }}</a>
+        <a href="/privacy" class="text-center my-1 w-100 btn btn-castme">{{ sentence(__('privacy policy')) }}</a>
+        <a href="/contact" class="text-center my-1 w-100 btn btn-castme">{{ sentence(__('contact')) }}</a>
+      </article>
+    </section>
+
+    <section class="d-flex flex-column align-items-center">
+      <p class="text-white text-center">{{ sentence(__('we accept the following payment methods')) }}</p>
+      <iframe src="https://support.wkt.dk/public/kort.php?cards=visa,mastercard-w,mobilepay-w" class="cards" frameborder="0" kwframeid="1" style="zoom: 1;"></iframe>
+    </section>
+  </footer>
 
   <script src="{{ mix('js/app.js') }}"></script>
 
