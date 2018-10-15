@@ -1,10 +1,10 @@
 @extends('layouts.static') 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-12">
+          <div class="row d-flex align-items-center">
+            <div class="col">
             <address>
-                Firma information: <br>
+                <b>Firma information: <br></b>
                 Cast Me IVS <br>
                 Cvr. 39302845 <br>
                 Carl bernhardsvej 13B <br>
@@ -35,7 +35,6 @@
                 <li>2 måneder = 179 kr</li>
                 <li>3 måneder = 279 kr</li>
                 <li>6 måneder = 449 kr</li>
-                <li>12 måneder = 799kr</li>
             </ul>
 
             <p>Castme.dk har til enhver tid ret til at kontakte privat profilen/agentprofilen vedr. evt. job/spørgsmål via mail eller tlf.</p>

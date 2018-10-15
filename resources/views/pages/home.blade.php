@@ -76,32 +76,19 @@
           @endif
       
           <div class="col-12 d-flex justify-content-center mt-4">
-            <a href="{{ route('posts') }}" class="btn btn-lg btn-castme">Se flere</a>
+            <a href="{{ route('posts') }}" class="btn btn-lg btn-castme">{{ title_case(__('view more')) }}</a>
           </div>
       
           </div>
         </div>
       </section>
-      
-      <footer class="footer p-5 bg-dark">
-        <div class="container">
-          <div class="row d-flex align-items-center">
-            <div class="col">
-              <h2 class="text-white">Find dit castingjob i dag!</h2>
-              <a href="/register" class="text-center btn btn-castme">{{ title_case(__('register')) }}</a>
-            </div>
-            <div class="col-auto">
-              <iframe src="https://support.wkt.dk/public/kort.php?cards=visa,mastercard-w,paypal-w" class="cards" frameborder="0" kwframeid="1" style="zoom: 1;"></iframe>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
     <aside class="col-sm-3 d-none d-lg-block" style="position: relative;">
       <div class="sidebar" id="sidebar" data-toggle="affix">
+
         <section class="list-group card">
           <article class="card-block">
-            <p class="text-center">Find os på Facebook og Instagram</p>
+            <p class="text-center">{{ title_case(__('find us on instagram and facebook')) }}</p>
             <div class="d-flex">
               <a href="#" class="mr-2">
                 <img src="/img/insta.png" alt="instagram logo">
@@ -112,8 +99,9 @@
             </div>
           </article>
         </section>
+
         <section class="list-group my-4 py-2 card d-flex align-items-center">
-          <p class="h4 text-align">Nyeste bruger</p>
+          <p class="h4 text-align">{{ title_case(__('newest user')) }}</p>
           @foreach ($latestUsers as $user)
           <figure class="circle sidebar__user__avatar">
             <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
@@ -121,13 +109,25 @@
           <p class="sidebar__user__name">{{ $user->name }}</p>
           @endforeach
           <hr class="w-100">
-          <p class="h4 text-align">Fremhævet profil</p>
+          <p class="h4 text-align">{{ title_case(__('highlighted profile')) }}</p>
           @foreach ($showcasedUsers as $user)
           <figure class="circle sidebar__user__avatar">
             <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
           </figure>
           <p class="sidebar__user__name">{{ $user->name }}</p>
           @endforeach
+        </section>
+
+           <section class="list-group my-4 py-2 card d-flex align-items-center">
+          <p class="h4 text-align">{{ title_case(__('newest job post')) }}</p>
+        
+        </section>
+
+        <section class="list-group card">
+        <article class="card-block">
+        <a href="/#" class="text-center btn btn-castme fwb">{{ title_case(__('become a scout')) }}</a>
+        <a href="/register" class="text-center btn btn-castme fwb">{{ title_case(__('create your profile')) }}</a>
+        </article>
         </section>
       </div>
     </aside>
