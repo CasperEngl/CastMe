@@ -17,11 +17,13 @@ use QuickPay\QuickPay;
 
 Route::middleware('App\Http\Middleware\Localization')->group(function() {
   // Homepage
-  Route::get('/', 'PagesController@home')->name('home');
-  Route::get('terms', 'PagesController@terms')->name('terms');
-  Route::get('contact', 'PagesController@contact')->name('contact');
-  Route::post('contact', 'PagesController@contactPost')->name('contact.post');
-  Route::get('privacy', 'PagesController@privacy')->name('privacy');
+  Route::get('/', 'PagesController@home')->name('pages.home');
+  Route::get('terms', 'PagesController@terms')->name('pages.terms');
+  Route::get('contact', 'PagesController@contact')->name('pages.contact');
+  Route::post('contact', 'PagesController@contactPost')->name('pages.contact.post');
+  Route::get('privacy', 'PagesController@privacy')->name('pages.privacy');
+  Route::get('guides', 'PagesController@guides')->name('pages.guides');
+  Route::get('about-us', 'PagesController@aboutUs')->name('pages.about-us');
 
   // Specific Profile
   Route::get('profile/{id}', 'ProfileController@user')->name('profile');
