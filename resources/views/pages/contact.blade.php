@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<div class="container">
+<div class="container content-wrapper">
    <div class="row d-flex align-items-center">
       <div class="col">
          <h1>{{ title_case(__('contact information')) }}</h1>
@@ -22,12 +22,9 @@
          </p>
       </div>
    </div>
-</div>
 
-<div class="container">
    <div class="row d-flex align-items-center">
       <div class="col">
-         <div class="container">
             <h2>{{ title_case(__('contact formular')) }}</h2>
             {{ Form::open(['route' => 'pages.contact.post']) }}
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
@@ -50,7 +47,7 @@
             </div>
             {{ Form::close() }}
          </div>
-      </div>
-   </div>
+     </div>
+
 </div>
 @endsection
