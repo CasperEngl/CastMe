@@ -1,4 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/tm-editor-da.js": "/js/tm-editor-da.js",
+    "/css/app.css": "/css/app.css",
+    "/js/tm-editor-en.js": "/js/tm-editor-en.js"
 }

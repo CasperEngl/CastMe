@@ -162,7 +162,7 @@ class PostController extends Controller {
 
     $post->save();
 
-    session_push('success', 'Your post has been created!');
+    session_push('success', sentence(__('your post has been created!')));
     return redirect()->route('posts');
   }
 

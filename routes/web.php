@@ -20,6 +20,7 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
   Route::get('/', 'PagesController@home')->name('home');
   Route::get('terms', 'PagesController@terms')->name('terms');
   Route::get('contact', 'PagesController@contact')->name('contact');
+  Route::post('contact', 'PagesController@contactPost')->name('contact.post');
 
   // Specific Profile
   Route::get('profile/{id}', 'ProfileController@user')->name('profile');
