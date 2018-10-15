@@ -148,7 +148,7 @@
         </div>
       </aside>
       @endif
-      @if (Auth::check() && isset($static))
+      @if (Auth::check() || isset($static))
       <main id="main" class="col">
       @else
       <main id="main" class="col-lg-9">
