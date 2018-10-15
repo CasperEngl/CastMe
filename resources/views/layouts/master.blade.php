@@ -24,6 +24,10 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
 
+          <div class="navbar-nav align-items-center mr-auto">
+            
+          </div>
+
           <ul class="navbar-nav align-items-center ml-auto">
             <li class="nav-item">
               <a href="{{ route('pages.home') }}" class="nav-link">{{ ucfirst(__('home')) }}</a>
@@ -40,6 +44,20 @@
             <li class="nav-item">
               <a href="{{ route('posts') }}" class="nav-link">{{ ucfirst(__('jobs')) }}</a>
             </li>
+            @auth
+            <form class="form mr-2 mb-0" action="{{ route('locale.set') }}" method="POST">
+              <select name="locale" class="selectpicker" data-width="fit" data-style="btn-default">
+                <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ App::getLocale() === 'en' ? 'selected' : '' }}>
+                  {{ ucfirst(__('english')) }}
+                </option>
+                <option value="da" data-content="<span class='flag-icon flag-icon-dk'></span> {{ ucfirst(__('danish')) }}" {{ App::getLocale() === 'da' ? 'selected' : '' }}>
+                  {{ ucfirst(__('danish')) }}
+                </option>
+              </select>
+              
+              @csrf
+            </form>
+            @endauth
             @guest
             <li class="nav-item">
               <a class="nav-link" href="{{ route('login') }}">{{ title_case(__('login')) }}</a>
@@ -48,44 +66,30 @@
               <a class="nav-link" href="{{ route('register') }}">{{ title_case(__('register')) }}</a>
             </li>
             @else
-            <div class="d-flex align-items-center ml-2">
-              <form class="form mr-2 mb-0" action="{{ route('locale.set') }}" method="POST">
-                <select name="locale" class="selectpicker" data-width="fit" data-style="btn-default">
-                  <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ Auth::user() && Auth::user()->lang === 'en' ? 'selected' : '' }}>
-                    {{ ucfirst(__('english')) }}
-                  </option>
-                  <option value="da" data-content="<span class='flag-icon flag-icon-dk'></span> {{ ucfirst(__('danish')) }}" {{ Auth::user() && Auth::user()->lang === 'da' ? 'selected' : '' }}>
-                    {{ ucfirst(__('danish')) }}
-                  </option>
-                </select>
-                
-                @csrf
-              </form>
-              <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  @if (Storage::disk('public')->exists(Auth::user()->avatar))
-                  <figure class="circle header-avatar">
-                    <img src="{{ Storage::disk('public')->url(Auth::user()->avatar) }}" alt="{{ __('avatar') }}">
-                  </figure>
-                  @else
-                  {{ Auth::user()->name }}
-                  @endif
-                </a>
+            <li class="nav-item dropdown">
+              <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                @if (Storage::disk('public')->exists(Auth::user()->avatar))
+                <figure class="circle header-avatar">
+                  <img src="{{ Storage::disk('public')->url(Auth::user()->avatar) }}" alt="{{ __('avatar') }}">
+                </figure>
+                @else
+                {{ Auth::user()->name }}
+                @endif
+              </a>
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <div class="dropdown-header">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</div>
-                  <a class="dropdown-item {{ active_route('user.settings', true) }}" href="{{ route('user.settings') }}">{{ ucfirst(__('profile settings')) }}</a>
-                  <a class="dropdown-item {{ active_route('user.subscription', true) }}" href="{{ route('user.subscription') }}">{{ ucfirst(__('subscription')) }}</a>
-                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                  {{ ucfirst(__('logout')) }} <i class="fas fa-sign-out-alt"></i></a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <div class="dropdown-header">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</div>
+                <a class="dropdown-item {{ active_route('user.settings', true) }}" href="{{ route('user.settings') }}">{{ ucfirst(__('profile settings')) }}</a>
+                <a class="dropdown-item {{ active_route('user.subscription', true) }}" href="{{ route('user.subscription') }}">{{ ucfirst(__('subscription')) }}</a>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ ucfirst(__('logout')) }} <i class="fas fa-sign-out-alt"></i></a>
 
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf @method('POST')
-                  </form>
-                </div>
-              </li>
-            </div>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf @method('POST')
+                </form>
+              </div>
+            </li>
             @endguest
           </ul>
 

@@ -9,6 +9,7 @@ use App;
 use Session;
 use File;
 use Response;
+use Cookie;
 
 class LocaleController extends Controller {
     protected $supported_languages;
@@ -82,12 +83,15 @@ class LocaleController extends Controller {
         if ($user) {
             $user->lang = $request->input('locale') ? $request->input('locale') : $user->lang;
             $user->save();
-
-            App::setLocale($user->lang);
         } else {
+            $lang = $request->input('locale');
+
+            Cookie::queue('lang', $lang);
+            /*
             return redirect()->back()->withErrors([
                 sentence(__('sorry, could not save your language setting. please try again. if the issue persists, please contact the site administrator.'))
             ]);
+            */
         }
 
         return redirect()->back();

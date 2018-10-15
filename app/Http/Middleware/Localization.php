@@ -6,6 +6,7 @@ use Closure;
 use App;
 use Session;
 use Auth;
+use Cookie;
 
 class Localization {
   /**
@@ -17,11 +18,20 @@ class Localization {
    * @return mixed
    */
   public function handle($request, Closure $next) {
-    $user = Auth::user();
+    if (Auth::check()) {
+      $user = Auth::user();
+      $locale = $user->lang;
 
-    if ($user) {
-      App::setLocale($user->lang);
+      Cookie::queue('lang', $user->lang);
+    } else if (!Cookie::get('lang')) {
+      $locale = 'da';
+      
+      Cookie::queue('lang', $locale);
+    } else {
+      $locale = Cookie::get('lang');
     }
+
+    App::setLocale($locale);
 
     return $next($request);
   }
