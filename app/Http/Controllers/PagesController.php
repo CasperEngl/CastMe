@@ -60,6 +60,18 @@ class PagesController extends Controller {
     ]);
   }
 
+  public function guides() {
+    return view('pages.guides')->with([
+      'static' => $this->static,
+    ]);
+  }
+
+  public function aboutUs() {
+    return view('pages.about-us')->with([
+      'static' => $this->static,
+    ]);
+  }
+
   public function contact() {
     return view('pages.contact')->with([
       'static' => $this->static,
@@ -90,5 +102,4 @@ class PagesController extends Controller {
     session_push('success', sentence(__('thank you for contacting us. we will be with you soon.')));
     return redirect()->back();
   }
-  
 }
