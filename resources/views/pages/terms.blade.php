@@ -1,51 +1,58 @@
-@extends('layouts.static')
-
+@extends('layouts.static') 
 @section('content')
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-Firma information:
-Cast Me ivs
-Cvr. 39302845
-Carl bernhardsvej 13B
-Frederiksberg 1817
-Tlf: +45 31171877
-Mail: admin@castme.dk
-www.castme.dk
+    <div class="row">
+        <div class="col-12">
+            <address>
+                Firma information: <br>
+                Cast Me IVS <br>
+                Cvr. 39302845 <br>
+                Carl bernhardsvej 13B <br>
+                Frederiksberg 1817 <br>
+                Tlf: +45 31171877 <br>
+                Mail: admin@castme.dk <br>
+                www.castme.dk
+            </address>
 
-Formål:
-Castme.dk har til formål at formidle kontakten mellem mellem model,statister osv. Via private profiler på hjemmesiden www.castme.dk og agenter-producere m.m. Castme.dk vil løbene offentliggøre jobopslag på hjemmesiden www.castme.dk.
+            <h2>Formål</h2>
+            <p>Castme.dk har til formål at formidle kontakten mellem mellem model,statister osv. Via private profiler på hjemmesiden www.castme.dk og agenter-producere m.m. Castme.dk vil løbene offentliggøre jobopslag på hjemmesiden www.castme.dk.</p>
+            <p>Det er profilens eget ansvar at indtaste korrekte informationer. Castme.dk kan på intet tidspunkt stilles til ansvar for dette vedr. evt. fejlinformation. Ligeledes har castme intet ansvar for job aftaler, dvs. at castme.dk ikke involvere sig i forholdet mellem profil og agent ved evt. misbrug eller misligholdelse.</p>
 
-Det er profilens eget ansvar at indtaste korrekte informationer. Castme.dk kan på intet tidspunkt stilles til ansvar for dette vedr. evt. fejlinformation. Ligeledes har castme intet ansvar for job aftaler, dvs. at castme.dk ikke involvere sig i forholdet mellem profil og agent ved evt. misbrug eller misligholdelse.
+            <h2>Aftalens omfang</h2>
+            <p>Aftalen betragtes som gyldig når de indtastede informationer er sat ind på www.castme.dk . profilen oprettes inden for 12 timer efter betaling af abb. Aftalen. Der er et tilmeldingsskema for agent/producere.Privatprofilen bestemmer selv abonnementstype og det antal måneder som ønskes eks. 2-3-6-12 måneder abonnement. Det totale beløb trækkes fra første kommende bankdag og igen når aftalen udløber enten via ratebetaling/betalingsservice og igen den første bankdag i ny periode. Abonnementet er aktivt/kører videre indtil det bliver opsagt. Efter 6 måneder er der 1 måneds opsigelse. Priserne fremgår på www.castme.dk.</p>
 
-Aftalens omfang:
-Aftalen betragtes som gyldig når de indtastede informationer er sat ind på www.castme.dk . profilen oprettes inden for 12 timer efter betaling af abb. Aftalen. Der er et tilmeldingsskema for agent/producere.Privatprofilen bestemmer selv abonnementstype og det antal måneder som ønskes eks. 2-3-6-12 måneder abonnement. Det totale beløb trækkes fra første kommende bankdag og igen når aftalen udløber enten via ratebetaling/betalingsservice og igen den første bankdag i ny periode. Abonnementet er aktivt/kører videre indtil det bliver opsagt. Efter 6 måneder er der 1 måneds opsigelse. Priserne fremgår på www.castme.dk.
+            <h2>Rettigheder</h2>
+            <p>Alle type profiler må ikke uploade,kopiere,videresende materialet fra castme.dk. Dog har castme.dk lov til at markedsføre privat profilerne.</p>
 
-Rettigheder:
-Alle type profiler må ikke uploade,kopiere,videresende materialet fra castme.dk. Dog har castme.dk lov til at markedsføre privat profilerne.
+            <h2>Fortrydelse af abbonnement</h2>
+            <p>Man skal underrette castme.dk hvis man fortryder aftalen, dette kan ske via mail eller brev. Dette skal ske inden udløb af fortrydelsesfristen. Ved evt. fortrydelse skal profilen selv afmelde evt. betalingsservice/PBS.</p>
 
-Fortrydelse af abb. :
-Man skal underrette castme.dk hvis man fortryder aftalen, dette kan ske via mail eller brev. Dette skal ske inden udløb af fortrydelsesfristen. Ved evt. fortrydelse skal profilen selv afmelde evt. betalingsservice/PBS.
+            <h2>Betalingsmulighed</h2>
+            <p>Hvis du på et tidspunkt vil ændre din betalingsmåde kan du meddele det på mail: support@castme.dk.</p>
 
-Betalingsmulighed:
-Hvis du på et tidspunkt vil ændre din betalingsmåde kan du meddele det på mail: support@castme.dk.
-Priser:
-2 måneder = 179 kr
-3 måneder = 279 kr
-6 måneder = 449 kr
-12 måneder = 799kr
+            <h2>Priser</h2>
+            <ul>
+                <li>2 måneder = 179 kr</li>
+                <li>3 måneder = 279 kr</li>
+                <li>6 måneder = 449 kr</li>
+                <li>12 måneder = 799kr</li>
+            </ul>
 
-Castme.dk har til enhver tid ret til at kontakte privat profilen/agentprofilen vedr. evt. job/spørgsmål via mail eller tlf.
+            <p>Castme.dk har til enhver tid ret til at kontakte privat profilen/agentprofilen vedr. evt. job/spørgsmål via mail eller tlf.</p>
 
-Misligholdelse brugerprofil:
-Brugerprofilen undlader at betale
-Bringer usande informationer i sin profil
-Misligholdelse Agentprofil:
-At agentprofilen ikke har et proffesionelt arrangement til hensigt
+            <h4>Misligholdelse brugerprofil:</h4>
+            <ul>
+                <li>Brugerprofilen undlader at betale</li>
+                <li>Bringer usande informationer i sin profil</li>
+            </ul>
 
-Hvis disse misligholdelser finder sted har castme.dk mulighed for uden varsel at afbryde profilen.
+            <h4>Misligholdelse Agentprofil:</h4>
+            <ul>
+                <li>At agentprofilen ikke har et proffesionelt arrangement til hensigt</li>
+            </ul>
 
-Læs mere på forbrugerombudsmanden.dk og forbrug.dk
+            <p>Hvis disse misligholdelser finder sted har castme.dk mulighed for uden varsel at afbryde profilen.</p>
+            <p>Læs mere på <a href="http://forbrugerombudsmanden.dk" target="_blank">forbrugerombudsmanden.dk</a> og <a href="http://forbrug.dk" target="_blank">forbrug.dk</a></p>
         </div>
     </div>
 </div>
