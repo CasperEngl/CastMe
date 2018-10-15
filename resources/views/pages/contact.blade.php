@@ -1,4 +1,4 @@
-@extends('layouts.static')
+@extends('layouts.master')
 @section('content')
 <div class="container">
    <div class="row d-flex align-items-center">
@@ -29,7 +29,7 @@
       <div class="col">
          <div class="container">
             <h2>{{ title_case(__('contact formular')) }}</h2>
-            {{ Form::open(['route' => 'contact.post']) }}
+            {{ Form::open(['route' => 'pages.contact.post']) }}
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                {{ Form::label(ucfirst(__('name'))) }}
                {{ Form::text('name', old('name'), ['class' => 'form-control']) }}

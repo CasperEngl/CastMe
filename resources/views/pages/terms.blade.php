@@ -1,4 +1,4 @@
-@extends('layouts.static') 
+@extends('layouts.master') 
 @section('content')
 <div class="container">
           <div class="row d-flex align-items-center">

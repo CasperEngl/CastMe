@@ -1,9 +1,9 @@
-@extends('layouts.static')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col content-wrapper">
       <section class="hero jumbotron">
         <div class="container d-flex flex-column align-items-center">
           <h1 class="animated fadeIn">Er casting noget for dig?</h1>
@@ -19,32 +19,30 @@
           </figure>
         </div>
       </section>
-      <main>
-        <section>
-          <h2 class="text-center">Castme er lige nu under udvikling</h2>
-          <p class="text-center">
-            Castme er en platform hvor du kan finde blandt andet modeljobs, filmroller og statistjobs, men også opslag af mange andre arter i dit lokalområde.
-          </p>
-        </section>
-        <section>
-          <h2 class="text-center">Hvad kan du på din brugerprofil?</h2>
-          <p class="text-center">
-            Vores profilsystem leverer en sikker og brugervenlig platform til at holde øje med dine beskeder og dine opslag.
-          </p>
-          <div class="feature my-2 animated fadeInLeft delay-1000ms">
-            <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Chat imellem scouts og medlemmer
-          </div>
-          <div class="feature my-2 animated fadeInLeft delay-1500ms">
-            <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Notifikationer på opslag du er interreseret i
-          </div>
-          <div class="feature my-2 animated fadeInLeft delay-2000ms">
-            <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Abonnementsstyring, opgradering og nedgradering
-          </div>
-          <div class="feature my-2 animated fadeInLeft delay-2500ms">
-            <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Detaljeret profilredigering, billedeuskiftning og meget mere
-          </div>
-        </section>
-      </main>
+      <section>
+        <h2 class="text-center">Castme er lige nu under udvikling</h2>
+        <p class="text-center">
+          Castme er en platform hvor du kan finde blandt andet modeljobs, filmroller og statistjobs, men også opslag af mange andre arter i dit lokalområde.
+        </p>
+      </section>
+      <section>
+        <h2 class="text-center">Hvad kan du på din brugerprofil?</h2>
+        <p class="text-center">
+          Vores profilsystem leverer en sikker og brugervenlig platform til at holde øje med dine beskeder og dine opslag.
+        </p>
+        <div class="feature my-2 animated fadeInLeft delay-1000ms">
+          <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Chat imellem scouts og medlemmer
+        </div>
+        <div class="feature my-2 animated fadeInLeft delay-1500ms">
+          <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Notifikationer på opslag du er interreseret i
+        </div>
+        <div class="feature my-2 animated fadeInLeft delay-2000ms">
+          <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Abonnementsstyring, opgradering og nedgradering
+        </div>
+        <div class="feature my-2 animated fadeInLeft delay-2500ms">
+          <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Detaljeret profilredigering, billedeuskiftning og meget mere
+        </div>
+      </section>
       <section class="jumbotron mt-4 mb-0">
         <div class="container">
           <h2 class="page-header">{{ ucfirst(__('posts')) }} <i class="fas fa-clipboard-list"></i></h2>
