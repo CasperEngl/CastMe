@@ -1,0 +1,5 @@
+.content-wrapper {
+  @extend .p-3, .my-2;
+  background: rgba(white, 0.6);
+  border-radius: $border-radius-lg;
+}
