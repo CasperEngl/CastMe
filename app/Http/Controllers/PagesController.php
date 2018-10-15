@@ -50,11 +50,11 @@ class PagesController extends Controller {
     return view('pages.terms');
   }
 
-  public function contact() {
-    return view('pages.contact');
+  public function privacy() {
+    return view('pages.privacy');
   }
 
-  public function privacy() {
+  public function contact() {
     return view('pages.contact');
   }
 
@@ -83,4 +83,5 @@ class PagesController extends Controller {
     return redirect()->back();
   
   }
+  
 }
