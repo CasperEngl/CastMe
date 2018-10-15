@@ -9,13 +9,14 @@ use App\Contact;
 use Mail;
 
 class PagesController extends Controller {
+  protected $static;
   /**
    * Create a new controller instance.
    *
    * @return void
    */
   public function __construct() {
-    
+    $this->static = true;
   }
 
   public function overview() {
@@ -43,19 +44,26 @@ class PagesController extends Controller {
       'posts' => $posts,
       'latestUsers' => $latestUsers,
       'showcasedUsers' => $showcasedUsers,
+      'static' => $this->static,
     ]);
   }
 
   public function terms() {
-    return view('pages.terms');
+    return view('pages.terms')->with([
+      'static' => $this->static,
+    ]);
   }
 
   public function privacy() {
-    return view('pages.privacy');
+    return view('pages.privacy')->with([
+      'static' => $this->static,
+    ]);
   }
 
   public function contact() {
-    return view('pages.contact');
+    return view('pages.contact')->with([
+      'static' => $this->static,
+    ]);
   }
 
   public function contactPost(Request $request) {
@@ -81,7 +89,6 @@ class PagesController extends Controller {
 
     session_push('success', sentence(__('thank you for contacting us. we will be with you soon.')));
     return redirect()->back();
-  
   }
   
 }
