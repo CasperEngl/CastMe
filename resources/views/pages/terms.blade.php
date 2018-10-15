@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
           <div class="row d-flex align-items-center">
-            <div class="col">
+            <div class="col content-wrapper">
             <address>
                 <b>Firma information: <br></b>
                 Cast Me IVS <br>
