@@ -17,9 +17,8 @@ $navbar-castme-logo-color: invert(100%);
 }
 
 .navbar {
-  @extend .py-0;
+  @extend .py-2;
   background: $navbar-background-color;
-  height: 80px;
   backdrop-filter: saturate(180%) blur(20px);
 }
 
