@@ -54,6 +54,10 @@ class PagesController extends Controller {
     return view('pages.contact');
   }
 
+  public function privacy() {
+    return view('pages.contact');
+  }
+
   public function contactPost(Request $request) {
     $this->validate($request, [
       'name' => 'required',
@@ -77,5 +81,6 @@ class PagesController extends Controller {
 
     session_push('success', sentence(__('thank you for contacting us. we will be with you soon.')));
     return redirect()->back();
+  
   }
 }
