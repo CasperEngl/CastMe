@@ -126,7 +126,7 @@
       @endforeach
     @endif
 
-    <div class="row">
+    <div class="row justify-content-center">
       @if (Auth::check() && !isset($static))
       <aside class="col-sm-3 d-none d-lg-block">
         <div class="sidebar" id="sidebar" data-toggle="affix">
