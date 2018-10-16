@@ -168,3 +168,17 @@ ul.flex-container {
   display: -webkit-box;
 }
 }
+
+#accordion .card .card-header {
+  background: #01415b;
+}
+
+#accordion .card-header button.btn-link {
+  font-size: 25px !important;
+  color: #fff !important;
+  font-weight: 400;
+}
+
+#accordion .card .card-header {
+  margin-bottom: 5px;
+}
