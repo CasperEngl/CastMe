@@ -25,7 +25,7 @@
           </div>
         </figure>
         <div class="post-card__info">
-          @if (Auth::user()->id === $post->user_id)
+          @if (Auth::check() && Auth::id() === $post->user_id)
           <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
           @else
           <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ $post->owner->name }}</p>
