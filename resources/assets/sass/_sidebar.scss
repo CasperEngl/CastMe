@@ -13,8 +13,12 @@
   }
 
   &__user__avatar {
-    height: 5rem;
-    width: 5rem;
+    height: 8rem;
+    width: 8rem;
+
+    img {
+      width: 100%;
+    }
   }
 
   &__user__name {
