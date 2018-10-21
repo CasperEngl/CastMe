@@ -59,6 +59,10 @@
     }
   }
 
+  &__date {
+    @extend .small, .text-muted;
+  }
+
   &__link:hover {
     text-decoration: none;
   }

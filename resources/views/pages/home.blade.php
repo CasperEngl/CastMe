@@ -69,6 +69,7 @@
                   </div>
                 </figure>
                 <div class="post-card__info">
+                  <h5 class="post-card__date">{{ Carbon::parse($post->created_at)->format('M j, Y \a\t G:i a') }}</h5>
                   @if (Auth::user() && Auth::id() === $post->user_id)
                   <p class="post-card__author">{{ ucfirst(__('written by')) }} {{ strtoupper(__('you')) }}</p>
                   @else
@@ -124,21 +125,19 @@
           @endforeach
         </section>
 
-           <section class="list-group my-4 py-2 card d-flex align-items-center">
+        <section class="list-group my-4 py-2 card d-flex align-items-center">
           <p class="h4 text-align">{{ sentence(__('newest job post')) }}</p>
-        
         </section>
 
         <section class="list-group card">
-        <article class="card-block">
-        <a href="/#" class="text-center btn btn-castme fwb">{{ sentence(__('become an agent')) }}</a>
-        @if (!Auth::check())
-        <a href="/register" class="text-center btn btn-castme fwb">{{ sentence(__('create your profile')) }}</a>
-        @else
-        <a href="/overview" class="text-center btn btn-castme fwb">{{ sentence(__('go to my profile')) }}</a>
-        @endif
-
-        </article>
+          <article class="card-block">
+            <a href="/#" class="text-center btn btn-castme fwb">{{ sentence(__('become an agent')) }}</a>
+            @if (!Auth::check())
+            <a href="/register" class="text-center btn btn-castme fwb">{{ sentence(__('create your profile')) }}</a>
+            @else
+            <a href="/overview" class="text-center btn btn-castme fwb">{{ sentence(__('go to my profile')) }}</a>
+            @endif
+          </article>
         </section>
       </div>
     </aside>
