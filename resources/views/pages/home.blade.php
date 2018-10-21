@@ -6,7 +6,7 @@
     <div class="col content-wrapper">
       <section class="hero jumbotron">
         <div class="container d-flex flex-column align-items-center">
-          <h1 class="animated fadeIn">Er casting noget for dig?</h1>
+          <h1 class="animated fadeIn">Castme - forbinder dig</h1>
           <a href="/register" class="btn btn-castme btn-lg m-4">{{ title_case(__('register')) }}</a>
           <figure class="hero-image left animated fadeInUp">
             <img src="{{ asset('img/hero.jpg') }}" alt="">
@@ -45,7 +45,7 @@
       </section>
       <section class="jumbotron mt-4 mb-0">
         <div class="container">
-          <h2 class="page-header">{{ ucfirst(__('posts')) }} <i class="fas fa-clipboard-list"></i></h2>
+          <h2 class="page-header">{{ ucfirst(__('job posts')) }} <i class="fas fa-clipboard-list"></i></h2>
           <div class="row">
       
           @if (count($posts))
@@ -88,7 +88,7 @@
           <article class="card-block">
             <p class="text-center">{{ title_case(__('find us on instagram and facebook')) }}</p>
             <div class="d-flex">
-              <a href="#" class="mr-2">
+              <a href="https://www.instagram.com/castme.dk/" target="_blank" class="mr-2">
                 <img src="/img/insta.png" alt="instagram logo">
               </a>
               <a href="#">
@@ -99,17 +99,17 @@
         </section>
 
         <section class="list-group my-4 py-2 card d-flex align-items-center">
-          <p class="h4 text-align">{{ title_case(__('newest user')) }}</p>
+          <p class="h4 text-align">{{ sentence(__('newest user')) }}</p>
           @foreach ($latestUsers as $user)
-          <figure class="circle sidebar__user__avatar">
+          <figure class="sidebar__user__avatar">
             <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
           </figure>
           <p class="sidebar__user__name">{{ $user->name }}</p>
           @endforeach
           <hr class="w-100">
-          <p class="h4 text-align">{{ title_case(__('highlighted profile')) }}</p>
+          <p class="h4 text-align">{{ sentence(__('highlighted profile')) }}</p>
           @foreach ($showcasedUsers as $user)
-          <figure class="circle sidebar__user__avatar">
+          <figure class="sidebar__user__avatar">
             <img src="{{ Storage::disk('public')->url($user->avatar) }}" alt="">
           </figure>
           <p class="sidebar__user__name">{{ $user->name }}</p>
@@ -117,14 +117,14 @@
         </section>
 
            <section class="list-group my-4 py-2 card d-flex align-items-center">
-          <p class="h4 text-align">{{ title_case(__('newest job post')) }}</p>
+          <p class="h4 text-align">{{ sentence(__('newest job post')) }}</p>
         
         </section>
 
         <section class="list-group card">
         <article class="card-block">
-        <a href="/#" class="text-center btn btn-castme fwb">{{ title_case(__('become a scout')) }}</a>
-        <a href="/register" class="text-center btn btn-castme fwb">{{ title_case(__('create your profile')) }}</a>
+        <a href="/#" class="text-center btn btn-castme fwb">{{ sentence(__('become an agent')) }}</a>
+        <a href="/register" class="text-center btn btn-castme fwb">{{ sentence(__('create your profile')) }}</a>
         </article>
         </section>
       </div>
