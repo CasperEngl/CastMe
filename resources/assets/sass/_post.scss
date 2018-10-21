@@ -1,4 +1,10 @@
-.post-article {
+.post-article
+{
+  @extend .p-3;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+
+
   &__title {
     @extend .text-center;
   }
@@ -55,9 +61,8 @@
     text-decoration: none;
 
     &__avatar {
-      @extend figure.circle;
-      height: 2.5rem;
-      width: 2.5rem;
+      height: 10rem;
+      width: 10rem;
     }
 
     &__name {
