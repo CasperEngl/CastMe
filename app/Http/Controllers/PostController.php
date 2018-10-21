@@ -61,9 +61,7 @@ class PostController extends Controller {
   }
 
   public function list() {
-    $posts = Post::orderBy('id', 'desc')
-      ->where('closed', 0)
-      ->get();
+    $posts = Post::orderBy('id', 'desc')->get();
 
     return view('post.list', [
       'title' => ucfirst(__('posts')),
