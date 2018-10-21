@@ -6,8 +6,6 @@ use \Illuminate\Support\Facades\Auth;
 
 @extends('layouts.master')
 @section('content')
-<h2 class="page-header">{{ ucfirst(__('subscription')) }}</h2>
-
 @if(Auth::user()->activeSub())
 <form action="{{ route('user.subscription.swap') }}" method="POST" id="payment-form">
 @else
@@ -15,6 +13,8 @@ use \Illuminate\Support\Facades\Auth;
 @endif
   <div class="card">
     <div class="card-body">
+      <h2 class="page-header">{{ ucfirst(__('subscription')) }}</h2>
+
       <script src="https://js.stripe.com/v3/"></script>
       {{-- <divid="StripeMount"></div> --}}
       
