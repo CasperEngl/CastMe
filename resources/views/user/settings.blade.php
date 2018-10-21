@@ -35,7 +35,7 @@
               ]) }}
             {{ Form::text('first_name', Auth::user()->name ?? '', [
               'class' => 'form-control',
-              'placeholder' => 'John/Jane'
+              'placeholder' => ''
             ]) }}
           </div>
         </div>
@@ -46,7 +46,7 @@
               ]) }}
             {{ Form::text('last_name', Auth::user()->last_name ?? '', [
               'class' => 'form-control',
-              'placeholder' => 'Doe'
+              'placeholder' => ''
             ]) }}
           </div>
         </div>
@@ -60,7 +60,7 @@
               ]) }}
             {{ Form::text('email', Auth::user()->email ?? '', [
               'class' => 'form-control',
-              'placeholder' => 'Enter your email'
+              'placeholder' => ''
             ]) }}
           </div>
         </div>
@@ -74,7 +74,7 @@
               ]) }}
             {{ Form::text('age', Auth::user()->details->age ?? '', [
               'class' => 'form-control',
-              'placeholder' => '27'
+              'placeholder' => ''
             ]) }}
           </div>
         </div>
@@ -86,7 +86,7 @@
             {{ Form::label('') }}
             {{ Form::text('height', Auth::user()->details->height ?? '', [
               'class' => 'form-control',
-              'placeholder' => '175'
+              'placeholder' => ''
             ]) }}
             <small class="form-text text-muted">{{ ucfirst(__('height must be in centimeters')) }}</small>
           </div>
@@ -98,7 +98,7 @@
               ]) }}
             {{ Form::text('weight', Auth::user()->details->weight ?? '', [
               'class' => 'form-control',
-              'placeholder' => '70'
+              'placeholder' => ''
             ]) }}
             <small class="form-text text-muted">{{ ucfirst(__('we only support weight in kilos')) }}</small>
           </div>
@@ -113,7 +113,7 @@
               ]) }}
             {{ Form::text('pant_size', Auth::user()->details->pant_size ?? '', [
               'class' => 'form-control',
-              'placeholder' => '30'
+              'placeholder' => ''
             ]) }}
           </div>
         </div>
@@ -124,7 +124,7 @@
               ]) }}
             {{ Form::text('shoe_size', Auth::user()->details->shoe_size ?? '', [
               'class' => 'form-control',
-              'placeholder' => '42'
+              'placeholder' => ''
             ]) }}
           </div>
         </div>
@@ -135,7 +135,7 @@
               ]) }}
             {{ Form::text('shirt_size', Auth::user()->details->shirt_size ?? '', [
               'class' => 'form-control',
-              'placeholder' => '40'
+              'placeholder' => ''
             ]) }}
           </div>
         </div>
