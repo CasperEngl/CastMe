@@ -5,9 +5,17 @@
   <div class="row">
     <div class="col content-wrapper">
       <section class="hero jumbotron">
-        <div class="container d-flex flex-column align-items-center">
-          <h1 class="animated fadeIn">Castme - forbinder dig</h1>
-          <a href="/register" class="btn btn-castme btn-lg m-4">{{ title_case(__('register')) }}</a>
+        <div class="container d-flex flex-column align-items-center">  
+        <h1 class="animated fadeIn">Castme - forbinder dig</h1>
+        @if (!Auth::check()) 
+        
+        @endif
+
+           @if (!Auth::check())
+           <a href="/register" class="btn btn-castme btn-lg m-4">{{ title_case(__('register')) }}</a> 
+        @else
+        <a href="/posts" class="btn btn-castme btn-lg m-4">{{ title_case(__('se alle jobs her')) }}</a> </a>
+        @endif
           <figure class="hero-image left animated fadeInUp">
             <img src="{{ asset('img/hero.jpg') }}" alt="">
           </figure>
@@ -124,7 +132,12 @@
         <section class="list-group card">
         <article class="card-block">
         <a href="/#" class="text-center btn btn-castme fwb">{{ sentence(__('become an agent')) }}</a>
+        @if (!Auth::check())
         <a href="/register" class="text-center btn btn-castme fwb">{{ sentence(__('create your profile')) }}</a>
+        @else
+        <a href="/overview" class="text-center btn btn-castme fwb">{{ sentence(__('go to my profile')) }}</a>
+        @endif
+
         </article>
         </section>
       </div>
