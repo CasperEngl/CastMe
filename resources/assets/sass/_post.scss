@@ -1,9 +1,7 @@
-.post-article
-{
+.post-article {
   @extend .p-3;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 5px;
-
 
   &__title {
     @extend .text-center;
@@ -14,11 +12,7 @@
   }
 
   &__frame {
-    @extend
-      .d-flex,
-      .align-items-center,
-      .justify-content-center,
-      .w-100;
+    @extend .d-flex, .align-items-center, .justify-content-center, .w-100;
 
     overflow: hidden;
     height: 25vh;
@@ -32,11 +26,11 @@
   }
 
   &__profile-link {
-    color: color('gray-dark');
+    color: color("gray-dark");
     text-decoration: none;
 
     &:hover {
-      color: color('gray-dark');
+      color: color("gray-dark");
       text-decoration: none;
     }
   }
@@ -52,12 +46,7 @@
   }
 
   &__quote {
-    @extend 
-      .d-flex,
-      .flex-column,
-      .align-items-center,
-      .blockquote,
-      .my-2;
+    @extend .d-flex, .flex-column, .align-items-center, .blockquote, .my-2;
     text-decoration: none;
 
     &__avatar {
