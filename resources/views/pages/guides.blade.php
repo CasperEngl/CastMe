@@ -8,16 +8,38 @@
 <p> Her kan du læse og se en række guides som hjælper dig til at formulere dig til det job du godt kunne tænke dig. Klik ganske enkelt på de områder, du gerne vil læse mere om.</p>
 
     <div id="accordion">
+
+        <div class="card">
+                    <div class="card-header" id="headingFive">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Billeder til din profil
+                        </button>
+                    </h5>
+                    </div>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                    <div class="card-body">
+                    <b>Billeder til profil (Guides) </b><br><br>
+
+                        <ol>
+                        <li>Portræt billede : kan være professionelt billede eller et nærbillede af dig.</li><br>
+                        <li>Helkrops billede: Det skal være et billede taget på afstand.</li><br>
+                        <li>Situationsbillede: Det skal være et billede der viser en god side af dig og en opfattelse af hvad du er som person. Det kan være et sjovt billede, udklædnings billede eller et billede du synes passer er godt til din profil.</li>
+                        </ol>
+
+                    </div>
+                    </div>
+
         <div class="card">
             <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                 Model
                 </button>
             </h5>
             </div>
 
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body"><p>
             <b>Øvelse gør mester</b><br><br>
 
@@ -107,21 +129,7 @@
 
             </div>
             </div>
-
-            <div class="card">
-            <div class="card-header" id="headingThree">
-            <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                Næste punkt (Test)
-                </button>
-            </h5>
-            </div>
-            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-            <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-            </div>
-            </div>
-            
+          
         </div>
     </div>
 </div>

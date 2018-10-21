@@ -2,16 +2,6 @@
 @section('content')
 <div class="container content-wrapper">
 
-  <h1>{{ title_case(__('contact information')) }}</h1>
-  <address>
-    Cast Me IVS <br>
-    Cvr. 39302845 <br>
-    Carl bernhardsvej 13B <br>
-    Frederiksberg 1817 <br>
-    Tlf: +45 31171877 <br>
-    Mail: support@castme.dk <br>
-  </address>
-
   <h2>{{ title_case(__('when can you contact us?')) }}</h2>
   <p>Du kan altid kontakte os hvis du har nogle spørgsmål til vores platform, oprettelser eller hvis du ønsker at blive scout. For at holde vores tilknyttede virksomheder reelle og autoriserede, kan man derfor heller ikke oprette sin egen scout profil.
     Dette bedes du ansøge om på dette link: (Link).
@@ -44,6 +34,16 @@
     <button class="btn btn-castme">{{ ucfirst(__('contact')) }}</button>
   </div>
   {{ Form::close() }}
+
+  <h1>{{ title_case(__('contact information')) }}</h1>
+  <address>
+    Cast Me IVS <br>
+    Cvr. 39302845 <br>
+    Carl bernhardsvej 13B <br>
+    Frederiksberg 1817 <br>
+    Tlf: +45 31171877 <br>
+    Mail: support@castme.dk <br>
+  </address>
 
 </div>
 @endsection
