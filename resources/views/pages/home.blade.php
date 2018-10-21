@@ -1,32 +1,48 @@
+$('.carousel').carousel({
+  interval: 52000
+})
+
 @extends('layouts.master')
 
 @section('content')
 <div class="container">
   <div class="row">
     <div class="col content-wrapper">
-      <section class="hero jumbotron">
-        <div class="container d-flex flex-column align-items-center">  
-        <h1 class="animated fadeIn">Castme - forbinder dig</h1>
-        @if (!Auth::check()) 
-        
-        @endif
 
-           @if (!Auth::check())
+    <div id="homepagecarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#homepagecarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#homepagecarousel" data-slide-to="1"></li>
+        <li data-target="#homepagecarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="slidercontent"> <h1>Castme - forbinder dig</h1>
+          @if (!Auth::check())
            <a href="/register" class="btn btn-castme btn-lg m-4">{{ title_case(__('register')) }}</a> 
         @else
         <a href="/posts" class="btn btn-castme btn-lg m-4">{{ title_case(__('se alle jobs her')) }}</a> </a>
         @endif
-          <figure class="hero-image left animated fadeInUp">
-            <img src="{{ asset('img/hero.jpg') }}" alt="">
-          </figure>
-          <figure class="hero-image right animated fadeInUp">
-            <img src="{{ asset('img/hero.jpg') }}" alt="">
-          </figure>
-          <figure class="hero-image middle animated fadeInUp">
-            <img src="{{ asset('img/hero.jpg') }}" alt="">
-          </figure>
         </div>
-      </section>
+          <img class="d-block w-100" src="img/castme1.jpg" alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="img/castme2.jpg" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="img/castme4.jpg" alt="Third slide">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#homepagecarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#homepagecarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
       <section>
         <h2 class="text-center">Castme er lige nu under udvikling</h2>
         <p class="text-center">

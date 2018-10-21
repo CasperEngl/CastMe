@@ -206,3 +206,16 @@ h2.page-header {
     text-align: center;
     border-radius: 5px;
 }
+
+/* slider css*/
+
+.slidercontent {
+  position: absolute !important;
+  text-align: center;
+  width: 100%;
+}
+
+#homepagecarousel .carousel-inner .carousel-item img {
+  object-fit: cover;
+  height: 350px;
+}
