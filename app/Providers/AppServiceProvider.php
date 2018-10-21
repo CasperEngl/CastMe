@@ -51,6 +51,13 @@ class AppServiceProvider extends ServiceProvider {
 
       return in_array(Auth::user()->role, ['Admin']);
     });
+
+    Blade::if('onlyuser', function () {
+      if (!Auth::check())
+        return false;
+
+      return in_array(Auth::user()->role, ['Free', 'Paid', 'Admin']);
+    });
   }
 
   /**

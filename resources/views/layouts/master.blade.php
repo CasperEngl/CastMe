@@ -81,7 +81,9 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <div class="dropdown-header">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</div>
                 <a class="dropdown-item {{ active_route('user.settings', true) }}" href="{{ route('user.settings') }}">{{ ucfirst(__('profile settings')) }}</a>
+                @onlyuser
                 <a class="dropdown-item {{ active_route('user.subscription', true) }}" href="{{ route('user.subscription') }}">{{ ucfirst(__('subscription')) }}</a>
+                @endonlyuser
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 {{ ucfirst(__('logout')) }} <i class="fas fa-sign-out-alt"></i></a>
 
@@ -136,7 +138,9 @@
           </div>
           <div class="list-group mb-4">
             <a href="{{ route('user.settings') }}" class="list-group-item {{ active_route('user.settings', true) }}">{{ title_case(__('profile settings')) }}</a>
+            @onlyuser
             <a href="{{ route('user.subscription') }}" class="list-group-item {{ active_route('user.subscription', true) }}">{{ title_case(__('subscription')) }}</a>
+            @endonlyuser
           </div>
           @paid
           <div class="list-group mb-4">
