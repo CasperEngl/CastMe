@@ -1,7 +1,3 @@
-$('.carousel').carousel({
-  interval: 52000
-})
-
 @extends('layouts.master')
 
 @section('content')
