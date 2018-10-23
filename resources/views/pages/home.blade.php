@@ -13,7 +13,7 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="slidercontent"> <h1>Castme - forbinder dig</h1>
+          <div class="slidercontent"> <h1>{{ sentence(__('Castme - connecting you')) }}</h1>
           @if (!Auth::check())
            <a href="/register" class="btn btn-castme btn-lg m-4">{{ title_case(__('register')) }}</a> 
         @else
