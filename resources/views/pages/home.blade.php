@@ -137,20 +137,81 @@
           @endforeach
         </section>
 
-        <section class="list-group my-4 py-2 card d-flex align-items-center">
+        <section class="list-group card">
+          <article class="card-block">
+            @if (!Auth::check())
+            <a href="/register" class="text-center btn btn-castme fwb">{{ sentence(__('create your profile')) }}</a>
+
+            <div class="card">
+      <div class="card-body">
+        <form action="{{ route('register') }}" method="POST" aria-label="{{ ucfirst(__('register')) }}">
+          @csrf
+          @method('POST')
+
+          <div class="form-group row">
+            <div class="col-md">
+              <input id="name" type="text" placeholder="{{ sentence(__('name')) }}" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"  value="{{ old('name' ) }}" required autofocus>
+              @if ($errors->has('name'))
+              <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('name') }}</strong></span>
+              @endif
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col">
+              <input id="last_name" type="text" placeholder="{{ sentence(__('last name')) }}" class="form-control {{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required> @if ($errors->has('last_name'))
+              <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('last_name') }}</strong></span> @endif
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col">
+              <input id="email" type="email" placeholder="{{ sentence(__('e-mail')) }}" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+              @if ($errors->has('email'))
+              <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('email') }}</strong></span>
+              @endif
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col">
+              <input id="password" type="password" placeholder="{{ sentence(__('password')) }}" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required> 
+              @if ($errors->has('password'))
+              <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('password') }}</strong></span>
+              @endif
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col">
+              <input id="password-confirm" type="password" placeholder="{{ sentence(__('confirm password')) }}" class="form-control" name="password_confirmation" required>
+            </div>
+          </div>
+
+          <div class="form-group row mb-0">
+            <div class="col">
+              <button type="submit" class="text-center btn btn-castme fwb">{{ ucfirst(__('register')) }}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+          </article>
+          
+          </section>
+        @else
+            <a href="/overview" class="text-center btn btn-castme fwb">{{ sentence(__('go to my profile')) }}</a>
+            @endif
+
+             <section class="list-group my-4 py-2 card d-flex align-items-center">
+          <article class="card-block">
+            <a href="/#" class="text-center btn btn-castme fwb">{{ sentence(__('become an agent')) }}</a>
+          </article>
+        </section>
+
+ <section class="list-group my-4 py-2 card d-flex align-items-center">
           <p class="h4 text-align">{{ sentence(__('newest job post')) }}</p>
         </section>
 
-        <section class="list-group card">
-          <article class="card-block">
-            <a href="/#" class="text-center btn btn-castme fwb">{{ sentence(__('become an agent')) }}</a>
-            @if (!Auth::check())
-            <a href="/register" class="text-center btn btn-castme fwb">{{ sentence(__('create your profile')) }}</a>
-            @else
-            <a href="/overview" class="text-center btn btn-castme fwb">{{ sentence(__('go to my profile')) }}</a>
-            @endif
-          </article>
-        </section>
       </div>
     </aside>
   </div>
