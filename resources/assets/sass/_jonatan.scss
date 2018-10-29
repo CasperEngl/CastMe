@@ -223,3 +223,23 @@ h2.page-header {
 .carousel-indicators li {
   height: 10px !important;
 }
+
+/* Specialtilpasning profilbilleder */
+
+article.card-block.jcb {
+  padding: 5px;
+}
+
+p.text-center.h3.jh3 {
+  font-size: 23px;
+}
+
+/* Sidebar transperent baggrund */
+
+.sidebar .list-group {
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+section.list-group.my-4.py-2.card.d-flex.align-items-center {
+  background: rgba(255, 255, 255, 0.6) !important;
+}

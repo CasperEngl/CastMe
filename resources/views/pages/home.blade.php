@@ -138,9 +138,17 @@
         </section>
 
         <section class="list-group card">
-          <article class="card-block">
+          <article class="card-block jcb">
             @if (!Auth::check())
-            <a href="/register" class="text-center btn btn-castme fwb">{{ sentence(__('create your profile')) }}</a>
+
+          <article class="card-block">
+            <p class="text-center h3 jh3">{{ sentence(__('create profile')) }}</p>
+            <div class="d-flex">
+              <a href="/register/" target="_blank" class="mr-2">
+                <img src="/img/profile.png" alt="create profile">
+              </a>
+            </div>
+          </article>
 
             <div class="card">
       <div class="card-body">
@@ -204,6 +212,14 @@
 
              <section class="list-group my-4 py-2 card d-flex align-items-center">
           <article class="card-block">
+
+            <p class="text-center h3 jh3">{{ sentence(__('become an agent')) }}</p>
+            <div class="d-flex">
+              <a href="#" target="_blank" class="mr-2">
+                <img src="/img/agent.png" alt="create agent">
+              </a>
+            </div>
+
             <a href="/#" class="text-center btn btn-castme fwb">{{ sentence(__('become an agent')) }}</a>
           </article>
         </section>
