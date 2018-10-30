@@ -207,6 +207,15 @@
     </section>
   </footer>
 
+  <div class="social-icons-fixed social-icons-fixed--left">
+    <a href="https://www.instagram.com/castme.dk/" target="_blank">
+      <img src="/img/insta.png" alt="instagram logo">
+    </a>
+    <a href="#">
+      <img src="/img/facebook.png" alt="facebook logo">
+    </a>
+  </div>
+
   <script src="{{ mix('js/app.js') }}"></script>
 
 </body>

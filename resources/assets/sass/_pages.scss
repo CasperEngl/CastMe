@@ -3,3 +3,24 @@
   background: rgba(white, 0.6);
   border-radius: $border-radius-lg;
 }
+
+.social-icons-fixed {
+  @extend .position-fixed, .d-flex, .flex-column;
+  top: calc(50vh - 6rem);
+  padding: .5rem;
+  background: rgba(white, .6);
+  border-radius: $border-radius-lg;
+
+  &--left {
+    left: .25rem;
+  }
+
+  &--right {
+    right: .25rem;
+  }
+
+  img {
+    width: 3rem;
+    height: 3rem;
+  }
+}
