@@ -102,7 +102,7 @@
         </div>
       </section>
     </div>
-    <aside class="col-sm-3 d-none d-lg-block" style="position: relative;">
+    <aside class="col-sm-3 d-none d-lg-block position-relative">
       <div class="sidebar" id="sidebar" data-toggle="affix">
 
         <section class="list-group card">
