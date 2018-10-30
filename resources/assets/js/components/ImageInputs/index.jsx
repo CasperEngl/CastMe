@@ -22,7 +22,7 @@ import {
 import config from '../../config';
 import '../../helpers/ucFirst';
 
-import ImageInput from './ImageInput';
+import Single from './Single';
 
 class ImageInputs extends Component {
   constructor(props) {
@@ -55,6 +55,7 @@ class ImageInputs extends Component {
     if (type.toLowerCase() === 'update') {
       try {
         const data = await axios.get('data');
+        console.log(data);
         const images = JSON.parse(data.data.images);
 
         if (images) {
@@ -98,7 +99,7 @@ class ImageInputs extends Component {
 
     this.setState(prevState => ({
       inputNumber: prevState.inputNumber + 1,
-      inputList: inputList.concat(<ImageInput
+      inputList: inputList.concat(<Single
         key={prevState.inputNumber + 1}
         number={prevState.inputNumber + 1}
         image={image}

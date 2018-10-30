@@ -10,7 +10,7 @@ import {
   Button,
 } from 'reactstrap';
 
-const ImageInput = ({ handleRemoveInput, number, image }) => (
+const Single = ({ handleRemoveInput, number, image }) => (
   <FormGroup>
     <Row className="d-flex align-items-center">
       <Col>
@@ -30,14 +30,14 @@ const ImageInput = ({ handleRemoveInput, number, image }) => (
   </FormGroup>
 );
 
-ImageInput.defaultProps = {
+Single.defaultProps = {
   image: '',
 };
 
-ImageInput.propTypes = {
+Single.propTypes = {
   handleRemoveInput: PropTypes.func.isRequired,
   number: PropTypes.number.isRequired,
   image: PropTypes.string,
 };
 
-export default ImageInput;
+export default Single;
