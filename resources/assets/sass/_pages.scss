@@ -11,6 +11,10 @@
   background: rgba(white, .6);
   border-radius: $border-radius-lg;
 
+  @include media-breakpoint-down(sm) {
+    display: none !important;
+  }
+
   &--left {
     left: .25rem;
   }
