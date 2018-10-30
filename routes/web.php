@@ -26,7 +26,7 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
   Route::get('about-us', 'PagesController@aboutUs')->name('pages.about-us');
 
   // Specific Profile
-  Route::get('profile/{id}', 'ProfileController@user')->name('profile');
+  Route::get('profile/{id}', 'ProfileController@index')->name('profile');
 
   // Posts
   Route::get('posts', 'PostController@list')->name('posts');
@@ -41,7 +41,7 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
     Route::get('overview', 'PagesController@overview')->name('overview');
 
     // Profile Settings
-    Route::get('user/settings', 'ProfileController@index')->name('user.settings');
+    Route::get('user/settings', 'ProfileController@settings')->name('user.settings');
     Route::post('user/settings/update', 'ProfileController@update')->name('user.settings.update');
 
     // Subscription

@@ -9,25 +9,20 @@ use Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProfileController extends Controller {
-  public function index() {
-    $user = Auth::user();
-
-    if (Storage::disk('public')->exists($user->avatar))
-      $avatar = Storage::disk('public')->url($user->avatar);
-
-    return view('user.settings')->with([
-      'avatar' => $avatar ?? null,
-    ]);
-  }
-
-  public function settingsDump() {
-    return view('user.settingsDump');
-  }
-
-  public function user($id) {
+  public function index($id) {
     $user = User::find($id);
     $avatar = Storage::disk('public')->exists($user->avatar) ? Storage::disk('public')->url($user->avatar) : false;
     $gravatarHash = md5(trim(strtolower(Auth::user()->email))) . '?s=200';
+    $galleryImages = json_decode($user->details->gallery);
+    $gallery = [];
+
+    foreach ($galleryImages as $galleryImage) {
+      $image = Storage::disk('public')->exists($galleryImage) ? Storage::disk('public')->url($galleryImage) : false;
+
+      if ($image) {
+        array_push($gallery, $image);
+      }
+    }
 
     if (!$user)
       return redirect()->back()->withErrors([
@@ -43,7 +38,23 @@ class ProfileController extends Controller {
       'user' => $user,
       'avatar' => $avatar,
       'gravatar' => $gravatarHash,
+      'gallery' => $gallery,
     ]);
+  }
+
+  public function settings() {
+    $user = Auth::user();
+
+    if (Storage::disk('public')->exists($user->avatar))
+      $avatar = Storage::disk('public')->url($user->avatar);
+
+    return view('user.settings')->with([
+      'avatar' => $avatar ?? null,
+    ]);
+  }
+
+  public function settingsDump() {
+    return view('user.settingsDump');
   }
 
   public function update(Request $request) {
@@ -55,7 +66,7 @@ class ProfileController extends Controller {
     if ($avatar) {
       if ($avatar->getSize() / 1000 > 2000)
         return redirect()->back()->withErrors([
-          sentence('Sorry, that avatar image is too big. Max file size is 2 MB.')
+          sentence('sorry, that avatar image is too big. max file size is 2 mb.')
         ]);
 
       if ($avatar->isValid() !== true)
@@ -65,7 +76,25 @@ class ProfileController extends Controller {
       
       $storedFile = Storage::disk('public')->put('avatar', $avatar);
     }
-    
+
+    $gallery = [];
+    if ($images = $request->file('gallery')) {
+      foreach ($images as $image) {
+        if ($image->getSize() / 1000 > 2000)
+          return redirect()->back()->withErrors([
+            sentence('sorry. one of your gallery images was too big. max file size is 2 mb.')
+          ]);
+  
+        if ($image->isValid() !== true)
+          return redirect()->back()->withErrors([
+            sentence('there was an issue with one of your images. please try uploading again, or find out which image might be causing any issues.')
+          ]);
+
+        $storedFile = Storage::disk('public')->put('gallery', $image);
+        array_push($gallery, $storedFile);
+      }
+    }
+    $jsonGallery = json_encode($gallery);
 
     $roles = [];
     
@@ -84,6 +113,7 @@ class ProfileController extends Controller {
     $user->last_name      = $request->input('last_name') ? title_case($request->input('last_name')) : title_case($user->last_name);
     $user->email          = $request->input('email') ? $request->input('email') : $user->email;
     $user->avatar         = $avatar ? $storedFile : $user->avatar;
+    $details->gallery     = count($gallery) ? $jsonGallery : $details->gallery;
     $details->age         = $request->input('age') ? $request->input('age') : $details->age;
     $details->height      = $request->input('height') ? $request->input('height') : $details->height;
     $details->weight      = $request->input('weight') ? $request->input('weight') : $details->weight;

@@ -2,7 +2,7 @@
 @section('content')    
 <div class="card p-5">
   <div class="row">
-    <div class="col-sm-6 d-flex flex-column justify-content-center align-items-center">
+    <div class="col-sm-6 my-4 d-flex flex-column justify-content-center align-items-center">
       @if ($avatar)
       <figure class="circle avatar">
         <img src="{{ $avatar }}" alt="{{ __('avatar') }}">
@@ -28,8 +28,34 @@
         <input type="submit" class="btn btn-castme mt-2" value="{{ ucfirst(__('message')) }}">
       </form>
       @endif
+
+      <div id="userGallery" class="carousel slide mt-4" data-ride="carousel">
+        <div class="carousel-inner">
+          @foreach ($gallery as $key => $image)
+          <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+            <img src="{{ $image }}" alt="{{ $user->name }} {{ $user->last_name }} gallery {{ $key + 1 }} image">
+          </div>
+          @endforeach
+        </div>
+        <a class="carousel-control-prev" href="#userGallery" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#userGallery" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+      <ol class="carousel-indicators position-static mt-4">
+        @foreach ($gallery as $key => $image)
+        <li data-target="#userGallery" data-slide-to="{{ $key }}" {{ $key === 0 ? 'class="active"' : '' }}>
+          <img src="{{ $image }}" alt="{{ $user->name }} {{ $user->last_name }} gallery image {{ $key + 1 }} thumbnail">
+        </li>
+        @endforeach
+      </ol>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 my-4">
       <section class="row">
         <div class="col-12">
           <h4 class="profile__title">{{ ucfirst(__('description')) }}</h4>

@@ -27,7 +27,15 @@
       </div>
       @endif
 
-      <div id="ImageInputs"></div>
+      {{ Form::label('gallery', ucfirst(__('gallery images')), [
+        'class' => 'text-muted mt-4'
+      ]) }}
+      <small class="form-text text-muted mb-2">{{ sentence(__('the maximum amount of images you can upload is 5.')) }}</small>
+      {{ Form::file('gallery[]', [
+        'class' => 'w-100',
+        'multiple' => true,
+      ]) }}
+      <small class="form-text text-muted mb-4">{{ sentence(__('if you upload any new images, the old ones will be removed. please make sure to reupload your entire gallery each time you want to make changes.')) }}</small>
 
       <div class="row">
         <div class="col-md-6">

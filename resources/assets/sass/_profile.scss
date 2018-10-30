@@ -1,3 +1,14 @@
 .profile-description {
   @extend .h4;
 }
+
+.carousel-indicators li {
+  @extend .d-flex, .align-items-center;
+  height: 30px !important;
+  width: 60px !important;
+  text-indent: 0;
+
+  > img {
+    object-fit: cover;
+  }
+}
