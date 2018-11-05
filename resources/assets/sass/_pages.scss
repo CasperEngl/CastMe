@@ -11,7 +11,7 @@
   background: rgba(white, .6);
   border-radius: $border-radius-lg;
 
-  @include media-breakpoint-down(sm) {
+  @media only screen and (max-width: 1300px) {
     display: none !important;
   }
 
