@@ -105,21 +105,7 @@
     <aside class="col-sm-3 d-none d-lg-block position-relative">
       <div class="sidebar" id="sidebar" data-toggle="affix">
 
-        <section class="list-group card">
-          <article class="card-block">
-            <p class="text-center">{{ title_case(__('find us on instagram and facebook')) }}</p>
-            <div class="d-flex">
-              <a href="https://www.instagram.com/castme.dk/" target="_blank" class="mr-2">
-                <img src="/img/insta.png" alt="instagram logo">
-              </a>
-              <a href="#">
-                <img src="/img/facebook.png" alt="facebook logo">
-              </a>
-            </div>
-          </article>
-        </section>
-
-        <section class="list-group my-4 py-2 card d-flex align-items-center">
+        <section class="list-group mb-4 py-2 card d-flex align-items-center">
           <p class="h4 text-align">{{ sentence(__('newest user')) }}</p>
           @foreach ($latestUsers as $user)
           <figure class="sidebar__user__avatar">
