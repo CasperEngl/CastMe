@@ -36,6 +36,9 @@
         'multiple' => true,
       ]) }}
       <small class="form-text text-muted mb-4">{{ sentence(__('if you upload any new images, the old ones will be removed. please make sure to reupload your entire gallery each time you want to make changes.')) }}</small>
+      @foreach (Auth::user()->galleryImages as $galleryImage)
+      <img src="{{ Storage::disk('public')-url($galleryImage->image) }}" alt="">
+      @endforeach
 
       <div class="row">
         <div class="col-md-6">
