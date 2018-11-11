@@ -122,13 +122,13 @@ class PostController extends Controller {
     if ($banner = $request->file('banner')) {
       if ($banner->getSize() / 1000 > 2000) {
         return redirect()->back()->withErrors([
-          sentence('Sorry, that avatar image is too big. Max file size is 2 MB.'),
+          sentence(__('Sorry, that avatar image is too big. Max file size is 2 MB.')),
         ]);
       }
 
       if ($banner->isValid() !== true) {
         return redirect()->back()->withErrors([
-          sentence('there was an issue with your image. please try uploading again, or find another avatar'),
+          sentence(__('there was an issue with your image. please try uploading again, or find another avatar')),
         ]);
       }
 
@@ -174,13 +174,13 @@ class PostController extends Controller {
     if ($banner = $request->file('banner')) {
       if ($banner->getSize() / 1000 > 2000) {
         return redirect()->back()->withErrors([
-          sentence('Sorry, that avatar image is too big. Max file size is 2 MB.'),
+          sentence(__('Sorry, that avatar image is too big. Max file size is 2 MB.')),
         ]);
       }
 
       if ($banner->isValid() !== true) {
         return redirect()->back()->withErrors([
-          sentence('there was an issue with your image. please try uploading again, or find another avatar'),
+          sentence(__('there was an issue with your image. please try uploading again, or find another avatar')),
         ]);
       }
 
