@@ -14,16 +14,6 @@ class ProfileController extends Controller {
     $user = User::find($id);
     $avatar = Storage::disk('public')->exists($user->avatar) ? Storage::disk('public')->url($user->avatar) : false;
     $gravatarHash = md5(trim(strtolower(Auth::user()->email))) . '?s=200';
-    $galleryImages = json_decode($user->details->gallery);
-    $gallery = [];
-
-    foreach ($galleryImages as $galleryImage) {
-      $image = Storage::disk('public')->exists($galleryImage) ? Storage::disk('public')->url($galleryImage) : false;
-
-      if ($image) {
-        array_push($gallery, $image);
-      }
-    }
 
     if (!$user)
       return redirect()->back()->withErrors([
@@ -39,7 +29,6 @@ class ProfileController extends Controller {
       'user' => $user,
       'avatar' => $avatar,
       'gravatar' => $gravatarHash,
-      'gallery' => $gallery,
     ]);
   }
 
@@ -67,12 +56,12 @@ class ProfileController extends Controller {
     if ($avatar) {
       if ($avatar->getSize() / 1000 > 2000)
         return redirect()->back()->withErrors([
-          sentence('sorry, that avatar image is too big. max file size is 2 mb.')
+          sentence(__('sorry, that avatar image is too big. max file size is 2 mb.'))
         ]);
 
       if ($avatar->isValid() !== true)
         return redirect()->back()->withErrors([
-          sentence('there was an issue with your image. please try uploading again, or find another avatar')
+          sentence(__('there was an issue with your image. please try uploading again, or find another avatar'))
         ]);
       
       $storedFile = Storage::disk('public')->put('avatar', $avatar);
@@ -80,14 +69,21 @@ class ProfileController extends Controller {
 
     if ($images = $request->file('gallery')) {
       foreach ($images as $image) {
+        $galleryImages = GalleryImage::all()->where('user_id', Auth::id());
+
+        if ($galleryImages->count() >= 5)
+          return redirect()->back()->withErrors([
+            sentence(__('you can only upload 5 images'))
+          ]);
+
         if ($image->getSize() / 1000 > 2000)
           return redirect()->back()->withErrors([
-            sentence('sorry. one of your gallery images was too big. max file size is 2 mb.')
+            sentence(__('sorry. one of your gallery images was too big. max file size is 2 mb.'))
           ]);
   
         if ($image->isValid() !== true)
           return redirect()->back()->withErrors([
-            sentence('there was an issue with one of your images. please try uploading again, or find out which image might be causing any issues.')
+            sentence(__('there was an issue with one of your images. please try uploading again, or find out which image might be causing any issues.'))
           ]);
 
         $storedFile = Storage::disk('public')->put('gallery', $image);
@@ -137,6 +133,21 @@ class ProfileController extends Controller {
     $details->save();
     $user->save();
 
+    return redirect()->back();
+  }
+
+  public function deleteImage($id) {
+    $image = GalleryImage::find($id);
+    
+    if ($image->user_id !== Auth::id()) {
+      return redirect()->back()->withErrors([
+        sentence(__('you can only delete your own profile gallery images'))
+      ]);
+    }
+
+    Storage::disk('public')->delete($image);
+    $image->delete();
+    
     return redirect()->back();
   }
 
