@@ -66,4 +66,8 @@ class User extends Authenticatable {
   public function details() {
     return $this->hasOne('App\ProfileDetails', 'user_id');
   }
+
+  public function galleryImages() {
+    return $this->hasMany('App\GalleryImage');
+  }
 }

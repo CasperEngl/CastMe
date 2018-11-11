@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\GalleryImage;
 use Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -77,7 +78,6 @@ class ProfileController extends Controller {
       $storedFile = Storage::disk('public')->put('avatar', $avatar);
     }
 
-    $gallery = [];
     if ($images = $request->file('gallery')) {
       foreach ($images as $image) {
         if ($image->getSize() / 1000 > 2000)
@@ -91,10 +91,15 @@ class ProfileController extends Controller {
           ]);
 
         $storedFile = Storage::disk('public')->put('gallery', $image);
-        array_push($gallery, $storedFile);
+
+        $newImage = new GalleryImage([
+          'user_id' => Auth::id(),
+          'image' => $storedFile,
+        ]);
+    
+        $newImage->save();
       }
     }
-    $jsonGallery = json_encode($gallery);
 
     $roles = [];
     
@@ -113,7 +118,6 @@ class ProfileController extends Controller {
     $user->last_name      = $request->input('last_name') ? title_case($request->input('last_name')) : title_case($user->last_name);
     $user->email          = $request->input('email') ? $request->input('email') : $user->email;
     $user->avatar         = $avatar ? $storedFile : $user->avatar;
-    $details->gallery     = count($gallery) ? $jsonGallery : $details->gallery;
     $details->age         = $request->input('age') ? $request->input('age') : $details->age;
     $details->height      = $request->input('height') ? $request->input('height') : $details->height;
     $details->weight      = $request->input('weight') ? $request->input('weight') : $details->weight;

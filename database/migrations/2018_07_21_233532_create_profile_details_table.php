@@ -14,7 +14,6 @@ class CreateProfileDetailsTable extends Migration {
     Schema::create('profile_details', function (Blueprint $table) {
       $table->increments('id');
       $table->timestamps();
-      $table->text('gallery')->nullable();
       $table->integer('age')->nullable();
       $table->integer('height')->nullable();
       $table->integer('weight')->nullable();
