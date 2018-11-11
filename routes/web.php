@@ -43,6 +43,7 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
     // Profile Settings
     Route::get('user/settings', 'ProfileController@settings')->name('user.settings');
     Route::post('user/settings/update', 'ProfileController@update')->name('user.settings.update');
+    Route::get('user/settings/gallery/delete/{id}', 'ProfileController@deleteImage')->name('user.gallery.delete');
 
     // Subscription
     Route::get('user/subscription', 'SubscriptionController@index')->name('user.subscription');

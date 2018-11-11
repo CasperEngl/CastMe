@@ -31,9 +31,9 @@
 
       <div id="userGallery" class="carousel slide mt-4" data-ride="carousel">
         <div class="carousel-inner">
-          @foreach ($gallery as $key => $image)
+          @foreach (Auth::user()->galleryImages as $key => $galleryImage)
           <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-            <img src="{{ $image }}" alt="{{ $user->name }} {{ $user->last_name }} gallery {{ $key + 1 }} image">
+            <img src="{{ Storage::disk('public')->url($galleryImage->image) }}" alt="{{ $user->name }} {{ $user->last_name }} gallery {{ $key + 1 }} image">
           </div>
           @endforeach
         </div>
@@ -48,9 +48,9 @@
       </div>
 
       <ol class="carousel-indicators position-static mt-4">
-        @foreach ($gallery as $key => $image)
+        @foreach (Auth::user()->galleryImages as $key => $galleryImage)
         <li data-target="#userGallery" data-slide-to="{{ $key }}" {{ $key === 0 ? 'class="active"' : '' }}>
-          <img src="{{ $image }}" alt="{{ $user->name }} {{ $user->last_name }} gallery image {{ $key + 1 }} thumbnail">
+          <img src="{{ Storage::disk('public')->url($galleryImage->image) }}" alt="{{ $user->name }} {{ $user->last_name }} gallery image {{ $key + 1 }} thumbnail">
         </li>
         @endforeach
       </ol>

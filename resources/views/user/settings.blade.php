@@ -30,15 +30,20 @@
       {{ Form::label('gallery', ucfirst(__('gallery images')), [
         'class' => 'text-muted mt-4'
       ]) }}
-      <small class="form-text text-muted mb-2">{{ sentence(__('the maximum amount of images you can upload is 5.')) }}</small>
+      <small class="form-text text-muted mb-2">{{ sentence(__('you can upload a maximum of 5 images to your profile gallery.')) }}</small>
       {{ Form::file('gallery[]', [
-        'class' => 'w-100',
+        'class' => 'w-100 mb-2',
         'multiple' => true,
       ]) }}
-      <small class="form-text text-muted mb-4">{{ sentence(__('if you upload any new images, the old ones will be removed. please make sure to reupload your entire gallery each time you want to make changes.')) }}</small>
-      @foreach (Auth::user()->galleryImages as $galleryImage)
-      <img src="{{ Storage::disk('public')-url($galleryImage->image) }}" alt="">
-      @endforeach
+
+      <small class="form-text text-muted">{{ sentence(__('click an image to delete it')) }}</small>
+      <div class="profile-gallery">
+        @foreach (Auth::user()->galleryImages as $key => $galleryImage)
+        <a class="profile-gallery__image" onclick="return confirm('{{ sentence(__('are you sure you want to delete this image?')) }}')" href="{{ route('user.gallery.delete', ['id' => $galleryImage->id]) }}">
+          <img src="{{ Storage::disk('public')->url($galleryImage->image) }}" alt="">
+        </a>
+        @endforeach
+      </div>
 
       <div class="row">
         <div class="col-md-6">
