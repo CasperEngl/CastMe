@@ -94,8 +94,9 @@ class PagesController extends Controller {
           'user_message' => $request->get('message')
         ), 
         function($message) {
-          $message->from(env('MAIL_FROM_ADDRESS', 'system@castme.dk', env('MAIL_FROM_NAME', 'Cast Me')));
-          $message->to(env('MAIL_CONTACT_RECEIVER_ADDRESS', 'support@castme.dk'), env('MAIL_FROM_NAME', 'Admin'))->subject('Cast Me - Contact Form');
+          $message
+            ->to(env('MAIL_CONTACT_RECEIVER_ADDRESS', 'support@castme.dk'), env('MAIL_FROM_NAME', 'Admin'))
+            ->subject('Cast Me - Contact Form');
       }
     );
 
