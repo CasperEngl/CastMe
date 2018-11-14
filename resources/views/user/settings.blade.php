@@ -431,7 +431,7 @@
                 ]) }}
               </li>
               <li class="page-item">
-                {{ Form::label('class', ucfirst(__('mix')), [
+                {{ Form::label('mix', ucfirst(__('mix')), [
                   'class' => 'page-link'
                 ]) }}
               </li>
@@ -445,7 +445,7 @@
                 <input type="radio" name="ethnicity" value="Mediterranean" id="mediterranean" {{ (Auth::user()->details->ethnicity == 'Mediterranean') ? 'checked' : '' }}>
                 <input type="radio" name="ethnicity" value="Middle eastern" id="middle_eastern" {{ (Auth::user()->details->ethnicity == 'Middle Eastern') ? 'checked' : '' }}>
                 <input type="radio" name="ethnicity" value="Pakistanis" id="pakistanis" {{ (Auth::user()->details->ethnicity == 'Pakistanis') ? 'checked' : '' }}>
-                <input type="radio" name="ethnicity" value="Scandinavian" id="Scandinavian" {{ (Auth::user()->details->ethnicity == 'Scandinavian') ? 'checked' : '' }}>
+                <input type="radio" name="ethnicity" value="Scandinavian" id="scandinavian" {{ (Auth::user()->details->ethnicity == 'Scandinavian') ? 'checked' : '' }}>
                 <input type="radio" name="ethnicity" value="Spanish" id="spanish" {{ (Auth::user()->details->ethnicity == 'Spanish') ? 'checked' : '' }}>
                 <input type="radio" name="ethnicity" value="Mix" id="mix" {{ (Auth::user()->details->ethnicity == 'Mix') ? 'checked' : '' }}>
               </div>
