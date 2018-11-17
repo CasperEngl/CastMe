@@ -117,7 +117,6 @@ class ProfileController extends Controller {
     $details->age         = $request->input('age') ? $request->input('age') : $details->age;
     $details->height      = $request->input('height') ? $request->input('height') : $details->height;
     $details->weight      = $request->input('weight') ? $request->input('weight') : $details->weight;
-    $details->experience  = $request->input('experience') ? $request->input('experience') : $details->experience;
     $details->pant_size   = $request->input('pant_size') ? $request->input('pant_size') : $details->pant_size;
     $details->shoe_size   = $request->input('shoe_size') ? $request->input('shoe_size') : $details->shoe_size;
     $details->shirt_size  = $request->input('shirt_size') ? $request->input('shirt_size') : $details->shirt_size;

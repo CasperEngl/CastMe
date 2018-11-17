@@ -117,12 +117,6 @@
                 <p class="h4">{{ $user->details->weight }}</p>
               </div>
               @endif
-              @if ($user->details->experience)
-              <div class="col-12">
-                <p class="text-muted m-0">{{ ucfirst(__('experience')) }}</p>
-                <p class="h4">{{ $user->details->experience }}</p>
-              </div>
-              @endif
               @if ($user->details->pant_size)
               <div class="col-12">
                 <p class="text-muted m-0">{{ ucfirst(__('pants size')) }}</p>

@@ -17,7 +17,6 @@ class CreateProfileDetailsTable extends Migration {
       $table->integer('age')->nullable();
       $table->integer('height')->nullable();
       $table->integer('weight')->nullable();
-      $table->integer('experience')->nullable();
       $table->integer('pant_size')->nullable();
       $table->integer('shoe_size')->nullable();
       $table->integer('shirt_size')->nullable();

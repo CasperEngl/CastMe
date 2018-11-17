@@ -9,7 +9,6 @@ class ProfileDetails extends Model {
     'age',
     'height',
     'weight',
-    'experience',
     'pant_size',
     'shoe_size',
     'shirt_size',
