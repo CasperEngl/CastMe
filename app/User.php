@@ -56,7 +56,7 @@ class User extends Authenticatable {
   }
 
   public function conversations() {
-    return $this->belongsToMany(Conversation::class, 'conversation_user', 'user_id', 'conversation_id');
+    return $this->belongsToMany('App\Conversation', 'conversation_user', 'user_id', 'conversation_id');
   }
 
   public function activeSub() {
@@ -69,5 +69,9 @@ class User extends Authenticatable {
 
   public function galleryImages() {
     return $this->hasMany('App\GalleryImage');
+  }
+
+  public function profileRoles() {
+    return $this->hasMany('App\ProfileRole');
   }
 }

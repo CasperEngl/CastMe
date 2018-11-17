@@ -22,4 +22,8 @@ class Post extends Model {
   public function owner() {
     return $this->belongsTo('App\User', 'user_id');
   }
+
+  public function profileRoles() {
+    return $this->hasMany('App\ProfileRole');
+  }
 }
