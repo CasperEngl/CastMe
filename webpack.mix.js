@@ -20,7 +20,9 @@ mix
 if (mix.inProduction()) {
   mix.version();
 } else {
-  mix.browserSync({
-    proxy: process.env.APP_URL,
-  });
+  mix
+    .sourceMaps()
+    .browserSync({
+      proxy: process.env.APP_URL,
+    });
 }
