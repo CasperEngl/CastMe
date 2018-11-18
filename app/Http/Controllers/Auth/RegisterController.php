@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller
-{
+class RegisterController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -44,13 +43,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'condititions' => 'required',
         ]);
     }
 
@@ -60,7 +59,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data) {
+    protected function create(array $data) {        
         return User::create([
             'name' => title_case($data['name']),
             'last_name' => title_case($data['last_name']),
