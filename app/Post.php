@@ -3,8 +3,40 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Post extends Model {
+  use SearchableTrait;
+
+  protected $searchable = [
+    /**
+     * Columns and their priority in search results.
+     * Columns with higher values are more important.
+     * Columns with equal values have equal importance.
+     *
+     * @var array
+     */
+    'columns' => [
+      /**
+       * Posts table
+       */
+      'posts.title' => 5,
+      'posts.location' => 3,
+      'posts.content' => 1,
+      /**
+       * Joined tables
+       */
+      'users.name' => 10,
+      'users.last_name' => 10,
+      'users.email' => 5,
+      'post_roles.role' => 5,
+    ],
+    'joins' => [
+      'users' => ['posts.user_id','users.id'],
+      'post_roles' => ['posts.id', 'post_roles.post_id'],
+    ],
+  ];
+
   protected $fillable = [
     'user_id',
     'title',
@@ -20,6 +52,10 @@ class Post extends Model {
   }
 
   public function owner() {
+    return $this->belongsTo('App\User', 'user_id');
+  }
+
+  public function user() {
     return $this->belongsTo('App\User', 'user_id');
   }
 

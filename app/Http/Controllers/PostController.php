@@ -251,7 +251,17 @@ class PostController extends Controller {
     }
   }
 
-  public function dump(Request $request) {
-    dd($request->all());
+  public function search(Request $request) {
+    $posts = Post::search($request->q, null, true)
+      ->with('user')
+      ->with('postRoles')
+      ->get()
+      ->unique();
+
+    return view('post.list', [
+      'title' => ucfirst(__('posts')),
+      'posts' => $posts,
+      'own' => false,
+    ]);
   }
 }

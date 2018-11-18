@@ -30,6 +30,7 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
 
   // Posts
   Route::get('posts', 'PostController@list')->name('posts');
+  Route::get('posts/search', 'PostController@search')->name('posts.search');
 
   // Singular Post
   Route::get('post/{id}', 'PostController@index')->name('post');
