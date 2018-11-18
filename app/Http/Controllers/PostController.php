@@ -62,7 +62,9 @@ class PostController extends Controller {
   }
 
   public function list() {
-    $posts = Post::orderBy('id', 'desc')->get();
+    $posts = Post::where('closed', 0)
+      ->orderBy('id', 'desc')
+      ->get();
 
     return view('post.list', [
       'title' => ucfirst(__('posts')),
@@ -102,8 +104,8 @@ class PostController extends Controller {
   }
 
   public function listOwn() {
-    $posts = Post::orderBy('id', 'desc')
-      ->where('user_id', Auth::id())
+    $posts = Post::where('user_id', Auth::id())
+      ->orderBy('id', 'desc')
       ->get();
 
     return view('post.list', [
@@ -252,7 +254,8 @@ class PostController extends Controller {
   }
 
   public function search(Request $request) {
-    $posts = Post::search($request->q, null, true)
+    $posts = Post::where('closed', 0)
+      ->search($request->q, null, true)
       ->with('user')
       ->with('postRoles')
       ->get()
