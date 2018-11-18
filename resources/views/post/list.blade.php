@@ -11,7 +11,7 @@ use App\PostRole;
 @endscout
 
 <form action="{{ route('posts.search') }}">
-  <div class="row">
+  <div class="row mb-3">
     <div class="col d-flex">
       <div class="btn-group mr-3">
         <button type="button" class="btn btn-castme dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
