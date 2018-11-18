@@ -1,3 +1,9 @@
+<?php
+
+use App\PostRole;
+
+?>
+
 @extends('layouts.master')
 @section('content')
 <h2 class="page-header">{{ ucfirst($title) }}</h2>
@@ -30,63 +36,21 @@
         <h5>{{ ucfirst(__('looking for')) }}</h5>
         <p class="text-muted">{{ ucfirst(__('select multiple if applicable')) }}</p>
         <ul class="pagination">
+          @foreach (PostRole::getPossibleRoles() as $postRole)
           <li class="page-item">
-            {{ Form::label('profile_type-actor', ucfirst(__('actor')), [
+            {{ Form::label(str_slug($postRole, '_'), ucfirst(__(str_replace('_', ' ', $postRole))), [
               'class' => 'page-link'
             ]) }}
           </li>
-          <li class="page-item">
-            {{ Form::label('profile_type-dancer', ucfirst(__('dancer')), [
-              'class' => 'page-link'
-            ]) }}
-          </li>
-          <li class="page-item">
-            {{ Form::label('profile_type-entertainer', ucfirst(__('entertainer')), [
-              'class' => 'page-link'
-            ]) }}
-          </li>
-          <li class="page-item">
-            {{ Form::label('profile_type-event_staff', ucfirst(__('event staff')), [
-              'class' => 'page-link'
-            ]) }}
-          </li>
-          <li class="page-item">
-            {{ Form::label('profile_type-extra', ucfirst(__('extra')), [
-              'class' => 'page-link'
-            ]) }}
-          </li>
-          <li class="page-item">
-            {{ Form::label('profile_type-model', ucfirst(__('model')), [
-              'class' => 'page-link'
-            ]) }}
-          </li>
-          <li class="page-item">
-            {{ Form::label('profile_type-musician', ucfirst(__('musician')), [
-              'class' => 'page-link'
-            ]) }}
-          </li>
+          @endforeach
           <div class="display-none">
-            {{ Form::checkbox('roles[]', 'actor', $post->roles && in_array('actor', json_decode($post->roles)), [
-              'id' => 'profile_type-actor'
+            @foreach (PostRole::getPossibleRoles() as $postRole)
+            {{ Form::checkbox('roles[]', str_slug($postRole, '_'), array_where($post->postRoles->toArray(), function($value, $key) use ($postRole) {
+              return str_slug($value['role'], '_') === str_slug($postRole, '_');
+            }), [
+              'id' => str_slug($postRole, '_'),
             ]) }}
-            {{ Form::checkbox('roles[]', 'dancer', $post->roles && in_array('dancer', json_decode($post->roles)), [
-              'id' => 'profile_type-dancer'
-            ]) }}
-            {{ Form::checkbox('roles[]', 'entertainer', $post->roles && in_array('entertainer', json_decode($post->roles)), [
-              'id' => 'profile_type-entertainer'
-            ]) }}
-            {{ Form::checkbox('roles[]', 'event staff', $post->roles && in_array('event staff', json_decode($post->roles)), [
-              'id' => 'profile_type-event_staff'
-            ]) }}
-            {{ Form::checkbox('roles[]', 'extra', $post->roles && in_array('extra', json_decode($post->roles)), [
-              'id' => 'profile_type-extra'
-            ]) }}
-            {{ Form::checkbox('roles[]', 'model', $post->roles && in_array('model', json_decode($post->roles)), [
-              'id' => 'profile_type-model'
-            ]) }}
-            {{ Form::checkbox('roles[]', 'musician', $post->roles && in_array('musician', json_decode($post->roles)), [
-              'id' => 'profile_type-musician'
-            ]) }}
+            @endforeach
           </div>
         </ul>
       </div>

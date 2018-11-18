@@ -1,3 +1,9 @@
+<?php
+
+use App\ProfileRole;
+
+?>
+
 @extends('layouts.master') 
 @section('content')
 <h2 class="page-header">{{ ucfirst(__('profile information')) }}</h2>
@@ -172,72 +178,22 @@
             <h5 class="text-muted">{{ ucfirst(__('profile type')) }}</h5>
             <p class="text-muted">{{ ucfirst(__('select multiple if applicable')) }}</p>
             <ul class="pagination">
+              @foreach (ProfileRole::getPossibleRoles() as $profileRole)
               <li class="page-item">
-                {{ Form::label('actor', ucfirst(__('actor')), [
+                {{ Form::label(str_slug($profileRole, '_'), ucfirst(__(str_replace('_', ' ', $profileRole))), [
                   'class' => 'page-link'
                 ]) }}
               </li>
-              <li class="page-item">
-                {{ Form::label('dancer', ucfirst(__('dancer')), [
-                  'class' => 'page-link'
-                ]) }}
-              </li>
-              <li class="page-item">
-                {{ Form::label('entertainer', ucfirst(__('entertainer')), [
-                  'class' => 'page-link'
-                ]) }}
-              </li>
-              <li class="page-item">
-                {{ Form::label('event_staff', ucfirst(__('event staff')), [
-                  'class' => 'page-link'
-                ]) }}
-              </li>
-              <li class="page-item">
-                {{ Form::label('extra', ucfirst(__('extra')), [
-                  'class' => 'page-link'
-                ]) }}
-              </li>
-              <li class="page-item">
-                {{ Form::label('model', ucfirst(__('model')), [
-                  'class' => 'page-link'
-                ]) }}
-              </li>
-              <li class="page-item">
-                {{ Form::label('musician', ucfirst(__('musician')), [
-                  'class' => 'page-link'
-                ]) }}
-              </li>
-              <li class="page-item">
-                {{ Form::label('other', ucfirst(__('other')), [
-                  'class' => 'page-link'
-                ]) }}
-              </li>
+              @endforeach
 
               <div class="display-none">
-                {{ Form::checkbox('roles[]', 'actor', Auth::user()->details->roles && in_array('actor', json_decode(Auth::user()->details->roles)), [
-                  'id' => 'actor'
+                @foreach (ProfileRole::getPossibleRoles() as $profileRole)
+                {{ Form::checkbox('roles[]', str_slug($profileRole, '_'), array_where(Auth::user()->profileRoles->toArray(), function($value, $key) use ($profileRole) {
+                  return str_slug($value['role'], '_') === str_slug($profileRole, '_');
+                }), [
+                  'id' => str_slug($profileRole, '_'),
                 ]) }}
-                {{ Form::checkbox('roles[]', 'dancer', Auth::user()->details->roles && in_array('dancer', json_decode(Auth::user()->details->roles)), [
-                  'id' => 'dancer'
-                ]) }}
-                {{ Form::checkbox('roles[]', 'entertainer', Auth::user()->details->roles && in_array('entertainer', json_decode(Auth::user()->details->roles)), [
-                  'id' => 'entertainer'
-                ]) }}
-                {{ Form::checkbox('roles[]', 'event staff', Auth::user()->details->roles && in_array('event staff', json_decode(Auth::user()->details->roles)), [
-                  'id' => 'event_staff'
-                ]) }}
-                {{ Form::checkbox('roles[]', 'extra', Auth::user()->details->roles && in_array('extra', json_decode(Auth::user()->details->roles)), [
-                  'id' => 'extra'
-                ]) }}
-                {{ Form::checkbox('roles[]', 'model', Auth::user()->details->roles && in_array('model', json_decode(Auth::user()->details->roles)), [
-                  'id' => 'model'
-                ]) }}
-                {{ Form::checkbox('roles[]', 'musician', Auth::user()->details->roles && in_array('musician', json_decode(Auth::user()->details->roles)), [
-                  'id' => 'musician'
-                ]) }}
-                {{ Form::checkbox('roles[]', 'other', Auth::user()->details->roles && in_array('other', json_decode(Auth::user()->details->roles)), [
-                  'id' => 'other'
-                ]) }}
+                @endforeach
               </div>
             </ul>
           </div>

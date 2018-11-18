@@ -23,7 +23,7 @@ class Post extends Model {
     return $this->belongsTo('App\User', 'user_id');
   }
 
-  public function profileRoles() {
-    return $this->hasMany('App\ProfileRole');
+  public function postRoles() {
+    return $this->hasMany('App\PostRole', 'post_id');
   }
 }

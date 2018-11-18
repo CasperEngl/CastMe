@@ -16,11 +16,11 @@
         <figure class="post-card__frame">
           <img src="{{ Storage::disk('public')->url($post->banner) }}" alt="{{ strip_tags($post->location) }}" class="post-card__frame__img">
           <div class="post-card__roles">
-            @foreach (json_decode($post->roles) as $key => $role)
+            @foreach ($post->postRoles->toArray() as $key => $postRole)
             @if ($key === 5)
               @break
             @endif
-            <span class="badge badge-pill badge-castme py-2 px-3 my-1 mr-1">{{ strtoupper(__($role)) }}</span>
+            <span class="badge badge-pill badge-castme py-2 px-3 my-1 mr-1">{{ strtoupper(__($postRole['role'])) }}</span>
             @endforeach
           </div>
         </figure>

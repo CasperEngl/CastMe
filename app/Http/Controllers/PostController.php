@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Post;
 use App\Comment;
+use App\PostRole;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Storage;
@@ -135,22 +136,8 @@ class PostController extends Controller {
       $storedFile = Storage::disk('public')->put('banner', $banner);
     }
 
-    $roles = [];
-    
-    if ($request->input('roles.*')) {
-      foreach ($request->input('roles.*') as $role) {
-        if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
-          return redirect()->back()->withErrors([
-            ucfirst(__('"' . $role . '" is not a valid role')),
-          ]);
-
-        $roles[] = $role;
-      }
-    }
-
     $post = new Post([
       'title'   => $request->input('title', false),
-      'roles'   => json_encode($roles),
       'images'  => json_encode($request->input('image.*')),
       'content' => $request->input('content'),
       'location' => $request->input('location'),
@@ -160,11 +147,30 @@ class PostController extends Controller {
 
     $post->save();
 
+    if ($request->input('roles.*')) {
+      foreach ($request->input('roles.*') as $role) {
+        if (!in_array(strtolower($role), PostRole::getPossibleRoles())) {
+          return redirect()->back()->withErrors([
+            ucfirst(__('"' . $role . '" is not a valid role')),
+          ]);
+        }
+
+        // Create the post role
+        PostRole::create([
+          'post_id' => $post->id,
+          'role' => str_replace('_', ' ', $role),
+        ]);
+      }
+    }
+
     session_push('success', sentence(__('your post has been created!')));
     return redirect()->route('posts');
   }
 
   public function update(Request $request, $id) {
+    $post = Post::find($id);
+    $postRoles = $post->postRoles;
+
     $request->validate([
       'title'   => 'required|max:255',
       'image.*' => 'nullable|url',
@@ -187,26 +193,33 @@ class PostController extends Controller {
       $storedFile = Storage::disk('public')->put('banner', $banner);
     }
 
-    $post = Post::find($id);
-
     if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
       return redirect()->route('overview')->withErrors([
         ucfirst(__('unauthorized access'))
       ]);
 
     if ($request->input('roles.*')) {
+      // Delete post roles
+      foreach ($postRoles as $postRole) {
+        $postRole->delete();
+      }
+
       foreach ($request->input('roles.*') as $role) {
-        if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
+        if (!in_array(strtolower($role), PostRole::getPossibleRoles())) {
           return redirect()->back()->withErrors([
             ucfirst(__('"' . $role . '" is not a valid role')),
           ]);
+        }
 
-        $roles[] = $role;
+        // Create the post role
+        PostRole::create([
+          'post_id' => $post->id,
+          'role' => str_replace('_', ' ', $role),
+        ]);
       }
     }
 
     $post->title    = $request->input('title');
-    $post->roles    = isset($roles) ? json_encode($roles) : $post->roles;
     $post->images   = json_encode($request->input('image.*'));
     $post->banner   = isset($storedFile) ? $storedFile : $post->banner;
     $post->content  = $request->input('content');

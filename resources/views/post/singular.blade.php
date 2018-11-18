@@ -38,10 +38,10 @@
           <h3 class="post-article__location">{{ $post->location }}</h3>
         </div>
         @endif
-        @if ($post->roles)
+        @if ($post->postRoles)
         <div class="col">
-          @foreach (json_decode($post->roles) as $role)
-          <span class="badge badge-pill badge-castme py-2 px-3 my-1 mx-1">{{ strtoupper(__($role)) }}</span> @endforeach
+          @foreach ($post->postRoles->toArray() as $postRole)
+          <span class="badge badge-pill badge-castme py-2 px-3 my-1 mx-1">{{ strtoupper(__($postRole['role'])) }}</span> @endforeach
           @endif
         </div>
       </section>
