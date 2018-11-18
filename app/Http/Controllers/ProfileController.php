@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\GalleryImage;
+use App\ProfileRole;
 use Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -50,6 +51,7 @@ class ProfileController extends Controller {
   public function update(Request $request) {
     $user = Auth::user();
     $details = $user->details;
+    $userRoles = $user->profileRoles;
 
     $avatar = $request->file('avatar');
 
@@ -96,17 +98,26 @@ class ProfileController extends Controller {
         $newImage->save();
       }
     }
-
-    $roles = [];
     
     if ($request->input('roles.*')) {
+      // Delete profile roles
+      foreach ($userRoles as $userRole) {
+        $userRole->delete();
+      }
+
+      // Create profile roles
       foreach ($request->input('roles.*') as $role) {
-        if (!in_array(strtolower($role), ['actor', 'dancer', 'entertainer', 'event staff', 'extra', 'model', 'musician', 'other']))
+        if (!in_array(strtolower($role), ProfileRole::getPossibleRoles())) {
           return redirect()->back()->withErrors([
             ucfirst(__('"' . $role . '" is not a valid role')),
           ]);
+        }
 
-        $roles[] = $role;
+        // Create the profile role
+        ProfileRole::create([
+          'user_id' => Auth::id(),
+          'role' => str_replace('_', ' ', $role),
+        ]);
       }
     }
 
@@ -121,8 +132,6 @@ class ProfileController extends Controller {
     $details->shoe_size   = $request->input('shoe_size') ? $request->input('shoe_size') : $details->shoe_size;
     $details->shirt_size  = $request->input('shirt_size') ? $request->input('shirt_size') : $details->shirt_size;
     $details->description = $request->input('description') ? strip_tags($request->input('description')) : $details->description;
-
-    $details->roles       = json_encode($roles);
 
     $details->hair_length = $request->input('hair_length') ? $request->input('hair_length') : $details->hair_length;
     $details->eye_color   = $request->input('eye_color') ? $request->input('eye_color') : $details->eye_color;
