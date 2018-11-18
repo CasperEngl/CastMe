@@ -72,6 +72,6 @@ class User extends Authenticatable {
   }
 
   public function profileRoles() {
-    return $this->hasMany('App\ProfileRole');
+    return $this->hasMany('App\ProfileRole', 'user_id');
   }
 }
