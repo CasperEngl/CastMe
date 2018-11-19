@@ -143,6 +143,7 @@ class PostController extends Controller {
       'images'  => json_encode($request->input('image.*')),
       'content' => $request->input('content'),
       'location' => $request->input('location'),
+      'region' => $request->input('region'),
       'banner'  => isset($storedFile) ? $storedFile : 'placeholder/banner.png',
       'user_id' => Auth::id()
     ]);
@@ -226,6 +227,7 @@ class PostController extends Controller {
     $post->banner   = isset($storedFile) ? $storedFile : $post->banner;
     $post->content  = $request->input('content');
     $post->location = $request->input('location');
+    $post->region = $request->input('region');
 
     $post->save();
 

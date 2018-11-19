@@ -21,6 +21,7 @@ use App\PostRole;
         </div>
       </div>
     </div>
+
     <div class="card-block">
       <div class="form-group">
         <h5>{{ ucfirst(__('location')) }}</h5>
@@ -31,6 +32,34 @@ use App\PostRole;
         ]) }}
       </div>
     </div>
+
+   <div class="card-block">
+      <div class="form-group">
+        <h5>{{ ucfirst(__('region')) }}</h5>
+        <p class="text-muted">{{ sentence(__('region in denmark.')) }}</p>
+          <div class="form-group">
+            <ul class="pagination">
+              @foreach (PostRole::getPossibleRoles() as $postRole)
+              <li class="page-item">
+                {{ Form::label(str_slug($postRole, '_'), ucfirst(__(str_replace('_', ' ', $postRole))), [
+                  'class' => 'page-link'
+                ]) }}
+              </li>
+              @endforeach
+              <div class="display-none">
+                @foreach (PostRole::getPossibleRoles() as $postRole)
+                {{ Form::checkbox('roles[]', str_slug($postRole, '_'), array_where($post->postRoles->toArray(), function($value, $key) use ($postRole) {
+                  return str_slug($value['role'], '_') === str_slug($postRole, '_');
+                }), [
+                  'id' => str_slug($postRole, '_'),
+                ]) }}
+                @endforeach
+          </div>
+        </ul>
+      </div>
+      </div>
+    </div>
+
     <div class="card-block">
       <div class="form-group">
         <h5>{{ ucfirst(__('looking for')) }}</h5>
