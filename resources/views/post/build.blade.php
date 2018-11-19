@@ -69,6 +69,11 @@ use App\PostRole;
                 'class' => 'page-link'
               ]) }}
             </li>
+            <li class="page-item">
+              {{ Form::label('region-bornholm', title_case(__('bornholm')), [
+                'class' => 'page-link'
+              ]) }}
+            </li>
             <div class="display-none">
               <input type="radio" name="region" value="capital_area" id="region-capital_area" {{ ($post->region == 'capital_area') ? 'checked' : '' }}>
               <input type="radio" name="region" value="zealand" id="region-zealand" {{ ($post->region == 'zealand') ? 'checked' : '' }}>
@@ -76,6 +81,7 @@ use App\PostRole;
               <input type="radio" name="region" value="northern_jutland" id="region-northern_jutland" {{ ($post->region == 'northern_jutland') ? 'checked' : '' }}>
               <input type="radio" name="region" value="mid_jutland" id="region-mid_jutland" {{ ($post->region == 'mid_jutland') ? 'checked' : '' }}>
               <input type="radio" name="region" value="south_denmark" id="region-south_denmark" {{ ($post->region == 'south_denmark') ? 'checked' : '' }}>
+              <input type="radio" name="region" value="bornholm" id="region-bornholm" {{ ($post->region == 'bornholm') ? 'checked' : '' }}>
             </div>
           </ul>
         </div>
