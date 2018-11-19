@@ -171,6 +171,31 @@ use App\ProfileRole;
         'class' => 'tinymce'
       ]) }}
 
+          <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <h5 class="text-muted">{{ ucfirst(__('gender')) }}</h5>
+            <ul class="pagination">
+              <li class="page-item">
+                {{ Form::label('male', ucfirst(__('male')), [
+                  'class' => 'page-link'
+                ]) }}
+              </li>
+              <li class="page-item">
+                {{ Form::label('female', ucfirst(__('female')), [
+                  'class' => 'page-link'
+                ]) }}
+              </li>
+            
+              <div class="display-none">
+                <input type="radio" name="male" value="male" id="male" {{ (Auth::user()->details->gender == 'male') ? 'checked' : '' }}>
+                <input type="radio" name="female" value="female" id="female" {{ (Auth::user()->details->gender == 'female') ? 'checked' : '' }}>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col">
           <div class="form-group">
