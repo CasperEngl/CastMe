@@ -19,8 +19,38 @@ use App\PostRole;
         </button>
         <div class="dropdown-menu">
           @foreach (PostRole::getPossibleRoles() as $role)
-          <a class="dropdown-item" href="{{ route('posts.search', ['q' => $role]) }}">{{ ucfirst(__(str_replace('_', ' ', $role))) }}</a>                        
+          <a class="dropdown-item" href="{{ route('posts.search', ['q' => $role]) }}">
+            {{ ucfirst(__(str_replace('_', ' ', $role))) }}
+          </a>
           @endforeach
+        </div>
+      </div>
+      <div class="btn-group mr-3">
+        <button type="button" class="btn btn-castme dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ ucfirst(__('region')) }}
+        </button>
+        <div class="dropdown-menu">
+          <a href="{{ route('posts.search', ['q' => 'capital_area']) }}" class="dropdown-item">
+            {{ title_case(__('capital area')) }}
+          </a>
+          <a href="{{ route('posts.search', ['q' => 'zealand']) }}" class="dropdown-item">
+            {{ title_case(__('zealand')) }}
+          </a>
+          <a href="{{ route('posts.search', ['q' => 'funen']) }}" class="dropdown-item">
+            {{ title_case(__('funen')) }}
+          </a>
+          <a href="{{ route('posts.search', ['q' => 'northern_jutland']) }}" class="dropdown-item">
+            {{ title_case(__('northern jutland')) }}
+          </a>
+          <a href="{{ route('posts.search', ['q' => 'mid_jutland']) }}" class="dropdown-item">
+            {{ title_case(__('mid jutland')) }}
+          </a>
+          <a href="{{ route('posts.search', ['q' => 'south_denmark']) }}" class="dropdown-item">
+            {{ title_case(__('south denmark')) }}
+          </a>
+          <a href="{{ route('posts.search', ['q' => 'bornholm']) }}" class="dropdown-item">
+            {{ title_case(__('bornholm')) }}
+          </a>
         </div>
       </div>
       <div class="input-group">

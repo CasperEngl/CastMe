@@ -21,7 +21,8 @@ class Post extends Model {
        * Posts table
        */
       'posts.title' => 5,
-      'posts.location' => 3,
+      'posts.region' => 3,
+      'posts.location' => 7,
       'posts.content' => 1,
       /**
        * Joined tables
