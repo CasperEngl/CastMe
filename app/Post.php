@@ -43,8 +43,8 @@ class Post extends Model {
     'content',
     'banner',
     'images',
-    'roles',
     'location',
+    'region',
   ];
 
   public function comments() {
