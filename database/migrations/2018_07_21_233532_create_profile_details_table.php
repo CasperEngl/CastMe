@@ -25,7 +25,7 @@ class CreateProfileDetailsTable extends Migration {
       $table->enum('hair_color', ['Black', 'Brown', 'Dark Brown', 'Blonde', 'Dirty Blonde', 'Auburn', 'Red', 'Ginger', 'Platinum', 'White', 'Grey'])->nullable();
       $table->enum('ethnicity', ['African', 'Afro American', 'Asian', 'Caucasian', 'Indian', 'Latino', 'Mediterranean', 'Middle Eastern', 'Pakistanis', 'Scandinavian', 'Spanish', 'Mix'])->nullable();
       $table->enum('eye_color', ['Amber', 'Blue', 'Brown', 'Grey', 'Green', 'Hazel', 'Other'])->nullable();
-      $table->text('roles')->nullable();
+      $table->enum('gender', ['male', 'female', 'other'])->nullable();
       $table->integer('user_id')->default(0);
     });
   }

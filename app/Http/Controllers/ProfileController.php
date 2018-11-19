@@ -137,6 +137,7 @@ class ProfileController extends Controller {
     $details->eye_color   = $request->input('eye_color') ? $request->input('eye_color') : $details->eye_color;
     $details->hair_color  = $request->input('hair_color') ? $request->input('hair_color') : $details->hair_color;
     $details->ethnicity   = $request->input('ethnicity') ? $request->input('ethnicity') : $details->ethnicity;
+    $details->gender      = $request->input('gender') ? $request->input('gender') : $details->gender;
 
     $details->save();
     $user->save();

@@ -107,7 +107,6 @@ use App\ProfileRole;
             {{ Form::label('height', ucfirst(__('height')), [
               'class' => 'text-muted'
               ]) }}
-            {{ Form::label('') }}
             {{ Form::text('height', Auth::user()->details->height ?? '', [
               'class' => 'form-control',
               'placeholder' => ''
@@ -194,6 +193,36 @@ use App\ProfileRole;
                   'id' => str_slug($profileRole, '_'),
                 ]) }}
                 @endforeach
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <h5 class="text-muted">{{ ucfirst(__('gender')) }}</h5>
+            <ul class="pagination">
+              <li class="page-item">
+                {{ Form::label('gender-male', ucfirst(__('male')), [
+                  'class' => 'page-link'
+                ]) }}
+              </li>
+              <li class="page-item">
+                {{ Form::label('gender-female', ucfirst(__('female')), [
+                  'class' => 'page-link'
+                ]) }}
+              </li>
+              <li class="page-item">
+                {{ Form::label('gender-other', ucfirst(__('other')), [
+                  'class' => 'page-link'
+                ]) }}
+              </li>
+              <div class="display-none">
+                <input type="radio" name="gender" value="male" id="gender-male" {{ (Auth::user()->details->gender == 'male') ? 'checked' : '' }}>
+                <input type="radio" name="gender" value="female" id="gender-female" {{ (Auth::user()->details->gender == 'female') ? 'checked' : '' }}>
+                <input type="radio" name="gender" value="other" id="gender-other" {{ (Auth::user()->details->gender == 'other') ? 'checked' : '' }}>
               </div>
             </ul>
           </div>
