@@ -36,27 +36,49 @@ use App\PostRole;
    <div class="card-block">
       <div class="form-group">
         <h5>{{ ucfirst(__('region')) }}</h5>
-        <p class="text-muted">{{ sentence(__('region in denmark.')) }}</p>
-          <div class="form-group">
-            <ul class="pagination">
-              @foreach (PostRole::getPossibleRoles() as $postRole)
-              <li class="page-item">
-                {{ Form::label(str_slug($postRole, '_'), ucfirst(__(str_replace('_', ' ', $postRole))), [
-                  'class' => 'page-link'
-                ]) }}
-              </li>
-              @endforeach
-              <div class="display-none">
-                @foreach (PostRole::getPossibleRoles() as $postRole)
-                {{ Form::checkbox('roles[]', str_slug($postRole, '_'), array_where($post->postRoles->toArray(), function($value, $key) use ($postRole) {
-                  return str_slug($value['role'], '_') === str_slug($postRole, '_');
-                }), [
-                  'id' => str_slug($postRole, '_'),
-                ]) }}
-                @endforeach
-          </div>
-        </ul>
-      </div>
+        <p class="text-muted">{{ sentence(__('region in denmark')) }}</p>
+        <div class="form-group">
+          <ul class="pagination">
+            <li class="page-item">
+              {{ Form::label('region-capital_area', title_case(__('capital area')), [
+                'class' => 'page-link'
+              ]) }}
+            </li>
+            <li class="page-item">
+              {{ Form::label('region-zealand', title_case(__('zealand')), [
+                'class' => 'page-link'
+              ]) }}
+            </li>
+            <li class="page-item">
+              {{ Form::label('region-funen', title_case(__('funen')), [
+                'class' => 'page-link'
+              ]) }}
+            </li>
+            <li class="page-item">
+              {{ Form::label('region-northern_jutland', title_case(__('northern jutland')), [
+                'class' => 'page-link'
+              ]) }}
+            </li>
+            <li class="page-item">
+              {{ Form::label('region-mid_jutland', title_case(__('mid jutland')), [
+                'class' => 'page-link'
+              ]) }}
+            </li>
+            <li class="page-item">
+              {{ Form::label('region-south_denmark', title_case(__('south denmark')), [
+                'class' => 'page-link'
+              ]) }}
+            </li>
+            <div class="display-none">
+              <input type="radio" name="region" value="capital_area" id="region-capital_area" {{ ($post->region == 'capital_area') ? 'checked' : '' }}>
+              <input type="radio" name="region" value="zealand" id="region-zealand" {{ ($post->region == 'zealand') ? 'checked' : '' }}>
+              <input type="radio" name="region" value="funen" id="region-funen" {{ ($post->region == 'funen') ? 'checked' : '' }}>
+              <input type="radio" name="region" value="northern_jutland" id="region-northern_jutland" {{ ($post->region == 'northern_jutland') ? 'checked' : '' }}>
+              <input type="radio" name="region" value="mid_jutland" id="region-mid_jutland" {{ ($post->region == 'mid_jutland') ? 'checked' : '' }}>
+              <input type="radio" name="region" value="south_denmark" id="region-south_denmark" {{ ($post->region == 'south_denmark') ? 'checked' : '' }}>
+            </div>
+          </ul>
+        </div>
       </div>
     </div>
 

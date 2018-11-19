@@ -227,7 +227,7 @@ class PostController extends Controller {
     $post->banner   = isset($storedFile) ? $storedFile : $post->banner;
     $post->content  = $request->input('content');
     $post->location = $request->input('location');
-    $post->region = $request->input('region');
+    $post->region   = $request->input('region');
 
     $post->save();
 
