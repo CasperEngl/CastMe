@@ -39,13 +39,13 @@
       </a>
     </div>
 
-      <section>
+      <section class="mt-4 mb-0">
         <h2 class="text-center">Castme er lige nu under udvikling</h2>
         <p class="text-center">
           Castme er en platform hvor du kan finde blandt andet modeljobs, filmroller og statistjobs, men også opslag af mange andre arter i dit lokalområde.
         </p>
       </section>
-      <section>
+      <section class="mt-4 mb-0">
         <h2 class="text-center">Hvad kan du på din brugerprofil?</h2>
         <p class="text-center">
           Vores profilsystem leverer en sikker og brugervenlig platform til at holde øje med dine beskeder og dine opslag.
