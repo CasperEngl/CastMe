@@ -179,13 +179,28 @@
   </script>
   @endauth
 
+@if (!Auth::check())
   <footer class="footer p-5 bg-dark">
     <section class="container d-flex flex-column align-items-center mb-4">
-      <h3 class="text-white text-center">{{ ucfirst(__('be a part of Cast Me today!')) }}</h3>
+      <h3 class="text-white text-center">{{ ucfirst(__('join us today!')) }}</h3>
+      </section>
+      <section class="container d-flex flex-column align-items-center mb-4">
       <a href="/register" class="text-center px-4 btn btn-castme">{{ ucfirst(__('register here')) }}</a>
     </section>
-      
-    <section class="container d-flex justify-content-center align-items-center flex-wrap content-wrapper">
+
+      @else
+
+  <footer class="footer p-5 bg-dark">
+    <section class="container d-flex flex-column align-items-center mb-4">
+      <h3 class="text-white text-center">{{ ucfirst(__('need any advice?')) }}</h3>
+      </section>
+      <section class="container d-flex flex-column align-items-center mb-4">
+      <a href="/guides" class="text-center px-4 btn btn-castme">{{ ucfirst(__('read more')) }}</a>
+    </section>
+
+      @endif
+
+    <section class="container d-flex justify-content-center align-items-center flex-wrap content-wrapper mb-4">
       <article class="my-2 mx-5">
         <p class="m-0">Cast Me IVS</p>
         <p class="m-0">Cvr. 39302845</p>
@@ -201,7 +216,7 @@
       </article>
     </section>
 
-    <section class="d-flex flex-column align-items-center">
+    <section class="d-flex flex-column p-2 align-items-center">
       <p class="text-white text-center">{{ sentence(__('we accept the following payment methods')) }}</p>
       <iframe src="https://support.wkt.dk/public/kort.php?cards=visa,mastercard-w,mobilepay-w" class="cards" frameborder="0" kwframeid="1" style="zoom: 1;"></iframe>
     </section>
