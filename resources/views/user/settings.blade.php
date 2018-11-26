@@ -12,7 +12,7 @@ use App\ProfileRole;
   <div class="card">
     <div class="card-body">
 
-      <a href="{{ route('profile', ['id' => Auth::id()]) }}" class="btn btn-castme">{{ ucfirst('Your profile') }}</a>
+      <a href="{{ route('profile', ['id' => Auth::id()]) }}" class="btn btn-castme">{{ ucfirst(__('your profile as viewed by agents')) }}</a>
 
       <div class="mb-4">
         {{ Form::label('avatar', ucfirst(__('avatar upload')), [
@@ -27,7 +27,7 @@ use App\ProfileRole;
       @if ($avatar)
       <div class="d-flex flex-wrap justify-content-center">
         <h2 class="w-100 text-center text-muted">{{ ucfirst(__('avatar')) }}</h2>
-        <figure class="mb-4 circle avatar justify-content-center">
+        <figure class="mb-4 avatar justify-content-center">
           <img src="{{ $avatar }}" alt="{{ __('avatar') }}">
         </figure>
       </div>
