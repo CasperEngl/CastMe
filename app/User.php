@@ -5,10 +5,55 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class User extends Authenticatable {
   use Notifiable;
   use Billable;
+  use SearchableTrait;
+
+  protected $searchable = [
+    /**
+     * Columns and their priority in search results.
+     * Columns with higher values are more important.
+     * Columns with equal values have equal importance.
+     *
+     * @var array
+     */
+    'columns' => [
+      /**
+       * Posts table
+       */
+      'users.name' => 5,
+      'users.last_name' => 5,
+      'users.email' => 10,
+      'users.lang' => 2,
+      'users.role' => 5,
+      /**
+       * Joined tables
+       */
+      'posts.title' => 1,
+      'posts.region' => 2,
+      'posts.region' => 2,
+      'profile_roles.role' => 3,
+      'profile_details.age' => 3,
+      'profile_details.height' => 3,
+      'profile_details.pant_size' => 1,
+      'profile_details.shoe_size' => 1,
+      'profile_details.shirt_size' => 1,
+      'profile_details.description' => 1,
+      'profile_details.hair_length' => 1,
+      'profile_details.hair_color' => 1,
+      'profile_details.ethnicity' => 2,
+      'profile_details.eye_color' => 1,
+      'profile_details.gender' => 3,
+    ],
+    'joins' => [
+      'posts' => ['users.id','posts.user_id'],
+      'profile_roles' => ['users.id', 'profile_roles.user_id'],
+      'profile_details' => ['users.id', 'profile_details.user_id'],
+    ],
+  ];
 
   /**
    * The attributes that are mass assignable.
