@@ -103,4 +103,45 @@ class PagesController extends Controller {
     session_push('success', sentence(__('thank you for contacting us. we will be with you soon.')));
     return redirect()->back();
   }
+
+  //////// agent contact form start /////////
+
+  public function contactAgent() {
+    return view('pages.contactagent')->with([
+      'static' => $this->static,
+    ]);
+  }
+
+  public function contactAgentPost(Request $request) {
+    $this->validate($request, [
+      'name' => 'required',
+      'email' => 'required|email',
+      'company' => 'required|company',
+      'cvr' => 'required|cvr',
+      'message' => 'required'
+    ]);
+
+    Contact::create($request->all());
+
+    Mail::send('email.contact',
+       array(
+          'name' => $request->get('name'),
+          'email' => $request->get('email'),
+          'user_message' => $request->get('message'),
+          'cvr' => $request->get('cvr'),
+          'company' => $request->get('company')
+        ), 
+        function($message) {
+          $message
+            ->to(env('MAIL_CONTACT_RECEIVER_ADDRESS', 'support@castme.dk'), env('MAIL_FROM_NAME', 'Admin'))
+            ->subject('Cast Me - Contact Form');
+      }
+    );
+
+    session_push('success', sentence(__('thank you for contacting us. we will be with you soon.')));
+    return redirect()->back();
+  }
+
 }
+
+  //////// agent contact form end /////////
