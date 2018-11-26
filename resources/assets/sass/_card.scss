@@ -39,7 +39,7 @@
   }
 }
 
-.post-card {
+.post-card, .profile-card {
   @extend .mt-3, .bg-white;
   border-radius: $border-radius-lg;
 
