@@ -25,12 +25,16 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
   Route::get('guides', 'PagesController@guides')->name('pages.guides');
   Route::get('about-us', 'PagesController@aboutUs')->name('pages.about-us');
 
-  // Specific Profile
-  Route::get('profile/{id}', 'ProfileController@index')->name('profile');
-
   // Posts
   Route::get('posts', 'PostController@list')->name('posts');
   Route::get('posts/search', 'PostController@search')->name('posts.search');
+  
+  // Profiles
+  Route::get('profiles', 'ProfileController@list')->name('profiles');
+  Route::get('profiles/search', 'ProfileController@search')->name('profiles.search');
+
+  // Specific Profile
+  Route::get('profile/{id}', 'ProfileController@index')->name('profile');
 
   // Singular Post
   Route::get('post/{id}', 'PostController@index')->name('post');
