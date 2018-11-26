@@ -163,4 +163,24 @@ class ProfileController extends Controller {
   public function dump(Request $request) {
     dd($request->all());
   }
+
+  public function list() {
+    $profiles = User::orderBy('id', 'desc')->get();
+
+    return view('user.list', [
+      'title' => ucfirst(__('profiles')),
+      'profiles' => $profiles,
+    ]);
+  }
+
+  public function search(Request $request) {
+    $profiles = User::search($request->q, null, true)
+      ->get()
+      ->unique();
+
+    return view('user.list', [
+      'title' => ucfirst(__('profiles')),
+      'profiles' => $profiles,
+    ]);
+  }
 }
