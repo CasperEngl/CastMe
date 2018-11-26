@@ -71,7 +71,7 @@
 
       <section class="row">
         <div class="col-12">
-          <h4 class="profile__title">{{ ucfirst(__('Details')) }}</h4>
+          <h4 class="profile__title">{{ ucfirst(__('details')) }}</h4>
         </div>
         <div class="col-12">
           <div class="row">
