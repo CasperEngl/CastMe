@@ -40,7 +40,38 @@
     </div>
 
       <section class="mt-4 mb-0">
+
+
+      @if (App::isLocale('en')) 
+      <h2 class="text-center">Castme is currently under development</h2>
+         <p class="text-center">
+           Castme is a platform that offers jobs of many kinds.
+         </p>
+       </section>
+       <section class="mt-4 mb-0">
+         <h2 class="text-center">What can you do with your profile?</h2>
+         <p class="text-center">
+           The platorm delivers a safe and easy system for keeping an eye on jobs.
+         </p>
+         <div class="feature my-2 animated fadeInLeft delay-1000ms">
+           <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Chat between scouts and members
+         </div>
+         <div class="feature my-2 animated fadeInLeft delay-1500ms">
+           <i class="fas fa-check-circle fa-2x text-info mr-2"></i> A big database of jobs in Denmark
+         </div>
+         <div class="feature my-2 animated fadeInLeft delay-2500ms">
+           <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Detailed profile editing
+         </div>
+       </section>
+       <section class="jumbotron mt-4 mb-0">
+         <div class="container">
+           <h2 class="page-header">{{ ucfirst(__('job posts')) }} <i class="fas fa-clipboard-list"></i></h2>
+           <div class="row">
+
+        @else
         <h2 class="text-center">Castme er lige nu under udvikling</h2>
+         
+
         <p class="text-center">
           Castme er en platform hvor du kan finde blandt andet modeljobs, filmroller og statistjobs, men også opslag af mange andre arter i dit lokalområde.
         </p>
@@ -67,6 +98,8 @@
         <div class="container">
           <h2 class="page-header">{{ ucfirst(__('job posts')) }} <i class="fas fa-clipboard-list"></i></h2>
           <div class="row">
+
+           @endif
       
           @if (count($posts))
             @foreach($posts as $post)
@@ -201,12 +234,12 @@
 
             <p class="text-center h3 jh3">{{ sentence(__('become an agent')) }}</p>
             <div class="d-flex">
-              <a href="#" target="_blank" class="mr-2">
+              <a href="/contactagent/" target="_blank" class="mr-2">
                 <img src="/img/agent.png" alt="create agent">
               </a>
             </div>
 
-            <a href="/#" class="text-center btn btn-castme fwb">{{ sentence(__('become an agent')) }}</a>
+            <a href="/contactagent/" class="text-center btn btn-castme fwb">{{ sentence(__('become an agent')) }}</a>
           </article>
         </section>
 
