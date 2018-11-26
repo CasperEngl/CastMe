@@ -21,6 +21,8 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
   Route::get('terms', 'PagesController@terms')->name('pages.terms');
   Route::get('contact', 'PagesController@contact')->name('pages.contact');
   Route::post('contact', 'PagesController@contactPost')->name('pages.contact.post');
+  Route::get('contactagent', 'PagesController@contactAgent')->name('pages.contactagent');
+  Route::post('contactagent', 'PagesController@contactAgentPost')->name('pages.contactagent.post');
   Route::get('privacy', 'PagesController@privacy')->name('pages.privacy');
   Route::get('guides', 'PagesController@guides')->name('pages.guides');
   Route::get('about-us', 'PagesController@aboutUs')->name('pages.about-us');
