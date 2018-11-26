@@ -44,7 +44,6 @@
             <li class="nav-item">
               <a href="{{ route('posts') }}" class="nav-link">{{ ucfirst(__('jobs')) }}</a>
             </li>
-            @auth
             <form class="form mr-2 mb-0" action="{{ route('locale.set') }}" method="POST">
               <select name="locale" class="selectpicker" data-width="fit" data-style="btn-default">
                 <option value="en" data-content="<span class='flag-icon flag-icon-us'></span> {{ ucfirst(__('english')) }}" {{ App::getLocale() === 'en' ? 'selected' : '' }}>
@@ -57,7 +56,6 @@
               
               @csrf
             </form>
-            @endauth
             @guest
             <li class="nav-item">
               <a class="nav-link" href="{{ route('login') }}">{{ title_case(__('login')) }}</a>
