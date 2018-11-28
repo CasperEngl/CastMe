@@ -215,6 +215,11 @@
             </div>
           </div>
 
+          <div class="form-group d-flex justify-content-center align-items-center">
+            <input type="checkbox" name="conditions" id="conditions">
+              <label for="conditions" class="mx-2 my-0">{{ ucfirst(__('i accept the')) }} <a href="https://castme.dk/abonnementsbetingelser/" target="blank">{{ __('subscription conditions') }}</a></label>
+          </div>
+
           <div class="form-group row mb-0">
             <div class="col">
               <button type="submit" class="text-center btn btn-castme fwb">{{ ucfirst(__('register')) }}</button>
