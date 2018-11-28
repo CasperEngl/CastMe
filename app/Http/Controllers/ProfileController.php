@@ -21,11 +21,6 @@ class ProfileController extends Controller {
         ucfirst(__('unfortunately, that user does not exist'))
       ]);
 
-    if ($user->role === 'Free' && $user->id !== Auth::id())
-      return redirect()->back()->withErrors([
-        ucfirst(__('oops, looks like that user is not a member yet.'))
-      ]);
-
     return view('user.profile')->with([
       'user' => $user,
       'avatar' => $avatar,
@@ -124,6 +119,7 @@ class ProfileController extends Controller {
     $user->name           = $request->input('first_name') ? title_case($request->input('first_name')) : title_case($user->name);
     $user->last_name      = $request->input('last_name') ? title_case($request->input('last_name')) : title_case($user->last_name);
     $user->email          = $request->input('email') ? $request->input('email') : $user->email;
+    $user->phone          = $request->input('phone') ? $request->input('phone') : $user->phone;
     $user->avatar         = $avatar ? $storedFile : $user->avatar;
     $details->age         = $request->input('age') ? $request->input('age') : $details->age;
     $details->height      = $request->input('height') ? $request->input('height') : $details->height;
