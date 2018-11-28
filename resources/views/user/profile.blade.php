@@ -141,4 +141,18 @@
     </div>
   </div>
 </div>
+
+  @moderator
+
+    <div class="col-12 admininfo p-4">
+      <h4>{{ ucfirst(__('ADMIN ONLY INFORMATION')) }}</h4>
+
+        <p class="m-2">{{ ucfirst(__('User E-mail')) }}</p> 
+        <p class="m-2 font-weight-bold">{{ $user->email }}</p>
+        <p class="m-2">{{ ucfirst(__('User Phone')) }}</p> 
+        <p class="m-2 font-weight-bold">{{ $user->phone}}</p> 
+    </div>
+
+  @endmoderator
+
 @endsection
