@@ -48,6 +48,7 @@ class RegisterController extends Controller {
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|min:6',
             'password' => 'required|string|min:6|confirmed',
             'conditions' => 'accepted',
         ]);
@@ -64,6 +65,7 @@ class RegisterController extends Controller {
             'name' => title_case($data['name']),
             'last_name' => title_case($data['last_name']),
             'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
     }
