@@ -76,6 +76,24 @@ use App\ProfileRole;
         </div>
       </div>
 
+ {{ Form::label('gallery', ucfirst(__('NB: your email and phone number will ONLY be visible to system admins, and not agents.')), [
+        'class' => 'text mt-4'
+      ]) }}
+
+     <div class="row">
+        <div class="col">
+          <div class="form-group">
+            {{ Form::label('phone', ucfirst(__('phone')), [
+              'class' => 'text-muted'
+              ]) }}
+            {{ Form::text('phone', Auth::user()->phone ?? '', [
+              'class' => 'form-control',
+              'placeholder' => ''
+            ]) }}
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col">
           <div class="form-group">
@@ -83,6 +101,20 @@ use App\ProfileRole;
               'class' => 'text-muted'
               ]) }}
             {{ Form::text('email', Auth::user()->email ?? '', [
+              'class' => 'form-control',
+              'placeholder' => ''
+            ]) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            {{ Form::label('phone', ucfirst(__('phone')), [
+              'class' => 'text-muted'
+              ]) }}
+            {{ Form::text('phone', Auth::user()->phone ?? '', [
               'class' => 'form-control',
               'placeholder' => ''
             ]) }}
