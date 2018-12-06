@@ -3,7 +3,6 @@
 namespace App\Listeners;
 
 use App\ProfileDetails;
-use App\QuickPay\RegisterUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

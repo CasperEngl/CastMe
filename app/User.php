@@ -4,12 +4,10 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Cashier\Billable;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
 class User extends Authenticatable {
   use Notifiable;
-  use Billable;
   use SearchableTrait;
 
   protected $searchable = [
@@ -77,10 +75,6 @@ class User extends Authenticatable {
     'password', 'remember_token',
   ];
 
-  public function order() {
-    return $this->hasOne('App\Orders', 'user_id');
-  }
-
   public function comments() {
     return $this->hasMany('App\Comment');
   }
@@ -97,16 +91,8 @@ class User extends Authenticatable {
     return $this->hasMany('App\Message', 'to');
   }
 
-  public function payments() {
-    return $this->hasMany('App\Payment');
-  }
-
   public function conversations() {
     return $this->belongsToMany('App\Conversation', 'conversation_user', 'user_id', 'conversation_id');
-  }
-
-  public function activeSub() {
-    return $this->subscribed('paid');
   }
 
   public function details() {

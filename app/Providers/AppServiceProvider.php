@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Laravel\Cashier\Cashier;
 use Blade;
 use Auth;
 
@@ -14,7 +13,6 @@ class AppServiceProvider extends ServiceProvider {
    * @return void
    */
   public function boot() {
-    Cashier::useCurrency('DKK', 'kr');
     date_default_timezone_set('Europe/Amsterdam');
 
     Blade::if('free', function () {

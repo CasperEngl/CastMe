@@ -24,9 +24,3 @@ Route::prefix('locale')->group(function () {
   Route::post('get/{locale}', 'LocaleController@get')->where('locale', '[a-zA-Z]+')->name('locale');
   Route::post('user/{id}', 'LocaleController@user')->name('locale.user');
 });
-
-//Stripe webhooks
-Route::post(
-  'stripe/webhook',
-  '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
-);

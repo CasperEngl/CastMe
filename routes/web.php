@@ -13,7 +13,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use QuickPay\QuickPay;
 
 Route::middleware('App\Http\Middleware\Localization')->group(function() {
   // Homepage
