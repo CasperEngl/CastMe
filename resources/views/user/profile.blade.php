@@ -2,7 +2,7 @@
 @section('content')    
 <div class="card p-5">
   <div class="row">
-    <div class="col-sm-6 my-4 d-flex flex-column justify-content-center align-items-center">
+    <div class="col-sm-12 my-4 d-flex flex-column justify-content-center align-items-center">
       @if ($avatar)
       <figure class="circle avatar">
         <img src="{{ $avatar }}" alt="{{ __('avatar') }}">
@@ -20,14 +20,14 @@
         @endforeach
       </div>
       @endif
-      @if (Auth::user() && Auth::id() === $user->id)
+      @moderator
       <form action="{{ route('conversation.new') }}" method="post">
         @csrf
         <input type="hidden" name="users[]" value="{{ Auth::id() }}">
         <input type="hidden" name="users[]" value="{{ $user->id }}">
         <input type="submit" class="btn btn-castme mt-2" value="{{ ucfirst(__('message')) }}">
       </form>
-      @endif
+      @endmoderator
 
       <div id="userGallery" class="carousel slide mt-4" data-ride="carousel">
         <div class="carousel-inner">
@@ -55,7 +55,7 @@
         @endforeach
       </ol>
     </div>
-    <div class="col-sm-6 my-4">
+    <div class="col-sm-12 my-4">
       <section class="row">
         <div class="col-12">
           <h4 class="profile__title">{{ ucfirst(__('description')) }}</h4>
