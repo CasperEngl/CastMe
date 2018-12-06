@@ -249,3 +249,26 @@ section.list-group.my-4.py-2.card.d-flex.align-items-center {
   background: #ffe2a0;
   border: 2px dashed #9d0101;
 }
+
+/* Tilføjelser med patrick 05-12-18 */
+
+div.carousel-item img {
+  width: 100% !important;
+  height: 400px;
+  object-fit: cover;
+  min-width: 100%;
+}
+
+div.carousel-item img:hover {
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+
+.profile-gallery__image img {
+  max-height: 200px;
+  object-fit: cover !important;
+  width: 100%;
+  min-height: 200px !important;
+}
+
