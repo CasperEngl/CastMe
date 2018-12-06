@@ -205,7 +205,6 @@
         <p class="m-0">Cvr. 39302845</p>
         <p class="m-0">Carl bernhardsvej 13B</p>
         <p class="m-0">Frederiksberg 1817</p>
-        <p class="m-0">Tlf: +45 31171877</p>
         <p class="m-0">Mail: support@castme.dk</p>
       </article>
       <article class="my-2 mx-5">

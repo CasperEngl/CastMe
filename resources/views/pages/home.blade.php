@@ -54,7 +54,7 @@
            The platorm delivers a safe and easy system for keeping an eye on jobs.
          </p>
          <div class="feature my-2 animated fadeInLeft delay-1000ms">
-           <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Chat between scouts and members
+           <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Chat between agents and members
          </div>
          <div class="feature my-2 animated fadeInLeft delay-1500ms">
            <i class="fas fa-check-circle fa-2x text-info mr-2"></i> A big database of jobs in Denmark
@@ -82,7 +82,7 @@
           Vores profilsystem leverer en sikker og brugervenlig platform til at holde øje med dine beskeder og dine opslag.
         </p>
         <div class="feature my-2 animated fadeInLeft delay-1000ms">
-          <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Chat imellem scouts og medlemmer
+          <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Chat imellem agenter og medlemmer
         </div>
         <div class="feature my-2 animated fadeInLeft delay-1500ms">
           <i class="fas fa-check-circle fa-2x text-info mr-2"></i> Notifikationer på opslag du er interreseret i
@@ -196,6 +196,15 @@
               <input id="email" type="email" placeholder="{{ sentence(__('e-mail')) }}" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
               @if ($errors->has('email'))
               <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('email') }}</strong></span>
+              @endif
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col">
+              <input id="phone" type="phone" placeholder="{{ sentence(__('phone')) }}" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required>
+              @if ($errors->has('phone'))
+              <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('phone') }}</strong></span>
               @endif
             </div>
           </div>

@@ -77,11 +77,22 @@
           </div>
 
           <div class="form-group row mb-0">
-            <div class="col-md-6 offset-md-4">
-              <button type="submit" class="btn btn-castme">{{ ucfirst(__('register')) }}</button>
+            <div class="col-md-12 justify-content-center align-items-center">
+              <button type="submit" class="btn btn-castme w-100">{{ ucfirst(__('register')) }}</button>
             </div>
           </div>
         </form>
+
+
+    <section class="d-flex justify-content-center align-items-center mt-3 mb-3">
+      <article class="my-1">
+      <a href="/register" class="text-center my-1 w-100 btn btn-castme">{{ sentence(__('login to existing account')) }}</a>
+      </article>
+      <article class="my-2">
+        <a href="/contactagent" class="text-center my-1 w-100 btn btn-castme">{{ sentence(__('apply for agent account')) }}</a>
+      </article>
+    </section>
+
       </div>
     </div>
   </div>
