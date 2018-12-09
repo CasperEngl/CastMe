@@ -14,7 +14,6 @@ class ProfileController extends Controller {
   public function index($id) {
     $user = User::find($id);
     $avatar = Storage::disk('public')->exists($user->avatar) ? Storage::disk('public')->url($user->avatar) : false;
-    $gravatarHash = md5(trim(strtolower(Auth::user()->email))) . '?s=200';
 
     if (!$user)
       return redirect()->back()->withErrors([
@@ -24,7 +23,6 @@ class ProfileController extends Controller {
     return view('user.profile')->with([
       'user' => $user,
       'avatar' => $avatar,
-      'gravatar' => $gravatarHash,
     ]);
   }
 
