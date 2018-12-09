@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Conversation;
 use App\User;
+use Mail;
+
 /**
  * @mixin \Eloquent
  */
@@ -108,6 +110,27 @@ class ConversationController extends Controller {
     $message->content = $request->input('content');
     $message->conversation_id = $conversationId;
     $message->save();
+
+    $sender = User::find($message->user_id);
+    $conversation = Conversation::find($message->conversation_id);
+    $users = $conversation->users->where('id', '!=', Auth::id());
+
+    foreach ($users as $user) {
+      Mail::send('email.message',
+        array(
+          'user' => $user,
+          'users' => $users,
+          'conversation' => $conversation,
+          'message' => $message,
+          'sender' => $sender,
+        ), 
+        function($message) {
+          $message
+            ->to('me@casperengelmann.com', env('MAIL_FROM_NAME', 'Admin'))
+            ->subject(__('Cast Me - New Message'));
+        }
+      );
+    }
 
     session_push('success', sentence(__('your message was sent!')));
     return redirect()->back();
