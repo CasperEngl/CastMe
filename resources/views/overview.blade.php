@@ -48,8 +48,13 @@
     <h2 class="page-header">{{ ucfirst(__('admin')) }}</h2>
   </div>
   <div class="col-12 col-sm-6 col-lg-4 animated fadeInRight delay-700ms">
-    <a href="#" class="btn tile">
-      <i class="fas fa-users"></i><span class="d-inline-block">{{ ucfirst(__('users')) }}</span>
+    <a href="{{ route('admin.users') }}" class="btn tile">
+      <i class="fas fa-users"></i><span class="d-inline-block">{{ ucfirst(__('manage users')) }}</span>
+    </a>
+  </div>
+  <div class="col-12 col-sm-6 col-lg-4 animated fadeInRight delay-800ms">
+    <a href="{{ route('admin.users.new') }}" class="btn tile">
+      <i class="fas fa-users"></i><span class="d-inline-block">{{ ucfirst(__('create user')) }}</span>
     </a>
   </div>
 </section>
