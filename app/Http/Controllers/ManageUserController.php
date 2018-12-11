@@ -9,6 +9,10 @@ use Auth;
 use Mail;
 
 class ManageUserController extends Controller {
+    public function __construct() {
+        $this->middleware('App\Http\Middleware\ModeratorMiddleware');
+    }
+
     public function index() {
         return view('admin.users.manage');
     }
@@ -36,8 +40,6 @@ class ManageUserController extends Controller {
             'created_by' => $registrant->id,
         ]);
 
-        return response()->json($user);
-
         Mail::send('email.registered',
             array(
                 'user' => $user,
@@ -64,5 +66,21 @@ class ManageUserController extends Controller {
         }
 
         return response()->json($user);
+    }
+
+    public function toggle(int $id) {
+        $user = User::find($id);
+
+        $user->disabled = !$user->disabled;
+        $user->save();
+
+        // If the user is closed
+        if ($user->disabled) {
+            session_push('success', $user->name . ' ' . __('is now disabled. they will no longer be visible to the public.'));
+            return redirect()->route('profile', ['id' => $user->id]);
+        } else { // If the user is not closed
+            session_push('success', $user->name . ' ' . __('is now enabled. they are now visible to the public.'));
+            return redirect()->route('profile', ['id' => $user->id]);
+        }
     }
 }
