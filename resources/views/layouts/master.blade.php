@@ -78,6 +78,7 @@
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <div class="dropdown-header">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</div>
+                <a class="dropdown-item {{ active_route('overview', true) }}" href="{{ route('overview') }}">{{ ucfirst(__('overview')) }}</a>
                 <a class="dropdown-item {{ active_route('user.settings', true) }}" href="{{ route('user.settings') }}">{{ ucfirst(__('profile settings')) }}</a>
                 @onlyuser
                 <a class="dropdown-item {{ active_route('user.subscription', true) }}" href="{{ route('user.subscription') }}">{{ ucfirst(__('subscription')) }}</a>
