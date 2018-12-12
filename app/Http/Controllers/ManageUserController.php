@@ -13,10 +13,6 @@ class ManageUserController extends Controller {
         $this->middleware('App\Http\Middleware\ModeratorMiddleware');
     }
 
-    public function index() {
-        return view('admin.users.manage');
-    }
-
     public function new() {
         return view('admin.users.create');
     }
@@ -54,18 +50,6 @@ class ManageUserController extends Controller {
 
         session_push('success', $user->name . ' ' . __('was created.'));
         return redirect()->route('overview');
-    }
-
-    public function view($id) {
-        $user = User::find($id);
-
-        if (!$user) {
-            return redirect()->route('overview')->withErrors([
-                sentence(__('no user with that id exists.'))
-            ]);
-        }
-
-        return response()->json($user);
     }
 
     public function toggle(int $id) {
