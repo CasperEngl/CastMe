@@ -20,14 +20,27 @@
         @endforeach
       </div>
       @endif
-      @moderator
-      <form action="{{ route('conversation.new') }}" method="post">
-        @csrf
-        <input type="hidden" name="users[]" value="{{ Auth::id() }}">
-        <input type="hidden" name="users[]" value="{{ $user->id }}">
-        <input type="submit" class="btn btn-castme mt-2" value="{{ ucfirst(__('message')) }}">
-      </form>
-      @endmoderator
+      <div class="row">
+        @scout
+        <div class="col-auto px-1">
+          <form action="{{ route('conversation.new') }}" method="post">
+            @csrf
+            <input type="hidden" name="users[]" value="{{ Auth::id() }}">
+            <input type="hidden" name="users[]" value="{{ $user->id }}">
+            <input type="submit" class="btn btn-castme mt-2" value="{{ ucfirst(__('message')) }}">
+          </form>
+        </div>
+        @endscout
+        @moderator
+        <div class="col-auto px-1">
+          @if ($user->disabled)
+          <a href="{{ route('admin.user.toggle', ['id' => $user->id]) }}" class="btn btn-warning mt-2">{{ ucfirst(__('enable')) }}</a>
+          @else
+          <a href="{{ route('admin.user.toggle', ['id' => $user->id]) }}" class="btn btn-danger mt-2">{{ ucfirst(__('disable')) }}</a>
+          @endif
+        </div>
+        @endmoderator
+      </div>
 
       <div id="userGallery" class="carousel slide mt-4" data-ride="carousel">
         <div class="carousel-inner">
