@@ -86,6 +86,14 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
     Route::get('post/{id}/toggle', 'PostController@toggle')->name('post.toggle');
     Route::post('post/{id}/update', 'PostController@update')->name('post.update');
     // END SCOUT
+    
+    // START ADMIN
+    // Create user
+    Route::get('user/create', 'ManageUserController@new')->name('admin.users.new');
+    Route::post('user/create', 'ManageUserController@create')->name('admin.users.create');
+    // Toggle user disabled
+    Route::get('user/{id}/toggle', 'ManageUserController@toggle')->name('admin.user.toggle');
+    // END ADMIN
   });
 
   Route::post('locale/set', 'LocaleController@set')->name('locale.set');

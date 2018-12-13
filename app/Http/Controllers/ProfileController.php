@@ -15,7 +15,7 @@ class ProfileController extends Controller {
     $user = User::find($id);
     $avatar = Storage::disk('public')->exists($user->avatar) ? Storage::disk('public')->url($user->avatar) : false;
 
-    if (!$user)
+    if ($user->disabled && !in_array(Auth::user()->role, ['Admin', 'Moderator']) || !$user)
       return redirect()->back()->withErrors([
         ucfirst(__('unfortunately, that user does not exist'))
       ]);
@@ -159,7 +159,9 @@ class ProfileController extends Controller {
   }
 
   public function list() {
-    $profiles = User::orderBy('id', 'desc')->get();
+    $profiles = User::where('disabled', '!=', '1')
+      ->orderBy('id', 'desc')
+      ->get();
 
     return view('user.list', [
       'title' => ucfirst(__('profiles')),
@@ -169,6 +171,7 @@ class ProfileController extends Controller {
 
   public function search(Request $request) {
     $profiles = User::search($request->q, null, true)
+      ->where('disabled', '!=', '1')
       ->get()
       ->unique();
 

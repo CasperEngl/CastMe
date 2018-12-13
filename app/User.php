@@ -59,6 +59,7 @@ class User extends Authenticatable {
    * @var array
    */
   protected $fillable = [
+    'created_by',
     'name',
     'last_name',
     'email',
@@ -105,5 +106,13 @@ class User extends Authenticatable {
 
   public function profileRoles() {
     return $this->hasMany('App\ProfileRole', 'user_id');
+  }
+
+  public function createdBy() {
+    return $this->hasOne('App\User', 'created_by');
+  }
+
+  public function usersCreated() {
+    return $this->hasMany('App\User', 'created_by');
   }
 }

@@ -95,7 +95,7 @@ class PagesController extends Controller {
         ), 
         function($message) {
           $message
-            ->to(env('MAIL_CONTACT_RECEIVER_ADDRESS', 'support@castme.dk'), env('MAIL_FROM_NAME', 'Admin'))
+            ->to(env('MAIL_CONTACT_RECEIVER_ADDRESS', 'support@castme.dk'), env('MAIL_FROM_NAME'))
             ->subject('Cast Me - Contact Form');
       }
     );
@@ -133,7 +133,7 @@ class PagesController extends Controller {
         ), 
         function($message) {
           $message
-            ->to(env('MAIL_CONTACT_RECEIVER_ADDRESS', 'support@castme.dk'), env('MAIL_FROM_NAME', 'Admin'))
+            ->to(env('MAIL_CONTACT_RECEIVER_ADDRESS', 'support@castme.dk'), env('MAIL_FROM_NAME'))
             ->subject('Cast Me - Contact Form');
       }
     );
