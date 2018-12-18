@@ -124,7 +124,7 @@ class ConversationController extends Controller {
           'message' => $message,
           'sender' => $sender,
         ), 
-        function($message) {
+        function($message) use ($user) {
           $message
             ->to($user->email, env('MAIL_FROM_NAME'))
             ->subject(__('Cast Me - New Message'));

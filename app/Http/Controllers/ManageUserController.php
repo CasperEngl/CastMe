@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\ProfileDetails;
 use Auth;
 use Mail;
 
@@ -36,12 +37,16 @@ class ManageUserController extends Controller {
             'created_by' => $registrant->id,
         ]);
 
+        $details = ProfileDetails::create();
+        $details->user_id = $user->id;
+        $details->save();
+
         Mail::send('email.registered',
             array(
                 'user' => $user,
                 'registrant' => $registrant,
             ), 
-            function($message) {
+            function($message) use ($user) {
                 $message
                     ->to($user->email, env('MAIL_FROM_NAME'))
                     ->subject(__('Cast Me - You are registered!'));
