@@ -57,11 +57,13 @@
       <i class="fas fa-users"></i><span class="d-inline-block">{{ ucfirst(__('list created users')) }}</span>
     </a>
   </div>
+  @admin
   <div class="col-12 col-sm-6 col-lg-4 animated fadeInRight delay-900ms">
     <a href="{{ route('admin.users.list') }}" class="btn tile">
       <i class="fas fa-users"></i><span class="d-inline-block">{{ ucfirst(__('list all users')) }}</span>
     </a>
   </div>
+  @endadmin
 </section>
 @endmoderator
 @endsection

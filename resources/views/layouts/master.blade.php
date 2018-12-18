@@ -153,12 +153,14 @@
             <a href="{{ route('posts.own') }}" class="list-group-item {{ active_route('posts.own', true) }}">{{ title_case(__('your posts')) }}</a>
           </div>
           @endscout
-          @admin
+          @moderator
           <div class="list-group mb-4">
-            <a href="{{ route('admin.users.list') }}" class="list-group-item {{ active_route('admin.users.list', true) }}">{{ title_case(__('All users')) }}</a>
-            <a href="{{ route('admin.users.listOwn') }}" class="list-group-item {{ active_route('admin.users.listOwn', true) }}">{{ title_case(__('Your users')) }}</a>
+            @admin
+            <a href="{{ route('admin.users.list') }}" class="list-group-item {{ active_route('admin.users.list', true) }}">{{ title_case(__('all users')) }}</a>
+            @endadmin
+            <a href="{{ route('admin.users.listOwn') }}" class="list-group-item {{ active_route('admin.users.listOwn', true) }}">{{ title_case(__('your users')) }}</a>
           </div>
-          @endadmin
+          @endmoderator
         </div>
       </aside>
       @endif

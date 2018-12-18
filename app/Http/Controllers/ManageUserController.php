@@ -12,6 +12,11 @@ use Mail;
 class ManageUserController extends Controller {
     public function __construct() {
         $this->middleware('App\Http\Middleware\ModeratorMiddleware');
+        $this->middleware('App\Http\Middleware\AdminMiddleware', [
+            'only' => [
+                'list',
+            ]
+        ]);
     }
 
     public function new() {
