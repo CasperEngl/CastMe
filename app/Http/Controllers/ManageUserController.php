@@ -72,4 +72,24 @@ class ManageUserController extends Controller {
             return redirect()->route('profile', ['id' => $user->id]);
         }
     }
+
+    public function list() {
+        $users = User::orderBy('id', 'desc')->get();
+    
+        return view('admin.users.list', [
+            'title' => ucfirst(__('all users')),
+            'users' => $users,
+        ]);
+    }
+
+    public function listOwn() {
+        $users = User::where('created_by', Auth::id())
+          ->orderBy('id', 'desc')
+          ->get();
+    
+        return view('admin.users.list', [
+            'title' => ucfirst(__('users you created')),
+            'users' => $users,
+        ]);
+    }
 }

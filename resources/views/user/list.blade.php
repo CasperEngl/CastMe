@@ -1,9 +1,3 @@
-<?php
-
-use App\ProfileRole;
-
-?>
-
 @extends('layouts.master')
 @section('content')
 
@@ -15,7 +9,7 @@ use App\ProfileRole;
           {{ ucfirst(__('roles')) }}
         </button>
         <div class="dropdown-menu">
-          @foreach (ProfileRole::getPossibleRoles() as $role)
+          @foreach (App\ProfileRole::getPossibleRoles() as $role)
           <a class="dropdown-item" href="{{ route('profiles.search', ['q' => $role]) }}">
             {{ ucfirst(__(str_replace('_', ' ', $role))) }}
           </a>

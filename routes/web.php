@@ -93,6 +93,9 @@ Route::middleware('App\Http\Middleware\Localization')->group(function() {
     Route::post('user/create', 'ManageUserController@create')->name('admin.users.create');
     // Toggle user disabled
     Route::get('user/{id}/toggle', 'ManageUserController@toggle')->name('admin.user.toggle');
+    // List users
+    Route::get('users/all', 'ManageUserController@list')->name('admin.users.list');
+    Route::get('users', 'ManageUserController@listOwn')->name('admin.users.listOwn');
     // END ADMIN
   });
 
