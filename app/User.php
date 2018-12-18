@@ -109,7 +109,7 @@ class User extends Authenticatable {
   }
 
   public function createdBy() {
-    return $this->hasOne('App\User', 'created_by');
+    return $this->belongsTo('App\User', 'created_by');
   }
 
   public function usersCreated() {
