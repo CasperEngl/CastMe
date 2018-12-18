@@ -157,14 +157,24 @@
 
   @moderator
 
-    <div class="col-12 admininfo p-4">
+    <section class="col-12 admininfo p-4">
       <h4>{{ ucfirst(__('ADMIN ONLY INFORMATION')) }}</h4>
 
-        <p class="m-2">{{ ucfirst(__('User E-mail')) }}</p> 
-        <p class="m-2 font-weight-bold">{{ $user->email }}</p>
-        <p class="m-2">{{ ucfirst(__('User Phone')) }}</p> 
-        <p class="m-2 font-weight-bold">{{ $user->phone}}</p> 
-    </div>
+      <div class="row">
+        <div class="col-6">
+          <h6>{{ ucfirst(__('user e-mail')) }}</h6>
+          <p class="font-weight-bold">{{ $user->email }}</p>
+          <h6>{{ ucfirst(__('user phone')) }}</h6>
+          <p class="font-weight-bold">{{ $user->phone}}</p>
+        </div>
+        @if ($user->createdBy)
+        <div class="col-6">
+          <h6>{{ ucfirst(__('user creator')) }}</h6>
+          <p class="font-weight-bold">{{ $user->createdBy->name }} {{ $user->createdBy->last_name }}</p>
+        </div>
+        @endif
+      </div>
+    </section>
 
   @endmoderator
 
