@@ -30,7 +30,6 @@ class PagesController extends Controller {
    */
   public function home() {
     $posts = Post::orderBy('id', 'desc')
-      ->where('closed', 0)
       ->limit(8)
       ->get();
     $latestUsers = User::orderBy('id', 'desc')

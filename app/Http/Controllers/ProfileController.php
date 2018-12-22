@@ -12,13 +12,14 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class ProfileController extends Controller {
   public function index($id) {
-    $user = User::find($id);
-    $avatar = Storage::disk('public')->exists($user->avatar) ? Storage::disk('public')->url($user->avatar) : false;
+    $user = User::withTrashed()->find($id);
 
-    if ($user->disabled && !in_array(Auth::user()->role, ['Admin', 'Moderator']) || !$user)
+    if ($user->deleted_at && !in_array(Auth::user()->role, ['Admin', 'Moderator']) || !$user)
       return redirect()->back()->withErrors([
         ucfirst(__('unfortunately, that user does not exist'))
       ]);
+
+    $avatar = Storage::disk('public')->exists($user->avatar) ? Storage::disk('public')->url($user->avatar) : false;
 
     return view('user.profile')->with([
       'user' => $user,

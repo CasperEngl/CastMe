@@ -31,9 +31,9 @@ class PostController extends Controller {
   }
 
   public function index($id) {
-    $post = Post::find($id);
+    $post = Post::withTrashed()->find($id);
     
-    if ($post->closed && $post->user_id !== Auth::id())
+    if ($post->deleted_at && $post->user_id !== Auth::id())
       return redirect()->back()->withErrors([
         ucfirst(__('that post no longer exists.'))
       ]);
@@ -62,9 +62,7 @@ class PostController extends Controller {
   }
 
   public function list() {
-    $posts = Post::where('closed', 0)
-      ->orderBy('id', 'desc')
-      ->get();
+    $posts = Post::orderBy('id', 'desc')->get();
 
     return view('post.list', [
       'title' => ucfirst(__('posts')),
@@ -104,7 +102,8 @@ class PostController extends Controller {
   }
 
   public function listOwn() {
-    $posts = Post::where('user_id', Auth::id())
+    $posts = Post::withTrashed()
+      ->where('user_id', Auth::id())
       ->orderBy('id', 'desc')
       ->get();
 
@@ -235,18 +234,21 @@ class PostController extends Controller {
   }
 
   public function toggle(int $id) {
-    $post = Post::find($id);
+    $post = Post::withTrashed()->find($id);
 
     if ($post->user_id !== Auth::id() && !in_array(Auth::user()->role, ['Admin', 'Moderator']))
       return redirect()->back()->withErrors([
         ucfirst(__('oops, looks like that post doesn\'t belong to you.'))
       ]);
 
-    $post->closed = !$post->closed;
-    $post->save();
+    if ($post->deleted_at) {
+      $post->restore();
+    } else {
+      $post->delete();
+    }
 
     // If the post is closed
-    if ($post->closed) {
+    if ($post->deleted_at) {
       session_push('success', sentence(__('your post is now disabled. it will no longer be visible to the public.')));
       return redirect()->route('posts');
     } else { // If the post is not closed
@@ -256,8 +258,7 @@ class PostController extends Controller {
   }
 
   public function search(Request $request) {
-    $posts = Post::where('closed', 0)
-      ->search($request->q, null, true)
+    $posts = Post::search($request->q, null, true)
       ->with('user')
       ->with('postRoles')
       ->get()
