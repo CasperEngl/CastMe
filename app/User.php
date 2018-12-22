@@ -5,10 +5,15 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable {
   use Notifiable;
   use SearchableTrait;
+  use SoftDeletes;
+  use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
+
+  protected $softCascade = ['posts', 'comments'];
 
   protected $searchable = [
     /**

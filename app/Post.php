@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model {
   use SearchableTrait;
+  use SoftDeletes;
 
   protected $searchable = [
     /**
