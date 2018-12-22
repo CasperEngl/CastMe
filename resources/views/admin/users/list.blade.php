@@ -15,6 +15,7 @@
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
             <th scope="col">Created By</th>
+            <th scope="col">Active</th>
             </tr>
         </thead>
         <tbody class="bg-white">
@@ -29,6 +30,11 @@
                 <td><a href="{{ route('profile', ['id' => $user->createdBy->id]) }}">{{ $user->createdBy->name }} {{ $user->createdBy->last_name }}</a></td>
                 @else
                 <td></td>
+                @endif
+                @if ($user->deleted_at)
+                <td><a href="{{ route('admin.user.toggle', ['id' => $user->id]) }}" class="btn btn-warning" onclick="return confirm('{{ sentence(__('are you sure you want to enable this user?')) }}')">{{ ucfirst(__('enable')) }}</a></td>
+                @else
+                <td><a href="{{ route('admin.user.toggle', ['id' => $user->id]) }}" class="btn btn-danger" onclick="return confirm('{{ sentence(__('are you sure you want to disable this user?')) }}')">{{ ucfirst(__('disable')) }}</a></td>
                 @endif
             </tr>
             @endforeach
