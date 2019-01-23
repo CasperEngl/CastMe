@@ -95,3 +95,7 @@ img {
   opacity: 1;
   transition: $transition-base;
 }
+
+.table td, .table th {
+  vertical-align: middle;
+}
