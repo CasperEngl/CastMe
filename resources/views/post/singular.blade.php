@@ -25,7 +25,7 @@
       @if ($owner || Auth::user() && in_array(Auth::user()->role, ['Admin', 'Moderator']))
       <section class="my-2 align-self-start">
         <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-info">{{ ucfirst(__('edit')) }}</a>
-        @if ($post->closed)
+        @if ($post->deleted_at)
         <a href="{{ route('post.toggle', ['id' => $post->id]) }}" class="btn btn-warning">{{ ucfirst(__('release')) }}</a>
         @else
         <a href="{{ route('post.toggle', ['id' => $post->id]) }}" class="btn btn-danger">{{ ucfirst(__('disable')) }}</a>

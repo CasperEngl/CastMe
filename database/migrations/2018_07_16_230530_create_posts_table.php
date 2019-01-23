@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration {
       $table->text('location')->nullable();
       $table->enum('region', ['capital_area', 'zealand', 'funen', 'northern_jutland', 'mid_jutland', 'south_denmark', 'bornholm'])->nullable();
       $table->string('banner')->default('placeholder/banner.png');
-      $table->boolean('closed')->default(0);
+      $table->softDeletes();
       $table->timestamps();
     });
   }

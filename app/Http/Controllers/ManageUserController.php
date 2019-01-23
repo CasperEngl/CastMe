@@ -63,23 +63,28 @@ class ManageUserController extends Controller {
     }
 
     public function toggle(int $id) {
-        $user = User::find($id);
+        $user = User::withTrashed()->find($id);
 
-        $user->disabled = !$user->disabled;
-        $user->save();
+        if ($user->deleted_at) {
+            $user->restore();
+        } else {
+            $user->delete();
+        }
 
         // If the user is closed
-        if ($user->disabled) {
+        if ($user->deleted_at) {
             session_push('success', $user->name . ' ' . __('is now disabled. they will no longer be visible to the public.'));
-            return redirect()->route('profile', ['id' => $user->id]);
+            return redirect()->back();
         } else { // If the user is not closed
             session_push('success', $user->name . ' ' . __('is now enabled. they are now visible to the public.'));
-            return redirect()->route('profile', ['id' => $user->id]);
+            return redirect()->back();
         }
     }
 
     public function list() {
-        $users = User::orderBy('id', 'desc')->get();
+        $users = User::withTrashed()
+            ->orderBy('id', 'desc')
+            ->get();
     
         return view('admin.users.list', [
             'title' => ucfirst(__('all users')),
@@ -89,8 +94,9 @@ class ManageUserController extends Controller {
 
     public function listOwn() {
         $users = User::where('created_by', Auth::id())
-          ->orderBy('id', 'desc')
-          ->get();
+            ->withTrashed()
+            ->orderBy('id', 'desc')
+            ->get();
     
         return view('admin.users.list', [
             'title' => ucfirst(__('users you created')),
