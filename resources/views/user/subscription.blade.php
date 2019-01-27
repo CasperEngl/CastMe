@@ -10,11 +10,11 @@
  /PHASES INTEGRATION AREA START
  -->
 
-      <button class="card-footer btn btn-castme" type="submit">
+      <button class="card-footer btn btn-castme mt-2" type="submit">
       {{ ucfirst(__('subscribe start')) }}
     </button>
 
-    <button class="card-footer btn btn-castme" type="submit">
+    <button class="card-footer btn btn-castme mt-2" type="submit">
       {{ ucfirst(__('subscribe end')) }}
     </button>
 
